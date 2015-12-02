@@ -14,19 +14,18 @@ class ViewController: UIViewController {
     @IBOutlet weak var currentCategory: UILabel!
     @IBOutlet weak var currentQuestion: UILabel!
     
+    let url = NSURL(string: "http://jservice.io/api/random?count=100")
+    
     var clues: NSMutableArray = NSMutableArray()
     var currentIndex: Int = 0
     
     override func viewDidLoad() {
-        self.prepareLabels()
-    
-        let url = NSURL(string: "http://jservice.io/api/random?count=100")
+        super.viewDidLoad()
+
         let result: NSArray = self.getClues(url!)
         
         self.dataToClue(result)
         self.setClueForCurrentIndex()
-        
-        super.viewDidLoad()
         
         var leftSwipe = UISwipeGestureRecognizer(target: self, action: Selector("handleSwipes:"))
         var rightSwipe = UISwipeGestureRecognizer(target: self, action: Selector("handleSwipes:"))
@@ -54,7 +53,10 @@ class ViewController: UIViewController {
         
         if (sender.direction == .Right) {
             if (self.currentIndex >= self.clues.count - 1) {
-                return
+                let result: NSArray = self.getClues(url!)
+                self.dataToClue(result)
+                self.currentIndex += 1
+            
             } else {
                 self.currentIndex += 1
             }
@@ -83,30 +85,10 @@ class ViewController: UIViewController {
         return result
     }
     
-    func prepareLabels() {
-        // These do not work, the whiteColor works, but the text clips on the UILabel
-        currentAnswer.lineBreakMode = NSLineBreakMode(rawValue: 0)!
-        currentQuestion.lineBreakMode = NSLineBreakMode(rawValue: 0)!
-        currentCategory.lineBreakMode = NSLineBreakMode(rawValue: 0)!
-        
-        currentAnswer.numberOfLines = 0
-        currentQuestion.numberOfLines = 4
-        currentCategory.numberOfLines = 0
-        
-        currentAnswer.clipsToBounds = false
-        currentQuestion.clipsToBounds = false
-        currentCategory.clipsToBounds = false
-        
-        currentAnswer.textColor = UIColor.whiteColor()
-        currentQuestion.textColor = UIColor.whiteColor()
-        currentCategory.textColor = UIColor.whiteColor()
-    }
-    
     func dataToClue(data: NSArray) {
         for clue in data {
             let category = (clue["category"] as! NSDictionary)["title"] as! String
             if let value = clue["value"] as? Int {
-                println(clue["question"])
                 self.clues.addObject(
                     Clue(
                         answer: clue["answer"] as! String,

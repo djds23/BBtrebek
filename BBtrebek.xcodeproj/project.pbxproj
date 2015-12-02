@@ -164,6 +164,7 @@
 				TargetAttributes = {
 					7BC8EC6C1C0D2805004972AD = {
 						CreatedOnToolsVersion = 6.4;
+						DevelopmentTeam = NRNGV5PHUG;
 					};
 					7BC8EC811C0D2805004972AD = {
 						CreatedOnToolsVersion = 6.4;
@@ -419,6 +420,7 @@
 				7BC8EC8E1C0D2805004972AD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		7BC8EC8F1C0D2805004972AD /* Build configuration list for PBXNativeTarget "BBtrebekTests" */ = {
 			isa = XCConfigurationList;
@@ -427,6 +429,7 @@
 				7BC8EC911C0D2805004972AD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

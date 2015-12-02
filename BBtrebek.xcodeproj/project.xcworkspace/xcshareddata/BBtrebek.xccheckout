@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>C9C8A6D5-C0C7-4B25-9BBE-C75A21035E91</string>
+	<key>IDESourceControlProjectName</key>
+	<string>BBtrebek</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>B18BC47BB788636B83459DDB38F82D620D7B48EC</key>
+		<string>github.com:djds23/BBtrebek.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>BBtrebek.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>B18BC47BB788636B83459DDB38F82D620D7B48EC</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>github.com:djds23/BBtrebek.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>B18BC47BB788636B83459DDB38F82D620D7B48EC</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>B18BC47BB788636B83459DDB38F82D620D7B48EC</string>
+			<key>IDESourceControlWCCName</key>
+			<string>BBtrebek</string>
+		</dict>
+	</array>
+</dict>
+</plist>
