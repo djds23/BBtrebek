@@ -10,6 +10,7 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    @IBOutlet weak var currentValue: UILabel!
     @IBOutlet weak var currentAnswer: UILabel!
     @IBOutlet weak var currentCategory: UILabel!
     @IBOutlet weak var currentQuestion: UILabel!
@@ -70,6 +71,7 @@ class ViewController: UIViewController {
         self.currentCategory.text = currentClue.category
         self.currentQuestion.text = currentClue.question
         self.currentAnswer.text = currentClue.answer
+        self.currentValue.text = String(currentClue.value)
     }
     
     func getClues(url: NSURL) -> NSArray {

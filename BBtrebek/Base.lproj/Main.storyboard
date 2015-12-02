@@ -62,15 +62,32 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Value:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8oJ-fX-vMg">
+                                <rect key="frame" x="277" y="443" width="47" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Value" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QSQ-go-KEH">
+                                <rect key="frame" x="170" y="468" width="260" height="24"/>
+                                <accessibility key="accessibilityConfiguration">
+                                    <accessibilityTraits key="traits" none="YES"/>
+                                </accessibility>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.18686865089999999" green="0.46913936239999998" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <gestureRecognizers/>
                         <constraints>
+                            <constraint firstAttribute="centerX" secondItem="QSQ-go-KEH" secondAttribute="centerX" id="0me-vC-7hr"/>
                             <constraint firstItem="iul-N7-LdW" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="16" id="2wR-Y8-gx2"/>
                             <constraint firstAttribute="centerX" secondItem="war-rG-oOC" secondAttribute="centerX" id="4vO-SY-zq5"/>
                             <constraint firstAttribute="centerX" secondItem="Ogz-q1-bvi" secondAttribute="centerX" id="5tW-ai-hOa"/>
                             <constraint firstItem="cNp-ii-z7q" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="16" id="6bB-lj-I0B"/>
                             <constraint firstAttribute="centerX" secondItem="2UJ-Ad-iCz" secondAttribute="centerX" id="L7C-Wt-spB"/>
+                            <constraint firstAttribute="centerX" secondItem="8oJ-fX-vMg" secondAttribute="centerX" id="Ofd-us-3id"/>
                             <constraint firstItem="2UJ-Ad-iCz" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="16" id="Sn2-AP-Mbq"/>
                             <constraint firstAttribute="centerX" secondItem="cNp-ii-z7q" secondAttribute="centerX" id="qnT-BT-utc"/>
                             <constraint firstAttribute="centerX" secondItem="OhQ-Ji-e7q" secondAttribute="centerX" id="wgE-51-tDD"/>
@@ -81,6 +98,7 @@
                         <outlet property="currentAnswer" destination="iul-N7-LdW" id="XRM-cl-rxU"/>
                         <outlet property="currentCategory" destination="cNp-ii-z7q" id="cTo-wv-3ux"/>
                         <outlet property="currentQuestion" destination="2UJ-Ad-iCz" id="RJJ-EW-ber"/>
+                        <outlet property="currentValue" destination="QSQ-go-KEH" id="3lX-lO-DMX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
