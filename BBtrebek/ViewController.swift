@@ -14,17 +14,17 @@ class ViewController: UIViewController {
     @IBOutlet weak var currentCategory: UILabel!
     @IBOutlet weak var currentQuestion: UILabel!
     
-    let url = NSURL(string: "http://jservice.io/api/random?count=100")
+    let url = NSURL(string: "http://jservice.io/api/random?count=100")!
     
     var clues: NSMutableArray = NSMutableArray()
-    var currentIndex: Int = 0
+    var currentIndex: Int = 50
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let result: NSArray = self.getClues(url!)
+        let data: NSArray = self.getClues(url)
         
-        self.dataToClue(result)
+        self.dataToClue(data)
         self.setClueForCurrentIndex()
         
         var leftSwipe = UISwipeGestureRecognizer(target: self, action: Selector("handleSwipes:"))
@@ -45,7 +45,8 @@ class ViewController: UIViewController {
     func handleSwipes(sender:UISwipeGestureRecognizer) {
         if (sender.direction == .Left) {
             if (self.currentIndex <= 0) {
-                return
+                var data: NSArray = self.getClues(url)
+                self.dataToClueRight(data)
             } else {
                 self.currentIndex -= 1
             }
@@ -53,7 +54,7 @@ class ViewController: UIViewController {
         
         if (sender.direction == .Right) {
             if (self.currentIndex >= self.clues.count - 1) {
-                let result: NSArray = self.getClues(url!)
+                let result: NSArray = self.getClues(url)
                 self.dataToClue(result)
                 self.currentIndex += 1
             
@@ -88,20 +89,56 @@ class ViewController: UIViewController {
     func dataToClue(data: NSArray) {
         for clue in data {
             let category = (clue["category"] as! NSDictionary)["title"] as! String
-            if let value = clue["value"] as? Int {
-                self.clues.addObject(
-                    Clue(
-                        answer: clue["answer"] as! String,
-                        question: clue["question"] as! String,
-                        value: value,
-                        category: category,
-                        airdate: clue["airdate"] as! String
-                    )
+            
+            if let value = clue["value"] as? Int,
+                answer = clue["answer"] as? String,
+                question = clue["question"] as? String,
+                airdate = clue["airdate"] as? String {
+                    
+                let clueObj = Clue(
+                    answer: answer,
+                    question: question,
+                    value: value,
+                    category: category,
+                    airdate: airdate
                 )
+                    
+                self.clues.addObject(clueObj)
             }
 
         }
     }
+    
+    func dataToClueRight(data: NSArray) {
+        var newClues = NSMutableArray()
+        var oldClues =  self.clues
+        for clue in data {
+            let category = (clue["category"] as! NSDictionary)["title"] as! String
+            
+            if let value = clue["value"] as? Int,
+                answer = clue["answer"] as? String,
+                question = clue["question"] as? String,
+                airdate = clue["airdate"] as? String {
+    
+                let clueObj = Clue(
+                    answer: answer,
+                    question: question,
+                    value: value,
+                    category: category,
+                    airdate: airdate
+                )
+                newClues.addObject(clueObj)
+            }
+            
+        }
+        
+        self.clues = newClues
+        for clue in oldClues {
+            self.clues.addObject(clue)
+        }
+    }
+    
+    
 }
 
     
