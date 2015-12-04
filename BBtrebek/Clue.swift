@@ -8,12 +8,12 @@
 
 import Foundation
 
-class Clue {
-    var answer: String
-    var question: String
-    var value: Int
-    var airdate: String
-    var category: String
+public class Clue {
+    public var answer: String
+    public var question: String
+    public var value: Int
+    public var airdate: String
+    public var category: String
     
     func stripHTMLTags(str: String) -> String {
         return str.stringByReplacingOccurrencesOfString( "<[^>]+>",
@@ -23,7 +23,7 @@ class Clue {
         )
     }
 
-    init(answer: String, question: String, value: Int, category: String, airdate: String) {
+    public init(answer: String, question: String, value: Int, category: String, airdate: String) {
         self.answer = answer
         self.question = question
         self.value = value

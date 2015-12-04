@@ -8,6 +8,7 @@
 
 import UIKit
 import XCTest
+import BBtrebek
 
 class BBtrebekTests: XCTestCase {
     
@@ -21,11 +22,31 @@ class BBtrebekTests: XCTestCase {
         super.tearDown()
     }
     
-    func testExample() {
-        // This is an example of a functional test case.
-        XCTAssert(true, "Pass")
+    func testClueCanInitialize() {
+        let initializedClue = Clue(
+            answer: "Dean",
+            question: "Who made this app",
+            value: 100,
+            category: "people who are learning iOS",
+            airdate: "a datetime string"
+        )
+        
+        XCTAssertNotNil(initializedClue, "Pass")
     }
-    
+
+    func testClueStripsHTMLTags() {
+        let strippedClue = Clue(
+            answer: "<p>Dean</p>",
+            question: "Who <em>made</em> this app",
+            value: 100,
+            category: "people who are learning <a href='stuff.biz'>iOS</a>",
+            airdate: "a datetime string"
+        )
+        
+        XCTAssertEqual(strippedClue.answer, "Dean", "Pass")
+        XCTAssertEqual(strippedClue.question, "Who made this app", "Pass")
+        XCTAssertEqual(strippedClue.category, "people who are learning iOS", "Pass")
+    }
     func testPerformanceExample() {
         // This is an example of a performance test case.
         self.measureBlock() {
