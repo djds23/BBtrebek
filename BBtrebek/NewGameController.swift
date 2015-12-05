@@ -10,11 +10,12 @@ import UIKit
 
 public class NewGameController: UIViewController, UITextFieldDelegate {
 
+
     @IBOutlet weak var playGame: UIButton!
-    @IBOutlet weak var playerOne: UITextField!
     @IBOutlet weak var playerTwo: UITextField!
+    @IBOutlet weak var playerOne: UITextField!
     
-    var players = [UITextField]()
+    var players = [Player]()
     
     override public func viewDidLoad() {
         super.viewDidLoad()
@@ -29,11 +30,13 @@ public class NewGameController: UIViewController, UITextFieldDelegate {
     override public func shouldPerformSegueWithIdentifier(identifier: String!, sender: AnyObject?) -> Bool {
         if (self.trim(self.playerOne.text) == "" ) {
             self.alert("Missing Name", message: "Missing name for Player One") // <- this is strange
+            println("NO PLAYER 1")
             return false
         }
         
         if (self.trim(self.playerTwo.text) == "" ) {
             self.alert("Missing Name", message: "Missing name for Player Two") // <- this is strange
+            println("NO PLAYER 2")
             return false
         }
         return true
@@ -49,7 +52,7 @@ public class NewGameController: UIViewController, UITextFieldDelegate {
 
     func alert(title: String!, message: String!) -> Void {
         var alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
-        alert.addAction(UIAlertAction(title: "Click", style: UIAlertActionStyle.Default, handler: nil))
+        alert.addAction(UIAlertAction(title: "Okay!", style: UIAlertActionStyle.Default, handler: nil))
         self.presentViewController(alert, animated: true, completion: nil)
     }
     
