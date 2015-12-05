@@ -45,7 +45,10 @@ public class NewGameController: UIViewController, UITextFieldDelegate {
     
     override public func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if (sender as? UIButton == self.playGame) {
+            self.players.append(Player(name: self.trim(self.playerOne.text)))
+            self.players.append(Player(name: self.trim(self.playerTwo.text)))
             var swipeController = segue.destinationViewController as! ViewController
+            swipeController.players = self.players
         }
 
     }

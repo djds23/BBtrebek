@@ -1,6 +1,7 @@
 //
 //  ViewController.swift
-//  BBtrebek
+//  BB
+
 //
 //  Created by Dean Silfen on 11/30/15.
 //  Copyright (c) 2015 Dean Silfen. All rights reserved.
@@ -19,7 +20,8 @@ public class ViewController: UIViewController {
     let url = NSURL(string: "http://jservice.io/api/random?count=100")!
     
     var clues: Array<Clue> = [Clue]()
-    var trebek: String!
+    var players: Array<Player>!
+    
     var currentIndex: Int = 50
     
     override public func viewDidLoad() {
@@ -69,9 +71,6 @@ public class ViewController: UIViewController {
     }
     
     func setClueForCurrentIndex() {
-        if (self.currentPlayer.text != self.trebek) {
-            self.currentPlayer.text = self.trebek
-        }
         var currentClue: Clue = self.clues[currentIndex]
         self.currentCategory.text = currentClue.category
         self.currentQuestion.text = currentClue.question
