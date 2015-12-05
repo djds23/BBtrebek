@@ -8,14 +8,14 @@
 
 import Foundation
 
-public class Clue {
+public class Clue: NSObject {
     public var answer: String
     public var question: String
     public var value: Int
     public var airdate: String
     public var category: String
     
-    func stripHTMLTags(str: String) -> String {
+    class func stripHTMLTags(str: String) -> String {
         return str.stringByReplacingOccurrencesOfString( "<[^>]+>",
             withString: "",
             options: .RegularExpressionSearch,
@@ -24,15 +24,10 @@ public class Clue {
     }
 
     public init(answer: String, question: String, value: Int, category: String, airdate: String) {
-        self.answer = answer
-        self.question = question
+        self.answer = Clue.stripHTMLTags(answer)
+        self.question = Clue.stripHTMLTags(question)
         self.value = value
         self.airdate = airdate
-        self.category = category
-        
-        // this feels wrong, but I get compiler errors if I assign & call stripHTMLTags at the same time
-        self.answer = self.stripHTMLTags(self.answer)
-        self.question = self.stripHTMLTags(self.question)
-        self.category = self.stripHTMLTags(self.category)
+        self.category = Clue.stripHTMLTags(category)
     }
 }
