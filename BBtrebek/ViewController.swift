@@ -10,6 +10,7 @@ import UIKit
 
 public class ViewController: UIViewController {
     
+    @IBOutlet weak var currentPlayer: UILabel!
     @IBOutlet weak var currentValue: UILabel!
     @IBOutlet weak var currentAnswer: UILabel!
     @IBOutlet weak var currentCategory: UILabel!
@@ -18,7 +19,7 @@ public class ViewController: UIViewController {
     let url = NSURL(string: "http://jservice.io/api/random?count=100")!
     
     var clues: Array<Clue> = [Clue]()
-    var trebek: String! = ""
+    var trebek: String!
     var currentIndex: Int = 50
     
     override public func viewDidLoad() {
@@ -68,6 +69,9 @@ public class ViewController: UIViewController {
     }
     
     func setClueForCurrentIndex() {
+        if (self.currentPlayer.text != self.trebek) {
+            self.currentPlayer.text = self.trebek
+        }
         var currentClue: Clue = self.clues[currentIndex]
         self.currentCategory.text = currentClue.category
         self.currentQuestion.text = currentClue.question

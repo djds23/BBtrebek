@@ -8,26 +8,25 @@
 
 import UIKit
 
-class NewGameController: UIViewController {
+public class NewGameController: UIViewController {
 
     @IBOutlet weak var playGame: UIButton!
     @IBOutlet weak var playerName: UITextField!
+
     
-    override func viewDidLoad() {
+    override public func viewDidLoad() {
         super.viewDidLoad()
 
     }
     
-    override func didReceiveMemoryWarning() {
+    override public func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if (sender?.identifier == "startSwiping") {
-            var swipeController = segue.destinationViewController as! ViewController
-            swipeController.trebek = self.playerName.text
-        }
+    override public func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        var swipeController = segue.destinationViewController as! ViewController
+        swipeController.trebek = self.playerName.text
     }
 
 }

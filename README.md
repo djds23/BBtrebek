@@ -5,6 +5,10 @@ Swipe for Jeopardy Questions!
 TODO:
   * either fix the randomizer in the rails app, or shuffle questions in app, you should only get 1 q per category every 50 questions
   * have the concept of players & a game, maybe swipe to different parts of the screen to add to different players scores
+    - [ ] players model has been implemented
+    - [ ] save players, or common players and their scores
+    - [ ] actually use players to create a game, make buttons with player names
+      * swipe top of the screen for new question, award the points when you tap a players name
   * format text nicely in Answers/categories. Questions look generally okay.
   * ~move view to scroll view~
   * ~ADD TESTS!~

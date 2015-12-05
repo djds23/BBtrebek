@@ -13,6 +13,7 @@
 		7BAF90C71C134EDD00CC71A9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BC8EC741C0D2805004972AD /* ViewController.swift */; };
 		7BAF90C81C134F0200CC71A9 /* NewGameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B58B3941C12BF7B007C4A1A /* NewGameController.swift */; };
 		7BAF90C91C134F1800CC71A9 /* Clue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BC8EC921C0D2911004972AD /* Clue.swift */; };
+		7BAF90CA1C1354F300CC71A9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7BC8EC761C0D2805004972AD /* Main.storyboard */; };
 		7BC8EC731C0D2805004972AD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BC8EC721C0D2805004972AD /* AppDelegate.swift */; };
 		7BC8EC751C0D2805004972AD /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BC8EC741C0D2805004972AD /* ViewController.swift */; };
 		7BC8EC781C0D2805004972AD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7BC8EC761C0D2805004972AD /* Main.storyboard */; };
@@ -216,6 +217,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7BAF90CA1C1354F300CC71A9 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

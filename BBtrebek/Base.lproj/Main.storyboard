@@ -131,6 +131,7 @@
                     <connections>
                         <outlet property="currentAnswer" destination="EDK-FE-Gas" id="fa9-Nu-8ag"/>
                         <outlet property="currentCategory" destination="Cyn-w7-2Js" id="JXL-XZ-8id"/>
+                        <outlet property="currentPlayer" destination="UKV-aE-ZMC" id="GmS-74-grs"/>
                         <outlet property="currentQuestion" destination="cW8-Pv-euT" id="kGc-9h-Ml2"/>
                         <outlet property="currentValue" destination="gec-4q-ZK4" id="bsP-5k-SJ9"/>
                     </connections>
@@ -170,6 +171,9 @@
                                         <state key="normal" title="Play Trebek">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <segue destination="BYZ-38-t0r" kind="show" identifier="startSwiping" id="X9T-p3-C8q"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.15246296105409582" green="0.35668799254914607" blue="0.91720606803327387" alpha="1" colorSpace="calibratedRGB"/>
@@ -196,7 +200,6 @@
                     <connections>
                         <outlet property="playGame" destination="QeK-s1-DQr" id="CQl-Zd-KEf"/>
                         <outlet property="playerName" destination="nmK-x3-IaC" id="hT7-Ui-WYq"/>
-                        <segue destination="BYZ-38-t0r" kind="show" identifier="startSwiping" id="A3E-Ce-V9C"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NVr-Nn-HpO" userLabel="First Responder" sceneMemberID="firstResponder"/>
