@@ -10,13 +10,19 @@ import Foundation
 
 public class Player: NSObject {
     public var name: String
-    public var answeredClues = [Int]()
+    public var answeredClues = [Clue]()
     
     public init(name: String) {
         self.name = name   
     }
     
+
     public func score() -> Int {
-        return self.answeredClues.reduce(0, combine:+)
+        let values = self.answeredClues.map {(var clue: Clue) -> Int in
+            return clue.value
+        }
+        
+        return values.reduce(0, combine:+)
     }
+    
 }

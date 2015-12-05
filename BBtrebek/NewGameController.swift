@@ -9,6 +9,9 @@
 import UIKit
 
 class NewGameController: UIViewController {
+
+    @IBOutlet weak var playGame: UIButton!
+    @IBOutlet weak var playerName: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,6 +21,13 @@ class NewGameController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if (sender?.identifier == "startSwiping") {
+            var swipeController = segue.destinationViewController as! ViewController
+            swipeController.trebek = self.playerName.text
+        }
     }
 
 }

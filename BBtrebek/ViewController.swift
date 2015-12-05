@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+public class ViewController: UIViewController {
     
     @IBOutlet weak var currentValue: UILabel!
     @IBOutlet weak var currentAnswer: UILabel!
@@ -18,9 +18,10 @@ class ViewController: UIViewController {
     let url = NSURL(string: "http://jservice.io/api/random?count=100")!
     
     var clues: Array<Clue> = [Clue]()
+    var trebek: String! = ""
     var currentIndex: Int = 50
     
-    override func viewDidLoad() {
+    override public func viewDidLoad() {
         super.viewDidLoad()
 
         let data: NSArray = self.getClues(url)
@@ -38,7 +39,7 @@ class ViewController: UIViewController {
         view.addGestureRecognizer(rightSwipe)
     }
 
-    override func didReceiveMemoryWarning() {
+    override public func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }

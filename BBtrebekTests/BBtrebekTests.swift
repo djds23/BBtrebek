@@ -47,6 +47,30 @@ class BBtrebekTests: XCTestCase {
         XCTAssertEqual(strippedClue.question, "Who made this app", "Pass")
         XCTAssertEqual(strippedClue.category, "people who are learning iOS", "Pass")
     }
+    
+    func testPlayerKeepsScore() {
+        let clue1 = Clue(
+            answer: "Dean",
+            question: "Who made this app",
+            value: 100,
+            category: "people who are learning iOS",
+            airdate: "a datetime string"
+        )
+        
+        let clue2 = Clue(
+            answer: "yes",
+            question: "is 500 a lot?",
+            value: 500,
+            category: "what are numbers really?",
+            airdate: "a datetime string"
+        )
+        
+        var player = Player(name: "Dean Silfen")
+        player.answeredClues.append(clue1)
+        player.answeredClues.append(clue2)
+        XCTAssertEqual(player.score(), 600, "Pass")
+        
+    }
     func testPerformanceExample() {
         // This is an example of a performance test case.
         self.measureBlock() {
