@@ -10,5 +10,5 @@ TODO:
     - [ ] actually use players to create a game, make buttons with player names
       * swipe top of the screen for new question, award the points when you tap a players name
   * format text nicely in Answers/categories. Questions look generally okay.
-  - [x] ~move view to scroll view~
-  - [x] ~ADD TESTS!~
+  - [x] move views to scroll view
+  - [x] ADD TESTS!
