@@ -17,7 +17,7 @@ class ViewController: UIViewController {
     
     let url = NSURL(string: "http://jservice.io/api/random?count=100")!
     
-    var clues: NSMutableArray = NSMutableArray()
+    var clues: Array<Clue> = [Clue]()
     var currentIndex: Int = 50
     
     override func viewDidLoad() {
@@ -67,7 +67,7 @@ class ViewController: UIViewController {
     }
     
     func setClueForCurrentIndex() {
-        var currentClue: Clue = self.clues[currentIndex] as! Clue
+        var currentClue: Clue = self.clues[currentIndex]
         self.currentCategory.text = currentClue.category
         self.currentQuestion.text = currentClue.question
         self.currentAnswer.text = currentClue.answer
@@ -105,14 +105,14 @@ class ViewController: UIViewController {
                     airdate: airdate
                 )
                     
-                self.clues.addObject(clueObj)
+                self.clues.append(clueObj)
             }
 
         }
     }
     
     func dataToClueRight(data: NSArray) {
-        var newClues = NSMutableArray()
+        var newClues = [Clue]()
         var oldClues =  self.clues
         for clue in data {
             let category = (clue["category"] as! NSDictionary)["title"] as! String
@@ -129,14 +129,14 @@ class ViewController: UIViewController {
                     category: category,
                     airdate: airdate
                 )
-                newClues.addObject(clueObj)
+                newClues.append(clueObj)
             }
             
         }
         
         self.clues = newClues
         for clue in oldClues {
-            self.clues.addObject(clue)
+            self.clues.append(clue)
         }
     }
     
