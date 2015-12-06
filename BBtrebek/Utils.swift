@@ -1,6 +1,7 @@
 //
-//  utils.swift
+//  Utils.swift
 //  BBtrebek
+//  General purpose functions for all files
 //
 //  Created by Dean Silfen on 12/6/15.
 //  Copyright (c) 2015 Dean Silfen. All rights reserved.
@@ -19,7 +20,6 @@ public func alert(title: String!, message: String!, viewController: UIViewContro
 public func trim(str: String) -> String {
     return str.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
 }
-
 
 public func stripHTMLTags(str: String) -> String {
     return str.stringByReplacingOccurrencesOfString( "<[^>]+>",

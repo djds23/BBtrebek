@@ -16,6 +16,8 @@ public class ViewController: UIViewController {
     @IBOutlet weak var currentAnswer: UILabel!
     @IBOutlet weak var currentCategory: UILabel!
     @IBOutlet weak var currentQuestion: UILabel!
+    @IBOutlet weak var scrollView: UIScrollView!
+    
     
     let url = NSURL(string: "http://jservice.io/api/random?count=100")!
     
@@ -48,6 +50,8 @@ public class ViewController: UIViewController {
     }
     
     func handleSwipes(sender:UISwipeGestureRecognizer) -> Void {
+        self.currentClue().seen = true
+        
         if (sender.direction == .Left) {
             if (self.currentIndex <= 0) {
                 return
@@ -70,7 +74,13 @@ public class ViewController: UIViewController {
     }
     
     func setClueForCurrentIndex() {
-        var currentClue: Clue = self.clues[currentIndex]
+        var currentClue: Clue = self.currentClue()
+        if (currentClue.seen) {
+            self.scrollView.backgroundColor = UIColor.redColor()
+        } else {
+            self.scrollView.backgroundColor = UIColor.blueColor()
+        }
+        
         self.currentCategory.text = currentClue.category
         self.currentQuestion.text = currentClue.question
         self.currentAnswer.text = currentClue.answer
@@ -113,6 +123,11 @@ public class ViewController: UIViewController {
 
         }
     }
+    
+    func currentClue() -> Clue {
+        return self.clues[self.currentIndex]
+    }
+
 }
 
     

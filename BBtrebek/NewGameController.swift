@@ -14,6 +14,7 @@ public class NewGameController: UIViewController {
     @IBOutlet weak var playGame: UIButton!
     @IBOutlet weak var playerTwo: UITextField!
     @IBOutlet weak var playerOne: UITextField!
+    @IBOutlet weak var scrollView: UIScrollView!
 
     var players = [Player]()
 
