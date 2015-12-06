@@ -9,25 +9,20 @@
 import Foundation
 
 public class Clue: NSObject {
+
     public var answer: String
     public var question: String
     public var value: Int
     public var airdate: String
     public var category: String
-    
-    class func stripHTMLTags(str: String) -> String {
-        return str.stringByReplacingOccurrencesOfString( "<[^>]+>",
-            withString: "",
-            options: .RegularExpressionSearch,
-            range: nil
-        )
-    }
+
+    public var seen: Bool = false
 
     public init(answer: String, question: String, value: Int, category: String, airdate: String) {
-        self.answer = Clue.stripHTMLTags(answer)
-        self.question = Clue.stripHTMLTags(question)
+        self.answer = stripHTMLTags(answer)
+        self.question = stripHTMLTags(question)
         self.value = value
         self.airdate = airdate
-        self.category = Clue.stripHTMLTags(category)
+        self.category = stripHTMLTags(category)
     }
 }

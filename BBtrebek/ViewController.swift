@@ -22,7 +22,7 @@ public class ViewController: UIViewController {
     var clues: Array<Clue> = [Clue]()
     var players: Array<Player>!
     
-    var currentIndex: Int = 50
+    var currentIndex: Int = 0
     
     override public func viewDidLoad() {
         super.viewDidLoad()
@@ -47,11 +47,10 @@ public class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    func handleSwipes(sender:UISwipeGestureRecognizer) {
+    func handleSwipes(sender:UISwipeGestureRecognizer) -> Void {
         if (sender.direction == .Left) {
             if (self.currentIndex <= 0) {
-                var data: NSArray = self.getClues(url)
-                self.dataToClueRight(data)
+                return
             } else {
                 self.currentIndex -= 1
             }
@@ -114,37 +113,6 @@ public class ViewController: UIViewController {
 
         }
     }
-    
-    func dataToClueRight(data: NSArray) {
-        var newClues = [Clue]()
-        var oldClues =  self.clues
-        for clue in data {
-            let category = (clue["category"] as! NSDictionary)["title"] as! String
-            
-            if let value = clue["value"] as? Int,
-                answer = clue["answer"] as? String,
-                question = clue["question"] as? String,
-                airdate = clue["airdate"] as? String {
-    
-                let clueObj = Clue(
-                    answer: answer,
-                    question: question,
-                    value: value,
-                    category: category,
-                    airdate: airdate
-                )
-                newClues.append(clueObj)
-            }
-            
-        }
-        
-        self.clues = newClues
-        for clue in oldClues {
-            self.clues.append(clue)
-        }
-    }
-    
-    
 }
 
     
