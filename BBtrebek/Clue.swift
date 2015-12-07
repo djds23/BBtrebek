@@ -16,7 +16,7 @@ public class Clue: NSObject {
     public var airdate: String
     public var category: String
 
-    public var seen: Bool = false
+    public var answered: Bool = false
 
     public init(answer: String, question: String, value: Int, category: String, airdate: String) {
         self.answer = stripHTMLTags(answer)

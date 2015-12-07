@@ -24,4 +24,8 @@ public class Player: NSObject {
         return values.reduce(0, combine:+)
     }
     
+    public func toButtonTitle() -> String {
+        return "\(self.name) - \(self.score())"
+    }
+    
 }
