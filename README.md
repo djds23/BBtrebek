@@ -7,6 +7,7 @@ TODO:
   * have the concept of players & a game, maybe swipe to different parts of the screen to add to different players scores
     - [x] players model has been implemented
     - [ ] save players, or common players and their scores
+    - [ ] allow players to skip questions, (once a question is answered it should remain skipped, blue and red questions should be separate)
     - [x] actually use players to create a game, make buttons with player names
       * swipe top of the screen for new question, award the points when you tap a players name
   * format text nicely in Answers/categories. Questions look generally okay.
