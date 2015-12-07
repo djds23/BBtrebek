@@ -17,7 +17,7 @@ public class Player: NSObject {
     }
 
     public func score() -> Int {
-        let values = self.answeredClues.map {(var clue: Clue) -> Int in
+        let values = self.answeredClues.map {(clue: Clue) -> Int in
             return clue.value
         }
         

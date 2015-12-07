@@ -10,12 +10,12 @@
 import UIKit
 
 public class ViewController: UIViewController {
+
+    let url = NSURL(string: "http://jservice.io/api/random?count=100")! // deploy my own and use HTTPS
     var clues: Array<Clue> = [Clue]()
     var players: Array<Player>!
-    
     var currentIndex: Int = 0
-    
-    @IBOutlet weak var currentPlayer: UILabel!
+
     @IBOutlet weak var currentValue: UILabel!
     @IBOutlet weak var currentAnswer: UILabel!
     @IBOutlet weak var currentCategory: UILabel!
@@ -39,8 +39,6 @@ public class ViewController: UIViewController {
         self.swipeLeft()
     }
     
-    let url = NSURL(string: "http://jservice.io/api/random?count=100")!
-    
     override public func viewDidLoad() {
         super.viewDidLoad()
 
@@ -49,8 +47,8 @@ public class ViewController: UIViewController {
         self.dataToClue(data)
         self.setClueForCurrentIndex()
         
-        var leftSwipe = UISwipeGestureRecognizer(target: self, action: Selector("handleSwipes:"))
-        var rightSwipe = UISwipeGestureRecognizer(target: self, action: Selector("handleSwipes:"))
+        let leftSwipe = UISwipeGestureRecognizer(target: self, action: Selector("handleSwipes:"))
+        let rightSwipe = UISwipeGestureRecognizer(target: self, action: Selector("handleSwipes:"))
 
         leftSwipe.direction = .Left
         rightSwipe.direction = .Right
@@ -95,7 +93,7 @@ public class ViewController: UIViewController {
     }
     
     func setClueForCurrentIndex() {
-        var currentClue: Clue = self.currentClue()
+        let currentClue: Clue = self.currentClue()
         if (currentClue.answered) {
             self.playerOneScore.setTitle("", forState: .Normal)
             self.playerTwoScore.setTitle("", forState: .Normal)
@@ -112,15 +110,21 @@ public class ViewController: UIViewController {
     }
     
     func getClues(url: NSURL) -> NSArray {
-        var request = NSMutableURLRequest(URL: url)
+        let request = NSMutableURLRequest(URL: url)
         request.HTTPMethod = "GET"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         var error: NSError?
         var response: NSURLResponse?
-        let urlData = NSURLConnection.sendSynchronousRequest(request, returningResponse: &response, error: &error)
+        let urlData: NSData?
+        do {
+            urlData = try NSURLConnection.sendSynchronousRequest(request, returningResponse: &response)
+        } catch let error1 as NSError {
+            error = error1
+            urlData = nil
+        }
         
         error = nil
-        let result: NSArray = NSJSONSerialization.JSONObjectWithData(urlData!, options: NSJSONReadingOptions.MutableContainers, error: &error) as! NSArray
+        var result: NSArray = (try! NSJSONSerialization.JSONObjectWithData(urlData!, options: NSJSONReadingOptions.MutableContainers)) as! NSArray
         
         return result
     }

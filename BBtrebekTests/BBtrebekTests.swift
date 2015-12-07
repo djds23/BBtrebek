@@ -65,7 +65,7 @@ class BBtrebekTests: XCTestCase {
             airdate: "a datetime string"
         )
         
-        var player = Player(name: "Dean Silfen")
+        let player = Player(name: "Dean Silfen")
         player.answeredClues.append(clue1)
         player.answeredClues.append(clue2)
         XCTAssertEqual(player.score(), 600, "Pass")

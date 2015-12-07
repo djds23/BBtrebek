@@ -27,14 +27,14 @@ public class NewGameController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
-    override public func shouldPerformSegueWithIdentifier(identifier: String!, sender: AnyObject?) -> Bool {
-        if (trim(self.playerOne.text) == "" ) {
-            alert("Missing Name", "Missing name for Player One", self)
+    override public func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject?) -> Bool {
+        if (trim(self.playerOne.text!) == "" ) {
+            alert("Missing Name", message: "Missing name for Player One", viewController: self)
             return false
         }
 
-        if (trim(self.playerTwo.text) == "" ) {
-            alert("Missing Name", "Missing name for Player Two", self)
+        if (trim(self.playerTwo.text!) == "" ) {
+            alert("Missing Name", message: "Missing name for Player Two", viewController: self)
             return false
         }
         return true
@@ -43,9 +43,9 @@ public class NewGameController: UIViewController {
     
     override public func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if (sender as? UIButton == self.playGame) {
-            self.players.append(Player(name: trim(self.playerOne.text)))
-            self.players.append(Player(name: trim(self.playerTwo.text)))
-            var swipeController = segue.destinationViewController as! ViewController
+            self.players.append(Player(name: trim(self.playerOne.text!)))
+            self.players.append(Player(name: trim(self.playerTwo.text!)))
+            let swipeController = segue.destinationViewController as! ViewController
             swipeController.players = self.players
         }
 
