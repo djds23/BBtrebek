@@ -1,0 +1,5 @@
+language: objective-c
+osx_image: xcode7.1
+xcode_project: BBtrebek.xcodeproj
+xcode_scheme: BBtrebek
+xcode_sdk: iphonesimulator9.1
