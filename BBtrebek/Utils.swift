@@ -29,7 +29,7 @@ public func stripHTMLTags(str: String) -> String {
     )
 }
 
-public func getClues(url: NSURL) -> NSArray {
+public func getNSArrayFromURLEndPoint(url: NSURL) -> NSArray {
     let request = NSMutableURLRequest(URL: url)
     request.HTTPMethod = "GET"
     request.addValue("application/json", forHTTPHeaderField: "Content-Type")

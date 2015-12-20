@@ -18,8 +18,6 @@ public class NewGameController: UIViewController {
 
     override public func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if (sender as? UIButton == self.playGame) {
-//            self.players.append(Player(name: trim(self.playerOne.text!)))
-//            self.players.append(Player(name: trim(self.playerTwo.text!)))
             let swipeController = segue.destinationViewController as! ViewController
             swipeController.players = self.players
         }

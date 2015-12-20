@@ -26,7 +26,7 @@ public class ViewController: UIViewController {
     override public func viewDidLoad() {
         super.viewDidLoad()
 
-        let data: NSArray = getClues(url)
+        let data: NSArray = getNSArrayFromURLEndPoint(url)
         
         self.dataToClue(data)
         self.setClueForCurrentIndex()
@@ -61,7 +61,7 @@ public class ViewController: UIViewController {
     
     func swipeLeft() -> Void {
         if (self.currentIndex >= self.clues.count - 1) {
-            let result: NSArray = getClues(url)
+            let result: NSArray = getNSArrayFromURLEndPoint(url)
             self.dataToClue(result)
             self.currentIndex += 1
             

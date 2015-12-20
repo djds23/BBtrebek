@@ -224,25 +224,25 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="X5k-b8-ILA">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6eE-ov-7BD">
-                                        <rect key="frame" x="240" y="213" width="120" height="21"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6eE-ov-7BD">
+                                        <rect key="frame" x="240" y="169" width="120" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Placeholder text" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dEb-zO-RFv">
-                                        <rect key="frame" x="219" y="101" width="162" height="21"/>
+                                        <rect key="frame" x="219" y="57" width="162" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1Nr-Pj-XUg">
-                                        <rect key="frame" x="168" y="256" width="264" height="30"/>
+                                        <rect key="frame" x="168" y="111" width="264" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yCf-ql-X7I">
-                                        <rect key="frame" x="240" y="351" width="120" height="30"/>
+                                        <rect key="frame" x="240" y="174" width="120" height="30"/>
                                         <state key="normal" title="Add Player">
                                             <color key="titleColor" red="0.10801544503709215" green="0.48110863888603994" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
@@ -252,10 +252,9 @@
                                     </button>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="6eE-ov-7BD" firstAttribute="top" secondItem="dEb-zO-RFv" secondAttribute="bottom" constant="28" id="Eb4-J8-cyh"/>
-                                    <constraint firstItem="dEb-zO-RFv" firstAttribute="top" secondItem="X5k-b8-ILA" secondAttribute="top" constant="101" id="FXe-M7-J49"/>
+                                    <constraint firstItem="dEb-zO-RFv" firstAttribute="top" secondItem="X5k-b8-ILA" secondAttribute="top" constant="42" id="G9a-3P-NsG"/>
                                     <constraint firstAttribute="trailing" secondItem="1Nr-Pj-XUg" secondAttribute="trailing" constant="16" id="GhV-sy-hlW"/>
-                                    <constraint firstItem="yCf-ql-X7I" firstAttribute="top" secondItem="1Nr-Pj-XUg" secondAttribute="bottom" constant="65" id="Q9D-KI-pRE"/>
+                                    <constraint firstItem="yCf-ql-X7I" firstAttribute="centerX" secondItem="X5k-b8-ILA" secondAttribute="centerX" id="RRc-58-Quj"/>
                                     <constraint firstItem="6eE-ov-7BD" firstAttribute="centerX" secondItem="X5k-b8-ILA" secondAttribute="centerX" id="U5E-UM-zvY"/>
                                     <constraint firstItem="dEb-zO-RFv" firstAttribute="leading" secondItem="X5k-b8-ILA" secondAttribute="leading" constant="16" id="bJO-Ru-Mox"/>
                                     <constraint firstAttribute="trailing" secondItem="dEb-zO-RFv" secondAttribute="trailing" constant="16" id="buI-eO-Pm5"/>
