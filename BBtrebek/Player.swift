@@ -6,6 +6,7 @@
 //  Copyright (c) 2015 Dean Silfen. All rights reserved.
 //
 
+import UIKit
 import Foundation
 
 public class Player: NSObject {
@@ -27,4 +28,11 @@ public class Player: NSObject {
         return "\(self.name) - \(self.score())"
     }
     
+    public func toButton(action: Selector) -> UIButton {
+        let playerButton: UIButton = UIButton(frame: CGRectMake(100, 400, 100, 50))
+        playerButton.backgroundColor = UIColor.greenColor()
+        playerButton.setTitle(self.toButtonTitle(), forState: UIControlState.Normal)
+        playerButton.addTarget(self, action: action, forControlEvents: UIControlEvents.TouchUpInside)
+        return playerButton
+    }
 }
