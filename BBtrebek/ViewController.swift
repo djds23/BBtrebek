@@ -9,6 +9,7 @@
 
 import UIKit
 
+
 public class ViewController: UIViewController {
 
     let url = NSURL(string: "http://jservice.io/api/random?count=100")! // deploy my own and use HTTPS
@@ -42,7 +43,7 @@ public class ViewController: UIViewController {
     override public func viewDidLoad() {
         super.viewDidLoad()
 
-        let data: NSArray = self.getClues(url)
+        let data: NSArray = getClues(url)
         
         self.dataToClue(data)
         self.setClueForCurrentIndex()
@@ -82,7 +83,7 @@ public class ViewController: UIViewController {
     
     func swipeLeft() -> Void {
         if (self.currentIndex >= self.clues.count - 1) {
-            let result: NSArray = self.getClues(url)
+            let result: NSArray = getClues(url)
             self.dataToClue(result)
             self.currentIndex += 1
             
@@ -109,46 +110,12 @@ public class ViewController: UIViewController {
         self.currentValue.text = String(currentClue.value)
     }
     
-    func getClues(url: NSURL) -> NSArray {
-        let request = NSMutableURLRequest(URL: url)
-        request.HTTPMethod = "GET"
-        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        var error: NSError?
-        var response: NSURLResponse?
-        let urlData: NSData?
-        do {
-            urlData = try NSURLConnection.sendSynchronousRequest(request, returningResponse: &response)
-        } catch let error1 as NSError {
-            error = error1
-            urlData = nil
-        }
-        
-        error = nil
-        var result: NSArray = (try! NSJSONSerialization.JSONObjectWithData(urlData!, options: NSJSONReadingOptions.MutableContainers)) as! NSArray
-        
-        return result
-    }
     
     func dataToClue(data: NSArray) {
         for clue in data {
-            let category = (clue["category"] as! NSDictionary)["title"] as! String
-            
-            if let value = clue["value"] as? Int,
-                answer = clue["answer"] as? String,
-                question = clue["question"] as? String,
-                airdate = clue["airdate"] as? String {
-                    
-                let clueObj = Clue(
-                    answer: answer,
-                    question: question,
-                    value: value,
-                    category: category,
-                    airdate: airdate
-                )
-                    
+            if let clueObj = Clue.initWithNSDictionary(clue as! NSDictionary) {
                 self.clues.append(clueObj)
             }
-
         }
     }
     
