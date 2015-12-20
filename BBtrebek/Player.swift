@@ -20,7 +20,6 @@ public class Player: NSObject {
         let values = self.answeredClues.map {(clue: Clue) -> Int in
             return clue.value
         }
-        
         return values.reduce(0, combine:+)
     }
     
