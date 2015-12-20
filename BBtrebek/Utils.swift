@@ -48,3 +48,10 @@ public func getClues(url: NSURL) -> NSArray {
     
     return result
 }
+
+extension Array {
+    func sample() -> Element {
+        let randomIndex = Int(rand()) % count
+        return self[randomIndex]
+    }
+}

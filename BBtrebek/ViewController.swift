@@ -22,23 +22,6 @@ public class ViewController: UIViewController {
     @IBOutlet weak var currentCategory: UILabel!
     @IBOutlet weak var currentQuestion: UILabel!
     @IBOutlet weak var scrollView: UIScrollView!
-    @IBOutlet weak var playerOneScore: UIButton!
-    @IBOutlet weak var playerTwoScore: UIButton!
-    
-    
-    @IBAction func awardPlayerOne(sender: AnyObject) {
-        self.currentClue().answered = true
-        self.players[0].answeredClues.append(self.currentClue())
-        self.swipeLeft()
-        
-    }
-    
-    
-    @IBAction func awardPlayerTwo(sender: AnyObject) {
-        self.currentClue().answered = true
-        self.players[1].answeredClues.append(self.currentClue())
-        self.swipeLeft()
-    }
     
     override public func viewDidLoad() {
         super.viewDidLoad()
@@ -56,11 +39,6 @@ public class ViewController: UIViewController {
         
         view.addGestureRecognizer(leftSwipe)
         view.addGestureRecognizer(rightSwipe)
-    }
-
-    override public func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     func handleSwipes(sender:UISwipeGestureRecognizer) -> Void {
@@ -96,12 +74,8 @@ public class ViewController: UIViewController {
     func setClueForCurrentIndex() {
         let currentClue: Clue = self.currentClue()
         if (currentClue.answered) {
-            self.playerOneScore.setTitle("", forState: .Normal)
-            self.playerTwoScore.setTitle("", forState: .Normal)
             self.scrollView.backgroundColor = UIColor.redColor()
         } else {
-            self.playerOneScore.setTitle(self.players[0].toButtonTitle(), forState: .Normal)
-            self.playerTwoScore.setTitle(self.players[1].toButtonTitle(), forState: .Normal)
             self.scrollView.backgroundColor = UIColor.blueColor()
         }
         self.currentCategory.text = currentClue.category
