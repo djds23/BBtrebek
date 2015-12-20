@@ -18,15 +18,6 @@ public class NewGameController: UIViewController {
 
     var players = [Player]()
 
-    override public func viewDidLoad() {
-        super.viewDidLoad()
-    }
-
-    override public func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
     override public func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject?) -> Bool {
         if (trim(self.playerOne.text!) == "" ) {
             alert("Missing Name", message: "Missing name for Player One", viewController: self)

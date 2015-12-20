@@ -34,6 +34,23 @@ class BBtrebekTests: XCTestCase {
         XCTAssertNotNil(initializedClue, "Pass")
     }
 
+    func testClueCanInitializeFromNSDictonary() {
+        let category: NSDictionary = [
+            "title": "people who are learning iOS"
+        ]
+        
+        let dict: NSDictionary = [
+            "answer": "Dean",
+            "question": "Who made this app",
+            "value": 100,
+            "airdate": "a datetime string",
+            "category": category
+        ]
+        
+        let initializedClue = Clue.initWithNSDictionary(dict)
+        XCTAssertNotNil(initializedClue, "Pass")
+    }
+
     func testClueStripsHTMLTags() {
         let strippedClue = Clue(
             answer: "<p>Dean</p>",

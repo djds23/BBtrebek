@@ -25,4 +25,25 @@ public class Clue: NSObject {
         self.airdate = airdate
         self.category = stripHTMLTags(category)
     }
+    
+    public static func initWithNSDictionary(dict: NSDictionary) -> Clue? {
+        let category = (dict["category"] as! NSDictionary)["title"] as! String
+        if let value = dict["value"] as? Int,
+            answer = dict["answer"] as? String,
+            question = dict["question"] as? String,
+            airdate = dict["airdate"] as? String {
+                
+            let clueObj = Clue(
+                answer: answer,
+                question: question,
+                value: value,
+                category: category,
+                airdate: airdate
+            )
+            return clueObj;
+        } else {
+            return nil;
+        }
+        
+    }
 }

@@ -28,3 +28,23 @@ public func stripHTMLTags(str: String) -> String {
         range: nil
     )
 }
+
+public func getClues(url: NSURL) -> NSArray {
+    let request = NSMutableURLRequest(URL: url)
+    request.HTTPMethod = "GET"
+    request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+    var error: NSError?
+    var response: NSURLResponse?
+    let urlData: NSData?
+    do {
+        urlData = try NSURLConnection.sendSynchronousRequest(request, returningResponse: &response)
+    } catch let error1 as NSError {
+        error = error1
+        urlData = nil
+    }
+    
+    error = nil
+    let result: NSArray = (try! NSJSONSerialization.JSONObjectWithData(urlData!, options: NSJSONReadingOptions.MutableContainers)) as! NSArray
+    
+    return result
+}
