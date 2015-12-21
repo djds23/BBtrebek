@@ -37,8 +37,16 @@ public class ViewController: UIViewController {
         leftSwipe.direction = .Left
         rightSwipe.direction = .Right
         
-        view.addGestureRecognizer(leftSwipe)
-        view.addGestureRecognizer(rightSwipe)
+        self.view.addGestureRecognizer(leftSwipe)
+        self.view.addGestureRecognizer(rightSwipe)
+        for player in self.players {
+            self.view.addSubview(player.toUIButton(self, action: Selector("handleAwardClueToPlayer:")))
+        }
+
+    }
+    
+    func handleAwardClueToPlayer(sender: UIButton) {
+        print("this was clicked!")
     }
     
     func handleSwipes(sender:UISwipeGestureRecognizer) -> Void {

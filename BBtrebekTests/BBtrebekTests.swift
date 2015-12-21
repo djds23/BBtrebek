@@ -10,6 +10,10 @@ import UIKit
 import XCTest
 import BBtrebek
 
+class testViewController: UIViewController {
+
+}
+
 class BBtrebekTests: XCTestCase {
     
     override func setUp() {
@@ -87,6 +91,20 @@ class BBtrebekTests: XCTestCase {
         player.answeredClues.append(clue2)
         XCTAssertEqual(player.score(), 600, "Pass")
         XCTAssertEqual(player.toButtonTitle(), "Dean Silfen - 600", "Pass")
+    }
+    
+    func testPlayerToButton() {
+        let clue = Clue(
+            answer: "Dean",
+            question: "Who made this app",
+            value: 100,
+            category: "people who are learning iOS",
+            airdate: "a datetime string"
+        )
+        let player = Player(name: "Dean Silfen")
+        player.answeredClues.append(clue)
+        let playerUIButton: UIButton = player.toUIButton(testViewController(), action: Selector("notARealMethod"))
+        XCTAssertEqual(playerUIButton.titleLabel!.text, "Dean Silfen - 100", "Pass")
     }
     
     func testArraySampleExtension() {
