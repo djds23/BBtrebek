@@ -47,7 +47,7 @@
 		7B55B52F1C14C4EA005D2F8B /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		7B58B3941C12BF7B007C4A1A /* NewGameController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewGameController.swift; sourceTree = "<group>"; };
 		7B58B3971C12BFF7007C4A1A /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
-		7B956DF41C2A54EE00C470F4 /* BBtrebek-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BBtrebek-Bridging-Header.h"; sourceTree = "<group>"; };
+		7B956DF51C2A581200C470F4 /* BBtrebek-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BBtrebek-Bridging-Header.h"; sourceTree = "<group>"; };
 		7BA9154F1C2A2EF000BABFDB /* Array.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
 		7BA915521C2A2F1200BABFDB /* String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		7BC8EC6D1C0D2805004972AD /* BBtrebek.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BBtrebek.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -127,7 +127,7 @@
 			isa = PBXGroup;
 			children = (
 				7BC8EC721C0D2805004972AD /* AppDelegate.swift */,
-				7B956DF41C2A54EE00C470F4 /* BBtrebek-Bridging-Header.h */,
+				7B956DF51C2A581200C470F4 /* BBtrebek-Bridging-Header.h */,
 				7BC8EC741C0D2805004972AD /* ViewController.swift */,
 				7BC8EC761C0D2805004972AD /* Main.storyboard */,
 				7B55B52F1C14C4EA005D2F8B /* Utils.swift */,
