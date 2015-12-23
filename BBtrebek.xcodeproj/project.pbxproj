@@ -13,6 +13,7 @@
 		7B58B3961C12BF7B007C4A1A /* NewGameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B58B3941C12BF7B007C4A1A /* NewGameController.swift */; };
 		7B58B3981C12BFF7007C4A1A /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B58B3971C12BFF7007C4A1A /* Player.swift */; };
 		7B58B3991C12BFF7007C4A1A /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B58B3971C12BFF7007C4A1A /* Player.swift */; };
+		7B78804A1C2A61EC0049B4D3 /* libPods-BBtrebek.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B7880491C2A61EC0049B4D3 /* libPods-BBtrebek.a */; };
 		7BA915501C2A2EF000BABFDB /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA9154F1C2A2EF000BABFDB /* Array.swift */; };
 		7BA915511C2A2EF000BABFDB /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA9154F1C2A2EF000BABFDB /* Array.swift */; };
 		7BA915531C2A2F1200BABFDB /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA915521C2A2F1200BABFDB /* String.swift */; };
@@ -51,6 +52,9 @@
 		7B55B52F1C14C4EA005D2F8B /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		7B58B3941C12BF7B007C4A1A /* NewGameController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewGameController.swift; sourceTree = "<group>"; };
 		7B58B3971C12BFF7007C4A1A /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
+		7B7880491C2A61EC0049B4D3 /* libPods-BBtrebek.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-BBtrebek.a"; path = "Pods/../build/Debug-iphoneos/libPods-BBtrebek.a"; sourceTree = "<group>"; };
+		7B78804B1C2A62C70049B4D3 /* libPureLayout.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPureLayout.a; path = "Pods/../build/Debug-iphoneos/libPureLayout.a"; sourceTree = "<group>"; };
+		7B78804D1C2A62CE0049B4D3 /* libPureLayout.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPureLayout.a; path = "Pods/../build/Debug-iphoneos/libPureLayout.a"; sourceTree = "<group>"; };
 		7B956DF51C2A581200C470F4 /* BBtrebek-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BBtrebek-Bridging-Header.h"; sourceTree = "<group>"; };
 		7BA9154F1C2A2EF000BABFDB /* Array.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
 		7BA915521C2A2F1200BABFDB /* String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
@@ -82,6 +86,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7B78804A1C2A61EC0049B4D3 /* libPods-BBtrebek.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -173,6 +178,9 @@
 		8B45700148AD5C6DA03DEA4A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7B78804D1C2A62CE0049B4D3 /* libPureLayout.a */,
+				7B78804B1C2A62C70049B4D3 /* libPureLayout.a */,
+				7B7880491C2A61EC0049B4D3 /* libPods-BBtrebek.a */,
 				7B19B03A1C2A60B70006F7A1 /* libPureLayout.a */,
 				7B19B0381C2A60A20006F7A1 /* libPods-BBtrebek.a */,
 				7B19B0361C2A606C0006F7A1 /* libPureLayout.a */,
@@ -497,6 +505,10 @@
 				INFOPLIST_FILE = BBtrebek/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/build/Debug-iphoneos",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "./BBtrebek/BBtrebek-Bridging-Header.h";
@@ -514,6 +526,10 @@
 				INFOPLIST_FILE = BBtrebek/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/build/Debug-iphoneos",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "./BBtrebek/BBtrebek-Bridging-Header.h";
