@@ -93,20 +93,6 @@ class BBtrebekTests: XCTestCase {
         XCTAssertEqual(player.toButtonTitle(), "Dean Silfen - 600", "Pass")
     }
     
-    func testPlayerToButton() {
-        let clue = Clue(
-            answer: "Dean",
-            question: "Who made this app",
-            value: 100,
-            category: "people who are learning iOS",
-            airdate: "a datetime string"
-        )
-        let player = Player(name: "Dean Silfen")
-        player.answeredClues.append(clue)
-        let playerUIButton: UIButton = player.toUIButton(testViewController(), action: Selector("notARealMethod"))
-        XCTAssertEqual(playerUIButton.titleLabel!.text, "Dean Silfen - 100", "Pass")
-    }
-    
     func testArraySampleExtension() {
         let array = [1,2,3,4]
         XCTAssertNotNil(array.sample(), "Pass")

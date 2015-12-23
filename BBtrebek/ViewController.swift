@@ -40,7 +40,7 @@ public class ViewController: UIViewController {
         self.view.addGestureRecognizer(leftSwipe)
         self.view.addGestureRecognizer(rightSwipe)
         for player in self.players {
-            self.view.addSubview(player.toUIButton(self, action: Selector("handleAwardClueToPlayer:")))
+            self.view.addSubview(self.playerToUIButton(player))
         }
 
     }
@@ -99,6 +99,22 @@ public class ViewController: UIViewController {
                 self.clues.append(clueObj)
             }
         }
+    }
+    
+    public func playerToUIButton(player: Player) -> UIButton {
+        let playerButton: UIButton = UIButton(frame: CGRectMake(100, 400, 100, 50))
+        playerButton.backgroundColor = UIColor.blueColor()
+        
+        playerButton.setTitle(player.toButtonTitle(),
+            forState: UIControlState.Normal
+        )
+        
+        playerButton.addTarget(self,
+            action: Selector("handleAwardClueToPlayer:"),
+            forControlEvents: UIControlEvents.TouchUpInside
+        )
+        
+        return playerButton
     }
     
     func currentClue() -> Clue {
