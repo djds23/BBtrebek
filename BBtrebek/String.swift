@@ -20,4 +20,11 @@ extension String {
             range: nil
         )
     }
+    
+    func blank() -> Bool {
+        if self.trim() == "" {
+            return true
+        }
+        return false
+    }
 }

@@ -54,10 +54,6 @@ class BBtrebekTests: XCTestCase {
         let initializedClue = Clue.initWithNSDictionary(dict)
         XCTAssertNotNil(initializedClue, "Pass")
     }
-    
-    func testTrimString() {
-        XCTAssertEqual("       ".trim(), "", "Pass")
-    }
 
     func testClueStripsHTMLTags() {
         let strippedClue = Clue(
@@ -116,6 +112,15 @@ class BBtrebekTests: XCTestCase {
         XCTAssertNotNil(array.sample(), "Pass")
     }
     
+    func testStringTrimExtension() {
+        XCTAssertEqual("       ".trim(), "", "Pass")
+    }
+    
+    func testStringBlankExtension() {
+        XCTAssertTrue("      ".blank(), "Pass") // spaces
+        XCTAssertTrue(" ".blank(), "Pass") // tab
+    }
+
     func testPerformanceExample() {
         // This is an example of a performance test case.
         self.measureBlock() {
