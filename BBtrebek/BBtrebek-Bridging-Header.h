@@ -7,10 +7,3 @@
 //
 
 #import <PureLayout/PureLayout.h>
-
-//#ifndef BBtrebek_Bridging_Header_h
-//#define BBtrebek_Bridging_Header_h
-
-
-
-//#endif /* BBtrebek_Bridging_Header_h */
