@@ -25,6 +25,7 @@ class NewPlayerViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.newPlayerTextField.autocorrectionType = UITextAutocorrectionType.No
         self.newPlayerLabel.text = self.prompt.sample()
     }
     
