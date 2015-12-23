@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		18E5978FAC3FE3B532A4F12B /* Pods_BBtrebek.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EECB80DBB443B4BC8EDE23AD /* Pods_BBtrebek.framework */; };
+		518D58935FA1A8F6C163C980 /* libPods-BBtrebek.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E86DD67AF5C437904DD9611 /* libPods-BBtrebek.a */; };
 		7B55B5301C14C4EA005D2F8B /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B55B52F1C14C4EA005D2F8B /* Utils.swift */; };
 		7B55B5311C14C4EA005D2F8B /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B55B52F1C14C4EA005D2F8B /* Utils.swift */; };
 		7B58B3961C12BF7B007C4A1A /* NewGameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B58B3941C12BF7B007C4A1A /* NewGameController.swift */; };
@@ -43,7 +43,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0E86DD67AF5C437904DD9611 /* libPods-BBtrebek.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BBtrebek.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		72BA754B252E192DC7ECE899 /* Pods-BBtrebek.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BBtrebek.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BBtrebek/Pods-BBtrebek.debug.xcconfig"; sourceTree = "<group>"; };
+		7B19B0361C2A606C0006F7A1 /* libPureLayout.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPureLayout.a; path = "Pods/../build/Debug-iphoneos/libPureLayout.a"; sourceTree = "<group>"; };
 		7B55B52F1C14C4EA005D2F8B /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		7B58B3941C12BF7B007C4A1A /* NewGameController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewGameController.swift; sourceTree = "<group>"; };
 		7B58B3971C12BFF7007C4A1A /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
@@ -63,7 +65,6 @@
 		7BC8EC921C0D2911004972AD /* Clue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Clue.swift; sourceTree = "<group>"; };
 		7BF80F3E1C273902002BEE75 /* NewPlayerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewPlayerViewController.swift; sourceTree = "<group>"; };
 		B737845BCC04E1072A59E6A7 /* Pods-BBtrebek.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BBtrebek.release.xcconfig"; path = "Pods/Target Support Files/Pods-BBtrebek/Pods-BBtrebek.release.xcconfig"; sourceTree = "<group>"; };
-		EECB80DBB443B4BC8EDE23AD /* Pods_BBtrebek.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BBtrebek.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,7 +72,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				18E5978FAC3FE3B532A4F12B /* Pods_BBtrebek.framework in Frameworks */,
+				518D58935FA1A8F6C163C980 /* libPods-BBtrebek.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -170,7 +171,8 @@
 		8B45700148AD5C6DA03DEA4A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				EECB80DBB443B4BC8EDE23AD /* Pods_BBtrebek.framework */,
+				7B19B0361C2A606C0006F7A1 /* libPureLayout.a */,
+				0E86DD67AF5C437904DD9611 /* libPods-BBtrebek.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -529,6 +531,10 @@
 				);
 				INFOPLIST_FILE = BBtrebekTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/build/Debug-iphoneos",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BBtrebek.app/BBtrebek";
@@ -545,6 +551,10 @@
 				);
 				INFOPLIST_FILE = BBtrebekTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/build/Debug-iphoneos",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BBtrebek.app/BBtrebek";
