@@ -18,11 +18,11 @@ public class Clue: NSObject {
     public var answered: Bool = false
 
     public init(answer: String, question: String, value: Int, category: String, airdate: String) {
-        self.answer = stripHTMLTags(answer)
-        self.question = stripHTMLTags(question)
+        self.answer = answer.stripHTMLTags()
+        self.question = question.stripHTMLTags()
         self.value = value
         self.airdate = airdate
-        self.category = stripHTMLTags(category)
+        self.category = category.stripHTMLTags()
     }
     
     public static func initWithNSDictionary(dict: NSDictionary) -> Clue? {
