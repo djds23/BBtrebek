@@ -25,13 +25,14 @@ class NewPlayerViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.newPlayerTextField.autocorrectionType = UITextAutocorrectionType.No
         self.newPlayerLabel.text = self.prompt.sample()
     }
     
     override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject!) -> Bool {
         if (sender as? UIButton == self.addPlayerButton) {
             let name = self.newPlayerTextField.text!.trim()
-            if name == "" {
+            if name.blank() {
                 // why does the first arg not need a label? swift gives a compiler error here:
                 alert("No Player Name", message: "Please provide a name for the contestant.", viewController: self)
                 return false
@@ -45,7 +46,7 @@ class NewPlayerViewController: UIViewController {
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if (sender as? UIButton == self.addPlayerButton) {
-            let name = self.newPlayerTextField.text!
+            let name = self.newPlayerTextField.text!.trim()
             let newPlayerViewController = segue.destinationViewController as! NewGameController
             newPlayerViewController.players.append(Player(name: name))
         }
