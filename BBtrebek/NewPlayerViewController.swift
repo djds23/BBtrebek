@@ -47,8 +47,10 @@ class NewPlayerViewController: UIViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if (sender as? UIButton == self.addPlayerButton) {
             let name = self.newPlayerTextField.text!.trim()
+            self.players.append(Player(name: name))
+            
             let newPlayerViewController = segue.destinationViewController as! NewGameController
-            newPlayerViewController.players.append(Player(name: name))
+            newPlayerViewController.players = self.players
         }
     }
 }
