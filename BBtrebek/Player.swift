@@ -27,12 +27,4 @@ public class Player: NSObject {
     public func toButtonTitle() -> String {
         return "\(self.name) - \(self.score())"
     }
-    
-    public func toUIButton(target: UIViewController, action: Selector) -> UIButton {
-        let playerButton: UIButton = UIButton(frame: CGRectMake(100, 400, 100, 50))
-        playerButton.backgroundColor = UIColor.blueColor()
-        playerButton.setTitle(self.toButtonTitle(), forState: UIControlState.Normal)
-        playerButton.addTarget(target, action: action, forControlEvents: UIControlEvents.TouchUpInside)
-        return playerButton
-    }
 }
