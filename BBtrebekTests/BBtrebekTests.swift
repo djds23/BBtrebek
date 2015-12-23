@@ -54,6 +54,10 @@ class BBtrebekTests: XCTestCase {
         let initializedClue = Clue.initWithNSDictionary(dict)
         XCTAssertNotNil(initializedClue, "Pass")
     }
+    
+    func testTrimString() {
+        XCTAssertEqual("       ".trim(), "", "Pass")
+    }
 
     func testClueStripsHTMLTags() {
         let strippedClue = Clue(

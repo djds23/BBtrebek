@@ -17,18 +17,6 @@ public func alert(title: String!, message: String!, viewController: UIViewContro
     viewController.presentViewController(alert, animated: true, completion: nil)
 }
 
-public func trim(str: String) -> String {
-    return str.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
-}
-
-public func stripHTMLTags(str: String) -> String {
-    return str.stringByReplacingOccurrencesOfString( "<[^>]+>",
-        withString: "",
-        options: .RegularExpressionSearch,
-        range: nil
-    )
-}
-
 public func getNSArrayFromURLEndPoint(url: NSURL) -> NSArray {
     let request = NSMutableURLRequest(URL: url)
     request.HTTPMethod = "GET"
@@ -49,9 +37,3 @@ public func getNSArrayFromURLEndPoint(url: NSURL) -> NSArray {
     return result
 }
 
-extension Array {
-    func sample() -> Element {
-        let randomIndex = Int(rand()) % count
-        return self[randomIndex]
-    }
-}

@@ -30,7 +30,7 @@ class NewPlayerViewController: UIViewController {
     
     override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject!) -> Bool {
         if (sender as? UIButton == self.addPlayerButton) {
-            let name = trim(self.newPlayerTextField.text!)
+            let name = self.newPlayerTextField.text!.trim()
             if name == "" {
                 // why does the first arg not need a label? swift gives a compiler error here:
                 alert("No Player Name", message: "Please provide a name for the contestant.", viewController: self)
