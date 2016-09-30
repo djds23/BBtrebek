@@ -10,9 +10,9 @@
 import UIKit
 
 
-public class ViewController: UIViewController {
+open class ViewController: UIViewController {
 
-    let url = NSURL(string: "http://jservice.io/api/random?count=100")! // deploy my own and use HTTPS
+    let url = URL(string: "http://jservice.io/api/random?count=100")! // deploy my own and use HTTPS
     var clues: Array<Clue> = [Clue]()
     var players: Array<Player>!
     var currentIndex: Int = 0
@@ -23,7 +23,7 @@ public class ViewController: UIViewController {
     @IBOutlet weak var currentQuestion: UILabel!
     @IBOutlet weak var scrollView: UIScrollView!
     
-    override public func viewDidLoad() {
+    override open func viewDidLoad() {
         super.viewDidLoad()
 
         let data: NSArray = getNSArrayFromURLEndPoint(url)
@@ -31,11 +31,11 @@ public class ViewController: UIViewController {
         self.dataToClue(data)
         self.setClueForCurrentIndex()
         
-        let leftSwipe = UISwipeGestureRecognizer(target: self, action: Selector("handleSwipes:"))
-        let rightSwipe = UISwipeGestureRecognizer(target: self, action: Selector("handleSwipes:"))
+        let leftSwipe = UISwipeGestureRecognizer(target: self, action: #selector(ViewController.handleSwipes(_:)))
+        let rightSwipe = UISwipeGestureRecognizer(target: self, action: #selector(ViewController.handleSwipes(_:)))
 
-        leftSwipe.direction = .Left
-        rightSwipe.direction = .Right
+        leftSwipe.direction = .left
+        rightSwipe.direction = .right
         
         self.view.addGestureRecognizer(leftSwipe)
         self.view.addGestureRecognizer(rightSwipe)
@@ -45,15 +45,15 @@ public class ViewController: UIViewController {
 
     }
     
-    func handleAwardClueToPlayer(sender: UIButton) {
+    func handleAwardClueToPlayer(_ sender: UIButton) {
         print("this was clicked!")
     }
     
-    func handleSwipes(sender:UISwipeGestureRecognizer) -> Void {
-        if (sender.direction == .Right) {
+    func handleSwipes(_ sender:UISwipeGestureRecognizer) -> Void {
+        if (sender.direction == .right) {
             self.swipeRight()
         }
-        if (sender.direction == .Left) {
+        if (sender.direction == .left) {
             self.swipeLeft()
         }
     }
@@ -82,9 +82,9 @@ public class ViewController: UIViewController {
     func setClueForCurrentIndex() {
         let currentClue: Clue = self.currentClue()
         if (currentClue.answered) {
-            self.scrollView.backgroundColor = UIColor.redColor()
+            self.scrollView.backgroundColor = UIColor.red
         } else {
-            self.scrollView.backgroundColor = UIColor.blueColor()
+            self.scrollView.backgroundColor = UIColor.blue
         }
         self.currentCategory.text = currentClue.category
         self.currentQuestion.text = currentClue.question
@@ -93,7 +93,7 @@ public class ViewController: UIViewController {
     }
     
     
-    func dataToClue(data: NSArray) {
+    func dataToClue(_ data: NSArray) {
         for clue in data {
             if let clueObj = Clue.initWithNSDictionary(clue as! NSDictionary) {
                 self.clues.append(clueObj)
@@ -101,17 +101,17 @@ public class ViewController: UIViewController {
         }
     }
     
-    public func playerToUIButton(player: Player) -> UIButton {
-        let playerButton: UIButton = UIButton(frame: CGRectMake(100, 400, 100, 50))
-        playerButton.backgroundColor = UIColor.blueColor()
+    open func playerToUIButton(_ player: Player) -> UIButton {
+        let playerButton: UIButton = UIButton(frame: CGRect(x: 100, y: 400, width: 100, height: 50))
+        playerButton.backgroundColor = UIColor.blue
         
         playerButton.setTitle(player.toButtonTitle(),
-            forState: UIControlState.Normal
+            for: UIControlState()
         )
         
         playerButton.addTarget(self,
-            action: Selector("handleAwardClueToPlayer:"),
-            forControlEvents: UIControlEvents.TouchUpInside
+            action: #selector(ViewController.handleAwardClueToPlayer(_:)),
+            for: UIControlEvents.touchUpInside
         )
         
         return playerButton

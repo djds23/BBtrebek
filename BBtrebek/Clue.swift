@@ -8,14 +8,14 @@
 
 import Foundation
 
-public class Clue: NSObject {
+open class Clue: NSObject {
 
-    public var answer: String
-    public var question: String
-    public var value: Int
-    public var airdate: String
-    public var category: String
-    public var answered: Bool = false
+    open var answer: String
+    open var question: String
+    open var value: Int
+    open var airdate: String
+    open var category: String
+    open var answered: Bool = false
 
     public init(answer: String, question: String, value: Int, category: String, airdate: String) {
         self.answer = answer.stripHTMLTags()
@@ -25,12 +25,12 @@ public class Clue: NSObject {
         self.category = category.stripHTMLTags()
     }
     
-    public static func initWithNSDictionary(dict: NSDictionary) -> Clue? {
+    open static func initWithNSDictionary(_ dict: NSDictionary) -> Clue? {
         let category = (dict["category"] as! NSDictionary)["title"] as! String
         if let value = dict["value"] as? Int,
-            answer = dict["answer"] as? String,
-            question = dict["question"] as? String,
-            airdate = dict["airdate"] as? String {
+            let answer = dict["answer"] as? String,
+            let question = dict["question"] as? String,
+            let airdate = dict["airdate"] as? String {
                 
             let clueObj = Clue(
                 answer: answer,

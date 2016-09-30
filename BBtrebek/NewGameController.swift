@@ -8,7 +8,7 @@
 
 import UIKit
 
-public class NewGameController: UIViewController {
+open class NewGameController: UIViewController {
 
     @IBOutlet weak var addPlayer: UIButton!
     @IBOutlet weak var playGame: UIButton!
@@ -16,14 +16,14 @@ public class NewGameController: UIViewController {
 
     var players = [Player]()
 
-    override public func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override open func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (sender as? UIButton == self.playGame) {
-            let swipeController = segue.destinationViewController as! ViewController
+            let swipeController = segue.destination as! ViewController
             swipeController.players = self.players
         }
         
         if (sender as? UIButton == self.addPlayer) {
-            let newPlayerViewController = segue.destinationViewController as! NewPlayerViewController
+            let newPlayerViewController = segue.destination as! NewPlayerViewController
             newPlayerViewController.players = self.players
         }
 

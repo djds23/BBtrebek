@@ -10,7 +10,7 @@ import Foundation
 
 extension Array {
     func sample() -> Element {
-        let randomIndex = Int(rand()) % count
+        let randomIndex = Int(arc4random()) % count
         return self[randomIndex]
     }
 }

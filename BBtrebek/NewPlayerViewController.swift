@@ -25,11 +25,11 @@ class NewPlayerViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.newPlayerTextField.autocorrectionType = UITextAutocorrectionType.No
+        self.newPlayerTextField.autocorrectionType = UITextAutocorrectionType.no
         self.newPlayerLabel.text = self.prompt.sample()
     }
     
-    override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject!) -> Bool {
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any!) -> Bool {
         if (sender as? UIButton == self.addPlayerButton) {
             let name = self.newPlayerTextField.text!.trim()
             if name.blank() {
@@ -44,12 +44,12 @@ class NewPlayerViewController: UIViewController {
         }
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (sender as? UIButton == self.addPlayerButton) {
             let name = self.newPlayerTextField.text!.trim()
             self.players.append(Player(name: name))
             
-            let newPlayerViewController = segue.destinationViewController as! NewGameController
+            let newPlayerViewController = segue.destination as! NewGameController
             newPlayerViewController.players = self.players
         }
     }

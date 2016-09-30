@@ -10,13 +10,13 @@ import Foundation
 
 extension String {
     func trim() -> String {
-        return self.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
+        return self.trimmingCharacters(in: CharacterSet.whitespaces)
     }
     
     func stripHTMLTags() -> String {
-        return self.stringByReplacingOccurrencesOfString( "<[^>]+>",
-            withString: "",
-            options: .RegularExpressionSearch,
+        return self.replacingOccurrences( of: "<[^>]+>",
+            with: "",
+            options: .regularExpression,
             range: nil
         )
     }
