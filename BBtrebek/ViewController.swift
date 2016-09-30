@@ -45,7 +45,7 @@ open class ViewController: UIViewController {
 
     }
     
-    func handleAwardClueToPlayer(_ sender: UIButton) {
+    func handleAwardClueToPlayer(_ sender: UIButton) -> Void {
         print("this was clicked!")
     }
     
@@ -79,7 +79,7 @@ open class ViewController: UIViewController {
         self.setClueForCurrentIndex()
     }
     
-    func setClueForCurrentIndex() {
+    func setClueForCurrentIndex() -> Void {
         let currentClue: Clue = self.currentClue()
         if (currentClue.answered) {
             self.scrollView.backgroundColor = UIColor.red
