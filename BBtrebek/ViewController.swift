@@ -83,8 +83,6 @@ open class ViewController: UIViewController {
         let currentClue: Clue = self.currentClue()
         if (currentClue.answered) {
             self.scrollView.backgroundColor = UIColor.red
-        } else {
-            self.scrollView.backgroundColor = UIColor.blue
         }
         self.currentCategory.text = currentClue.category
         self.currentQuestion.text = currentClue.question
@@ -103,7 +101,6 @@ open class ViewController: UIViewController {
     
     open func playerToUIButton(_ player: Player) -> UIButton {
         let playerButton: UIButton = UIButton(frame: CGRect(x: 100, y: 400, width: 100, height: 50))
-        playerButton.backgroundColor = UIColor.blue
         
         playerButton.setTitle(player.toButtonTitle(),
             for: UIControlState()
