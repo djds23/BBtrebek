@@ -93,6 +93,7 @@ class BBtrebekTests: XCTestCase {
         XCTAssertEqual(player.toButtonTitle(), "Dean Silfen - 600", "Pass")
     }
     
+
     func testArraySampleExtension() {
         let array = [1,2,3,4]
         XCTAssertNotNil(array.sample(), "Pass")

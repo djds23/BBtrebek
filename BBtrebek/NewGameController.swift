@@ -13,9 +13,20 @@ open class NewGameController: UIViewController {
     @IBOutlet weak var addPlayer: UIButton!
     @IBOutlet weak var playGame: UIButton!
     @IBOutlet weak var scrollView: UIScrollView!
+    
+    @IBOutlet weak var contestants: UILabel!
 
     var players = [Player]()
 
+    override open func viewDidLoad() {
+        super.viewDidLoad()
+        
+        if self.players.isEmpty {
+            self.contestants.text = ""
+        } else {
+            
+        }
+    }
     override open func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (sender as? UIButton == self.playGame) {
             let swipeController = segue.destination as! ViewController

@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7B380D281DA9A70400556CDB /* PlayerGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B380D271DA9A70400556CDB /* PlayerGroup.swift */; };
+		7B380D291DA9A70400556CDB /* PlayerGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B380D271DA9A70400556CDB /* PlayerGroup.swift */; };
+		7B380D2B1DA9AFA500556CDB /* PlayerGroupTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B380D2A1DA9AFA500556CDB /* PlayerGroupTests.swift */; };
 		7B55B5301C14C4EA005D2F8B /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B55B52F1C14C4EA005D2F8B /* Utils.swift */; };
 		7B55B5311C14C4EA005D2F8B /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B55B52F1C14C4EA005D2F8B /* Utils.swift */; };
 		7B58B3961C12BF7B007C4A1A /* NewGameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B58B3941C12BF7B007C4A1A /* NewGameController.swift */; };
@@ -42,6 +45,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7B380D271DA9A70400556CDB /* PlayerGroup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerGroup.swift; sourceTree = "<group>"; };
+		7B380D2A1DA9AFA500556CDB /* PlayerGroupTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerGroupTests.swift; sourceTree = "<group>"; };
 		7B55B52F1C14C4EA005D2F8B /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		7B58B3941C12BF7B007C4A1A /* NewGameController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewGameController.swift; sourceTree = "<group>"; };
 		7B58B3971C12BFF7007C4A1A /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
@@ -93,6 +98,7 @@
 			children = (
 				7BC8EC921C0D2911004972AD /* Clue.swift */,
 				7B58B3971C12BFF7007C4A1A /* Player.swift */,
+				7B380D271DA9A70400556CDB /* PlayerGroup.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -146,6 +152,7 @@
 			children = (
 				7BC8EC881C0D2805004972AD /* BBtrebekTests.swift */,
 				7BC8EC861C0D2805004972AD /* Supporting Files */,
+				7B380D2A1DA9AFA500556CDB /* PlayerGroupTests.swift */,
 			);
 			path = BBtrebekTests;
 			sourceTree = "<group>";
@@ -270,6 +277,7 @@
 				7BA915531C2A2F1200BABFDB /* String.swift in Sources */,
 				7B55B5301C14C4EA005D2F8B /* Utils.swift in Sources */,
 				7BF80F3F1C273902002BEE75 /* NewPlayerViewController.swift in Sources */,
+				7B380D281DA9A70400556CDB /* PlayerGroup.swift in Sources */,
 				7BA915501C2A2EF000BABFDB /* Array.swift in Sources */,
 				7B58B3981C12BFF7007C4A1A /* Player.swift in Sources */,
 				7BC8EC731C0D2805004972AD /* AppDelegate.swift in Sources */,
@@ -286,6 +294,8 @@
 				7BA915541C2A2F1200BABFDB /* String.swift in Sources */,
 				7B55B5311C14C4EA005D2F8B /* Utils.swift in Sources */,
 				7BF80F401C273902002BEE75 /* NewPlayerViewController.swift in Sources */,
+				7B380D291DA9A70400556CDB /* PlayerGroup.swift in Sources */,
+				7B380D2B1DA9AFA500556CDB /* PlayerGroupTests.swift in Sources */,
 				7BA915511C2A2EF000BABFDB /* Array.swift in Sources */,
 				7BAF90C71C134EDD00CC71A9 /* ViewController.swift in Sources */,
 				7BC8EC891C0D2805004972AD /* BBtrebekTests.swift in Sources */,
