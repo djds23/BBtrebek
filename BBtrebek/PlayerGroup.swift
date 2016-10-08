@@ -33,7 +33,7 @@ open class PlayerGroup: NSObject {
             let playerNames: Array<String> =  self.playerList(includeLast: false).map({player in
                 player.name
             })
-            listString = "\(playerNames.joined(separator: " ,")) and \(self.players.last!.name)"
+            listString = "\(playerNames.joined(separator: ", ")) and \(self.players.last!.name)"
         }
         return listString
     }
@@ -45,10 +45,10 @@ open class PlayerGroup: NSObject {
     private func playerList(includeLast: Bool) -> Array<Player> {
         let finalElement = includeLast ?  1 : 2
         let endCount = self.players.count - finalElement
-        if endCount < self.players.count {
+        if endCount > self.players.count {
             return self.players
         }else {
-            let slice = self.players[0..<endCount]
+            let slice = self.players[0...endCount]
             return Array(slice)
         }
     }
