@@ -14,7 +14,7 @@ open class ViewController: UIViewController {
 
     let url = URL(string: "http://jservice.io/api/random?count=100")! // deploy my own and use HTTPS
     var clues: Array<Clue> = [Clue]()
-    var players: Array<Player>!
+    var playerGroup: PlayerGroup = PlayerGroup()
     var currentIndex: Int = 0
 
     @IBOutlet weak var currentValue: UILabel!
@@ -39,7 +39,7 @@ open class ViewController: UIViewController {
         
         self.view.addGestureRecognizer(leftSwipe)
         self.view.addGestureRecognizer(rightSwipe)
-        for player in self.players {
+        for player in self.playerGroup.asArray() {
             self.view.addSubview(self.playerToUIButton(player))
         }
 

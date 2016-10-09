@@ -32,7 +32,7 @@ open class NewGameController: UIViewController {
     override open func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (sender as? UIButton == self.playGame) {
             let swipeController = segue.destination as! ViewController
-            swipeController.players = self.playerGroup.asArray()
+            swipeController.playerGroup = self.playerGroup
         }
         
         if (sender as? UIButton == self.addPlayer) {
