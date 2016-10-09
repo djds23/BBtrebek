@@ -173,10 +173,8 @@
                                             </segue>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3WE-EL-hFz">
-                                        <rect key="frame" x="275" y="405" width="42" height="21"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This will hold all of the names" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3WE-EL-hFz">
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -185,12 +183,14 @@
                                 <color key="tintColor" red="0.40000000600000002" green="0.80000001190000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstItem="giW-Vh-e0i" firstAttribute="top" secondItem="nUM-v5-hj0" secondAttribute="top" constant="64" id="283-dy-FHJ"/>
+                                    <constraint firstItem="3WE-EL-hFz" firstAttribute="top" secondItem="w81-ga-eXf" secondAttribute="bottom" constant="42" id="2Ig-I2-yX4"/>
                                     <constraint firstItem="e2W-rX-2FR" firstAttribute="top" secondItem="nUM-v5-hj0" secondAttribute="top" constant="261" id="A2A-vk-j15"/>
                                     <constraint firstAttribute="bottom" secondItem="w81-ga-eXf" secondAttribute="bottom" constant="197" id="Ccf-kW-sjM"/>
                                     <constraint firstItem="giW-Vh-e0i" firstAttribute="leading" secondItem="nUM-v5-hj0" secondAttribute="leading" constant="8" id="Dxe-jO-xTF"/>
                                     <constraint firstAttribute="trailing" secondItem="giW-Vh-e0i" secondAttribute="trailing" constant="8" id="KA4-0p-jJS"/>
                                     <constraint firstAttribute="centerX" secondItem="giW-Vh-e0i" secondAttribute="centerX" id="PBt-aK-L5Y"/>
                                     <constraint firstItem="w81-ga-eXf" firstAttribute="top" secondItem="e2W-rX-2FR" secondAttribute="bottom" constant="42" id="QiA-l6-H1B"/>
+                                    <constraint firstItem="3WE-EL-hFz" firstAttribute="centerX" secondItem="nUM-v5-hj0" secondAttribute="centerX" id="UJN-Ab-7iV"/>
                                     <constraint firstItem="w81-ga-eXf" firstAttribute="centerX" secondItem="nUM-v5-hj0" secondAttribute="centerX" id="eWg-OJ-KMj"/>
                                     <constraint firstAttribute="centerX" secondItem="e2W-rX-2FR" secondAttribute="centerX" id="ves-E0-1aV"/>
                                 </constraints>
@@ -213,7 +213,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NVr-Nn-HpO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-280" y="168"/>
+            <point key="canvasLocation" x="-280" y="167.31634182908547"/>
         </scene>
         <!--New Player View Controller-->
         <scene sceneID="Qqa-T5-e3d">
@@ -238,11 +238,6 @@
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Placeholder text" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dEb-zO-RFv">
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1Nr-Pj-XUg">
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
@@ -255,23 +250,28 @@
                                             <segue destination="Q07-Vk-cxc" kind="show" id="jFt-95-Ize"/>
                                         </connections>
                                     </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Placeholder text" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OBA-I1-hFn">
+                                        <rect key="frame" x="168" y="40" width="264" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="6eE-ov-7BD" secondAttribute="bottom" constant="410" id="Ey9-pz-JYQ"/>
-                                    <constraint firstItem="dEb-zO-RFv" firstAttribute="top" secondItem="X5k-b8-ILA" secondAttribute="top" constant="42" id="G9a-3P-NsG"/>
                                     <constraint firstAttribute="trailing" secondItem="1Nr-Pj-XUg" secondAttribute="trailing" constant="16" id="GhV-sy-hlW"/>
                                     <constraint firstItem="yCf-ql-X7I" firstAttribute="centerX" secondItem="X5k-b8-ILA" secondAttribute="centerX" id="RRc-58-Quj"/>
                                     <constraint firstItem="6eE-ov-7BD" firstAttribute="leading" secondItem="yCf-ql-X7I" secondAttribute="leading" id="SrK-zQ-b0t"/>
                                     <constraint firstItem="6eE-ov-7BD" firstAttribute="centerX" secondItem="X5k-b8-ILA" secondAttribute="centerX" id="U5E-UM-zvY"/>
                                     <constraint firstItem="6eE-ov-7BD" firstAttribute="top" secondItem="X5k-b8-ILA" secondAttribute="top" constant="169" id="VE8-Ps-i09"/>
                                     <constraint firstItem="6eE-ov-7BD" firstAttribute="top" secondItem="1Nr-Pj-XUg" secondAttribute="bottom" constant="28" id="Xyb-5x-TnW"/>
-                                    <constraint firstItem="dEb-zO-RFv" firstAttribute="leading" secondItem="X5k-b8-ILA" secondAttribute="leading" constant="16" id="bJO-Ru-Mox"/>
-                                    <constraint firstAttribute="trailing" secondItem="dEb-zO-RFv" secondAttribute="trailing" constant="16" id="buI-eO-Pm5"/>
                                     <constraint firstItem="yCf-ql-X7I" firstAttribute="top" secondItem="1Nr-Pj-XUg" secondAttribute="bottom" constant="33" id="fNr-bG-haW"/>
                                     <constraint firstItem="1Nr-Pj-XUg" firstAttribute="centerX" secondItem="X5k-b8-ILA" secondAttribute="centerX" id="h41-0h-Y4U"/>
                                     <constraint firstItem="1Nr-Pj-XUg" firstAttribute="leading" secondItem="X5k-b8-ILA" secondAttribute="leading" constant="16" id="hsy-7a-pzd"/>
                                     <constraint firstItem="yCf-ql-X7I" firstAttribute="centerX" secondItem="X5k-b8-ILA" secondAttribute="centerX" id="n5u-uY-dXb"/>
-                                    <constraint firstItem="dEb-zO-RFv" firstAttribute="centerX" secondItem="X5k-b8-ILA" secondAttribute="centerX" id="uTy-0g-4VZ"/>
+                                    <constraint firstItem="OBA-I1-hFn" firstAttribute="centerX" secondItem="X5k-b8-ILA" secondAttribute="centerX" id="p7N-1r-XUz"/>
+                                    <constraint firstItem="1Nr-Pj-XUg" firstAttribute="top" secondItem="OBA-I1-hFn" secondAttribute="bottom" constant="50" id="rRt-gW-d2c"/>
+                                    <constraint firstItem="OBA-I1-hFn" firstAttribute="top" secondItem="X5k-b8-ILA" secondAttribute="top" constant="40" id="yvd-ii-ONV"/>
                                 </constraints>
                             </scrollView>
                         </subviews>
@@ -285,13 +285,13 @@
                     </view>
                     <connections>
                         <outlet property="addPlayerButton" destination="yCf-ql-X7I" id="Syk-tU-fq2"/>
-                        <outlet property="newPlayerLabel" destination="dEb-zO-RFv" id="iSn-3R-Hdb"/>
+                        <outlet property="newPlayerLabel" destination="OBA-I1-hFn" id="1ES-dH-rGd"/>
                         <outlet property="newPlayerTextField" destination="1Nr-Pj-XUg" id="SNS-zE-N3J"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VMj-uy-Fgp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-280" y="1063"/>
+            <point key="canvasLocation" x="-203.19999999999999" y="1033.5832083958021"/>
         </scene>
     </scenes>
 </document>

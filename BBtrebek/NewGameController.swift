@@ -20,13 +20,15 @@ open class NewGameController: UIViewController {
 
     override open func viewDidLoad() {
         super.viewDidLoad()
-        
-        if self.playerGroup.playable() {
-            self.contestants.text = ""
+        let playerList = playerGroup.nameList()
+        if !playerList.blank() {
+            self.contestants.text = "With Players: \(playerList)"
+            self.contestants.sizeToFit()
         } else {
-            self.contestants.text = playerGroup.nameList()
+            self.contestants.text = ""
         }
     }
+
     override open func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (sender as? UIButton == self.playGame) {
             let swipeController = segue.destination as! ViewController
