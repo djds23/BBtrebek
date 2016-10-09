@@ -250,12 +250,19 @@
                                             <segue destination="Q07-Vk-cxc" kind="show" id="jFt-95-Ize"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Placeholder text" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OBA-I1-hFn">
-                                        <rect key="frame" x="168" y="40" width="264" height="21"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Placeholder text" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OBA-I1-hFn">
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EDn-np-TVB">
+                                        <state key="normal" title="Cancel"/>
+                                        <connections>
+                                            <segue destination="Q07-Vk-cxc" kind="popoverPresentation" popoverAnchorView="EDn-np-TVB" id="deW-Ej-8W1">
+                                                <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                            </segue>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="6eE-ov-7BD" secondAttribute="bottom" constant="410" id="Ey9-pz-JYQ"/>
@@ -264,10 +271,13 @@
                                     <constraint firstItem="6eE-ov-7BD" firstAttribute="leading" secondItem="yCf-ql-X7I" secondAttribute="leading" id="SrK-zQ-b0t"/>
                                     <constraint firstItem="6eE-ov-7BD" firstAttribute="centerX" secondItem="X5k-b8-ILA" secondAttribute="centerX" id="U5E-UM-zvY"/>
                                     <constraint firstItem="6eE-ov-7BD" firstAttribute="top" secondItem="X5k-b8-ILA" secondAttribute="top" constant="169" id="VE8-Ps-i09"/>
+                                    <constraint firstItem="EDn-np-TVB" firstAttribute="top" secondItem="yCf-ql-X7I" secondAttribute="bottom" constant="2" id="XhG-FR-Jhc"/>
                                     <constraint firstItem="6eE-ov-7BD" firstAttribute="top" secondItem="1Nr-Pj-XUg" secondAttribute="bottom" constant="28" id="Xyb-5x-TnW"/>
                                     <constraint firstItem="yCf-ql-X7I" firstAttribute="top" secondItem="1Nr-Pj-XUg" secondAttribute="bottom" constant="33" id="fNr-bG-haW"/>
                                     <constraint firstItem="1Nr-Pj-XUg" firstAttribute="centerX" secondItem="X5k-b8-ILA" secondAttribute="centerX" id="h41-0h-Y4U"/>
                                     <constraint firstItem="1Nr-Pj-XUg" firstAttribute="leading" secondItem="X5k-b8-ILA" secondAttribute="leading" constant="16" id="hsy-7a-pzd"/>
+                                    <constraint firstAttribute="bottom" secondItem="yCf-ql-X7I" secondAttribute="bottom" constant="349" id="jeV-xn-Vqv"/>
+                                    <constraint firstItem="EDn-np-TVB" firstAttribute="centerX" secondItem="X5k-b8-ILA" secondAttribute="centerX" id="kPu-pc-CpO"/>
                                     <constraint firstItem="yCf-ql-X7I" firstAttribute="centerX" secondItem="X5k-b8-ILA" secondAttribute="centerX" id="n5u-uY-dXb"/>
                                     <constraint firstItem="OBA-I1-hFn" firstAttribute="centerX" secondItem="X5k-b8-ILA" secondAttribute="centerX" id="p7N-1r-XUz"/>
                                     <constraint firstItem="1Nr-Pj-XUg" firstAttribute="top" secondItem="OBA-I1-hFn" secondAttribute="bottom" constant="50" id="rRt-gW-d2c"/>
@@ -285,6 +295,7 @@
                     </view>
                     <connections>
                         <outlet property="addPlayerButton" destination="yCf-ql-X7I" id="Syk-tU-fq2"/>
+                        <outlet property="cancelButton" destination="EDn-np-TVB" id="iz1-bA-Gq9"/>
                         <outlet property="newPlayerLabel" destination="OBA-I1-hFn" id="1ES-dH-rGd"/>
                         <outlet property="newPlayerTextField" destination="1Nr-Pj-XUg" id="SNS-zE-N3J"/>
                     </connections>
@@ -294,4 +305,7 @@
             <point key="canvasLocation" x="-203.19999999999999" y="1033.5832083958021"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="jFt-95-Ize"/>
+    </inferredMetricsTieBreakers>
 </document>
