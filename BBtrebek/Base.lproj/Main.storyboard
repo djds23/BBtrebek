@@ -74,6 +74,11 @@
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Uk-KC-hjB">
+                                        <state key="normal" title="Disable">
+                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                    </button>
                                 </subviews>
                                 <color key="tintColor" red="0.40000000600000002" green="0.80000001190000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -89,6 +94,7 @@
                                     <constraint firstItem="Cyn-w7-2Js" firstAttribute="leading" secondItem="CSZ-lS-rcw" secondAttribute="leading" constant="12" id="Eky-gn-hZT"/>
                                     <constraint firstAttribute="trailing" secondItem="EDK-FE-Gas" secondAttribute="trailing" constant="12" id="EzL-iI-3Ke"/>
                                     <constraint firstAttribute="centerX" secondItem="cW8-Pv-euT" secondAttribute="centerX" id="I1Q-gs-jV0"/>
+                                    <constraint firstItem="3Uk-KC-hjB" firstAttribute="top" secondItem="CSZ-lS-rcw" secondAttribute="top" constant="23" id="IAe-QR-3ZQ"/>
                                     <constraint firstItem="gec-4q-ZK4" firstAttribute="leading" secondItem="CSZ-lS-rcw" secondAttribute="leading" constant="12" id="Ivx-vh-Om9"/>
                                     <constraint firstAttribute="centerX" secondItem="kLY-zW-woA" secondAttribute="centerX" id="JKG-GX-YXw"/>
                                     <constraint firstItem="EDK-FE-Gas" firstAttribute="top" secondItem="kLY-zW-woA" secondAttribute="bottom" constant="6" id="Uvv-6O-Gfc"/>
@@ -98,6 +104,7 @@
                                     <constraint firstItem="cW8-Pv-euT" firstAttribute="leading" secondItem="CSZ-lS-rcw" secondAttribute="leading" constant="12" id="Ych-04-f6c"/>
                                     <constraint firstAttribute="centerX" secondItem="EDK-FE-Gas" secondAttribute="centerX" id="a5d-aA-2bh"/>
                                     <constraint firstAttribute="centerX" secondItem="eTh-1f-b6S" secondAttribute="centerX" id="aDT-GV-dBN"/>
+                                    <constraint firstItem="3Uk-KC-hjB" firstAttribute="leading" secondItem="CSZ-lS-rcw" secondAttribute="leading" constant="12" id="fYs-YI-k8x"/>
                                     <constraint firstAttribute="centerX" secondItem="gec-4q-ZK4" secondAttribute="centerX" id="iAi-CP-3Sx"/>
                                     <constraint firstItem="dup-pp-EWD" firstAttribute="top" secondItem="CSZ-lS-rcw" secondAttribute="top" constant="28" id="lGw-VM-Fes"/>
                                     <constraint firstAttribute="centerX" secondItem="kLY-zW-woA" secondAttribute="centerX" id="syb-71-jZH"/>
@@ -121,12 +128,13 @@
                         <outlet property="currentCategory" destination="Cyn-w7-2Js" id="JXL-XZ-8id"/>
                         <outlet property="currentQuestion" destination="cW8-Pv-euT" id="kGc-9h-Ml2"/>
                         <outlet property="currentValue" destination="gec-4q-ZK4" id="bsP-5k-SJ9"/>
+                        <outlet property="disableCurrentClue" destination="3Uk-KC-hjB" id="DRg-WO-G47"/>
                         <outlet property="scrollView" destination="CSZ-lS-rcw" id="yi6-cY-4c4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="695" y="168"/>
+            <point key="canvasLocation" x="693.60000000000002" y="167.76611694152925"/>
         </scene>
         <!--New Game Controller-->
         <scene sceneID="X3u-hH-rBE">

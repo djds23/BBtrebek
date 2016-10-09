@@ -17,6 +17,7 @@ open class ViewController: UIViewController {
     var playerGroup: PlayerGroup = PlayerGroup()
     var currentIndex: Int = 0
 
+    @IBOutlet weak var disableCurrentClue: UIButton!
     @IBOutlet weak var currentValue: UILabel!
     @IBOutlet weak var currentAnswer: UILabel!
     @IBOutlet weak var currentCategory: UILabel!

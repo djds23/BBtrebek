@@ -16,13 +16,15 @@ open class Clue: NSObject {
     open var airdate: String
     open var category: String
     open var answered: Bool = false
+    open var id: Int
 
-    public init(answer: String, question: String, value: Int, category: String, airdate: String) {
+    public init(answer: String, question: String, value: Int, category: String, airdate: String, id: Int) {
         self.answer = answer.stripHTMLTags()
         self.question = question.stripHTMLTags()
         self.value = value
         self.airdate = airdate
         self.category = category.stripHTMLTags()
+        self.id = id
     }
     
     open static func initWithNSDictionary(_ dict: NSDictionary) -> Clue? {
@@ -30,14 +32,16 @@ open class Clue: NSObject {
         if let value = dict["value"] as? Int,
             let answer = dict["answer"] as? String,
             let question = dict["question"] as? String,
-            let airdate = dict["airdate"] as? String {
+            let airdate = dict["airdate"] as? String,
+            let id = dict["id"] as? Int {
                 
             let clueObj = Clue(
                 answer: answer,
                 question: question,
                 value: value,
                 category: category,
-                airdate: airdate
+                airdate: airdate,
+                id: id
             )
             return clueObj;
         } else {
