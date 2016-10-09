@@ -23,6 +23,11 @@ class PlayerGroupTests: XCTestCase {
         super.tearDown()
     }
     
+    func testNameListWithNoPlayers() {
+        let playerGroup = PlayerGroup()
+        XCTAssertEqual(playerGroup.nameList(), "", "Pass")
+    }
+
     func testNameListWithOnePlayer() {
         let playerGroup = PlayerGroup()
         playerGroup.addPlayer(player: self.playerOne)

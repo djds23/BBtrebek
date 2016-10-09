@@ -32,7 +32,9 @@ open class PlayerGroup: NSObject {
     
     public func nameList() -> String {
         var listString: String
-        if self.players.count == 1 {
+        if self.players.count == 0 {
+            listString = ""
+        } else if self.players.count == 1 {
             listString = self.nameFromPlayer(player: self.players.first!)
         } else if self.players.count == 2 {
             let playerOneName = self.nameFromPlayer(player: self.players.first!)
@@ -54,10 +56,11 @@ open class PlayerGroup: NSObject {
     private func playerList(includeLast: Bool) -> Array<Player> {
         let finalElement = includeLast ?  1 : 2
         let endCount = self.players.count - finalElement
-        if endCount > self.players.count {
+        if  self.players.count <= 2 {
             return self.players
         }else {
             let slice = self.players[0...endCount]
             return Array(slice)
         }
+    }
 }
