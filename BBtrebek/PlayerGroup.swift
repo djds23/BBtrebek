@@ -9,7 +9,7 @@
 import UIKit
 
 open class PlayerGroup: NSObject {
-    var players: Array<Player> = []
+    private var players: Array<Player> = []
     
     public static func initWithArray(newPlayers: Array<Player>) -> PlayerGroup {
         let newPlayerGroup = PlayerGroup()
@@ -19,6 +19,15 @@ open class PlayerGroup: NSObject {
     
     public func addPlayer(player: Player) -> Void {
         self.players.append(player)
+    }
+    
+    public func asArray() -> Array<Player> {
+        let immutableCopy = self.players
+        return immutableCopy
+    }
+    
+    public func playable() -> Bool {
+        return self.players.count > 0
     }
     
     public func nameList() -> String {
@@ -51,5 +60,4 @@ open class PlayerGroup: NSObject {
             let slice = self.players[0...endCount]
             return Array(slice)
         }
-    }
 }

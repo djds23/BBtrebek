@@ -16,26 +16,26 @@ open class NewGameController: UIViewController {
     
     @IBOutlet weak var contestants: UILabel!
 
-    var players = [Player]()
+    var playerGroup = PlayerGroup()
 
     override open func viewDidLoad() {
         super.viewDidLoad()
         
-        if self.players.isEmpty {
+        if self.playerGroup.playable() {
             self.contestants.text = ""
         } else {
-            
+            self.contestants.text = playerGroup.nameList()
         }
     }
     override open func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (sender as? UIButton == self.playGame) {
             let swipeController = segue.destination as! ViewController
-            swipeController.players = self.players
+            swipeController.players = self.playerGroup.asArray()
         }
         
         if (sender as? UIButton == self.addPlayer) {
             let newPlayerViewController = segue.destination as! NewPlayerViewController
-            newPlayerViewController.players = self.players
+            newPlayerViewController.playerGroup = self.playerGroup
         }
 
     }

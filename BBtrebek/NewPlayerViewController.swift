@@ -14,7 +14,7 @@ class NewPlayerViewController: UIViewController {
     @IBOutlet weak var addPlayerButton: UIButton!
     @IBOutlet weak var newPlayerLabel: UILabel!
 
-    var players = [Player]()
+    var playerGroup = PlayerGroup()
     var prompt: Array<String> = [
         "Remind them to answer in the form of a question!",
         "Will they win the daily double?",
@@ -47,10 +47,10 @@ class NewPlayerViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (sender as? UIButton == self.addPlayerButton) {
             let name = self.newPlayerTextField.text!.trim()
-            self.players.append(Player(name: name))
+            self.playerGroup.addPlayer(player: Player(name: name))
             
             let newPlayerViewController = segue.destination as! NewGameController
-            newPlayerViewController.players = self.players
+            newPlayerViewController.playerGroup = self.playerGroup
         }
     }
 }

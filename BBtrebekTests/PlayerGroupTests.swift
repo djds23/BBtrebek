@@ -45,6 +45,7 @@ class PlayerGroupTests: XCTestCase {
         playerGroup.addPlayer(player: self.playerThree)
         XCTAssertEqual(playerGroup.nameList(), "Dean, Lee and Alexis", "Pass")
     }
+    
     func testPerformanceExample() {
         // This is an example of a performance test case.
         self.measure {
