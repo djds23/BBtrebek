@@ -45,8 +45,10 @@ open class ViewController: UIViewController {
 
     }
     
-    func handleAwardClueToPlayer(_ sender: UIButton) -> Void {
-        print("this was clicked!")
+    func handleAwardClueToPlayer(_ sender: PlayerButton) -> Void {
+        print("\(sender.player.name) was clicked!")
+        sender.player.award(clue: self.currentClue())
+        print("\(sender.player.score())")
     }
     
     func handleSwipes(_ sender:UISwipeGestureRecognizer) -> Void {
@@ -100,10 +102,9 @@ open class ViewController: UIViewController {
     }
     
     open func playerToUIButton(_ player: Player) -> UIButton {
-        let playerButton: UIButton = UIButton(frame: CGRect(x: 100, y: 400, width: 100, height: 50))
-        
-        playerButton.setTitle(player.toButtonTitle(),
-            for: UIControlState()
+        let playerButton: PlayerButton = PlayerButton.initWith(
+            player: player,
+            frame: CGRect(x: 100, y: 400, width: 100, height: 50)
         )
         
         playerButton.addTarget(self,

@@ -68,31 +68,6 @@ class BBtrebekTests: XCTestCase {
         XCTAssertEqual(strippedClue.question, "Who made this app", "Pass")
         XCTAssertEqual(strippedClue.category, "people who are learning iOS", "Pass")
     }
-    
-    func testPlayerKeepsScoreAndTitle() {
-        let clue1 = Clue(
-            answer: "Dean",
-            question: "Who made this app",
-            value: 100,
-            category: "people who are learning iOS",
-            airdate: "a datetime string"
-        )
-        
-        let clue2 = Clue(
-            answer: "yes",
-            question: "is 500 a lot?",
-            value: 500,
-            category: "what are numbers really?",
-            airdate: "a datetime string"
-        )
-        
-        let player = Player(name: "Dean Silfen")
-        player.answeredClues.append(clue1)
-        player.answeredClues.append(clue2)
-        XCTAssertEqual(player.score(), 600, "Pass")
-        XCTAssertEqual(player.toButtonTitle(), "Dean Silfen - 600", "Pass")
-    }
-    
 
     func testArraySampleExtension() {
         let array = [1,2,3,4]

@@ -24,7 +24,8 @@ open class Player: NSObject {
         return values.reduce(0, +)
     }
     
-    open func toButtonTitle() -> String {
-        return "\(self.name) - \(self.score())"
+    open func award(clue: Clue) -> Void {
+        self.answeredClues.append(clue)
     }
 }
+
