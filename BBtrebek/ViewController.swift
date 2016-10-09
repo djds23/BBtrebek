@@ -40,7 +40,7 @@ open class ViewController: UIViewController {
         self.view.addGestureRecognizer(leftSwipe)
         self.view.addGestureRecognizer(rightSwipe)
         for player in self.playerGroup.asArray() {
-            self.view.addSubview(self.playerToUIButton(player))
+            self.view.addSubview(self.playerToPlayerButton(player))
         }
 
     }
@@ -48,7 +48,8 @@ open class ViewController: UIViewController {
     func handleAwardClueToPlayer(_ sender: PlayerButton) -> Void {
         print("\(sender.player.name) was clicked!")
         sender.player.award(clue: self.currentClue())
-        print("\(sender.player.score())")
+        sender.setPlayerTitle()
+        self.swipeLeft()
     }
     
     func handleSwipes(_ sender:UISwipeGestureRecognizer) -> Void {
@@ -101,7 +102,7 @@ open class ViewController: UIViewController {
         }
     }
     
-    open func playerToUIButton(_ player: Player) -> UIButton {
+    open func playerToPlayerButton(_ player: Player) -> UIButton {
         let playerButton: PlayerButton = PlayerButton.initWith(
             player: player,
             frame: CGRect(x: 100, y: 400, width: 100, height: 50)

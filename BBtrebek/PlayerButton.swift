@@ -20,6 +20,7 @@ class PlayerButton: UIButton {
  
     open func setPlayerTitle() -> Void {
         self.setTitle("\(self.player.name) - \(self.player.score())", for: UIControlState())
+        self.sizeToFit()
     }
     
     public override init (frame: CGRect) {
