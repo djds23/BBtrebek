@@ -21,17 +21,14 @@ public func getNSArrayFromURLEndPoint(_ url: URL) -> NSArray {
     let request = NSMutableURLRequest(url: url)
     request.httpMethod = "GET"
     request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-    var error: NSError?
     var response: URLResponse?
     let urlData: Data?
     do {
         urlData = try NSURLConnection.sendSynchronousRequest(request as URLRequest, returning: &response)
-    } catch let error1 as NSError {
-        error = error1
+    } catch _ as NSError {
         urlData = nil
     }
     
-    error = nil
     let result: NSArray = (try! JSONSerialization.jsonObject(with: urlData!, options: JSONSerialization.ReadingOptions.mutableContainers)) as! NSArray
     
     return result
