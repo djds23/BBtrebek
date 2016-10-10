@@ -17,6 +17,7 @@ open class ViewController: UIViewController {
     var playerGroup: PlayerGroup = PlayerGroup()
     var currentIndex: Int = 0
 
+    @IBOutlet weak var menuButton: UIButton!
     @IBOutlet weak var disableCurrentClue: UIButton!
     @IBOutlet weak var currentValue: UILabel!
     @IBOutlet weak var currentAnswer: UILabel!
@@ -38,14 +39,9 @@ open class ViewController: UIViewController {
         
         self.view.addGestureRecognizer(leftSwipe)
         self.view.addGestureRecognizer(rightSwipe)
-        for player in self.playerGroup.asArray() {
-            self.view.addSubview(self.playerToPlayerButton(player))
-        }
-
     }
     
     func handleAwardClueToPlayer(_ sender: PlayerButton) -> Void {
-        print("\(sender.player.name) was clicked!")
         sender.player.award(clue: self.currentClue())
         sender.setPlayerTitle()
         self.swipeLeft()
@@ -135,12 +131,24 @@ open class ViewController: UIViewController {
         NotificationCenter.default.addObserver(forName: successNotificationName, object: self, queue: OperationQueue.main) { (notification) in
             self.dataToClue()
             self.setClueForCurrentIndex()
+            for player in self.playerGroup.asArray() {
+                self.view.addSubview(self.playerToPlayerButton(player))
+            }
         }
         
         FetchClueService(count: 500).fetch { (data, url, error) in
             let clueDictsFromRequest = ((try! JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.mutableContainers)) as! NSArray)
             self.rawClues = clueDictsFromRequest
             NotificationCenter.default.post(name: successNotificationName, object: self)
+        }
+    }
+    
+    override open func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using segue.destinationViewController.
+        // Pass the selected object to the new view controller.
+        if (sender as? UIButton == self.menuButton) {
+            let menuViewController = segue.destination as! MenuViewController
+            menuViewController.playerGroup = self.playerGroup
         }
     }
 }

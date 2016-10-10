@@ -138,6 +138,7 @@
                         <outlet property="currentQuestion" destination="cW8-Pv-euT" id="kGc-9h-Ml2"/>
                         <outlet property="currentValue" destination="gec-4q-ZK4" id="bsP-5k-SJ9"/>
                         <outlet property="disableCurrentClue" destination="3Uk-KC-hjB" id="DRg-WO-G47"/>
+                        <outlet property="menuButton" destination="Sgk-js-5IY" id="y0p-Ik-T43"/>
                         <outlet property="scrollView" destination="CSZ-lS-rcw" id="yi6-cY-4c4"/>
                     </connections>
                 </viewController>
@@ -158,7 +159,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="igW-9d-bbx">
-                                <frame key="frameInset" minX="134" minY="147" width="107" height="30"/>
+                                <frame key="frameInset" minX="134" minY="146" width="107" height="30"/>
                                 <state key="normal" title="End Game">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
@@ -187,15 +188,18 @@
                             <constraint firstItem="igW-9d-bbx" firstAttribute="top" secondItem="b3t-Ho-eOa" secondAttribute="bottom" constant="127" id="ucc-kU-yQv"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="gameOverButton" destination="igW-9d-bbx" id="KgZ-Ur-HI4"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RvV-bD-WbN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1693.5999999999999" y="167.76611694152925"/>
         </scene>
-        <!--View Controller-->
+        <!--End Game View Controller-->
         <scene sceneID="BeD-og-kdj">
             <objects>
-                <viewController id="6iw-8b-EnC" sceneMemberID="viewController">
+                <viewController id="6iw-8b-EnC" customClass="EndGameViewController" customModule="BBtrebek" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="CYx-Tf-Rpc"/>
                         <viewControllerLayoutGuide type="bottom" id="vID-Yz-EHb"/>
@@ -204,14 +208,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="🎉 Congratulations 🎉" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eFG-0q-u6M">
-                                <frame key="frameInset" minX="65" minY="87" width="245" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="🎉 Congratulations 🎉" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eFG-0q-u6M">
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YzC-B2-gCO">
-                                <frame key="frameInset" minX="143" minY="400" width="88" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YzC-B2-gCO">
                                 <state key="normal" title="Play Again?">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
@@ -219,8 +221,8 @@
                                     <segue destination="Q07-Vk-cxc" kind="show" id="vbr-wR-l0E"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="doi-yi-mvj">
-                                <frame key="frameInset" minX="166" minY="233" width="42" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="doi-yi-mvj">
+                                <string key="text">this is a longthis is a longthis is a longthis is a longthis is a longthis is a longthis is a longthis is a longthis is a longthis is a longthis is a longthis is a longthis is a longthis is a long</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -228,14 +230,18 @@
                         </subviews>
                         <color key="backgroundColor" red="0.40000000600000002" green="0.80000001190000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="YzC-B2-gCO" firstAttribute="top" secondItem="eFG-0q-u6M" secondAttribute="bottom" constant="292" id="2oS-rY-hCU"/>
-                            <constraint firstItem="eFG-0q-u6M" firstAttribute="top" secondItem="CYx-Tf-Rpc" secondAttribute="bottom" constant="67" id="6HJ-Mn-OSZ"/>
-                            <constraint firstItem="doi-yi-mvj" firstAttribute="top" secondItem="eFG-0q-u6M" secondAttribute="bottom" constant="125" id="F2g-Xc-7Pp"/>
-                            <constraint firstItem="YzC-B2-gCO" firstAttribute="centerX" secondItem="X8R-iE-X8Q" secondAttribute="centerX" id="Rft-LV-YWf"/>
-                            <constraint firstItem="eFG-0q-u6M" firstAttribute="centerX" secondItem="X8R-iE-X8Q" secondAttribute="centerX" id="ZKQ-pH-6fW"/>
-                            <constraint firstItem="doi-yi-mvj" firstAttribute="centerX" secondItem="X8R-iE-X8Q" secondAttribute="centerX" id="tXv-vy-0Jg"/>
+                            <constraint firstItem="YzC-B2-gCO" firstAttribute="top" secondItem="doi-yi-mvj" secondAttribute="bottom" constant="99" id="7EC-Wh-wd3"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="doi-yi-mvj" secondAttribute="trailing" constant="-1" id="R4x-Il-w92"/>
+                            <constraint firstItem="eFG-0q-u6M" firstAttribute="top" secondItem="CYx-Tf-Rpc" secondAttribute="bottom" constant="67" id="XhP-Zn-Kkn"/>
+                            <constraint firstItem="doi-yi-mvj" firstAttribute="leading" secondItem="X8R-iE-X8Q" secondAttribute="leadingMargin" constant="1" id="ftx-aN-tjS"/>
+                            <constraint firstItem="eFG-0q-u6M" firstAttribute="centerX" secondItem="X8R-iE-X8Q" secondAttribute="centerX" id="iUO-GD-udo"/>
+                            <constraint firstItem="YzC-B2-gCO" firstAttribute="centerX" secondItem="X8R-iE-X8Q" secondAttribute="centerX" id="vlK-rm-1v0"/>
+                            <constraint firstItem="doi-yi-mvj" firstAttribute="top" secondItem="eFG-0q-u6M" secondAttribute="bottom" constant="34" id="vrm-oj-rDX"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="winningPlayer" destination="doi-yi-mvj" id="0ON-Ue-NWq"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XGn-GN-WPc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

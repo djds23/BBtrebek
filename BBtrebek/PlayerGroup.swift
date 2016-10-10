@@ -30,6 +30,12 @@ open class PlayerGroup: NSObject {
         return self.players.count > 0
     }
     
+    public func winner() -> Player? {
+        return self.players.max { p1, p2 in
+            p1.score() < p2.score()
+        }
+    }
+    
     public func nameList() -> String {
         var listString: String
         if self.players.count == 0 {

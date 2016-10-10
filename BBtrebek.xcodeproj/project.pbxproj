@@ -41,6 +41,8 @@
 		7BC8EC7D1C0D2805004972AD /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7BC8EC7B1C0D2805004972AD /* LaunchScreen.xib */; };
 		7BC8EC891C0D2805004972AD /* BBtrebekTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BC8EC881C0D2805004972AD /* BBtrebekTests.swift */; };
 		7BC8EC931C0D2911004972AD /* Clue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BC8EC921C0D2911004972AD /* Clue.swift */; };
+		7BE766261DAB415000E7531D /* EndGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE766251DAB415000E7531D /* EndGameViewController.swift */; };
+		7BE766271DAB415000E7531D /* EndGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE766251DAB415000E7531D /* EndGameViewController.swift */; };
 		7BF80F3F1C273902002BEE75 /* NewPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BF80F3E1C273902002BEE75 /* NewPlayerViewController.swift */; };
 		7BF80F401C273902002BEE75 /* NewPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BF80F3E1C273902002BEE75 /* NewPlayerViewController.swift */; };
 /* End PBXBuildFile section */
@@ -80,6 +82,7 @@
 		7BC8EC871C0D2805004972AD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7BC8EC881C0D2805004972AD /* BBtrebekTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BBtrebekTests.swift; sourceTree = "<group>"; };
 		7BC8EC921C0D2911004972AD /* Clue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Clue.swift; sourceTree = "<group>"; };
+		7BE766251DAB415000E7531D /* EndGameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EndGameViewController.swift; sourceTree = "<group>"; };
 		7BF80F3E1C273902002BEE75 /* NewPlayerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewPlayerViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -164,6 +167,7 @@
 				7BC8EC721C0D2805004972AD /* AppDelegate.swift */,
 				7BC8EC741C0D2805004972AD /* ViewController.swift */,
 				7BC8EC761C0D2805004972AD /* Main.storyboard */,
+				7BE766251DAB415000E7531D /* EndGameViewController.swift */,
 				7B55B52F1C14C4EA005D2F8B /* Utils.swift */,
 				7BF80F3E1C273902002BEE75 /* NewPlayerViewController.swift */,
 				7B58B3941C12BF7B007C4A1A /* NewGameController.swift */,
@@ -317,6 +321,7 @@
 				7BC8EC931C0D2911004972AD /* Clue.swift in Sources */,
 				7BAF90C81C134F0200CC71A9 /* NewGameController.swift in Sources */,
 				7BA915531C2A2F1200BABFDB /* String.swift in Sources */,
+				7BE766261DAB415000E7531D /* EndGameViewController.swift in Sources */,
 				7B55B5301C14C4EA005D2F8B /* Utils.swift in Sources */,
 				7BF80F3F1C273902002BEE75 /* NewPlayerViewController.swift in Sources */,
 				7B380D281DA9A70400556CDB /* PlayerGroup.swift in Sources */,
@@ -341,6 +346,7 @@
 				7BAF90C91C134F1800CC71A9 /* Clue.swift in Sources */,
 				7B6960701DAAF98B001B87DD /* DisableClueService.swift in Sources */,
 				7BA915541C2A2F1200BABFDB /* String.swift in Sources */,
+				7BE766271DAB415000E7531D /* EndGameViewController.swift in Sources */,
 				7B789B441DAB2328007E571C /* MenuViewController.swift in Sources */,
 				7B55B5311C14C4EA005D2F8B /* Utils.swift in Sources */,
 				7BF80F401C273902002BEE75 /* NewPlayerViewController.swift in Sources */,
