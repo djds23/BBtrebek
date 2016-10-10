@@ -130,7 +130,7 @@ open class ViewController: UIViewController {
     }
     
     func fetchClues() -> Void {
-        FetchClueService(count: 1000).fetch { (data, url, error) in
+        FetchClueService(count: 500).fetch { (data, url, error) in
             let clueDictsFromRequest = ((try! JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.mutableContainers)) as! NSArray)
             self.dataToClue(clueDictsFromRequest)
             self.setClueForCurrentIndex()

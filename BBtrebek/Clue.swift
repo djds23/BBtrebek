@@ -29,11 +29,12 @@ open class Clue: NSObject {
     
     open static func initWithNSDictionary(_ dict: NSDictionary) -> Clue? {
         let category = (dict["category"] as! NSDictionary)["title"] as! String
-        if let value = dict["value"] as? Int,
-            let answer = dict["answer"] as? String,
+    
+        if let answer = dict["answer"] as? String,
             let question = dict["question"] as? String,
             let airdate = dict["airdate"] as? String,
-            let id = dict["id"] as? Int {
+            let id = dict["id"] as? Int,
+            let value = dict["value"] as? Int {
                 
             let clueObj = Clue(
                 answer: answer,
@@ -48,5 +49,9 @@ open class Clue: NSObject {
             return nil;
         }
         
+    }
+    
+    private static func randomValidValue() -> Int {
+        return [400, 300, 500, 800, 1000, 100, 200, 600].sample()
     }
 }

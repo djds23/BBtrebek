@@ -25,52 +25,6 @@ class BBtrebekTests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
         super.tearDown()
     }
-    
-    func testClueCanInitialize() {
-        let initializedClue = Clue(
-            answer: "Dean",
-            question: "Who made this app",
-            value: 100,
-            category: "people who are learning iOS",
-            airdate: "a datetime string",
-            id: 1
-        )
-        
-        XCTAssertNotNil(initializedClue, "Pass")
-    }
-
-    func testClueCanInitializeFromNSDictonary() {
-        let category: NSDictionary = [
-            "title": "people who are learning iOS"
-        ]
-        
-        let dict: NSDictionary = [
-            "answer": "Dean",
-            "question": "Who made this app",
-            "value": 100,
-            "airdate": "a datetime string",
-            "category": category,
-            "id": 1
-        ]
-        
-        let initializedClue = Clue.initWithNSDictionary(dict)
-        XCTAssertNotNil(initializedClue, "Pass")
-    }
-
-    func testClueStripsHTMLTags() {
-        let strippedClue = Clue(
-            answer: "<p>Dean</p>",
-            question: "Who <em>made</em> this app",
-            value: 100,
-            category: "people who are learning <a href='stuff.biz'>iOS</a>",
-            airdate: "a datetime string",
-            id: 2
-        )
-        
-        XCTAssertEqual(strippedClue.answer, "Dean", "Pass")
-        XCTAssertEqual(strippedClue.question, "Who made this app", "Pass")
-        XCTAssertEqual(strippedClue.category, "people who are learning iOS", "Pass")
-    }
 
     func testArraySampleExtension() {
         let array = [1,2,3,4]
