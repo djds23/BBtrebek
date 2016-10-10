@@ -32,7 +32,8 @@ class BBtrebekTests: XCTestCase {
             question: "Who made this app",
             value: 100,
             category: "people who are learning iOS",
-            airdate: "a datetime string"
+            airdate: "a datetime string",
+            id: 1
         )
         
         XCTAssertNotNil(initializedClue, "Pass")
@@ -48,7 +49,8 @@ class BBtrebekTests: XCTestCase {
             "question": "Who made this app",
             "value": 100,
             "airdate": "a datetime string",
-            "category": category
+            "category": category,
+            "id": 1
         ]
         
         let initializedClue = Clue.initWithNSDictionary(dict)
@@ -61,7 +63,8 @@ class BBtrebekTests: XCTestCase {
             question: "Who <em>made</em> this app",
             value: 100,
             category: "people who are learning <a href='stuff.biz'>iOS</a>",
-            airdate: "a datetime string"
+            airdate: "a datetime string",
+            id: 2
         )
         
         XCTAssertEqual(strippedClue.answer, "Dean", "Pass")

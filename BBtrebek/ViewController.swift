@@ -12,7 +12,6 @@ import UIKit
 
 open class ViewController: UIViewController {
 
-    let url = URL(string: "http://jservice.io/api/random?count=100")! // deploy my own and use HTTPS
     var clues: Array<Clue> = [Clue]()
     var playerGroup: PlayerGroup = PlayerGroup()
     var currentIndex: Int = 0
@@ -26,11 +25,9 @@ open class ViewController: UIViewController {
     
     override open func viewDidLoad() {
         super.viewDidLoad()
-
-        let data: NSArray = getNSArrayFromURLEndPoint(url)
         
-        self.dataToClue(data)
-        self.setClueForCurrentIndex()
+        self.fetchClues()
+        self.addTargetForDisableCurrentClue()
         
         let leftSwipe = UISwipeGestureRecognizer(target: self, action: #selector(ViewController.handleSwipes(_:)))
         let rightSwipe = UISwipeGestureRecognizer(target: self, action: #selector(ViewController.handleSwipes(_:)))
@@ -73,10 +70,7 @@ open class ViewController: UIViewController {
     
     func swipeLeft() -> Void {
         if (self.currentIndex >= self.clues.count - 1) {
-            let result: NSArray = getNSArrayFromURLEndPoint(url)
-            self.dataToClue(result)
-            self.currentIndex += 1
-            
+             self.fetchClues()
         } else {
             self.currentIndex += 1
         }
@@ -117,10 +111,31 @@ open class ViewController: UIViewController {
         return playerButton
     }
     
-    func currentClue() -> Clue {
+    open func currentClue() -> Clue {
         return self.clues[self.currentIndex]
     }
-
+    
+    open func disableClue(_ sender: AnyObject?) -> Void {
+        let clue = self.currentClue()
+        DisableClueService(clue: clue).disable(asyncCallback: { url, data, error in
+            alert(title: "Disable Question", message:"Clue \(clue.id) was marked disabled.", viewController: self)
+        })
+        self.swipeLeft()
+    }
+    
+    func addTargetForDisableCurrentClue() -> Void {
+        self.disableCurrentClue.addTarget(self,
+                                          action: #selector(ViewController.disableClue(_:)),
+                                          for: UIControlEvents.touchUpInside)
+    }
+    
+    func fetchClues() -> Void {
+        FetchClueService(count: 1000).fetch { (data, url, error) in
+            let clueDictsFromRequest = ((try! JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.mutableContainers)) as! NSArray)
+            self.dataToClue(clueDictsFromRequest)
+            self.setClueForCurrentIndex()
+        }
+    }
 }
 
     

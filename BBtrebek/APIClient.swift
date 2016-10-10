@@ -23,7 +23,8 @@ class APIClient: NSObject {
         let request = self.newRequest()
         request.httpMethod = method
         do {
-            session.dataTask(with: request as URLRequest, completionHandler: asyncCallback)
+            let task = session.dataTask(with: request as URLRequest, completionHandler: asyncCallback)
+            task.resume()
         }
     }
     
