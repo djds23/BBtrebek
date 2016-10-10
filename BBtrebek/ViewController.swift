@@ -12,6 +12,7 @@ import UIKit
 
 open class ViewController: UIViewController {
 
+    var rawClues: NSArray?
     var clues: Array<Clue> = [Clue]()
     var playerGroup: PlayerGroup = PlayerGroup()
     var currentIndex: Int = 0
@@ -89,8 +90,8 @@ open class ViewController: UIViewController {
     }
     
     
-    func dataToClue(_ data: NSArray) {
-        for clue in data {
+    func dataToClue() {
+        for clue in self.rawClues! {
             if let clueObj = Clue.initWithNSDictionary(clue as! NSDictionary) {
                 self.clues.append(clueObj)
             }
@@ -130,10 +131,16 @@ open class ViewController: UIViewController {
     }
     
     func fetchClues() -> Void {
+        let successNotificationName = NSNotification.Name(rawValue: "sucessRequest")
+        NotificationCenter.default.addObserver(forName: successNotificationName, object: self, queue: OperationQueue.main) { (notification) in
+            self.dataToClue()
+            self.setClueForCurrentIndex()
+        }
+        
         FetchClueService(count: 500).fetch { (data, url, error) in
             let clueDictsFromRequest = ((try! JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.mutableContainers)) as! NSArray)
-            self.dataToClue(clueDictsFromRequest)
-            self.setClueForCurrentIndex()
+            self.rawClues = clueDictsFromRequest
+            NotificationCenter.default.post(name: successNotificationName, object: self)
         }
     }
 }
