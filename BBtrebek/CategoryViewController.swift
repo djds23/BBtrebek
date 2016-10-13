@@ -37,7 +37,7 @@ open class CategoryViewController: UIViewController {
                 self.setClueForCurrentIndex()
             },
             failure: { (data, urlResponse, error) in
-                print("failure")
+
             }
         )
     }
@@ -87,6 +87,12 @@ open class CategoryViewController: UIViewController {
         if newIndex <= self.clues.count - 1 {
             self.currentIndex = newIndex
             self.setClueForCurrentIndex()
+        } else {
+            alert(
+                title: "No More Clues",
+                message: "There are either no more clues for this category, please hit back.",
+                viewController: self
+            )
         }
     }
     

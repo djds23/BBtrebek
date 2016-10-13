@@ -135,6 +135,7 @@ open class ViewController: UIViewController {
     func fetchClues() -> Void {
         FetchClueService(count: 500).fetch(
             success: { (newClues) in
+                // it is possible the server sent duplicates back, make sure to de-dup this list
                 self.clues += newClues
                 self.setClueForCurrentIndex()
                 for player in self.playerGroup.asArray() {
