@@ -33,7 +33,7 @@ open class CategoryViewController: UIViewController {
         FetchCategoryService(category: self.category!, count: count, offset: offset).fetch(
             success: { (category) in
                 self.category = category
-                self.clues += category.clues
+                self.clues = category.clues
                 self.setClueForCurrentIndex()
             },
             failure: { (data, urlResponse, error) in
@@ -79,7 +79,7 @@ open class CategoryViewController: UIViewController {
     
     func swipeLeft() -> Void {
         let newIndex = self.currentIndex + 1
-        if newIndex % 90 == 0 {
+        if newIndex % 75 == 0 {
             self.count += 100
             self.offset += 100
             self.loadCategoryClues(count: count, offset: offset)
