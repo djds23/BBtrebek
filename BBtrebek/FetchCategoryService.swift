@@ -13,9 +13,10 @@ class FetchCategoryService: NSObject {
     let category: Category
     let client: APIClient
 
-    public init (category: Category) {
+    public init (category: Category, count: Int, offset: Int) {
         self.category = category
-        self.client = APIClient(url:"http://jservice.io/api/category?id=\(self.category.id)")
+        let url =  "http://jservice.io/api/category?id=\(self.category.id)&count=\(count)&offset=\(offset)"
+        self.client = APIClient(url: url)
     }
 
     public func fetch(success: @escaping (Category) -> Void, failure: @escaping (Data?, URLResponse?, Error? ) -> Void) -> Void {

@@ -20,18 +20,20 @@ open class CategoryViewController: UIViewController {
     var category: Category? = nil
     var clues: Array<Clue> = []
     var currentIndex = 0
+    var count = 100
+    var offset = 0
 
     override open func viewDidLoad() {
         super.viewDidLoad()
-        self.loadCategoryClues()
+        self.loadCategoryClues(count: count, offset: offset)
         self.addSwipeGestureRecognizers()
     }
 
-    func loadCategoryClues() {
-        FetchCategoryService(category: self.category!).fetch(
+    func loadCategoryClues(count: Int, offset: Int) {
+        FetchCategoryService(category: self.category!, count: count, offset: offset).fetch(
             success: { (category) in
                 self.category = category
-                self.clues = category.clues
+                self.clues += category.clues
                 self.setClueForCurrentIndex()
             },
             failure: { (data, urlResponse, error) in
@@ -39,7 +41,7 @@ open class CategoryViewController: UIViewController {
             }
         )
     }
-    
+
     func addSwipeGestureRecognizers() -> Void {
         let leftSwipe = UISwipeGestureRecognizer(
             target: self,
@@ -76,8 +78,16 @@ open class CategoryViewController: UIViewController {
     }
     
     func swipeLeft() -> Void {
-        self.currentIndex += 1
-        self.setClueForCurrentIndex()
+        let newIndex = self.currentIndex + 1
+        if newIndex % 90 == 0 {
+            self.count += 100
+            self.offset += 100
+            self.loadCategoryClues(count: count, offset: offset)
+        }
+        if newIndex <= self.clues.count - 1 {
+            self.currentIndex = newIndex
+            self.setClueForCurrentIndex()
+        }
     }
     
     func setClueForCurrentIndex() -> Void {
@@ -96,12 +106,7 @@ open class CategoryViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
 
-    
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override open func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (sender as? UIButton == self.backButton) {
             let gameViewController = segue.destination as! ViewController
