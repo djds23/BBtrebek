@@ -18,7 +18,7 @@ class DisableClueService: NSObject {
         self.client = APIClient(url:"http://jservice.io/api/invalid?id=\(clue.id)")
     }
     
-    open func disable(success: @escaping (Clue) -> Void, failure: @escaping (Data?, URLResponse?, Error? ) -> Void) -> Void {
+    public func disable(success: @escaping (Clue) -> Void, failure: @escaping (Data?, URLResponse?, Error? ) -> Void) -> Void {
         self.client.request(method: "POST", asyncCallback: { data, url, error in
             if error != nil {
                 DispatchQueue.main.async(execute: {
@@ -32,5 +32,4 @@ class DisableClueService: NSObject {
             
         })
     }
-
 }

@@ -25,7 +25,7 @@ class FetchClueService: NSObject {
         return clues
     }
 
-    open func fetch(success: @escaping (Array<Clue>) -> Void, failure: @escaping (Data?, URLResponse?, Error?) -> Void) -> Void {
+    public func fetch(success: @escaping (Array<Clue>) -> Void, failure: @escaping (Data?, URLResponse?, Error?) -> Void) -> Void {
         self.client.request(method: "GET") { (data, url, error) in
             if (error != nil) {
                 DispatchQueue.main.async(execute: {
