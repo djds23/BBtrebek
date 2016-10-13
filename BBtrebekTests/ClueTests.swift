@@ -25,7 +25,7 @@ class ClueTests: XCTestCase {
             answer: "Dean",
             question: "Who made this app",
             value: 100,
-            category: "people who are learning iOS",
+            category: Category(title:"people who are learning iOS", id: 100),
             airdate: "a datetime string",
             id: 1
         )
@@ -35,7 +35,8 @@ class ClueTests: XCTestCase {
     
     func testClueCanInitializeFromNSDictonary() {
         let category: NSDictionary = [
-            "title": "people who are learning iOS"
+            "title": "people who are learning iOS",
+            "id": 1000
         ]
         
         let dict: NSDictionary = [
@@ -56,19 +57,20 @@ class ClueTests: XCTestCase {
             answer: "<p>Dean</p>",
             question: "Who <em>made</em> this app",
             value: 100,
-            category: "people who are learning <a href='stuff.biz'>iOS</a>",
+            category: Category(title:"people who are learning iOS", id: 100),
             airdate: "a datetime string",
             id: 2
         )
         
         XCTAssertEqual(strippedClue.answer, "Dean", "Pass")
         XCTAssertEqual(strippedClue.question, "Who made this app", "Pass")
-        XCTAssertEqual(strippedClue.category, "people who are learning iOS", "Pass")
+        XCTAssertEqual(strippedClue.categoryTitle(), "people who are learning iOS", "Pass")
     }
     
     func testClueInitializesWithNullValue() {
         let category: NSDictionary = [
-            "title": "people who are learning iOS"
+            "title": "people who are learning iOS",
+            "id": 100
         ]
         
         let dict: NSDictionary = [

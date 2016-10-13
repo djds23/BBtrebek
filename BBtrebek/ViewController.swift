@@ -76,7 +76,7 @@ open class ViewController: UIViewController {
     
     func setClueForCurrentIndex() -> Void {
         let currentClue: Clue = self.currentClue()
-        self.currentCategory.text = currentClue.category
+        self.currentCategory.text = currentClue.categoryTitle()
         self.currentQuestion.text = currentClue.question
         self.currentAnswer.text = currentClue.answer
         self.currentValue.text = String(currentClue.value)
