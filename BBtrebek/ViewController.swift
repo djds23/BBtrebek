@@ -96,16 +96,8 @@ open class ViewController: UIViewController {
         return playerButton
     }
     
-    open func currentClue() -> Clue {
+    func currentClue() -> Clue {
         return self.clues[self.currentIndex]
-    }
-    
-    open func disableClue(_ sender: AnyObject?) -> Void {
-        let clue = self.currentClue()
-        DisableClueService(clue: clue).disable(asyncCallback: { url, data, error in
-            alert(title: "Disable Question", message:"Clue \(clue.id) was marked disabled.", viewController: self)
-        })
-        self.swipeLeft()
     }
     
     func addTargetForDisableCurrentClue() -> Void {
@@ -114,6 +106,24 @@ open class ViewController: UIViewController {
                                           for: UIControlEvents.touchUpInside)
     }
     
+    
+    open func disableClue(_ sender: AnyObject?) -> Void {
+        let clue = self.currentClue()
+        DisableClueService(clue: clue).disable(
+            success: { disabledClue in
+                alert(
+                    title: "Disable Question",
+                    message:"Clue \(clue.id) was marked disabled.",
+                    viewController: self
+                )
+                self.swipeLeft()
+            },
+            failure: { (data, urlResponse, error) in
+                // If we fail, we fail, should not interrupt game
+            }
+        )
+    }
+
     func fetchClues() -> Void {
         FetchClueService(count: 500).fetch(
             success: { (newClues) in

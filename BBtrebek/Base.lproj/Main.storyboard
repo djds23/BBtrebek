@@ -78,15 +78,10 @@
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sgk-js-5IY">
-                                        <rect key="frame" x="317" y="23" width="46" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D2B-Kd-7fK">
                                         <state key="normal" title="Menu">
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
-                                        <connections>
-                                            <segue destination="5dh-qo-MxI" kind="presentation" id="QAX-Ky-cXg"/>
-                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="tintColor" red="0.40000000600000002" green="0.80000001190000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -106,11 +101,13 @@
                                     <constraint firstItem="3Uk-KC-hjB" firstAttribute="top" secondItem="CSZ-lS-rcw" secondAttribute="top" constant="23" id="IAe-QR-3ZQ"/>
                                     <constraint firstItem="gec-4q-ZK4" firstAttribute="leading" secondItem="CSZ-lS-rcw" secondAttribute="leading" constant="12" id="Ivx-vh-Om9"/>
                                     <constraint firstAttribute="centerX" secondItem="kLY-zW-woA" secondAttribute="centerX" id="JKG-GX-YXw"/>
+                                    <constraint firstAttribute="trailing" secondItem="D2B-Kd-7fK" secondAttribute="trailing" constant="12" id="OQn-R7-ali"/>
                                     <constraint firstItem="EDK-FE-Gas" firstAttribute="top" secondItem="kLY-zW-woA" secondAttribute="bottom" constant="6" id="Uvv-6O-Gfc"/>
                                     <constraint firstItem="Cyn-w7-2Js" firstAttribute="top" secondItem="dup-pp-EWD" secondAttribute="bottom" constant="6" id="VUU-E4-mG5"/>
                                     <constraint firstItem="EDK-FE-Gas" firstAttribute="leading" secondItem="CSZ-lS-rcw" secondAttribute="leading" constant="12" id="Vng-V7-TYo"/>
                                     <constraint firstItem="ZIv-cB-yGs" firstAttribute="top" secondItem="EDK-FE-Gas" secondAttribute="bottom" constant="6" id="W5S-Br-nBk"/>
                                     <constraint firstItem="cW8-Pv-euT" firstAttribute="leading" secondItem="CSZ-lS-rcw" secondAttribute="leading" constant="12" id="Ych-04-f6c"/>
+                                    <constraint firstItem="D2B-Kd-7fK" firstAttribute="top" secondItem="CSZ-lS-rcw" secondAttribute="top" constant="23" id="Ydv-Cx-tZL"/>
                                     <constraint firstAttribute="centerX" secondItem="EDK-FE-Gas" secondAttribute="centerX" id="a5d-aA-2bh"/>
                                     <constraint firstAttribute="centerX" secondItem="eTh-1f-b6S" secondAttribute="centerX" id="aDT-GV-dBN"/>
                                     <constraint firstItem="3Uk-KC-hjB" firstAttribute="leading" secondItem="CSZ-lS-rcw" secondAttribute="leading" constant="12" id="fYs-YI-k8x"/>
@@ -138,7 +135,6 @@
                         <outlet property="currentQuestion" destination="cW8-Pv-euT" id="kGc-9h-Ml2"/>
                         <outlet property="currentValue" destination="gec-4q-ZK4" id="bsP-5k-SJ9"/>
                         <outlet property="disableCurrentClue" destination="3Uk-KC-hjB" id="DRg-WO-G47"/>
-                        <outlet property="menuButton" destination="Sgk-js-5IY" id="y0p-Ik-T43"/>
                         <outlet property="scrollView" destination="CSZ-lS-rcw" id="yi6-cY-4c4"/>
                     </connections>
                 </viewController>
