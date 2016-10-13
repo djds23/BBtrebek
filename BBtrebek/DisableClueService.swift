@@ -15,7 +15,7 @@ class DisableClueService: NSObject {
     
     public init (clue: Clue) {
         self.clue = clue
-        self.client = APIClient(url:"http://192.168.1.6:3000/api/invalid?id=\(clue.id)")
+        self.client = APIClient(url:"http://jservice.io/api/invalid?id=\(clue.id)")
     }
     
     open func disable(asyncCallback: @escaping (Data?, URLResponse?, Error? ) -> Void) -> Void {

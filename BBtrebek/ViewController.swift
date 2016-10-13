@@ -13,7 +13,7 @@ import UIKit
 open class ViewController: UIViewController {
 
     var rawClues: NSArray?
-    var clues: Array<Clue> = [Clue]()
+    var clues: Array<Clue> = []
     var playerGroup: PlayerGroup = PlayerGroup()
     var currentIndex: Int = 0
 
@@ -76,25 +76,13 @@ open class ViewController: UIViewController {
     
     func setClueForCurrentIndex() -> Void {
         let currentClue: Clue = self.currentClue()
-        if (currentClue.answered) {
-            self.scrollView.backgroundColor = UIColor.red
-        }
         self.currentCategory.text = currentClue.category
         self.currentQuestion.text = currentClue.question
         self.currentAnswer.text = currentClue.answer
         self.currentValue.text = String(currentClue.value)
     }
-    
-    
-    func dataToClue() {
-        for clue in self.rawClues! {
-            if let clueObj = Clue.initWithNSDictionary(clue as! NSDictionary) {
-                self.clues.append(clueObj)
-            }
-        }
-    }
-    
-    open func playerToPlayerButton(_ player: Player) -> UIButton {
+
+    func playerToPlayerButton(player: Player) -> UIButton {
         let playerButton: PlayerButton = PlayerButton.initWith(
             player: player,
             frame: CGRect(x: 100, y: 400, width: 100, height: 50)
@@ -127,20 +115,22 @@ open class ViewController: UIViewController {
     }
     
     func fetchClues() -> Void {
-        let successNotificationName = NSNotification.Name(rawValue: "sucessRequest")
-        NotificationCenter.default.addObserver(forName: successNotificationName, object: self, queue: OperationQueue.main) { (notification) in
-            self.dataToClue()
-            self.setClueForCurrentIndex()
-            for player in self.playerGroup.asArray() {
-                self.view.addSubview(self.playerToPlayerButton(player))
+        FetchClueService(count: 500).fetch(
+            success: { (newClues) in
+                self.clues += newClues
+                self.setClueForCurrentIndex()
+                for player in self.playerGroup.asArray() {
+                    self.view.addSubview(self.playerToPlayerButton(player: player))
+                }
+            },
+            failure: { (data, urlResponse, error) in
+                alert(
+                    title: "Error Fetching Data!",
+                    message: "Trebek was unable to answer in the form of a question, please try again later!",
+                    viewController: self
+                )
             }
-        }
-        
-        FetchClueService(count: 500).fetch { (data, url, error) in
-            let clueDictsFromRequest = ((try! JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.mutableContainers)) as! NSArray)
-            self.rawClues = clueDictsFromRequest
-            NotificationCenter.default.post(name: successNotificationName, object: self)
-        }
+        )
     }
     
     override open func prepare(for segue: UIStoryboardSegue, sender: Any?) {

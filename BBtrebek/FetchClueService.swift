@@ -12,10 +12,32 @@ class FetchClueService: NSObject {
     let client: APIClient
     
     public init (count: Int) {
-        self.client = APIClient(url:"http://192.168.1.6:3000/api/random?count=\(count)")
+        self.client = APIClient(url:"http://jservice.io/api/random?count=\(count)")
     }
     
-    open func fetch(asyncCallback: @escaping (Data?, URLResponse?, Error? ) -> Void) -> Void {
-        self.client.request(method: "GET", asyncCallback: asyncCallback)
+    func dataToClue(rawClues: NSArray) -> Array<Clue> {
+        var clues: Array<Clue> = []
+        for clue in rawClues {
+            if let clueObj = Clue.initWithNSDictionary(clue as! NSDictionary) {
+                clues.append(clueObj)
+            }
+        }
+        return clues
+    }
+
+    open func fetch(success: @escaping (Array<Clue>) -> Void, failure: @escaping (Data?, URLResponse?, Error?) -> Void) -> Void {
+        self.client.request(method: "GET") { (data, url, error) in
+            if (error != nil) {
+                DispatchQueue.main.async(execute: {
+                    failure(data, url, error)
+                })
+            } else {
+                let clueDictsFromRequest = ((try! JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.mutableContainers)) as! NSArray)
+                let clues = self.dataToClue(rawClues: clueDictsFromRequest)
+                DispatchQueue.main.async(execute: {
+                    success(clues)
+                })
+            }
+        }
     }
 }
