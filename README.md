@@ -14,3 +14,5 @@ TODO:
   * format text nicely in Answers/categories. Questions look generally okay.
   - [x] move views to scroll view
   - [x] ADD TESTS!
+  - [ ] prevent code duplication for adding swipe handlers, maybe make a swipe base VC
+  - [ ] add a subview for clue stuff

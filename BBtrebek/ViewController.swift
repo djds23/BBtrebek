@@ -12,11 +12,11 @@ import UIKit
 
 open class ViewController: UIViewController {
 
-    var rawClues: NSArray?
+
     var clues: Array<Clue> = []
     var playerGroup: PlayerGroup = PlayerGroup()
     var currentIndex: Int = 0
-
+    var gameState: (clues: Array<Clue>, currentIndex: Int, playerGroup: PlayerGroup )?
     
     @IBOutlet weak var menuButton: UIButton!
     @IBOutlet weak var disableCurrentClue: UIButton!
@@ -28,11 +28,10 @@ open class ViewController: UIViewController {
     
     override open func viewDidLoad() {
         super.viewDidLoad()
-        
         self.fetchClues()
+
         self.addTargetForDisableCurrentClue()
         self.addSwipeGestureRecognizers()
-        self.addLongPressGestureRecognizer()
     }
     
     func addSwipeGestureRecognizers() -> Void {
@@ -52,20 +51,6 @@ open class ViewController: UIViewController {
         self.view.addGestureRecognizer(rightSwipe)
     }
 
-    func addLongPressGestureRecognizer() -> Void {
-        self.currentCategory.addTarget(
-            self,
-            action: #selector(ViewController.handleLongPress(_:)),
-            for: UIControlEvents.touchUpInside
-        )
-    }
-    
-    func handleAwardClueToPlayer(_ sender: PlayerButton) -> Void {
-        sender.player.award(clue: self.currentClue())
-        sender.setPlayerTitle()
-        self.swipeLeft()
-    }
-    
     func handleSwipes(_ sender:UISwipeGestureRecognizer) -> Void {
         if (sender.direction == .right) {
             self.swipeRight()
@@ -92,17 +77,6 @@ open class ViewController: UIViewController {
         }
         self.setClueForCurrentIndex()
     }
-    
-    func handleLongPress(_ sender:UILongPressGestureRecognizer) -> Void {
-        FetchCategoryService(category: self.currentClue().category!).fetch(
-            success: { (category) in
-                alert(title: "winn!", message: "great!", viewController: self)
-            },
-            failure: { (data, urlResponse, error) in
-                print("failure")
-            }
-        )
-    }
 
     func setClueForCurrentIndex() -> Void {
         let currentClue = self.currentClue()
@@ -112,20 +86,6 @@ open class ViewController: UIViewController {
         self.currentValue.text = String(currentClue.value)
     }
 
-    func playerToPlayerButton(player: Player) -> UIButton {
-        let playerButton: PlayerButton = PlayerButton.initWith(
-            player: player,
-            frame: CGRect(x: 100, y: 400, width: 100, height: 50)
-        )
-        
-        playerButton.addTarget(self,
-            action: #selector(ViewController.handleAwardClueToPlayer(_:)),
-            for: UIControlEvents.touchUpInside
-        )
-        
-        return playerButton
-    }
-    
     func currentClue() -> Clue {
         return self.clues[self.currentIndex]
     }
@@ -136,6 +96,24 @@ open class ViewController: UIViewController {
                                           for: UIControlEvents.touchUpInside)
     }
     
+    func playerToPlayerButton(player: Player) -> UIButton {
+        let playerButton: PlayerButton = PlayerButton.initWith(
+            player: player,
+            frame: CGRect(x: 100, y: 400, width: 100, height: 50)
+        )
+        
+        playerButton.addTarget(self,
+                               action: #selector(ViewController.handleAwardClueToPlayer(_:)),
+                               for: UIControlEvents.touchUpInside
+        )
+        
+        return playerButton
+    }
+    func handleAwardClueToPlayer(_ sender: PlayerButton) -> Void {
+        sender.player.award(clue: self.currentClue())
+        sender.setPlayerTitle()
+        self.swipeLeft()
+    }
     
     open func disableClue(_ sender: AnyObject?) -> Void {
         let clue = self.currentClue()
@@ -179,6 +157,17 @@ open class ViewController: UIViewController {
         if (sender as? UIButton == self.menuButton) {
             let menuViewController = segue.destination as! MenuViewController
             menuViewController.playerGroup = self.playerGroup
+        }
+        
+        if (sender as? UIButton == self.currentCategory) {
+            let categoryViewController = segue.destination as! CategoryViewController
+            categoryViewController.category = self.currentClue().category
+            let gameState = (
+                clues: self.clues,
+                currentIndex: self.currentIndex,
+                playerGroup: self.playerGroup
+            )
+            categoryViewController.gameState = gameState
         }
     }
 }
