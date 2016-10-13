@@ -13,7 +13,6 @@ open class NewGameController: UIViewController {
     @IBOutlet weak var addPlayer: UIButton!
     @IBOutlet weak var playGame: UIButton!
     @IBOutlet weak var scrollView: UIScrollView!
-    
     @IBOutlet weak var contestants: UILabel!
 
     var playerGroup = PlayerGroup()

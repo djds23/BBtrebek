@@ -14,39 +14,44 @@ open class Clue: NSObject {
     open var question: String
     open var value: Int
     open var airdate: String
-    open var category: Category
+    open var category: Category?
     open var answered: Bool = false
     open var id: Int
 
-    public init(answer: String, question: String, value: Int, category: Category, airdate: String, id: Int) {
+    public init(answer: String, question: String, value: Int, airdate: String, id: Int) {
         self.answer = answer.stripHTMLTags()
         self.question = question.stripHTMLTags()
         self.value = value
         self.airdate = airdate
-        self.category = category
         self.id = id
     }
     
     public func categoryTitle() -> String {
-        return self.category.title
+        return self.category!.title
     }
 
     static func initWithNSDictionary(_ dict: NSDictionary) -> Clue? {
-        let category = Category(
-            title: (dict["category"] as! NSDictionary)["title"] as! String,
-            id: (dict["category"] as! NSDictionary)["id"] as! Int!
-        )
+        let clue = initWithoutCategory(dict)
+        if clue != nil {
+            clue?.category = Category(
+                title: (dict["category"] as! NSDictionary)["title"] as! String,
+                id: (dict["category"] as! NSDictionary)["id"] as! Int!
+            )
+        }
+        return clue
+    }
+    
+    static func initWithoutCategory(_ dict: NSDictionary) -> Clue? {
         let value = ensureValue(potentialValue: dict["value"] as? Int)
         if let answer = dict["answer"] as? String,
             let question = dict["question"] as? String,
             let airdate = dict["airdate"] as? String,
             let id = dict["id"] as? Int {
-                
+            
             let clueObj = Clue(
                 answer: answer,
                 question: question,
                 value: value,
-                category: category,
                 airdate: airdate,
                 id: id
             )
@@ -54,7 +59,6 @@ open class Clue: NSObject {
         } else {
             return nil;
         }
-        
     }
     
     private static func ensureValue(potentialValue: Int?) -> Int {

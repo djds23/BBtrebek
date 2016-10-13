@@ -17,11 +17,12 @@ open class ViewController: UIViewController {
     var playerGroup: PlayerGroup = PlayerGroup()
     var currentIndex: Int = 0
 
+    
     @IBOutlet weak var menuButton: UIButton!
     @IBOutlet weak var disableCurrentClue: UIButton!
     @IBOutlet weak var currentValue: UILabel!
     @IBOutlet weak var currentAnswer: UILabel!
-    @IBOutlet weak var currentCategory: UILabel!
+    @IBOutlet weak var currentCategory: UIButton!
     @IBOutlet weak var currentQuestion: UILabel!
     @IBOutlet weak var scrollView: UIScrollView!
     
@@ -30,15 +31,33 @@ open class ViewController: UIViewController {
         
         self.fetchClues()
         self.addTargetForDisableCurrentClue()
+        self.addSwipeGestureRecognizers()
+        self.addLongPressGestureRecognizer()
+    }
+    
+    func addSwipeGestureRecognizers() -> Void {
+        let leftSwipe = UISwipeGestureRecognizer(
+            target: self,
+            action: #selector(ViewController.handleSwipes(_:))
+        )
+        let rightSwipe = UISwipeGestureRecognizer(
+            target: self,
+            action: #selector(ViewController.handleSwipes(_:))
+        )
         
-        let leftSwipe = UISwipeGestureRecognizer(target: self, action: #selector(ViewController.handleSwipes(_:)))
-        let rightSwipe = UISwipeGestureRecognizer(target: self, action: #selector(ViewController.handleSwipes(_:)))
-
         leftSwipe.direction = .left
         rightSwipe.direction = .right
         
         self.view.addGestureRecognizer(leftSwipe)
         self.view.addGestureRecognizer(rightSwipe)
+    }
+
+    func addLongPressGestureRecognizer() -> Void {
+        self.currentCategory.addTarget(
+            self,
+            action: #selector(ViewController.handleLongPress(_:)),
+            for: UIControlEvents.touchUpInside
+        )
     }
     
     func handleAwardClueToPlayer(_ sender: PlayerButton) -> Void {
@@ -74,9 +93,20 @@ open class ViewController: UIViewController {
         self.setClueForCurrentIndex()
     }
     
+    func handleLongPress(_ sender:UILongPressGestureRecognizer) -> Void {
+        FetchCategoryService(category: self.currentClue().category!).fetch(
+            success: { (category) in
+                alert(title: "winn!", message: "great!", viewController: self)
+            },
+            failure: { (data, urlResponse, error) in
+                print("failure")
+            }
+        )
+    }
+
     func setClueForCurrentIndex() -> Void {
-        let currentClue: Clue = self.currentClue()
-        self.currentCategory.text = currentClue.categoryTitle()
+        let currentClue = self.currentClue()
+        self.currentCategory.setTitle(currentClue.categoryTitle(), for: UIControlState.normal)
         self.currentQuestion.text = currentClue.question
         self.currentAnswer.text = currentClue.answer
         self.currentValue.text = String(currentClue.value)

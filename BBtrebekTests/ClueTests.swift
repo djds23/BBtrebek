@@ -25,10 +25,10 @@ class ClueTests: XCTestCase {
             answer: "Dean",
             question: "Who made this app",
             value: 100,
-            category: Category(title:"people who are learning iOS", id: 100),
             airdate: "a datetime string",
             id: 1
         )
+        initializedClue.category = Category(title:"people who are learning iOS", id: 100)
         
         XCTAssertNotNil(initializedClue, "Pass")
     }
@@ -57,10 +57,11 @@ class ClueTests: XCTestCase {
             answer: "<p>Dean</p>",
             question: "Who <em>made</em> this app",
             value: 100,
-            category: Category(title:"people who are learning iOS", id: 100),
             airdate: "a datetime string",
             id: 2
         )
+        
+        strippedClue.category = Category(title:"people who are learning iOS", id: 100)
         
         XCTAssertEqual(strippedClue.answer, "Dean", "Pass")
         XCTAssertEqual(strippedClue.question, "Who made this app", "Pass")

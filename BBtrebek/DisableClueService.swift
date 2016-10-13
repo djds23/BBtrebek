@@ -8,6 +8,7 @@
 
 import UIKit
 
+
 class DisableClueService: NSObject {
     
     let clue: Clue

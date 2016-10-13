@@ -21,14 +21,6 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CSZ-lS-rcw">
                                 <frame key="frameInset" width="600" height="600"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Now Loading" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cyn-w7-2Js">
-                                        <accessibility key="accessibilityConfiguration">
-                                            <accessibilityTraits key="traits" none="YES"/>
-                                        </accessibility>
-                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This App is currently loading a set of questions. Give it a moment to let the internet inflate me with knowledge" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cW8-Pv-euT">
                                         <accessibility key="accessibilityConfiguration">
                                             <accessibilityTraits key="traits" none="YES"/>
@@ -88,6 +80,17 @@
                                             </segue>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U7a-eH-1Yt">
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <state key="normal" title="Now Loading...">
+                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <connections>
+                                            <segue destination="LA7-Hc-1Xg" kind="popoverPresentation" popoverAnchorView="U7a-eH-1Yt" id="mRH-cF-Q79">
+                                                <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                            </segue>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="tintColor" red="0.40000000600000002" green="0.80000001190000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -98,17 +101,15 @@
                                     <constraint firstItem="kLY-zW-woA" firstAttribute="top" secondItem="cW8-Pv-euT" secondAttribute="bottom" constant="6" id="84n-Fw-t5E"/>
                                     <constraint firstAttribute="trailing" secondItem="cW8-Pv-euT" secondAttribute="trailing" constant="12" id="8EP-vN-h6a"/>
                                     <constraint firstItem="gec-4q-ZK4" firstAttribute="top" secondItem="ZIv-cB-yGs" secondAttribute="bottom" constant="6" id="8mM-pG-DDi"/>
-                                    <constraint firstAttribute="centerX" secondItem="Cyn-w7-2Js" secondAttribute="centerX" id="8vn-cG-EY2"/>
-                                    <constraint firstItem="eTh-1f-b6S" firstAttribute="top" secondItem="Cyn-w7-2Js" secondAttribute="bottom" constant="6" id="Dc3-Gi-zkh"/>
-                                    <constraint firstItem="Cyn-w7-2Js" firstAttribute="leading" secondItem="CSZ-lS-rcw" secondAttribute="leading" constant="12" id="Eky-gn-hZT"/>
                                     <constraint firstAttribute="trailing" secondItem="EDK-FE-Gas" secondAttribute="trailing" constant="12" id="EzL-iI-3Ke"/>
                                     <constraint firstAttribute="centerX" secondItem="cW8-Pv-euT" secondAttribute="centerX" id="I1Q-gs-jV0"/>
                                     <constraint firstItem="3Uk-KC-hjB" firstAttribute="top" secondItem="CSZ-lS-rcw" secondAttribute="top" constant="23" id="IAe-QR-3ZQ"/>
                                     <constraint firstItem="gec-4q-ZK4" firstAttribute="leading" secondItem="CSZ-lS-rcw" secondAttribute="leading" constant="12" id="Ivx-vh-Om9"/>
                                     <constraint firstAttribute="centerX" secondItem="kLY-zW-woA" secondAttribute="centerX" id="JKG-GX-YXw"/>
+                                    <constraint firstItem="eTh-1f-b6S" firstAttribute="top" secondItem="U7a-eH-1Yt" secondAttribute="bottom" constant="-2" id="Jdc-Ep-I5M"/>
                                     <constraint firstAttribute="trailing" secondItem="D2B-Kd-7fK" secondAttribute="trailing" constant="12" id="OQn-R7-ali"/>
+                                    <constraint firstItem="U7a-eH-1Yt" firstAttribute="leading" secondItem="CSZ-lS-rcw" secondAttribute="leading" constant="12" id="Sbc-Uk-A9m"/>
                                     <constraint firstItem="EDK-FE-Gas" firstAttribute="top" secondItem="kLY-zW-woA" secondAttribute="bottom" constant="6" id="Uvv-6O-Gfc"/>
-                                    <constraint firstItem="Cyn-w7-2Js" firstAttribute="top" secondItem="dup-pp-EWD" secondAttribute="bottom" constant="6" id="VUU-E4-mG5"/>
                                     <constraint firstItem="EDK-FE-Gas" firstAttribute="leading" secondItem="CSZ-lS-rcw" secondAttribute="leading" constant="12" id="Vng-V7-TYo"/>
                                     <constraint firstItem="ZIv-cB-yGs" firstAttribute="top" secondItem="EDK-FE-Gas" secondAttribute="bottom" constant="6" id="W5S-Br-nBk"/>
                                     <constraint firstItem="cW8-Pv-euT" firstAttribute="leading" secondItem="CSZ-lS-rcw" secondAttribute="leading" constant="12" id="Ych-04-f6c"/>
@@ -118,9 +119,10 @@
                                     <constraint firstItem="3Uk-KC-hjB" firstAttribute="leading" secondItem="CSZ-lS-rcw" secondAttribute="leading" constant="12" id="fYs-YI-k8x"/>
                                     <constraint firstAttribute="centerX" secondItem="gec-4q-ZK4" secondAttribute="centerX" id="iAi-CP-3Sx"/>
                                     <constraint firstItem="dup-pp-EWD" firstAttribute="top" secondItem="CSZ-lS-rcw" secondAttribute="top" constant="50" id="lGw-VM-Fes"/>
+                                    <constraint firstAttribute="trailing" secondItem="U7a-eH-1Yt" secondAttribute="trailing" constant="12" id="oSF-3M-6e4"/>
+                                    <constraint firstItem="U7a-eH-1Yt" firstAttribute="top" secondItem="dup-pp-EWD" secondAttribute="bottom" constant="8" id="paz-w8-PRc"/>
                                     <constraint firstAttribute="centerX" secondItem="kLY-zW-woA" secondAttribute="centerX" id="syb-71-jZH"/>
                                     <constraint firstItem="cW8-Pv-euT" firstAttribute="top" secondItem="eTh-1f-b6S" secondAttribute="bottom" constant="6" id="vZs-x2-STq"/>
-                                    <constraint firstAttribute="trailing" secondItem="Cyn-w7-2Js" secondAttribute="trailing" constant="12" id="z77-9C-KY4"/>
                                 </constraints>
                             </scrollView>
                         </subviews>
@@ -136,16 +138,35 @@
                     </view>
                     <connections>
                         <outlet property="currentAnswer" destination="EDK-FE-Gas" id="fa9-Nu-8ag"/>
-                        <outlet property="currentCategory" destination="Cyn-w7-2Js" id="JXL-XZ-8id"/>
+                        <outlet property="currentCategory" destination="U7a-eH-1Yt" id="jXw-1i-1Ad"/>
                         <outlet property="currentQuestion" destination="cW8-Pv-euT" id="kGc-9h-Ml2"/>
                         <outlet property="currentValue" destination="gec-4q-ZK4" id="bsP-5k-SJ9"/>
                         <outlet property="disableCurrentClue" destination="3Uk-KC-hjB" id="DRg-WO-G47"/>
+                        <outlet property="menuButton" destination="D2B-Kd-7fK" id="yMq-Vw-fHa"/>
                         <outlet property="scrollView" destination="CSZ-lS-rcw" id="yi6-cY-4c4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="693.60000000000002" y="167.76611694152925"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="g8A-tx-4Z5">
+            <objects>
+                <viewController id="LA7-Hc-1Xg" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="OGB-V2-V5B"/>
+                        <viewControllerLayoutGuide type="bottom" id="AXv-KZ-4Ru"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Iwb-M3-l0c">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="z3Z-Sg-Rba" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1971" y="-571"/>
         </scene>
         <!--Menu View Controller-->
         <scene sceneID="gzq-m2-x2v">
