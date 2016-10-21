@@ -24,19 +24,38 @@ public class CardView: UIView {
     override public func draw(_ rect: CGRect) {
         let color: UIColor = BBColor.white
         let innerRect = self.bezzelRect(outerHeight: rect.height, outerWidth: rect.width)
-        let bpath: UIBezierPath = UIBezierPath(rect: innerRect)
+        let outerBezzelPath = self.outerBezzel(rect: innerRect)
+        let innerBezzelPath = self.innerBezzel(rect: innerRect)
         color.set()
-        bpath.stroke()
+        outerBezzelPath.stroke()
+        innerBezzelPath.stroke()
     }
     
     private func bezzelRect(outerHeight: CGFloat, outerWidth: CGFloat) -> CGRect {
         return CGRect(
-            x: (outerWidth * 0.25),
-            y: (outerHeight * 0.25),
-            width: (outerWidth * 0.5),
-            height: (outerHeight * 0.5)
+            x: (outerWidth * 0.15),
+            y: (outerHeight * 0.05),
+            width: (outerWidth * 0.7),
+            height: (outerHeight * 0.90)
         )
     }
+    
+    private func outerBezzel(rect: CGRect) -> UIBezierPath {
+        let path = UIBezierPath(roundedRect: rect, cornerRadius: CGFloat(10))
+        path.lineWidth = CGFloat(10)
+        return path
+    }
+    
+    private func innerBezzel(rect: CGRect) -> UIBezierPath {
+        let panelRect = CGRect(
+            x: rect.origin.x,
+            y: rect.origin.y,
+            width: rect.width,
+            height: rect.height * CGFloat(0.25)
+        )
+        
+        let path = UIBezierPath(roundedRect: panelRect, cornerRadius: CGFloat(10))
+        path.lineWidth = CGFloat(10)
+        return path
+    }
 }
-
-
