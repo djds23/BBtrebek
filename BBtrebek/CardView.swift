@@ -9,6 +9,13 @@
 import UIKit
 
 public class CardView: UIView {
+    var clue: Clue?
+    
+    public static func initWithClue(clue: Clue, frame: CGRect) -> CardView{
+        let cardView = CardView(frame: frame)
+        cardView.clue = clue
+        return cardView
+    }
     
     public override init(frame: CGRect){
         super.init(frame: frame)
@@ -39,13 +46,13 @@ public class CardView: UIView {
             height: (outerHeight * 0.90)
         )
     }
-    
+
     private func outerBezzel(rect: CGRect) -> UIBezierPath {
         let path = UIBezierPath(roundedRect: rect, cornerRadius: CGFloat(10))
         path.lineWidth = CGFloat(10)
         return path
     }
-    
+
     private func innerBezzel(rect: CGRect) -> UIBezierPath {
         let panelRect = CGRect(
             x: rect.origin.x,

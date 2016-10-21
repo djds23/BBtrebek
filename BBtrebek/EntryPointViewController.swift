@@ -21,10 +21,11 @@ class EntryPointViewController: UIViewController {
         let frameHeight = self.view.frame.height
         let offsetWidth = 50
         let offsetHeight = 50
-        
+        let clue = Clue(answer: "Coney Island Hot Dog", question: "A favorite food amongst the Detropians, this dish is named after a neighborhood in NYC.", value: 400, airdate: "2008-03-20T12:00:00.000Z", id: 100)
         let cardWidth = frameWidth.subtracting(CGFloat(offsetWidth * 2))
         let cardHeight = frameHeight.subtracting(CGFloat(offsetHeight * 2))
-        return CardView(
+        return CardView.initWithClue(
+            clue: clue,
             frame: CGRect(
                 origin: CGPoint(x: offsetWidth, y: offsetHeight),
                 size: CGSize(width: cardWidth, height: cardHeight)
