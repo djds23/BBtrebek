@@ -29,13 +29,21 @@ public class CardView: UIView {
     // Only override draw() if you perform custom drawing.
     // An empty implementation adversely affects performance during animation.
     override public func draw(_ rect: CGRect) {
-        let color: UIColor = BBColor.white
+        let color: UIColor = BBColor.borderBlack
         let innerRect = self.bezzelRect(outerHeight: rect.height, outerWidth: rect.width)
         let outerBezzelPath = self.outerBezzel(rect: innerRect)
         let innerBezzelPath = self.innerBezzel(rect: innerRect)
         color.set()
         outerBezzelPath.stroke()
         innerBezzelPath.stroke()
+        self.setClueLabels()
+        
+    }
+
+    private func setClueLabels() -> Void {
+        if self.clue != nil {
+            let unwrappedClue = self.clue!
+        }
     }
     
     private func bezzelRect(outerHeight: CGFloat, outerWidth: CGFloat) -> CGRect {

@@ -12,5 +12,5 @@ public class BBColor: NSObject {
     
     public static let cardBlue = UIColor(red:0.20, green:0.20, blue:1.00, alpha:1.0)
     public static let valueText = UIColor(red:1.00, green:0.84, blue:0.00, alpha:1.0)
-    public static let white = UIColor.white
+    public static let borderBlack = UIColor(red:0.15, green:0.15, blue:0.15, alpha:1.0)
 }
