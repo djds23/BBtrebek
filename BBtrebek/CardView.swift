@@ -30,19 +30,43 @@ public class CardView: UIView {
     // An empty implementation adversely affects performance during animation.
     override public func draw(_ rect: CGRect) {
         let color: UIColor = BBColor.borderBlack
-        let innerRect = self.bezzelRect(outerHeight: rect.height, outerWidth: rect.width)
-        let outerBezzelPath = self.outerBezzel(rect: innerRect)
-        let innerBezzelPath = self.innerBezzel(rect: innerRect)
+        let borderBezel = self.roundedBezel(rect: rect)
+        let backgroundRect = self.bezzelRect(outerHeight: rect.height, outerWidth: rect.width)
+        let outerBezzelPath = self.roundedBezel(rect: backgroundRect)
+        let innerRect = self.innerRect(outerRect: backgroundRect)
+        let innerBezzelPath = self.roundedBezel(rect: innerRect)
         color.set()
+        borderBezel.stroke()
         outerBezzelPath.stroke()
         innerBezzelPath.stroke()
-        self.setClueLabels()
+        let categoryFrame = self.categoryRect(outerRect: innerRect)
+        self.setClueLabels(cardRect:
+            categoryRect(outerRect: categoryFrame)
+        )
         
     }
 
-    private func setClueLabels() -> Void {
+    private func setClueLabels(cardRect: CGRect) -> Void {
         if self.clue != nil {
             let unwrappedClue = self.clue!
+            let textAtrributes = [
+                NSFontAttributeName: BBFont.main
+            ]
+            let categoryText =  unwrappedClue.categoryTitle()
+            var frame = categoryText.boundingRect(
+                with: cardRect.size,
+                attributes: textAtrributes,
+                context: nil
+            )
+            frame.origin.x = cardRect.origin.x
+            frame.origin.y = cardRect.origin.y
+            
+            let categoryLabel = UILabel(frame: frame)
+            categoryLabel.text = categoryText
+            categoryLabel.lineBreakMode = NSLineBreakMode.byWordWrapping
+            categoryLabel.numberOfLines = 3
+            self.addSubview(categoryLabel)
+            
         }
     }
     
@@ -55,21 +79,26 @@ public class CardView: UIView {
         )
     }
 
-    private func outerBezzel(rect: CGRect) -> UIBezierPath {
-        let path = UIBezierPath(roundedRect: rect, cornerRadius: CGFloat(10))
-        path.lineWidth = CGFloat(10)
-        return path
+    private func innerRect(outerRect: CGRect) -> CGRect {
+        return CGRect(
+            x: outerRect.origin.x,
+            y: outerRect.origin.y,
+            width: outerRect.width,
+            height: outerRect.height * CGFloat(0.25)
+        )
     }
-
-    private func innerBezzel(rect: CGRect) -> UIBezierPath {
-        let panelRect = CGRect(
-            x: rect.origin.x,
-            y: rect.origin.y,
-            width: rect.width,
-            height: rect.height * CGFloat(0.25)
+    
+    private func categoryRect(outerRect: CGRect) -> CGRect {
+        return CGRect(
+            x: outerRect.origin.x + 12,
+            y: outerRect.origin.y + 10,
+            width: outerRect.width - 20,
+            height: outerRect.height - (outerRect.height * 0.75)
         )
         
-        let path = UIBezierPath(roundedRect: panelRect, cornerRadius: CGFloat(10))
+    }
+    private func roundedBezel(rect: CGRect) -> UIBezierPath {
+        let path = UIBezierPath(roundedRect: rect, cornerRadius: CGFloat(10))
         path.lineWidth = CGFloat(10)
         return path
     }

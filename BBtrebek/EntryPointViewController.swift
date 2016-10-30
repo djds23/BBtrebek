@@ -23,7 +23,7 @@ class EntryPointViewController: UIViewController {
         let offsetHeight = 50
         // dummy data
         let clue = Clue(answer: "Coney Island Hot Dog", question: "A favorite food amongst the Detropians, this dish is named after a neighborhood in NYC.", value: 400, airdate: "2008-03-20T12:00:00.000Z", id: 100)
-        clue.category = Category(title: "Mismatched Meals", id: 42)
+        clue.category = Category(title: "Mismatched meals", id: 42)
         let cardWidth = frameWidth.subtracting(CGFloat(offsetWidth * 2))
         let cardHeight = frameHeight.subtracting(CGFloat(offsetHeight * 2))
         return CardView.initWithClue(
