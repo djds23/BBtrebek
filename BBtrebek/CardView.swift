@@ -10,6 +10,7 @@ import UIKit
 
 public class CardView: UIView {
     var clue: Clue?
+    let padding = CGFloat(12)
     
     public static func initWithClue(clue: Clue, frame: CGRect) -> CardView{
         let cardView = CardView(frame: frame)
@@ -39,33 +40,23 @@ public class CardView: UIView {
         borderBezel.stroke()
         outerBezzelPath.stroke()
         innerBezzelPath.stroke()
-        let categoryFrame = self.categoryRect(outerRect: innerRect)
-        self.setClueLabels(cardRect:
-            categoryRect(outerRect: categoryFrame)
-        )
+        self.setClueLabels(rect: innerRect)
         
     }
 
-    private func setClueLabels(cardRect: CGRect) -> Void {
+    private func setClueLabels(rect: CGRect) -> Void {
         if self.clue != nil {
             let unwrappedClue = self.clue!
-            let textAtrributes = [
-                NSFontAttributeName: BBFont.main
-            ]
             let categoryText =  unwrappedClue.categoryTitle()
-            var frame = categoryText.boundingRect(
-                with: cardRect.size,
-                attributes: textAtrributes,
-                context: nil
-            )
-            frame.origin.x = cardRect.origin.x
-            frame.origin.y = cardRect.origin.y
             
-            let categoryLabel = UILabel(frame: frame)
-            categoryLabel.text = categoryText
-            categoryLabel.lineBreakMode = NSLineBreakMode.byWordWrapping
-            categoryLabel.numberOfLines = 3
-            self.addSubview(categoryLabel)
+            let categoryFrame = self.categoryRect(outerRect: rect)
+            let newCategoryLabel = self.categoryLabel(frame: categoryFrame, categoryText: categoryText)
+            
+            let valueFrame = self.valueRect(outerRect: rect)
+            let newValueLable = self.valueLabel(frame: valueFrame, value: unwrappedClue.value)
+            
+            self.addSubview(newCategoryLabel)
+            self.addSubview(newValueLable)
             
         }
     }
@@ -90,16 +81,46 @@ public class CardView: UIView {
     
     private func categoryRect(outerRect: CGRect) -> CGRect {
         return CGRect(
-            x: outerRect.origin.x + 12,
-            y: outerRect.origin.y + 10,
+            x: outerRect.origin.x + self.padding,
+            y: outerRect.origin.y + self.padding,
             width: outerRect.width - 20,
-            height: outerRect.height - (outerRect.height * 0.75)
+            height: outerRect.height - (outerRect.height * 0.50)
         )
-        
     }
+    
+    private func valueRect(outerRect: CGRect) -> CGRect {
+        return CGRect(
+            x: outerRect.origin.x + self.padding,
+            y: (outerRect.origin.y + outerRect.height) + self.padding,
+            width: outerRect.width,
+            height: outerRect.height * CGFloat(0.25)
+        )
+    }
+
     private func roundedBezel(rect: CGRect) -> UIBezierPath {
         let path = UIBezierPath(roundedRect: rect, cornerRadius: CGFloat(10))
         path.lineWidth = CGFloat(10)
         return path
+    }
+    
+    private func categoryLabel(frame: CGRect, categoryText: String) -> UILabel {
+        let categoryLabel = UILabel(frame: frame)
+        categoryLabel.text = categoryText
+        categoryLabel.textColor = BBColor.plainWhite
+        categoryLabel.lineBreakMode = NSLineBreakMode.byWordWrapping
+        categoryLabel.numberOfLines = 3
+        categoryLabel.textAlignment = NSTextAlignment.center
+        categoryLabel.sizeToFit()
+        return categoryLabel
+    }
+    
+    private func valueLabel(frame: CGRect, value: Int) -> UILabel  {
+        let valueLabel = UILabel(frame: frame)
+        valueLabel.text = String(value)
+        valueLabel.textColor = BBColor.valueText
+        valueLabel.numberOfLines = 1
+        valueLabel.textAlignment = NSTextAlignment.center
+        valueLabel.sizeToFit()
+        return valueLabel
     }
 }
