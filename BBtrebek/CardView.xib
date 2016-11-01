@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -36,10 +37,30 @@
                             <color key="textColor" red="1" green="0.8494076132774353" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Fs9-7q-wGQ">
-                            <frame key="frameInset" minX="8" minY="41" width="327" height="392"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fs9-7q-wGQ">
+                            <subviews>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AQR-1p-aay">
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Clue Text" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5ME-js-kNE">
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" red="1" green="0.8494076132774353" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" red="0.1647058824" green="0.37647058820000001" blue="0.97647058819999999" alpha="1" colorSpace="calibratedRGB"/>
+                                    <constraints>
+                                        <constraint firstItem="5ME-js-kNE" firstAttribute="centerX" secondItem="AQR-1p-aay" secondAttribute="centerX" id="fq5-DW-6dG"/>
+                                        <constraint firstItem="5ME-js-kNE" firstAttribute="centerY" secondItem="AQR-1p-aay" secondAttribute="centerY" id="mzZ-4v-24j"/>
+                                    </constraints>
+                                </view>
+                            </subviews>
                             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstItem="AQR-1p-aay" firstAttribute="centerY" secondItem="Fs9-7q-wGQ" secondAttribute="centerY" id="4Ip-wi-fue"/>
+                                <constraint firstItem="AQR-1p-aay" firstAttribute="top" secondItem="Fs9-7q-wGQ" secondAttribute="topMargin" id="Gd4-Ae-wmv"/>
+                                <constraint firstItem="AQR-1p-aay" firstAttribute="centerX" secondItem="Fs9-7q-wGQ" secondAttribute="centerX" id="TeA-T9-CV0"/>
+                                <constraint firstItem="AQR-1p-aay" firstAttribute="leading" secondItem="Fs9-7q-wGQ" secondAttribute="leadingMargin" id="v8w-Re-bg5"/>
+                            </constraints>
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                     <integer key="value" value="10"/>
@@ -55,8 +76,12 @@
                     </subviews>
                     <color key="backgroundColor" red="0.1647058824" green="0.37647058820000001" blue="0.97647058819999999" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
+                        <constraint firstItem="Fs9-7q-wGQ" firstAttribute="bottom" secondItem="mbh-BK-ghG" secondAttribute="bottomMargin" id="9Lu-n7-gfO"/>
+                        <constraint firstItem="Fs9-7q-wGQ" firstAttribute="top" secondItem="HuJ-z4-Huf" secondAttribute="bottom" constant="8" symbolic="YES" id="FKB-R0-n46"/>
                         <constraint firstItem="HuJ-z4-Huf" firstAttribute="top" secondItem="mbh-BK-ghG" secondAttribute="top" constant="12" id="I8d-Eh-Kmg"/>
                         <constraint firstItem="HuJ-z4-Huf" firstAttribute="centerX" secondItem="mbh-BK-ghG" secondAttribute="centerX" id="YGz-eU-aUF"/>
+                        <constraint firstItem="Fs9-7q-wGQ" firstAttribute="leading" secondItem="mbh-BK-ghG" secondAttribute="leadingMargin" id="hih-re-5vq"/>
+                        <constraint firstItem="Fs9-7q-wGQ" firstAttribute="centerX" secondItem="HuJ-z4-Huf" secondAttribute="centerX" id="pRO-8l-n9y"/>
                     </constraints>
                 </view>
             </subviews>
