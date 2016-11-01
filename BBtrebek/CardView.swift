@@ -24,7 +24,6 @@ public class CardView: UIView {
     
     public override init(frame: CGRect){
         super.init(frame: frame)
-        self.backgroundColor = BBColor.cardBlue
         Bundle.main.loadNibNamed("CardView", owner: self, options: nil)
         self.addSubview(self.cardView)
     }

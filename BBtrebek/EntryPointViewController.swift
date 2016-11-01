@@ -9,12 +9,11 @@
 import UIKit
 
 class EntryPointViewController: UIViewController {
-// A favorite food amongst the Detropians, this dish is named after a neighborhood in NYC.
 
     @IBOutlet weak var cardView: CardView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        let clue = Clue(answer: "Coney Island Hot Dog", question: "wyhat", value: 400, airdate: "2008-03-20T12:00:00.000Z", id: 100)
+        let clue = Clue(answer: "Coney Island Hot Dog", question: "A favorite food amongst the Detropians, this dish is named after a neighborhood in NYC.", value: 400, airdate: "2008-03-20T12:00:00.000Z", id: 100)
         clue.category = Category(title: "Mismatched meals", id: 42)
         self.cardView.setClueLabels(clue: clue)
 //        let subView = self.createCardView()

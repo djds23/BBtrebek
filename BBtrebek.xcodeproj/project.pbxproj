@@ -57,8 +57,6 @@
 		FF4B9DC11DBA465C00FEAD8A /* EntryPointViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4B9DBF1DBA465C00FEAD8A /* EntryPointViewController.swift */; };
 		FF4B9DC31DBA481A00FEAD8A /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4B9DC21DBA481A00FEAD8A /* CardView.swift */; };
 		FF4B9DC41DBA481A00FEAD8A /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4B9DC21DBA481A00FEAD8A /* CardView.swift */; };
-		FF4B9DC61DBA6F5800FEAD8A /* BBColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4B9DC51DBA6F5800FEAD8A /* BBColor.swift */; };
-		FF4B9DC71DBA6F5800FEAD8A /* BBColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4B9DC51DBA6F5800FEAD8A /* BBColor.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -104,7 +102,6 @@
 		7BF80F3E1C273902002BEE75 /* NewPlayerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewPlayerViewController.swift; sourceTree = "<group>"; };
 		FF4B9DBF1DBA465C00FEAD8A /* EntryPointViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntryPointViewController.swift; sourceTree = "<group>"; };
 		FF4B9DC21DBA481A00FEAD8A /* CardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
-		FF4B9DC51DBA6F5800FEAD8A /* BBColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BBColor.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -199,7 +196,6 @@
 				7B7777BF1DAABD2200BA3E63 /* Components */,
 				7BC8EC721C0D2805004972AD /* AppDelegate.swift */,
 				7BC8EC741C0D2805004972AD /* ViewController.swift */,
-				FF4B9DC51DBA6F5800FEAD8A /* BBColor.swift */,
 				FF4B9DBF1DBA465C00FEAD8A /* EntryPointViewController.swift */,
 				7BC8EC761C0D2805004972AD /* Main.storyboard */,
 				7BE766251DAB415000E7531D /* EndGameViewController.swift */,
@@ -356,7 +352,6 @@
 				7B789B431DAB2328007E571C /* MenuViewController.swift in Sources */,
 				7B7777C11DAABD8500BA3E63 /* PlayerButton.swift in Sources */,
 				7B120E361DAF419500A6F660 /* CategoryViewController.swift in Sources */,
-				FF4B9DC61DBA6F5800FEAD8A /* BBColor.swift in Sources */,
 				7BC8EC931C0D2911004972AD /* Clue.swift in Sources */,
 				7BAF90C81C134F0200CC71A9 /* NewGameController.swift in Sources */,
 				7B120E2D1DAF182300A6F660 /* Category.swift in Sources */,
@@ -400,7 +395,6 @@
 				7B380D2B1DA9AFA500556CDB /* PlayerGroupTests.swift in Sources */,
 				7B120E371DAF419500A6F660 /* CategoryViewController.swift in Sources */,
 				FF4B9DC41DBA481A00FEAD8A /* CardView.swift in Sources */,
-				FF4B9DC71DBA6F5800FEAD8A /* BBColor.swift in Sources */,
 				7BA915511C2A2EF000BABFDB /* Array.swift in Sources */,
 				7BAF90C71C134EDD00CC71A9 /* ViewController.swift in Sources */,
 				7B120E2B1DAF17BD00A6F660 /* FetchCategoryService.swift in Sources */,

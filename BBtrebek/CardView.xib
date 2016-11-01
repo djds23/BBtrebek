@@ -36,6 +36,9 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mbh-BK-ghG">
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Value" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HuJ-z4-Huf">
+                            <constraints>
+                                <constraint firstAttribute="height" constant="21" id="XFd-D0-SNv"/>
+                            </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <color key="textColor" red="1" green="0.8494076132774353" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
@@ -44,7 +47,7 @@
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AQR-1p-aay">
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Question Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5ME-js-kNE">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Question Label" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5ME-js-kNE">
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" red="1" green="0.8494076132774353" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
@@ -52,8 +55,10 @@
                                     </subviews>
                                     <color key="backgroundColor" red="0.1647058824" green="0.37647058820000001" blue="0.97647058819999999" alpha="1" colorSpace="calibratedRGB"/>
                                     <constraints>
-                                        <constraint firstItem="5ME-js-kNE" firstAttribute="centerX" secondItem="AQR-1p-aay" secondAttribute="centerX" id="fq5-DW-6dG"/>
-                                        <constraint firstItem="5ME-js-kNE" firstAttribute="centerY" secondItem="AQR-1p-aay" secondAttribute="centerY" id="mzZ-4v-24j"/>
+                                        <constraint firstItem="5ME-js-kNE" firstAttribute="top" secondItem="AQR-1p-aay" secondAttribute="top" constant="35" id="IJQ-SS-5dP"/>
+                                        <constraint firstItem="5ME-js-kNE" firstAttribute="leading" secondItem="AQR-1p-aay" secondAttribute="leading" constant="8" id="Lgm-P0-703"/>
+                                        <constraint firstAttribute="bottom" secondItem="5ME-js-kNE" secondAttribute="bottom" constant="8" id="M30-no-W9C"/>
+                                        <constraint firstAttribute="trailing" secondItem="5ME-js-kNE" secondAttribute="trailing" constant="8" id="dLr-K0-DAg"/>
                                     </constraints>
                                 </view>
                             </subviews>
