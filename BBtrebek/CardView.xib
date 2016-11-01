@@ -10,6 +10,7 @@
             <connections>
                 <outlet property="cardView" destination="iN0-l3-epB" id="g50-YG-12a"/>
                 <outlet property="categoryLabel" destination="IEu-AH-uMa" id="SNK-ZR-bwG"/>
+                <outlet property="questionContainer" destination="AQR-1p-aay" id="gwp-ZE-wf0"/>
                 <outlet property="questionLabel" destination="5ME-js-kNE" id="jMz-8q-VPE"/>
                 <outlet property="valueLabel" destination="HuJ-z4-Huf" id="QWh-9u-Pvv"/>
             </connections>

@@ -17,9 +17,16 @@ class EntryPointViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.fetchClues()
-        let clue = Clue(answer: "Coney Island Hot Dog", question: "A favorite food amongst the Detropians, this dish is named after a neighborhood in NYC.", value: 400, airdate: "2008-03-20T12:00:00.000Z", id: 100)
+        let clue = Clue(
+            answer: "Coney Island Hot Dog",
+            question: "A favorite food amongst the Detropians, this dish is named after a neighborhood in NYC.",
+            value: 400,
+            airdate: "2008-03-20T12:00:00.000Z",
+            id: 100
+        )
         clue.category = Category(title: "Mismatched meals", id: 42)
-        self.cardView.setClueLabels(clue: clue)
+        clues.append(clue)
+        self.cardView.setClueLabels(clue: self.currentClue())
         self.addSwipeGestureRecognizers()
     }
     

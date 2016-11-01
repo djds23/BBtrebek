@@ -29,7 +29,6 @@ open class ViewController: UIViewController {
     override open func viewDidLoad() {
         super.viewDidLoad()
         self.fetchClues()
-
         self.addTargetForDisableCurrentClue()
         self.addSwipeGestureRecognizers()
     }
