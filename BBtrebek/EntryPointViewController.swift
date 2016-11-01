@@ -9,30 +9,67 @@
 import UIKit
 
 class EntryPointViewController: UIViewController {
+// A favorite food amongst the Detropians, this dish is named after a neighborhood in NYC.
 
+    @IBOutlet weak var cardView: CardView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        let subView = self.createCardView()
-        self.view.addSubview(subView)
-    }
-
-    public func createCardView() -> CardView {
-        let frameWidth = self.view.frame.width
-        let frameHeight = self.view.frame.height
-        let offsetWidth = 50
-        let offsetHeight = 50
-        // dummy data
-        let clue = Clue(answer: "Coney Island Hot Dog", question: "A favorite food amongst the Detropians, this dish is named after a neighborhood in NYC.", value: 400, airdate: "2008-03-20T12:00:00.000Z", id: 100)
+        let clue = Clue(answer: "Coney Island Hot Dog", question: "wyhat", value: 400, airdate: "2008-03-20T12:00:00.000Z", id: 100)
         clue.category = Category(title: "Mismatched meals", id: 42)
-        let cardWidth = frameWidth.subtracting(CGFloat(offsetWidth * 2))
-        let cardHeight = frameHeight.subtracting(CGFloat(offsetHeight * 2))
-        return CardView.initWithClue(
-            clue: clue,
-            frame: CGRect(
-                origin: CGPoint(x: offsetWidth, y: offsetHeight),
-                size: CGSize(width: cardWidth, height: cardHeight)
-            )
+        self.cardView.setClueLabels(clue: clue)
+//        let subView = self.createCardView()
+//        self.view.addSubview(subView)
+//        self.addAutoLayoutToCard(card: subView)
+    }
+//
+//    public func createCardView() -> CardView {
+//        return CardView.initWithClue(clue: clue)
+//    }
+    
+    private func addAutoLayoutToCard(card: CardView) -> Void {
+        card.translatesAutoresizingMaskIntoConstraints = false
+        
+        let widthConstraint = NSLayoutConstraint(
+            item: card,
+            attribute: .width,
+            relatedBy: .equal,
+            toItem: nil,
+            attribute: .notAnAttribute,
+            multiplier: 1.0,
+            constant: 0
         )
+        
+        let heightConstraint = NSLayoutConstraint(
+            item: card,
+            attribute: .height,
+            relatedBy: .equal,
+            toItem: nil,
+            attribute: .notAnAttribute,
+            multiplier: 1.0,
+            constant: 0
+        )
+        
+        let xConstraint = NSLayoutConstraint(
+            item: card,
+            attribute: .centerX,
+            relatedBy: .equal,
+            toItem: self.view,
+            attribute: .centerX,
+            multiplier: 1,
+            constant: 0
+        )
+        
+        let yConstraint = NSLayoutConstraint(
+            item: card,
+            attribute: .centerY,
+            relatedBy: .equal,
+            toItem: self.view,
+            attribute: .centerY,
+            multiplier: 1,
+            constant: 0
+        )
+        
+        NSLayoutConstraint.activate([xConstraint, yConstraint, widthConstraint, heightConstraint])
     }
     
     override func didReceiveMemoryWarning() {

@@ -53,10 +53,6 @@
 		7BE766271DAB415000E7531D /* EndGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE766251DAB415000E7531D /* EndGameViewController.swift */; };
 		7BF80F3F1C273902002BEE75 /* NewPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BF80F3E1C273902002BEE75 /* NewPlayerViewController.swift */; };
 		7BF80F401C273902002BEE75 /* NewPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BF80F3E1C273902002BEE75 /* NewPlayerViewController.swift */; };
-		FF4B9DBB1DBA43AD00FEAD8A /* CardSwipeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4B9DB91DBA43AD00FEAD8A /* CardSwipeViewController.swift */; };
-		FF4B9DBC1DBA43AD00FEAD8A /* CardSwipeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4B9DB91DBA43AD00FEAD8A /* CardSwipeViewController.swift */; };
-		FF4B9DBD1DBA43AD00FEAD8A /* CardSwipeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF4B9DBA1DBA43AD00FEAD8A /* CardSwipeViewController.xib */; };
-		FF4B9DBE1DBA43AD00FEAD8A /* CardSwipeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF4B9DBA1DBA43AD00FEAD8A /* CardSwipeViewController.xib */; };
 		FF4B9DC01DBA465C00FEAD8A /* EntryPointViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4B9DBF1DBA465C00FEAD8A /* EntryPointViewController.swift */; };
 		FF4B9DC11DBA465C00FEAD8A /* EntryPointViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4B9DBF1DBA465C00FEAD8A /* EntryPointViewController.swift */; };
 		FF4B9DC31DBA481A00FEAD8A /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4B9DC21DBA481A00FEAD8A /* CardView.swift */; };
@@ -106,8 +102,6 @@
 		7BC8EC921C0D2911004972AD /* Clue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Clue.swift; sourceTree = "<group>"; };
 		7BE766251DAB415000E7531D /* EndGameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EndGameViewController.swift; sourceTree = "<group>"; };
 		7BF80F3E1C273902002BEE75 /* NewPlayerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewPlayerViewController.swift; sourceTree = "<group>"; };
-		FF4B9DB91DBA43AD00FEAD8A /* CardSwipeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardSwipeViewController.swift; sourceTree = "<group>"; };
-		FF4B9DBA1DBA43AD00FEAD8A /* CardSwipeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CardSwipeViewController.xib; sourceTree = "<group>"; };
 		FF4B9DBF1DBA465C00FEAD8A /* EntryPointViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntryPointViewController.swift; sourceTree = "<group>"; };
 		FF4B9DC21DBA481A00FEAD8A /* CardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		FF4B9DC51DBA6F5800FEAD8A /* BBColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BBColor.swift; sourceTree = "<group>"; };
@@ -209,8 +203,6 @@
 				FF4B9DBF1DBA465C00FEAD8A /* EntryPointViewController.swift */,
 				7BC8EC761C0D2805004972AD /* Main.storyboard */,
 				7BE766251DAB415000E7531D /* EndGameViewController.swift */,
-				FF4B9DB91DBA43AD00FEAD8A /* CardSwipeViewController.swift */,
-				FF4B9DBA1DBA43AD00FEAD8A /* CardSwipeViewController.xib */,
 				7B55B52F1C14C4EA005D2F8B /* Utils.swift */,
 				7BF80F3E1C273902002BEE75 /* NewPlayerViewController.swift */,
 				7B58B3941C12BF7B007C4A1A /* NewGameController.swift */,
@@ -339,7 +331,6 @@
 			files = (
 				7BC8EC781C0D2805004972AD /* Main.storyboard in Resources */,
 				7B34272F1DC80F2E00B310FB /* CardView.xib in Resources */,
-				FF4B9DBD1DBA43AD00FEAD8A /* CardSwipeViewController.xib in Resources */,
 				7BC8EC7D1C0D2805004972AD /* LaunchScreen.xib in Resources */,
 				7BC8EC7A1C0D2805004972AD /* Images.xcassets in Resources */,
 			);
@@ -351,7 +342,6 @@
 			files = (
 				7BAF90CA1C1354F300CC71A9 /* Main.storyboard in Resources */,
 				7B3427301DC80F2E00B310FB /* CardView.xib in Resources */,
-				FF4B9DBE1DBA43AD00FEAD8A /* CardSwipeViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -368,7 +358,6 @@
 				7B120E361DAF419500A6F660 /* CategoryViewController.swift in Sources */,
 				FF4B9DC61DBA6F5800FEAD8A /* BBColor.swift in Sources */,
 				7BC8EC931C0D2911004972AD /* Clue.swift in Sources */,
-				FF4B9DBB1DBA43AD00FEAD8A /* CardSwipeViewController.swift in Sources */,
 				7BAF90C81C134F0200CC71A9 /* NewGameController.swift in Sources */,
 				7B120E2D1DAF182300A6F660 /* Category.swift in Sources */,
 				7BA915531C2A2F1200BABFDB /* String.swift in Sources */,
@@ -393,7 +382,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				7B789B481DAB2D8A007E571C /* ClueTests.swift in Sources */,
-				FF4B9DBC1DBA43AD00FEAD8A /* CardSwipeViewController.swift in Sources */,
 				7B58B3961C12BF7B007C4A1A /* NewGameController.swift in Sources */,
 				7B9269E51DAB17A8005B9382 /* FetchClueService.swift in Sources */,
 				7B6960731DAAFA07001B87DD /* APIClient.swift in Sources */,
