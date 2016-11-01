@@ -12,6 +12,7 @@ public class CardView: UIView {
     var clue: Clue?
     let padding = CGFloat(12)
     
+    @IBOutlet var cardView: UIView!
     public static func initWithClue(clue: Clue, frame: CGRect) -> CardView{
         let cardView = CardView(frame: frame)
         cardView.clue = clue

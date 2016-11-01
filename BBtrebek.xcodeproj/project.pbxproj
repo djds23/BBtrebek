@@ -13,6 +13,8 @@
 		7B120E2E1DAF182300A6F660 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B120E2C1DAF182300A6F660 /* Category.swift */; };
 		7B120E361DAF419500A6F660 /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B120E351DAF419500A6F660 /* CategoryViewController.swift */; };
 		7B120E371DAF419500A6F660 /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B120E351DAF419500A6F660 /* CategoryViewController.swift */; };
+		7B34272F1DC80F2E00B310FB /* CardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7B34272E1DC80F2E00B310FB /* CardView.xib */; };
+		7B3427301DC80F2E00B310FB /* CardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7B34272E1DC80F2E00B310FB /* CardView.xib */; };
 		7B380D281DA9A70400556CDB /* PlayerGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B380D271DA9A70400556CDB /* PlayerGroup.swift */; };
 		7B380D291DA9A70400556CDB /* PlayerGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B380D271DA9A70400556CDB /* PlayerGroup.swift */; };
 		7B380D2B1DA9AFA500556CDB /* PlayerGroupTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B380D2A1DA9AFA500556CDB /* PlayerGroupTests.swift */; };
@@ -77,6 +79,7 @@
 		7B120E291DAF17BD00A6F660 /* FetchCategoryService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchCategoryService.swift; sourceTree = "<group>"; };
 		7B120E2C1DAF182300A6F660 /* Category.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		7B120E351DAF419500A6F660 /* CategoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
+		7B34272E1DC80F2E00B310FB /* CardView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CardView.xib; sourceTree = "<group>"; };
 		7B380D271DA9A70400556CDB /* PlayerGroup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerGroup.swift; sourceTree = "<group>"; };
 		7B380D2A1DA9AFA500556CDB /* PlayerGroupTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerGroupTests.swift; sourceTree = "<group>"; };
 		7B55B52F1C14C4EA005D2F8B /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
@@ -132,6 +135,7 @@
 			isa = PBXGroup;
 			children = (
 				FF4B9DC21DBA481A00FEAD8A /* CardView.swift */,
+				7B34272E1DC80F2E00B310FB /* CardView.xib */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -334,6 +338,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7BC8EC781C0D2805004972AD /* Main.storyboard in Resources */,
+				7B34272F1DC80F2E00B310FB /* CardView.xib in Resources */,
 				FF4B9DBD1DBA43AD00FEAD8A /* CardSwipeViewController.xib in Resources */,
 				7BC8EC7D1C0D2805004972AD /* LaunchScreen.xib in Resources */,
 				7BC8EC7A1C0D2805004972AD /* Images.xcassets in Resources */,
@@ -345,6 +350,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7BAF90CA1C1354F300CC71A9 /* Main.storyboard in Resources */,
+				7B3427301DC80F2E00B310FB /* CardView.xib in Resources */,
 				FF4B9DBE1DBA43AD00FEAD8A /* CardSwipeViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
