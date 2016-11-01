@@ -10,65 +10,17 @@ import UIKit
 
 class EntryPointViewController: UIViewController {
 
+    var clues: Array<Clue> = []
+    var currentIndex: Int = 0
+    
     @IBOutlet weak var cardView: CardView!
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.fetchClues()
         let clue = Clue(answer: "Coney Island Hot Dog", question: "A favorite food amongst the Detropians, this dish is named after a neighborhood in NYC.", value: 400, airdate: "2008-03-20T12:00:00.000Z", id: 100)
         clue.category = Category(title: "Mismatched meals", id: 42)
         self.cardView.setClueLabels(clue: clue)
-//        let subView = self.createCardView()
-//        self.view.addSubview(subView)
-//        self.addAutoLayoutToCard(card: subView)
-    }
-//
-//    public func createCardView() -> CardView {
-//        return CardView.initWithClue(clue: clue)
-//    }
-    
-    private func addAutoLayoutToCard(card: CardView) -> Void {
-        card.translatesAutoresizingMaskIntoConstraints = false
-        
-        let widthConstraint = NSLayoutConstraint(
-            item: card,
-            attribute: .width,
-            relatedBy: .equal,
-            toItem: nil,
-            attribute: .notAnAttribute,
-            multiplier: 1.0,
-            constant: 0
-        )
-        
-        let heightConstraint = NSLayoutConstraint(
-            item: card,
-            attribute: .height,
-            relatedBy: .equal,
-            toItem: nil,
-            attribute: .notAnAttribute,
-            multiplier: 1.0,
-            constant: 0
-        )
-        
-        let xConstraint = NSLayoutConstraint(
-            item: card,
-            attribute: .centerX,
-            relatedBy: .equal,
-            toItem: self.view,
-            attribute: .centerX,
-            multiplier: 1,
-            constant: 0
-        )
-        
-        let yConstraint = NSLayoutConstraint(
-            item: card,
-            attribute: .centerY,
-            relatedBy: .equal,
-            toItem: self.view,
-            attribute: .centerY,
-            multiplier: 1,
-            constant: 0
-        )
-        
-        NSLayoutConstraint.activate([xConstraint, yConstraint, widthConstraint, heightConstraint])
+        self.addSwipeGestureRecognizers()
     }
     
     override func didReceiveMemoryWarning() {
@@ -76,6 +28,77 @@ class EntryPointViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    
+    private func addSwipeGestureRecognizers() -> Void {
+        let leftSwipe = UISwipeGestureRecognizer(
+            target: self,
+            action: #selector(EntryPointViewController.handleSwipes(_:))
+        )
+        let rightSwipe = UISwipeGestureRecognizer(
+            target: self,
+            action: #selector(EntryPointViewController.handleSwipes(_:))
+        )
+        
+        leftSwipe.direction = .left
+        rightSwipe.direction = .right
+        
+        self.cardView.addGestureRecognizer(leftSwipe)
+        self.cardView.addGestureRecognizer(rightSwipe)
+    }
+
+    func handleSwipes(_ sender:UISwipeGestureRecognizer) -> Void {
+        if (sender.direction == .right) {
+            self.swipeRight()
+        }
+        if (sender.direction == .left) {
+            self.swipeLeft()
+        }
+    }
+    
+    func swipeRight() -> Void {
+        if (self.currentIndex <= 0) {
+            return
+        } else {
+            self.currentIndex -= 1
+        }
+        self.setClueForCurrentIndex()
+    }
+    
+    func swipeLeft() -> Void {
+        if (self.currentIndex >= self.clues.count - 1) {
+            self.fetchClues()
+        } else {
+            self.currentIndex += 1
+        }
+        self.setClueForCurrentIndex()
+    }
+    
+    func setClueForCurrentIndex() -> Void {
+        let currentClue = self.currentClue()
+        self.cardView.setClueLabels(clue: currentClue)
+    }
+    
+    
+    func fetchClues() -> Void {
+        FetchClueService(count: 500).fetch(
+            success: { (newClues) in
+                // it is possible the server sent duplicates back, make sure to de-dup this list
+                self.clues += newClues
+                self.setClueForCurrentIndex()
+            },
+            failure: { (data, urlResponse, error) in
+                alert(
+                    title: "Error Fetching Data!",
+                    message: "Trebek was unable to answer in the form of a question, please try again later!",
+                    viewController: self
+                )
+            }
+        )
+    }
+
+    func currentClue() -> Clue {
+        return self.clues[self.currentIndex]
+    }
 
     /*
     // MARK: - Navigation

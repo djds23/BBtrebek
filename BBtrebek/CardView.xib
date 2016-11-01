@@ -19,6 +19,20 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4ZA-yZ-LtM">
+                    <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="10"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                            <integer key="value" value="5"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="color" keyPath="layer.borderColor">
+                            <color key="value" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jHt-zh-jz6">
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Category" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IEu-AH-uMa">
@@ -32,6 +46,17 @@
                         <constraint firstItem="IEu-AH-uMa" firstAttribute="centerY" secondItem="jHt-zh-jz6" secondAttribute="centerY" id="MdG-Cq-ncT"/>
                         <constraint firstItem="IEu-AH-uMa" firstAttribute="centerX" secondItem="jHt-zh-jz6" secondAttribute="centerX" id="R4i-DD-ads"/>
                     </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="5"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                            <integer key="value" value="10"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="color" keyPath="layer.borderColor">
+                            <color key="value" red="0.2124163806438446" green="0.479911208152771" blue="0.98288482427597046" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mbh-BK-ghG">
                     <subviews>
@@ -91,20 +116,35 @@
                         <constraint firstItem="Fs9-7q-wGQ" firstAttribute="leading" secondItem="mbh-BK-ghG" secondAttribute="leadingMargin" id="hih-re-5vq"/>
                         <constraint firstItem="Fs9-7q-wGQ" firstAttribute="centerX" secondItem="HuJ-z4-Huf" secondAttribute="centerX" id="pRO-8l-n9y"/>
                     </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="5"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                            <integer key="value" value="10"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="color" keyPath="layer.borderColor">
+                            <color key="value" red="0.21241638060000001" green="0.47991120819999999" blue="0.98288482430000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
                 </view>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="mbh-BK-ghG" firstAttribute="top" secondItem="jHt-zh-jz6" secondAttribute="bottom" constant="8" id="3Uh-4a-TVy"/>
                 <constraint firstAttribute="trailing" secondItem="jHt-zh-jz6" secondAttribute="trailing" constant="16" id="3aK-uQ-ebs"/>
+                <constraint firstAttribute="trailing" secondItem="4ZA-yZ-LtM" secondAttribute="trailing" id="5vt-Tr-mQY"/>
+                <constraint firstItem="4ZA-yZ-LtM" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="MFk-7h-Bf0"/>
                 <constraint firstItem="jHt-zh-jz6" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="20" id="V0Y-mY-2ca"/>
+                <constraint firstItem="4ZA-yZ-LtM" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="eiP-zL-Y1A"/>
                 <constraint firstAttribute="bottom" secondItem="mbh-BK-ghG" secondAttribute="bottom" constant="20" id="g5C-WJ-3EJ"/>
                 <constraint firstItem="jHt-zh-jz6" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="gzB-s5-Cay"/>
                 <constraint firstItem="mbh-BK-ghG" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="npX-6k-ckb"/>
                 <constraint firstItem="mbh-BK-ghG" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="206" id="tq5-RG-DV4"/>
+                <constraint firstAttribute="bottom" secondItem="4ZA-yZ-LtM" secondAttribute="bottom" id="v5P-o1-EsD"/>
                 <constraint firstAttribute="trailing" secondItem="mbh-BK-ghG" secondAttribute="trailing" constant="16" id="yMN-RO-s0k"/>
             </constraints>
-            <point key="canvasLocation" x="129.5" y="107.5"/>
+            <point key="canvasLocation" x="114.5" y="105.5"/>
         </view>
     </objects>
 </document>
