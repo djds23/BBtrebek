@@ -14,6 +14,7 @@ class CardHolderView: UIView {
     var currentIndex: Int = 0
 
     
+    @IBOutlet weak var topCardView: CardView!
     @IBOutlet weak var cardView: CardView!
     @IBOutlet var cardHolderView: UIView!
     public override init(frame: CGRect){

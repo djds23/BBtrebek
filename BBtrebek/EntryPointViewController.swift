@@ -10,11 +10,6 @@ import UIKit
 
 class EntryPointViewController: UIViewController {
 
-    var clues: Array<Clue> = []
-    var currentIndex: Int = 0
-
-    @IBOutlet weak var cardView: CardView!
-
     override func viewDidLoad() {
         super.viewDidLoad()
     }
