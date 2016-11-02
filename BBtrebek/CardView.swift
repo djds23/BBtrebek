@@ -54,8 +54,10 @@ public class CardView: UIView {
         if sender.state == .ended {
             if self.questionLabel.text == self.clue?.question {
                 self.questionLabel.text = self.clue?.answer
+                self.questionLabel.textColor = BBColor.valueGold
             } else {
                self.questionLabel.text = self.clue?.question
+                self.questionLabel.textColor = BBColor.white
             }
         }
     }
