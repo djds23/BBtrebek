@@ -14,9 +14,17 @@ class EntryPointViewController: UIViewController {
     var currentIndex: Int = 0
     
     @IBOutlet weak var cardView: CardView!
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.fetchClues()
+        let clue = self.firstClue()
+        clues.append(clue)
+        self.cardView.setClueLabels(clue: self.currentClue())
+        self.addSwipeGestureRecognizers()
+    }
+
+    private func firstClue() -> Clue {
         let clue = Clue(
             answer: "Coney Island Hot Dog",
             question: "A favorite food amongst the Detropians, this dish is named after a neighborhood in NYC.",
@@ -25,32 +33,53 @@ class EntryPointViewController: UIViewController {
             id: 100
         )
         clue.category = Category(title: "Mismatched meals", id: 42)
-        clues.append(clue)
-        self.cardView.setClueLabels(clue: self.currentClue())
-        self.addSwipeGestureRecognizers()
+        return clue
+        
     }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+
+    @IBAction func handlePan(sender: UIPanGestureRecognizer) {
+        let origem =  CGPoint(x: 0, y: 0)
+        let translation : CGPoint = sender.translation(in: self.cardView)
+        
+        let txy : CGAffineTransform = CGAffineTransform(translationX: translation.x, y: -abs(translation.x) / 15)
+        let rot : CGAffineTransform = CGAffineTransform(rotationAngle: -translation.x / 1500)
+        let t : CGAffineTransform = rot.concatenating(txy);
+        self.view.transform = t
+        
+        if (translation.x > 100) {
+            print("translation- 1")
+        } else {
+            print("translation- 2")
+            if (translation.x < -100) {
+                print("translation- 3")
+            } else {
+                print("translation- 4")
+            }
+        }
+
+        if sender.state == UIGestureRecognizerState.ended {
+            if (translation.x > 100) {
+                print("t1")
+            } else {
+                print("t2")
+                if (translation.x < -100) {
+                    print("t3")
+                    
+                } else {
+                    print("t4")
+                    self.cardView.transform = CGAffineTransform(translationX: origem.x, y: origem.y)
+                    self.cardView.transform = CGAffineTransform(rotationAngle: 0)
+                }
+            }
+        }
     }
-    
     
     private func addSwipeGestureRecognizers() -> Void {
-        let leftSwipe = UISwipeGestureRecognizer(
+        let panRecognizer = UIPanGestureRecognizer(
             target: self,
-            action: #selector(EntryPointViewController.handleSwipes(_:))
+            action: #selector(EntryPointViewController.handlePan(sender:))
         )
-        let rightSwipe = UISwipeGestureRecognizer(
-            target: self,
-            action: #selector(EntryPointViewController.handleSwipes(_:))
-        )
-        
-        leftSwipe.direction = .left
-        rightSwipe.direction = .right
-        
-        self.cardView.addGestureRecognizer(leftSwipe)
-        self.cardView.addGestureRecognizer(rightSwipe)
+        self.cardView.addGestureRecognizer(panRecognizer)
     }
 
     func handleSwipes(_ sender:UISwipeGestureRecognizer) -> Void {
