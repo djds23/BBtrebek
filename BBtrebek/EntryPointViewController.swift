@@ -12,11 +12,12 @@ class EntryPointViewController: UIViewController {
 
     var clues: Array<Clue> = []
     var currentIndex: Int = 0
-    
+
     @IBOutlet weak var cardView: CardView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
         self.fetchClues()
         let clue = self.firstClue()
         clues.append(clue)
@@ -38,7 +39,7 @@ class EntryPointViewController: UIViewController {
     }
 
     @IBAction func handlePan(sender: UIPanGestureRecognizer) {
-        let origin =  CGPoint(x: 0, y: 0)
+        
         let translation : CGPoint = sender.translation(in: self.cardView)
         
         let newTranslationXY : CGAffineTransform = CGAffineTransform(translationX: translation.x, y: -abs(translation.x) / 15)
@@ -46,33 +47,38 @@ class EntryPointViewController: UIViewController {
         let newTranslation : CGAffineTransform = newRotation.concatenating(newTranslationXY);
         self.cardView.transform = newTranslation
         
-        if (translation.x > 100) {
-            print("translation- 1")
-        } else {
-            print("translation- 2")
-            if (translation.x < -100) {
-                print("translation- 3")
-            } else {
-                print("translation- 4")
-            }
-        }
-
         if sender.state == UIGestureRecognizerState.ended {
-            if (translation.x > 100) {
+            if (translation.x > 160) {
                 self.swipeRight()
             } else {
                 print("t2")
-                if (translation.x < -100) {
+                if (translation.x < -160) {
                     self.swipeLeft()
                 } else {
-                    print("t4")
-                    self.cardView.transform = CGAffineTransform(translationX: origin.x, y: origin.y)
-                    self.cardView.transform = CGAffineTransform(rotationAngle: 0)
+                    // We go back to the original posiition if pan is not far enough for us to decide a direction
+                    self.centerCardPosition()
                 }
             }
         }
     }
+
+    private func fadeOutCard() -> Void {
+        UIView.animate(withDuration: 0.2, animations: {
+            self.cardView.alpha = 0
+        })
+    }
+
+    private func fadeInCard() -> Void {
+        UIView.animate(withDuration: 0.2, animations: {
+            self.cardView.alpha = 1
+        })
+    }
     
+    private func centerCardPosition() -> Void {
+        self.cardView.transform = CGAffineTransform(translationX: CGFloat(0), y: CGFloat(0))
+        self.cardView.transform = CGAffineTransform(rotationAngle: 0)
+    }
+
     private func addSwipeGestureRecognizers() -> Void {
         let panRecognizer = UIPanGestureRecognizer(
             target: self,
@@ -80,23 +86,14 @@ class EntryPointViewController: UIViewController {
         )
         self.cardView.addGestureRecognizer(panRecognizer)
     }
-
-    func handleSwipes(_ sender:UISwipeGestureRecognizer) -> Void {
-        if (sender.direction == .right) {
-            self.swipeRight()
-        }
-        if (sender.direction == .left) {
-            self.swipeLeft()
-        }
-    }
     
-    func swipeRight() -> Void {
+    private func swipeRight() -> Void {
         if (self.currentIndex <= 0) {
             return
         } else {
             self.currentIndex -= 1
         }
-        self.setClueForCurrentIndex()
+        self.postSwipe()
     }
     
     func swipeLeft() -> Void {
@@ -105,9 +102,16 @@ class EntryPointViewController: UIViewController {
         } else {
             self.currentIndex += 1
         }
-        self.setClueForCurrentIndex()
+        self.postSwipe()
     }
     
+    func postSwipe() -> Void {
+        self.fadeOutCard()
+        self.setClueForCurrentIndex()
+        self.centerCardPosition()
+        self.fadeInCard()
+    }
+
     func setClueForCurrentIndex() -> Void {
         let currentClue = self.currentClue()
         self.cardView.setClueLabels(clue: currentClue)
@@ -134,15 +138,5 @@ class EntryPointViewController: UIViewController {
     func currentClue() -> Clue {
         return self.clues[self.currentIndex]
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
