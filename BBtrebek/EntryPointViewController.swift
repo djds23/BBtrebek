@@ -38,13 +38,13 @@ class EntryPointViewController: UIViewController {
     }
 
     @IBAction func handlePan(sender: UIPanGestureRecognizer) {
-        let origem =  CGPoint(x: 0, y: 0)
+        let origin =  CGPoint(x: 0, y: 0)
         let translation : CGPoint = sender.translation(in: self.cardView)
         
-        let txy : CGAffineTransform = CGAffineTransform(translationX: translation.x, y: -abs(translation.x) / 15)
-        let rot : CGAffineTransform = CGAffineTransform(rotationAngle: -translation.x / 1500)
-        let t : CGAffineTransform = rot.concatenating(txy);
-        self.view.transform = t
+        let newTranslationXY : CGAffineTransform = CGAffineTransform(translationX: translation.x, y: -abs(translation.x) / 15)
+        let newRotation : CGAffineTransform = CGAffineTransform(rotationAngle: -translation.x / 1500)
+        let newTranslation : CGAffineTransform = newRotation.concatenating(newTranslationXY);
+        self.cardView.transform = newTranslation
         
         if (translation.x > 100) {
             print("translation- 1")
@@ -59,15 +59,14 @@ class EntryPointViewController: UIViewController {
 
         if sender.state == UIGestureRecognizerState.ended {
             if (translation.x > 100) {
-                print("t1")
+                self.swipeRight()
             } else {
                 print("t2")
                 if (translation.x < -100) {
-                    print("t3")
-                    
+                    self.swipeLeft()
                 } else {
                     print("t4")
-                    self.cardView.transform = CGAffineTransform(translationX: origem.x, y: origem.y)
+                    self.cardView.transform = CGAffineTransform(translationX: origin.x, y: origin.y)
                     self.cardView.transform = CGAffineTransform(rotationAngle: 0)
                 }
             }
