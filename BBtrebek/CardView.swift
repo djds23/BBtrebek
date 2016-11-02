@@ -27,6 +27,7 @@ public class CardView: UIView {
         super.init(frame: frame)
         Bundle.main.loadNibNamed("CardView", owner: self, options: nil)
         self.addSubview(self.cardView)
+        cardView.frame = self.bounds
     }
     
     required public init?(coder aDecoder: NSCoder) {
@@ -44,17 +45,18 @@ public class CardView: UIView {
         let tap = UITapGestureRecognizer(
             target: self,
             action: #selector(self.handleTap(sender:))
+            
         )
         questionContainer.addGestureRecognizer(tap)
     }
     
     func handleTap(sender: UITapGestureRecognizer) {
         if sender.state == .ended {
-            print("end")
-            self.questionLabel.text = self.clue?.question
-        } else {
-            print("began")
-            self.questionLabel.text = self.clue?.answer
+            if self.questionLabel.text == self.clue?.question {
+                self.questionLabel.text = self.clue?.answer
+            } else {
+               self.questionLabel.text = self.clue?.question
+            }
         }
     }
 }
