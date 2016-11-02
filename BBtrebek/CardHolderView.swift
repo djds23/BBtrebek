@@ -12,11 +12,11 @@ class CardHolderView: UIView {
 
     var clues: Array<Clue> = []
     var currentIndex: Int = 0
-
     
-    @IBOutlet weak var topCardView: CardView!
+    @IBOutlet weak var bottomCardView: CardView!
     @IBOutlet weak var cardView: CardView!
     @IBOutlet var cardHolderView: UIView!
+
     public override init(frame: CGRect){
         super.init(frame: frame)
         Bundle.main.loadNibNamed("CardHolderView", owner: self, options: nil)
@@ -33,19 +33,20 @@ class CardHolderView: UIView {
         self.setUpClues()
     }
     
-    public func setUpClues() -> Void {
-        self.fetchClues()
-        let clue = self.firstClue()
-        clues.append(clue)
+    public func setUpClues(clues: Array<Clue>? = nil) -> Void {
+        if clues != nil {
+            self.clues = clues!
+        } else {
+            let clue = self.firstClue()
+            self.clues.append(clue)
+            self.fetchClues()
+        }
         self.cardView.setClueLabels(clue: self.currentClue())
         self.addSwipeGestureRecognizers()
-        
     }
     
     @IBAction func handlePan(sender: UIPanGestureRecognizer) {
-        
         let translation : CGPoint = sender.translation(in: self.cardView)
-        
         let newTranslationXY : CGAffineTransform = CGAffineTransform(translationX: translation.x, y: -abs(translation.x) / 15)
         let newRotation : CGAffineTransform = CGAffineTransform(rotationAngle: -translation.x / 1500)
         let newTranslation : CGAffineTransform = newRotation.concatenating(newTranslationXY);
@@ -53,10 +54,10 @@ class CardHolderView: UIView {
         
         if sender.state == UIGestureRecognizerState.ended {
             if (translation.x > 160) {
-                self.swipeRight()
+                self.handleSwipe()
             } else {
                 if (translation.x < -160) {
-                    self.swipeLeft()
+                    self.handleSwipe()
                 } else {
                     // We go back to the original posiition if pan is not far enough for us to decide a direction
                     self.centerCardPosition()
@@ -66,15 +67,16 @@ class CardHolderView: UIView {
     }
     
     private func fadeOutCard() -> Void {
-        UIView.animate(withDuration: 0.5, animations: {
+        UIView.animate(withDuration: 2, animations: {
             self.cardView.alpha = 0
         })
     }
     
     private func fadeInCard() -> Void {
-        UIView.animate(withDuration: 0.5, animations: {
-            self.cardView.alpha = 1
-        })
+        self.cardView.alpha = 1
+//        UIView.animate(withDuration: 0.5, animations: {
+//            self.cardView.alpha = 1
+//        })
     }
     
     private func centerCardPosition() -> Void {
@@ -90,44 +92,54 @@ class CardHolderView: UIView {
         self.cardView.addGestureRecognizer(panRecognizer)
     }
     
-    private func swipeRight() -> Void {
-        if (self.currentIndex >= self.clues.count - 1) {
-            self.fetchClues()
-        } else {
-            self.currentIndex += 1
-        }
+    private func handleSwipe() -> Void {
+        self.popClue()
         self.postSwipe()
     }
     
-    func swipeLeft() -> Void {
-        if (self.currentIndex <= 0) {
-            return
-        } else {
-            self.currentIndex -= 1
-        }
-        self.postSwipe()
-    }
-    
-    func postSwipe() -> Void {
+    private func postSwipe() -> Void {
         self.fadeOutCard()
-        self.setClueForCurrentIndex()
+        self.setClueLables()
         self.centerCardPosition()
         self.fadeInCard()
+        
     }
     
-    func setClueForCurrentIndex() -> Void {
+    private func popClue() -> Void {
+        if self.hasMoreClues() {
+            self.currentIndex += 1
+        } else {
+            self.fetchClues()
+        }
+    }
+    
+    private func hasMoreClues() -> Bool {
+        return (self.currentIndex <= self.clues.count - 1)
+    }
+    
+    private func setClueLables() -> Void {
         let currentClue = self.currentClue()
+        let nextClue = self.nextClue()
         self.cardView.setClueLabels(clue: currentClue)
+        self.bottomCardView.setClueLabels(clue: nextClue)
     }
     
     
-    func currentClue() -> Clue {
+    private func currentClue() -> Clue {
         return self.clues[self.currentIndex]
+    }
+    
+    private func nextClue() -> Clue {
+        if self.hasMoreClues() {
+            return self.clues[self.currentIndex + 1]
+        } else {
+            return self.firstClue()
+        }
     }
     
     private func firstClue() -> Clue {
         let clue = Clue(
-            answer: "Coney Island Hot Dog ajdaksjdhakjd ajskhdkjahsdkj lkajsdlakjsd laksjdlkasjd",
+            answer: "Coney Island Hot Dog",
             question: "A favorite food amongst the Detropians, this dish is named after a neighborhood in NYC.",
             value: 400,
             airdate: "2008-03-20T12:00:00.000Z",
@@ -138,12 +150,12 @@ class CardHolderView: UIView {
         
     }
     
-    func fetchClues() -> Void {
+    private func fetchClues() -> Void {
         FetchClueService(count: 500).fetch(
                 success: { (newClues) in
                     // it is possible the server sent duplicates back, make sure to de-dup this list
                     self.clues += newClues
-                    self.setClueForCurrentIndex()
+                    self.setClueLables()
             },
                 failure: { (data, urlResponse, error) in
                     NSLog("Error Fetching Data!")
