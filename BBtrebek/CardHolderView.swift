@@ -9,6 +9,11 @@
 import UIKit
 
 class CardHolderView: UIView {
+    
+    enum Direction {
+        case left
+        case right
+    }
 
     var clues: Array<Clue> = []
     var currentIndex: Int = 0
@@ -54,66 +59,60 @@ class CardHolderView: UIView {
             translationX: translation.x,
             y: -abs(translation.x) / 15
         )
-        print(-translation.x)
         let newRotation = CGAffineTransform(
             rotationAngle: -translation.x / 1500
         )
-        
+
         let newTransform = newRotation.concatenating(newTranslationXY)
         self.cardView.transform = newTransform
-        let newTranslation = sqrt(newTransform.b * newTransform.b + newTransform.d * newTransform.d)
         
         if sender.state == UIGestureRecognizerState.ended {
             if (translation.x > self.pointBreak) {
-                self.animateFlyOff(translation: newTranslation)
-                self.handleSwipe()
+                self.animateFlyOff(from: Direction.right)
             } else {
                 if (translation.x < -self.pointBreak) {
-                    self.animateFlyOff(translation: newTranslation)
-                    self.handleSwipe()
+                    self.animateFlyOff(from: Direction.left)
                 } else {
                     // We go back to the original posiition if pan is not far enough for us to decide a direction
-                    self.centerCardPosition()
+                    UIView.animate(withDuration: 0.15, animations: {
+                        self.centerCardPosition()
+                    })
                 }
             }
         }
     }
-    
-    private func animateFlyOff(translation: CGFloat) -> Void {
-        print("At final animation")
-        UIView.animate(withDuration: 1, animations: {
-            let newTranslationXY = CGAffineTransform(
-                translationX: -320,
-                y: -abs(self.frame.origin.x) / 15
-            )
-            let newRotation = CGAffineTransform(
-                rotationAngle: 320 / 1500
-            )
-            
-            let newTransform = newRotation.concatenating(newTranslationXY)
-            self.cardView.transform = newTransform
-        })
-    }
-    
-    private func fadeInCard() -> Void {
-        self.cardView.alpha = 1
-    }
-    
     private func centerCardPosition() -> Void {
         self.cardView.transform = CGAffineTransform(translationX: CGFloat(0), y: CGFloat(0))
         self.cardView.transform = CGAffineTransform(rotationAngle: 0)
     }
     
-    private func handleSwipe() -> Void {
-        self.popClue()
-        self.postSwipe()
+    private func animateFlyOff(from: Direction) -> Void {
+        let xBound = UIScreen.main.bounds.width * (from == .right ? 1.2 : -1.2)
+        UIView.animate(withDuration: 0.5,
+            animations: {
+            let newTranslationXY = CGAffineTransform(
+                translationX:  xBound,
+                y: 0
+            )
+            let newRotation = CGAffineTransform(
+                rotationAngle: 0
+            )
+            
+            let newTransform = newRotation.concatenating(newTranslationXY)
+            self.cardView.transform = newTransform
+        }, completion: { (finished) in
+            if finished {
+                self.postSwipe()
+            }
+        })
     }
     
     private func postSwipe() -> Void {
+        self.cardView.alpha = 0
+        self.popClue()
         self.setClueLables()
         self.centerCardPosition()
-        self.fadeInCard()
-        
+        self.cardView.alpha = 1
     }
     
     private func popClue() -> Void {
@@ -164,9 +163,8 @@ class CardHolderView: UIView {
             airdate: "2008-03-20T12:00:00.000Z",
             id: 100
         )
-        clue.category = Category(title: "Coney Island Hot Dog ajdaksjdhakjd ajskhdkjahsdkj lkajsdlakjsd laksjdlkasjd", id: 42)
+        clue.category = Category(title: "Mismatched Meals", id: 42)
         return clue
-        
     }
     
     private func fetchClues() -> Void {
@@ -181,13 +179,4 @@ class CardHolderView: UIView {
             }
         )
     }
-    
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
-    }
-    */
-
 }
