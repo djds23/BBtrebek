@@ -13,6 +13,9 @@ class CardHolderView: UIView {
     var clues: Array<Clue> = []
     var currentIndex: Int = 0
     
+    // CGFloat where we decide enimation starts
+    let pointBreak = 120.0 as CGFloat
+    
     @IBOutlet weak var bottomCardView: CardView!
     @IBOutlet weak var cardView: CardView!
     @IBOutlet var cardHolderView: UIView!
@@ -46,17 +49,27 @@ class CardHolderView: UIView {
     }
     
     @IBAction func handlePan(sender: UIPanGestureRecognizer) {
-        let translation : CGPoint = sender.translation(in: self.cardView)
-        let newTranslationXY : CGAffineTransform = CGAffineTransform(translationX: translation.x, y: -abs(translation.x) / 15)
-        let newRotation : CGAffineTransform = CGAffineTransform(rotationAngle: -translation.x / 1500)
-        let newTranslation : CGAffineTransform = newRotation.concatenating(newTranslationXY);
-        self.cardView.transform = newTranslation
+        let translation = sender.translation(in: self.cardView)
+        let newTranslationXY = CGAffineTransform(
+            translationX: translation.x,
+            y: -abs(translation.x) / 15
+        )
+        print(-translation.x)
+        let newRotation = CGAffineTransform(
+            rotationAngle: -translation.x / 1500
+        )
+        
+        let newTransform = newRotation.concatenating(newTranslationXY)
+        self.cardView.transform = newTransform
+        let newTranslation = sqrt(newTransform.b * newTransform.b + newTransform.d * newTransform.d)
         
         if sender.state == UIGestureRecognizerState.ended {
-            if (translation.x > 160) {
+            if (translation.x > self.pointBreak) {
+                self.animateFlyOff(translation: newTranslation)
                 self.handleSwipe()
             } else {
-                if (translation.x < -160) {
+                if (translation.x < -self.pointBreak) {
+                    self.animateFlyOff(translation: newTranslation)
                     self.handleSwipe()
                 } else {
                     // We go back to the original posiition if pan is not far enough for us to decide a direction
@@ -66,30 +79,29 @@ class CardHolderView: UIView {
         }
     }
     
-    private func fadeOutCard() -> Void {
-        UIView.animate(withDuration: 2, animations: {
-            self.cardView.alpha = 0
+    private func animateFlyOff(translation: CGFloat) -> Void {
+        print("At final animation")
+        UIView.animate(withDuration: 1, animations: {
+            let newTranslationXY = CGAffineTransform(
+                translationX: -320,
+                y: -abs(self.frame.origin.x) / 15
+            )
+            let newRotation = CGAffineTransform(
+                rotationAngle: 320 / 1500
+            )
+            
+            let newTransform = newRotation.concatenating(newTranslationXY)
+            self.cardView.transform = newTransform
         })
     }
     
     private func fadeInCard() -> Void {
         self.cardView.alpha = 1
-//        UIView.animate(withDuration: 0.5, animations: {
-//            self.cardView.alpha = 1
-//        })
     }
     
     private func centerCardPosition() -> Void {
         self.cardView.transform = CGAffineTransform(translationX: CGFloat(0), y: CGFloat(0))
         self.cardView.transform = CGAffineTransform(rotationAngle: 0)
-    }
-    
-    private func addSwipeGestureRecognizers() -> Void {
-        let panRecognizer = UIPanGestureRecognizer(
-            target: self,
-            action: #selector(CardHolderView.handlePan(sender:))
-        )
-        self.cardView.addGestureRecognizer(panRecognizer)
     }
     
     private func handleSwipe() -> Void {
@@ -98,7 +110,6 @@ class CardHolderView: UIView {
     }
     
     private func postSwipe() -> Void {
-        self.fadeOutCard()
         self.setClueLables()
         self.centerCardPosition()
         self.fadeInCard()
@@ -135,6 +146,14 @@ class CardHolderView: UIView {
         } else {
             return self.firstClue()
         }
+    }
+    
+    private func addSwipeGestureRecognizers() -> Void {
+        let panRecognizer = UIPanGestureRecognizer(
+            target: self,
+            action: #selector(CardHolderView.handlePan(sender:))
+        )
+        self.cardView.addGestureRecognizer(panRecognizer)
     }
     
     private func firstClue() -> Clue {

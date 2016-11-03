@@ -22,14 +22,12 @@
             <subviews>
                 <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FHw-VF-oHf" userLabel="Card View - 2" customClass="CardView" customModule="BBtrebek" customModuleProvider="target">
                     <rect key="frame" x="16" y="20" width="343" height="627"/>
-                    <color key="backgroundColor" red="0.43155390700000001" green="0.29475921929999999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6xT-3t-FF3" userLabel="Card View - 1" customClass="CardView" customModule="BBtrebek" customModuleProvider="target">
                     <rect key="frame" x="16" y="20" width="343" height="627"/>
-                    <color key="backgroundColor" red="0.43155390700000001" green="0.29475921929999999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                 </view>
             </subviews>
-            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="FHw-VF-oHf" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="20" id="L4b-Wz-1br"/>
                 <constraint firstAttribute="bottom" secondItem="FHw-VF-oHf" secondAttribute="bottom" constant="20" id="SpV-ek-dSE"/>
