@@ -12,7 +12,7 @@ class FetchClueService: NSObject {
     let client: APIClient
     
     public init (count: Int) {
-        self.client = APIClient(url:"http://jservice.io/api/random?count=\(count)")
+        self.client = APIClient(url:"http://45.79.139.101:3001/api/random?count=\(count)")
     }
     
     func dataToClue(rawClues: NSArray) -> Array<Clue> {
