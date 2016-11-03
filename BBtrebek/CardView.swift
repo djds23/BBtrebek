@@ -42,6 +42,7 @@ public class CardView: UIView {
         self.valueLabel.text = String(clue.value)
         self.categoryLabel.text = clue.categoryTitle()
         self.questionLabel.text = clue.question
+        self.questionLabel.textColor = BBColor.white
         let tap = UITapGestureRecognizer(
             target: self,
             action: #selector(self.handleTap(sender:))
@@ -56,7 +57,7 @@ public class CardView: UIView {
                 self.questionLabel.text = self.clue?.answer
                 self.questionLabel.textColor = BBColor.valueGold
             } else {
-               self.questionLabel.text = self.clue?.question
+                self.questionLabel.text = self.clue?.question
                 self.questionLabel.textColor = BBColor.white
             }
         }

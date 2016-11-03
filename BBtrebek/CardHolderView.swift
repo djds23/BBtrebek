@@ -88,11 +88,11 @@ class CardHolderView: UIView {
     
     private func animateFlyOff(from: Direction) -> Void {
         let xBound = UIScreen.main.bounds.width * (from == .right ? 1.2 : -1.2)
-        UIView.animate(withDuration: 0.5,
+        UIView.animate(withDuration: 0.30,
             animations: {
             let newTranslationXY = CGAffineTransform(
                 translationX:  xBound,
-                y: 0
+                y: xBound / 15
             )
             let newRotation = CGAffineTransform(
                 rotationAngle: 0
