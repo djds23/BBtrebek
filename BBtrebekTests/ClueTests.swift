@@ -77,7 +77,7 @@ class ClueTests: XCTestCase {
         let dict: NSDictionary = [
             "answer": "Dean",
             "question": "Who made this app",
-            "value": nil as Int?,
+            "value": nil as Int? as Any,
             "airdate": "a datetime string",
             "category": category,
             "id": 1
