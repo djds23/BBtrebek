@@ -38,6 +38,13 @@ class BBtrebekTests: XCTestCase {
     func testStringBlankExtension() {
         XCTAssertTrue("      ".blank(), "Pass") // spaces
         XCTAssertTrue(" ".blank(), "Pass") // tab
+        XCTAssertFalse("This Is Not Blank!".blank(), "Pass")
+    }
+    
+    func testStringTitleize() {
+        let lowerCase = "this is a normal string"
+        let titleCase = "This Is A Normal String"
+        XCTAssertEqual(lowerCase.titleize(), titleCase)
     }
 
     func testPerformanceExample() {

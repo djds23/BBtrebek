@@ -13,6 +13,12 @@ extension String {
         return self.trimmingCharacters(in: CharacterSet.whitespaces)
     }
     
+    func titleize() -> String {
+        return self.components(separatedBy: " ").map{ word in
+            word.capitalized
+        }.joined(separator: " ")
+    }
+    
     func stripHTMLTags() -> String {
         return self.replacingOccurrences( of: "<[^>]+>",
             with: "",

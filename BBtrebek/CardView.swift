@@ -40,7 +40,7 @@ public class CardView: UIView {
     public func setClueLabels(clue: Clue) -> Void {
         self.clue = clue
         self.valueLabel.text = String(clue.value)
-        self.categoryLabel.text = clue.categoryTitle()
+        self.categoryLabel.text = clue.categoryTitle().titleize()
         self.questionLabel.text = clue.question
         self.questionLabel.textColor = BBColor.white
         let tap = UITapGestureRecognizer(
