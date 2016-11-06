@@ -1,2 +1,2 @@
-#Swipable flash cards
+#Swipe-able flash cards
 
