@@ -13,4 +13,8 @@ extension Array {
         let randomIndex = Int(arc4random()) % count
         return self[randomIndex]
     }
+    
+    func indexExists(_ index: Int) -> Bool {
+        return self.indices.contains(index)
+    }
 }

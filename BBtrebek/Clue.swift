@@ -30,6 +30,34 @@ open class Clue: NSObject {
         return self.category!.title
     }
 
+    public func isLoadingClue() -> Bool {
+        return self.id == -1
+    }
+
+    public static func firstClue() -> Clue {
+        let clue = Clue(
+            answer: "Coney Island Hot Dog",
+            question: "A favorite food amongst the Detropians, this dish is named after a neighborhood in NYC.",
+            value: 400,
+            airdate: "2008-03-20T12:00:00.000Z",
+            id: 100
+        )
+        clue.category = Category(title: "Mismatched Meals", id: 42)
+        return clue
+    }
+    
+    public static func nowLoadingClue() -> Clue {
+        let clue = Clue(
+            answer: "Please swipe again, we will fetch questions when data becomes available.",
+            question: "When the network becomes available, I will try and find more questions.",
+            value: 400,
+            airdate: "2008-03-20T12:00:00.000Z",
+            id: -1
+        )
+        clue.category = Category(title: "Now Loading", id: 42)
+        return clue
+    }
+
     static func initWithNSDictionary(_ dict: NSDictionary) -> Clue? {
         let clue = initWithoutCategory(dict)
         if clue != nil {

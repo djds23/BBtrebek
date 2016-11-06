@@ -15,8 +15,7 @@ class CardHolderView: UIView {
         case right
     }
 
-    var clues: Array<Clue> = []
-    var currentIndex: Int = 0
+    var clueGroup = ClueGroup()
     
     // CGFloat where we decide enimation starts
     let pointBreak = 120.0 as CGFloat
@@ -41,15 +40,13 @@ class CardHolderView: UIView {
         self.setUpClues()
     }
     
-    public func setUpClues(clues: Array<Clue>? = nil) -> Void {
-        if clues != nil {
-            self.clues = clues!
+    public func setUpClues(clueGroup: ClueGroup? = nil) -> Void {
+        if clueGroup != nil {
+            self.clueGroup = clueGroup!
         } else {
-            let clue = self.firstClue()
-            self.clues.append(clue)
             self.fetchClues()
         }
-        self.cardView.setClueLabels(clue: self.currentClue())
+        self.setCardViewLables()
         self.addSwipeGestureRecognizers()
     }
     
@@ -109,42 +106,19 @@ class CardHolderView: UIView {
     
     private func postSwipe() -> Void {
         self.cardView.alpha = 0
-        self.popClue()
-        self.setClueLables()
+        self.clueGroup.next()
+        self.setCardViewLables()
         self.centerCardPosition()
         self.cardView.alpha = 1
-    }
-    
-    private func popClue() -> Void {
-        if self.hasMoreClues() {
-            self.currentIndex += 1
-        } else {
+        
+        if self.clueGroup.failedToFetch() {
             self.fetchClues()
         }
     }
     
-    private func hasMoreClues() -> Bool {
-        return (self.currentIndex <= self.clues.count - 1)
-    }
-    
-    private func setClueLables() -> Void {
-        let currentClue = self.currentClue()
-        let nextClue = self.nextClue()
-        self.cardView.setClueLabels(clue: currentClue)
-        self.bottomCardView.setClueLabels(clue: nextClue)
-    }
-    
-    
-    private func currentClue() -> Clue {
-        return self.clues[self.currentIndex]
-    }
-    
-    public func nextClue() -> Clue {
-        if self.hasMoreClues() {
-            return self.clues[self.currentIndex + 1]
-        } else {
-            return self.firstClue()
-        }
+    private func setCardViewLables() -> Void {
+        self.cardView.setClueLabels(clue: self.clueGroup.current())
+        self.bottomCardView.setClueLabels(clue: self.clueGroup.onDeck())
     }
 
     private func addSwipeGestureRecognizers() -> Void {
@@ -155,27 +129,14 @@ class CardHolderView: UIView {
         self.cardView.addGestureRecognizer(panRecognizer)
     }
     
-    private func firstClue() -> Clue {
-        let clue = Clue(
-            answer: "Coney Island Hot Dog",
-            question: "A favorite food amongst the Detropians, this dish is named after a neighborhood in NYC.",
-            value: 400,
-            airdate: "2008-03-20T12:00:00.000Z",
-            id: 100
-        )
-        clue.category = Category(title: "Mismatched Meals", id: 42)
-        return clue
-    }
-    
     private func fetchClues() -> Void {
-        FetchClueService(count: 500).fetch(
-                success: { (newClues) in
-                    // it is possible the server sent duplicates back, make sure to de-dup this list
-                    self.clues += newClues
-                    self.setClueLables()
+        self.clueGroup.fetch(
+            success: { (clueGroup) in
+                self.clueGroup = clueGroup
+                self.setCardViewLables()
             },
-                failure: { (data, urlResponse, error) in
-                    NSLog("Error Fetching Data!")
+            failure: { (data, urlResponse, error) in
+                NSLog("Error Fetching Data!")
             }
         )
     }
