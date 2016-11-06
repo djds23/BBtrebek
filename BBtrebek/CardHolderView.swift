@@ -108,7 +108,6 @@ class CardHolderView: UIView {
         }, completion: { (finished) in
             if finished {
                 self.postSwipe()
-
             }
         })
     }
@@ -126,7 +125,7 @@ class CardHolderView: UIView {
                     self.centerCardPosition()
             }, completion: { (finished) in
                 if finished {
-                    
+                    // Pass for now
                 }
         })
     }
