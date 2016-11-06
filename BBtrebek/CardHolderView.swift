@@ -139,14 +139,14 @@ class CardHolderView: UIView {
         return self.clues[self.currentIndex]
     }
     
-    private func nextClue() -> Clue {
+    public func nextClue() -> Clue {
         if self.hasMoreClues() {
             return self.clues[self.currentIndex + 1]
         } else {
             return self.firstClue()
         }
     }
-    
+
     private func addSwipeGestureRecognizers() -> Void {
         let panRecognizer = UIPanGestureRecognizer(
             target: self,
