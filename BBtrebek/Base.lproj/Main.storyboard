@@ -34,6 +34,9 @@
                             <constraint firstItem="cJd-hC-CIl" firstAttribute="top" secondItem="P6W-3g-0CO" secondAttribute="bottom" constant="8" symbolic="YES" id="khW-iO-vVJ"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="cardHolderView" destination="cJd-hC-CIl" id="PJH-l4-KqF"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nAb-7B-F1x" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

@@ -39,7 +39,7 @@ public class CardView: UIView {
 
     public func setClueLabels(clue: Clue) -> Void {
         self.clue = clue
-        self.valueLabel.text = String(clue.value)
+        self.valueLabel.text = self.valueText()
         self.categoryLabel.text = clue.categoryTitle().titleize()
         self.questionLabel.text = clue.question
         self.questionLabel.textColor = BBColor.white
@@ -49,6 +49,14 @@ public class CardView: UIView {
             
         )
         questionContainer.addGestureRecognizer(tap)
+    }
+    
+    public func whileHidden(perform: @escaping ((Void) -> Void)) -> Void{
+        if self.alpha != 0 {
+            self.alpha = 0
+        }
+        perform()
+        self.alpha = 1
     }
     
     func handleTap(sender: UITapGestureRecognizer) {
@@ -61,5 +69,13 @@ public class CardView: UIView {
                 self.questionLabel.textColor = BBColor.white
             }
         }
+    }
+    
+    func valueText() -> String {
+        var text: String = ""
+        if self.clue?.value != nil {
+            text = String(describing: self.clue!.value!)
+        }
+        return text
     }
 }

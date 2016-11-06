@@ -33,11 +33,13 @@ open class ClueGroup: NSObject {
     }
     
     public func next() -> Void {
-        return self.currentIndex += 1
+        self.currentIndex += 1
     }
     
     public func prev() -> Void {
-        return self.currentIndex -= 1
+        if self.currentIndex > 0 {
+            self.currentIndex -= 1
+        }
     }
     
     public func failedToFetch() -> Bool {

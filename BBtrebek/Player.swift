@@ -19,7 +19,11 @@ open class Player: NSObject {
 
     open func score() -> Int {
         let values = self.answeredClues.map {(clue: Clue) -> Int in
-            return clue.value
+            var value = 0
+            if clue.value != nil {
+                value = clue.value!
+            }
+            return value
         }
         return values.reduce(0, +)
     }

@@ -50,6 +50,11 @@ class CardHolderView: UIView {
         self.addSwipeGestureRecognizers()
     }
     
+    public func prevClue() -> Void {
+        self.clueGroup.prev()
+        self.animateFlyBack()
+    }
+    
     @IBAction func handlePan(sender: UIPanGestureRecognizer) {
         let translation = sender.translation(in: self.cardView)
         let newTranslationXY = CGAffineTransform(
@@ -78,13 +83,16 @@ class CardHolderView: UIView {
             }
         }
     }
+
     private func centerCardPosition() -> Void {
-        self.cardView.transform = CGAffineTransform(translationX: CGFloat(0), y: CGFloat(0))
-        self.cardView.transform = CGAffineTransform(rotationAngle: 0)
+        let newTranslationXY = CGAffineTransform(translationX: CGFloat(0), y: CGFloat(0))
+        let newRotation = CGAffineTransform(rotationAngle: 0)
+        let newTransform = newRotation.concatenating(newTranslationXY)
+        self.cardView.transform = newTransform
     }
     
     private func animateFlyOff(from: Direction) -> Void {
-        let xBound = UIScreen.main.bounds.width * (from == .right ? 1.2 : -1.2)
+        let xBound = UIScreen.main.bounds.width * (from == .right ? 1 : -1)
         UIView.animate(withDuration: 0.30,
             animations: {
             let newTranslationXY = CGAffineTransform(
@@ -104,12 +112,30 @@ class CardHolderView: UIView {
         })
     }
     
+    private func animateFlyBack() -> Void {
+        let xBound = UIScreen.main.bounds.width * 2
+        self.cardView.whileHidden {
+            self.cardView.transform = CGAffineTransform(translationX: xBound, y: CGFloat(0))
+            self.cardView.transform = CGAffineTransform(rotationAngle: 0)
+            self.setCardViewLables()
+        }
+        
+        UIView.animate(withDuration: 0.30,
+               animations: {
+                    self.centerCardPosition()
+            }, completion: { (finished) in
+                if finished {
+                    // Pass for now
+                }
+        })
+    }
+    
     private func postSwipe() -> Void {
-        self.cardView.alpha = 0
-        self.clueGroup.next()
-        self.setCardViewLables()
-        self.centerCardPosition()
-        self.cardView.alpha = 1
+        self.cardView.whileHidden {
+            self.clueGroup.next()
+            self.setCardViewLables()
+            self.centerCardPosition()
+        }
         
         if self.clueGroup.failedToFetch() {
             self.fetchClues()
