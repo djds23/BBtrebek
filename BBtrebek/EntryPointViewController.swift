@@ -10,7 +10,19 @@ import UIKit
 
 class EntryPointViewController: UIViewController {
 
+    @IBOutlet weak var cardHolderView: CardHolderView!
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    
+    
+    override func becomeFirstResponder() -> Bool {
+        return true
+    }
+
+    override func motionEnded(_ motion: UIEventSubtype, with event: UIEvent?) {
+        if motion == .motionShake {
+            self.cardHolderView.prevClue()
+        }
     }
 }

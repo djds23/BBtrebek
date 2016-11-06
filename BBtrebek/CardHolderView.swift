@@ -50,6 +50,11 @@ class CardHolderView: UIView {
         self.addSwipeGestureRecognizers()
     }
     
+    public func prevClue() -> Void {
+        self.clueGroup.prev()
+        self.animateFlyBack()
+    }
+    
     @IBAction func handlePan(sender: UIPanGestureRecognizer) {
         let translation = sender.translation(in: self.cardView)
         let newTranslationXY = CGAffineTransform(
@@ -78,6 +83,7 @@ class CardHolderView: UIView {
             }
         }
     }
+
     private func centerCardPosition() -> Void {
         self.cardView.transform = CGAffineTransform(translationX: CGFloat(0), y: CGFloat(0))
         self.cardView.transform = CGAffineTransform(rotationAngle: 0)
@@ -97,6 +103,27 @@ class CardHolderView: UIView {
             
             let newTransform = newRotation.concatenating(newTranslationXY)
             self.cardView.transform = newTransform
+        }, completion: { (finished) in
+            if finished {
+                // pass
+            }
+        })
+    }
+    
+    private func animateFlyBack() -> Void {
+        let xBound = UIScreen.main.bounds.width * 1.2
+        UIView.animate(withDuration: 0.30,
+                       animations: {
+                        let newTranslationXY = CGAffineTransform(
+                            translationX:  0,
+                            y: xBound / 15
+                        )
+                        let newRotation = CGAffineTransform(
+                            rotationAngle: 0
+                        )
+                        
+                        let newTransform = newRotation.concatenating(newTranslationXY)
+                        self.cardView.transform = newTransform
         }, completion: { (finished) in
             if finished {
                 self.postSwipe()
