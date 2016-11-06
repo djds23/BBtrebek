@@ -12,13 +12,13 @@ open class Clue: NSObject {
 
     open var answer: String
     open var question: String
-    open var value: Int
+    open var value: Int?
     open var airdate: String
     open var category: Category?
     open var answered: Bool = false
     open var id: Int
 
-    public init(answer: String, question: String, value: Int, airdate: String, id: Int) {
+    public init(answer: String, question: String, value: Int?, airdate: String, id: Int) {
         self.answer = answer.stripHTMLTags()
         self.question = question.stripHTMLTags()
         self.value = value
