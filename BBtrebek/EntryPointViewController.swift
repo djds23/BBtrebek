@@ -13,11 +13,22 @@ class EntryPointViewController: UIViewController {
     @IBOutlet weak var cardHolderView: CardHolderView!
     override func viewDidLoad() {
         super.viewDidLoad()
+        NotificationCenter.default.addObserver(self, selector:#selector(EntryPointViewController.handleWake), name:
+            NSNotification.Name.UIApplicationWillEnterForeground, object: nil)
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        self.shakeCard()
+    }
+    
+    public func handleWake() -> Void {
+        self.shakeCard()
+    }
+    
+    public func shakeCard() -> Void {
         self.cardHolderView.shakeCard()
     }
+    
     override func becomeFirstResponder() -> Bool {
         return true
     }
