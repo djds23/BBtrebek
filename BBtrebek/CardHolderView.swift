@@ -24,7 +24,26 @@ class CardHolderView: UIView {
     @IBOutlet weak var cardView: CardView!
     @IBOutlet var cardHolderView: UIView!
 
-    public override init(frame: CGRect){
+
+    public func shakeCard() -> Void {
+        let offset = CGFloat(40)
+        UIView.animate(withDuration: 0.30, animations: {
+            self.shake(view: self.cardView, direction: .left, offset: offset)
+            
+        }, completion: { (finished) in
+            if finished {
+                UIView.animate(withDuration: 0.30, animations: {
+                    self.shake(view: self.cardView, direction: .right, offset: offset)
+                }, completion: { (finished) in
+                    UIView.animate(withDuration: 0.30, animations: {
+                        self.centerCardPosition()
+                    })
+                })
+            }
+        })
+    }
+    
+    public override init(frame: CGRect) {
         super.init(frame: frame)
         Bundle.main.loadNibNamed("CardHolderView", owner: self, options: nil)
         self.addSubview(self.cardHolderView)
@@ -142,6 +161,20 @@ class CardHolderView: UIView {
         }
     }
     
+    private func shake(view: UIView, direction: Direction, offset: CGFloat) -> Void {
+        let offsetInDirection = abs(offset) * (direction == .right ? 1 : -1)
+        let newTranslationXY = CGAffineTransform(
+            translationX: offsetInDirection,
+            y: -abs(offset) / 15
+        )
+        let newRotation = CGAffineTransform(
+            rotationAngle: -offsetInDirection / 1500
+        )
+        
+        let newTransform = newRotation.concatenating(newTranslationXY)
+        view.transform = newTransform
+    }
+
     private func setCardViewLables() -> Void {
         self.cardView.setClueLabels(clue: self.clueGroup.current())
         self.bottomCardView.setClueLabels(clue: self.clueGroup.onDeck())
