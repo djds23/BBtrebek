@@ -13,9 +13,9 @@ class FetchCategoryService: NSObject {
     let category: Category
     let client: APIClient
 
-    public init (category: Category, count: Int, offset: Int) {
+    public init (category: Category, count: Int, offset: Int = 0) {
         self.category = category
-        let url =  "http://jservice.io/api/category?id=\(self.category.id)&count=\(count)&offset=\(offset)"
+        let url =  "https://triviacards.xyz/api/category?id=\(self.category.id)&count=\(count)&offset=\(offset)"
         self.client = APIClient(url: url)
     }
 
@@ -60,8 +60,8 @@ class FetchCategoryService: NSObject {
     }
     
     private func removeNullClues(newClues: Array<Clue?>) -> Array<Clue> {
-        return newClues.filter {
-            nullableClues in nullableClues != nil
+        return newClues.filter { nullableClues in
+            nullableClues != nil
         }.map { clue in
             clue!
         }

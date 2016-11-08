@@ -16,7 +16,7 @@ class DisableClueService: NSObject {
     
     public init (clue: Clue) {
         self.clue = clue
-        self.client = APIClient(url:"http://jservice.io/api/invalid?id=\(clue.id)")
+        self.client = APIClient(url:"https://triviacards.xyz/api/invalid?id=\(clue.id)")
     }
     
     public func disable(success: @escaping (Clue) -> Void, failure: @escaping (Data?, URLResponse?, Error? ) -> Void) -> Void {

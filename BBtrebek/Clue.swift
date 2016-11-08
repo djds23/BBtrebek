@@ -13,16 +13,14 @@ open class Clue: NSObject {
     open var answer: String
     open var question: String
     open var value: Int?
-    open var airdate: String
     open var category: Category?
     open var answered: Bool = false
     open var id: Int
 
-    public init(answer: String, question: String, value: Int?, airdate: String, id: Int) {
+    public init(answer: String, question: String, value: Int?, id: Int) {
         self.answer = answer.stripHTMLTags()
         self.question = question.stripHTMLTags()
         self.value = value
-        self.airdate = airdate
         self.id = id
     }
     
@@ -38,8 +36,7 @@ open class Clue: NSObject {
         let clue = Clue(
             answer: "Coney Island Hot Dog",
             question: "A favorite food amongst the Detropians, this dish is named after a neighborhood in NYC.",
-            value: 400,
-            airdate: "2008-03-20T12:00:00.000Z",
+            value: nil as Int?,
             id: 100
         )
         clue.category = Category(title: "Mismatched Meals", id: 42)
@@ -50,8 +47,7 @@ open class Clue: NSObject {
         let clue = Clue(
             answer: "Please swipe again, we will fetch questions when data becomes available.",
             question: "When the network becomes available, I will try and find more questions.",
-            value: 400,
-            airdate: "2008-03-20T12:00:00.000Z",
+            value: nil as Int?,
             id: -1
         )
         clue.category = Category(title: "Now Loading", id: 42)
@@ -70,30 +66,19 @@ open class Clue: NSObject {
     }
     
     static func initWithoutCategory(_ dict: NSDictionary) -> Clue? {
-        let value = ensureValue(potentialValue: dict["value"] as? Int)
         if let answer = dict["answer"] as? String,
             let question = dict["question"] as? String,
-            let airdate = dict["airdate"] as? String,
             let id = dict["id"] as? Int {
             
             let clueObj = Clue(
                 answer: answer,
                 question: question,
-                value: value,
-                airdate: airdate,
+                value: nil as Int?,
                 id: id
             )
             return clueObj;
         } else {
             return nil;
-        }
-    }
-    
-    private static func ensureValue(potentialValue: Int?) -> Int {
-        if potentialValue != nil {
-            return potentialValue!
-        } else {
-            return [400, 300, 500, 800, 1000, 100, 200, 600].sample()
         }
     }
 }

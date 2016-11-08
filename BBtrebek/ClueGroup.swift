@@ -27,7 +27,7 @@ open class ClueGroup: NSObject {
         if self.clues.indexExists(self.currentIndex + 1) {
             clue = self.clues[self.currentIndex + 1]
         } else {
-            clue = self.clues.first!
+            clue =  Clue.nowLoadingClue()
         }
         return clue
     }
@@ -48,7 +48,14 @@ open class ClueGroup: NSObject {
 
     public func fetch(count: Int = 500, category: Category? = nil, success: @escaping ((ClueGroup) -> Void), failure: @escaping (Data?, URLResponse?, Error?) -> Void) -> Void {
         if category != nil{
-            // handle category specific logic
+            let client = FetchCategoryService(category: category!, count: count)
+            client.fetch(success: { (newCategory) in
+                self.clues += newCategory.clues
+                success(self)
+            }, failure: { (data, urlResponse, error) in
+                self.clues = [Clue.nowLoadingClue()]
+                failure(data, urlResponse, error)
+            })
         } else {
             let client = FetchClueService(count: count)
             client.fetch(success: { (newClues) in
@@ -60,6 +67,4 @@ open class ClueGroup: NSObject {
             })
         }
     }
-    
-
 }

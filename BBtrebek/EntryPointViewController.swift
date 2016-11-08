@@ -15,7 +15,6 @@ class EntryPointViewController: UIViewController {
         super.viewDidLoad()
     }
     
-    
     override func becomeFirstResponder() -> Bool {
         return true
     }

@@ -25,7 +25,6 @@ class ClueTests: XCTestCase {
             answer: "Dean",
             question: "Who made this app",
             value: 100,
-            airdate: "a datetime string",
             id: 1
         )
         initializedClue.category = Category(title:"people who are learning iOS", id: 100)
@@ -57,7 +56,6 @@ class ClueTests: XCTestCase {
             answer: "<p>Dean</p>",
             question: "Who <em>made</em> this app",
             value: 100,
-            airdate: "a datetime string",
             id: 2
         )
         
