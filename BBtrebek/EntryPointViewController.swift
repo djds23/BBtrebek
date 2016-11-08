@@ -13,9 +13,11 @@ class EntryPointViewController: UIViewController {
     @IBOutlet weak var cardHolderView: CardHolderView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.cardHolderView.shakeCard()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        self.cardHolderView.shakeCard()
+    }
     override func becomeFirstResponder() -> Bool {
         return true
     }
