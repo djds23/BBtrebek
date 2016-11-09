@@ -93,12 +93,29 @@ class CardHolderView: UIView {
                     self.animateFlyOff(from: Direction.left)
                 } else {
                     // We go back to the original posiition if pan is not far enough for us to decide a direction
-                    UIView.animate(withDuration: 0.15, animations: {
-                        self.centerCardPosition()
-                    })
+                    if 16 < abs(Int(translation.x)) {
+                        self.shakeBack(offset: translation.x, duration: 0.20)
+                    } else {
+                        self.moveBack(duration: 0.20)
+                    }
                 }
             }
         }
+    }
+
+    private func shakeBack(offset: CGFloat, duration: TimeInterval) -> Void {
+        let direction = offset > 0 ? Direction.left : Direction.right
+        UIView.animate(withDuration: duration, animations: {
+            self.shake(view: self.cardView, direction: direction, offset: offset / 2)
+        }, completion: { finished in
+            self.moveBack(duration: 0.18)
+        })
+    }
+
+    private func moveBack(duration: TimeInterval) -> Void {
+        UIView.animate(withDuration: duration, animations: {
+            self.centerCardPosition()
+        })
     }
 
     private func centerCardPosition() -> Void {

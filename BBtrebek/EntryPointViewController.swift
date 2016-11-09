@@ -26,7 +26,8 @@ class EntryPointViewController: UIViewController {
     }
     
     public func shakeCard() -> Void {
-        self.cardHolderView.shakeCard()
+        print("Should Shake now")
+//        self.cardHolderView.shakeCard()
     }
     
     override func becomeFirstResponder() -> Bool {
