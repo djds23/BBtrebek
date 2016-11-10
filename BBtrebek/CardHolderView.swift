@@ -105,15 +105,15 @@ class CardHolderView: UIView {
 
     private func shakeBack(offset: CGFloat, duration: TimeInterval) -> Void {
         let direction = offset > 0 ? Direction.left : Direction.right
-        UIView.animate(withDuration: duration, animations: {
-            self.shake(view: self.cardView, direction: direction, offset: offset / 2)
+        UIView.animate(withDuration: duration, delay: 0.0, options: UIViewAnimationOptions.allowUserInteraction, animations: {
+            self.shake(view: self.cardView, direction: direction, offset: offset / 3.23606798)
         }, completion: { finished in
             self.moveBack(duration: 0.18)
         })
     }
 
     private func moveBack(duration: TimeInterval) -> Void {
-        UIView.animate(withDuration: duration, animations: {
+        UIView.animate(withDuration: duration, delay: 0.0, options: UIViewAnimationOptions.allowUserInteraction, animations: {
             self.centerCardPosition()
         })
     }
