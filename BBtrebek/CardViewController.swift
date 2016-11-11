@@ -8,27 +8,27 @@
 
 import UIKit
 
-class EntryPointViewController: UIViewController {
+public class CardViewController: UIViewController {
 
     @IBOutlet weak var cardHolderView: CardHolderView!
-    override func viewDidLoad() {
+    override public func viewDidLoad() {
         super.viewDidLoad()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
+    override public func viewDidAppear(_ animated: Bool) {
         self.view.layoutIfNeeded()
-        self.perform(#selector(EntryPointViewController.delayedAppear), with: self, afterDelay: 0.8)
+        self.perform(#selector(CardViewController.delayedAppear), with: self, afterDelay: 0.8)
     }
     
     public func delayedAppear(sender: Any?) -> Void {
         self.cardHolderView.shakeCard()
     }
     
-    override func becomeFirstResponder() -> Bool {
+    override public func becomeFirstResponder() -> Bool {
         return true
     }
 
-    override func motionEnded(_ motion: UIEventSubtype, with event: UIEvent?) {
+    override public func motionEnded(_ motion: UIEventSubtype, with event: UIEvent?) {
         if motion == .motionShake {
             self.cardHolderView.prevClue()
         }

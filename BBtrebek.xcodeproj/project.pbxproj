@@ -13,6 +13,8 @@
 		7B05B5AA1DCAA0C6003D8A51 /* CardHolderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7B05B5A81DCAA0C6003D8A51 /* CardHolderView.xib */; };
 		7B05B5AC1DCAA762003D8A51 /* BBColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B05B5AB1DCAA762003D8A51 /* BBColor.swift */; };
 		7B05B5AD1DCAA762003D8A51 /* BBColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B05B5AB1DCAA762003D8A51 /* BBColor.swift */; };
+		7B10E8FF1DD55A99005E262F /* NavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B10E8FD1DD55A99005E262F /* NavigationViewController.swift */; };
+		7B10E9031DD5603A005E262F /* CategoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B10E9011DD5603A005E262F /* CategoriesViewController.swift */; };
 		7B120E2A1DAF17BD00A6F660 /* FetchCategoryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B120E291DAF17BD00A6F660 /* FetchCategoryService.swift */; };
 		7B120E2B1DAF17BD00A6F660 /* FetchCategoryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B120E291DAF17BD00A6F660 /* FetchCategoryService.swift */; };
 		7B120E2D1DAF182300A6F660 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B120E2C1DAF182300A6F660 /* Category.swift */; };
@@ -44,8 +46,8 @@
 		7BC8EC931C0D2911004972AD /* Clue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BC8EC921C0D2911004972AD /* Clue.swift */; };
 		7BE5C1C31DCFA52100B298B5 /* ClueGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE5C1C21DCFA52100B298B5 /* ClueGroup.swift */; };
 		7BE5C1C41DCFA7F300B298B5 /* ClueGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE5C1C21DCFA52100B298B5 /* ClueGroup.swift */; };
-		FF4B9DC01DBA465C00FEAD8A /* EntryPointViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4B9DBF1DBA465C00FEAD8A /* EntryPointViewController.swift */; };
-		FF4B9DC11DBA465C00FEAD8A /* EntryPointViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4B9DBF1DBA465C00FEAD8A /* EntryPointViewController.swift */; };
+		FF4B9DC01DBA465C00FEAD8A /* CardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4B9DBF1DBA465C00FEAD8A /* CardViewController.swift */; };
+		FF4B9DC11DBA465C00FEAD8A /* CardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4B9DBF1DBA465C00FEAD8A /* CardViewController.swift */; };
 		FF4B9DC31DBA481A00FEAD8A /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4B9DC21DBA481A00FEAD8A /* CardView.swift */; };
 		FF4B9DC41DBA481A00FEAD8A /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4B9DC21DBA481A00FEAD8A /* CardView.swift */; };
 /* End PBXBuildFile section */
@@ -64,6 +66,8 @@
 		7B05B5A51DCAA09D003D8A51 /* CardHolderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardHolderView.swift; sourceTree = "<group>"; };
 		7B05B5A81DCAA0C6003D8A51 /* CardHolderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CardHolderView.xib; sourceTree = "<group>"; };
 		7B05B5AB1DCAA762003D8A51 /* BBColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BBColor.swift; sourceTree = "<group>"; };
+		7B10E8FD1DD55A99005E262F /* NavigationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationViewController.swift; sourceTree = "<group>"; };
+		7B10E9011DD5603A005E262F /* CategoriesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoriesViewController.swift; sourceTree = "<group>"; };
 		7B120E291DAF17BD00A6F660 /* FetchCategoryService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchCategoryService.swift; sourceTree = "<group>"; };
 		7B120E2C1DAF182300A6F660 /* Category.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		7B34272E1DC80F2E00B310FB /* CardView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CardView.xib; sourceTree = "<group>"; };
@@ -86,7 +90,7 @@
 		7BC8EC881C0D2805004972AD /* BBtrebekTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BBtrebekTests.swift; sourceTree = "<group>"; };
 		7BC8EC921C0D2911004972AD /* Clue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Clue.swift; sourceTree = "<group>"; };
 		7BE5C1C21DCFA52100B298B5 /* ClueGroup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClueGroup.swift; sourceTree = "<group>"; };
-		FF4B9DBF1DBA465C00FEAD8A /* EntryPointViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntryPointViewController.swift; sourceTree = "<group>"; };
+		FF4B9DBF1DBA465C00FEAD8A /* CardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardViewController.swift; sourceTree = "<group>"; };
 		FF4B9DC21DBA481A00FEAD8A /* CardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -174,7 +178,9 @@
 				7B3427241DC6705F00B310FB /* Views */,
 				7B69606D1DAAF968001B87DD /* Services */,
 				7BC8EC721C0D2805004972AD /* AppDelegate.swift */,
-				FF4B9DBF1DBA465C00FEAD8A /* EntryPointViewController.swift */,
+				FF4B9DBF1DBA465C00FEAD8A /* CardViewController.swift */,
+				7B10E8FD1DD55A99005E262F /* NavigationViewController.swift */,
+				7B10E9011DD5603A005E262F /* CategoriesViewController.swift */,
 				7B05B5AB1DCAA762003D8A51 /* BBColor.swift */,
 				7BC8EC761C0D2805004972AD /* Main.storyboard */,
 				7B55B52F1C14C4EA005D2F8B /* Utils.swift */,
@@ -326,14 +332,16 @@
 			files = (
 				7B05B5AC1DCAA762003D8A51 /* BBColor.swift in Sources */,
 				7BC8EC931C0D2911004972AD /* Clue.swift in Sources */,
+				7B10E9031DD5603A005E262F /* CategoriesViewController.swift in Sources */,
 				7B120E2D1DAF182300A6F660 /* Category.swift in Sources */,
 				7BA915531C2A2F1200BABFDB /* String.swift in Sources */,
 				7B05B5A61DCAA09D003D8A51 /* CardHolderView.swift in Sources */,
+				7B10E8FF1DD55A99005E262F /* NavigationViewController.swift in Sources */,
 				7B55B5301C14C4EA005D2F8B /* Utils.swift in Sources */,
 				FF4B9DC31DBA481A00FEAD8A /* CardView.swift in Sources */,
 				7BA915501C2A2EF000BABFDB /* Array.swift in Sources */,
 				7B9269E41DAB177A005B9382 /* FetchClueService.swift in Sources */,
-				FF4B9DC01DBA465C00FEAD8A /* EntryPointViewController.swift in Sources */,
+				FF4B9DC01DBA465C00FEAD8A /* CardViewController.swift in Sources */,
 				7B6960721DAAFA07001B87DD /* APIClient.swift in Sources */,
 				7B120E2A1DAF17BD00A6F660 /* FetchCategoryService.swift in Sources */,
 				7BE5C1C31DCFA52100B298B5 /* ClueGroup.swift in Sources */,
@@ -356,7 +364,7 @@
 				7BA915541C2A2F1200BABFDB /* String.swift in Sources */,
 				7B55B5311C14C4EA005D2F8B /* Utils.swift in Sources */,
 				7B120E2E1DAF182300A6F660 /* Category.swift in Sources */,
-				FF4B9DC11DBA465C00FEAD8A /* EntryPointViewController.swift in Sources */,
+				FF4B9DC11DBA465C00FEAD8A /* CardViewController.swift in Sources */,
 				7B05B5A71DCAA09D003D8A51 /* CardHolderView.swift in Sources */,
 				7BE5C1C41DCFA7F300B298B5 /* ClueGroup.swift in Sources */,
 				FF4B9DC41DBA481A00FEAD8A /* CardView.swift in Sources */,
