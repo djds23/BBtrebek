@@ -9,7 +9,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Root View Controller-->
+        <!--Categories-->
         <scene sceneID="WW8-PI-x07">
             <objects>
                 <tableViewController id="yQS-wT-kFE" customClass="CategoriesViewController" customModule="BBtrebek" customModuleProvider="target" sceneMemberID="viewController">
@@ -22,7 +22,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vbl-ZZ-jsv" id="436-Vm-JaI">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -32,7 +32,7 @@
                             <outlet property="delegate" destination="yQS-wT-kFE" id="hJk-1o-9uS"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="5nH-5g-cXy"/>
+                    <navigationItem key="navigationItem" title="Categories" id="5nH-5g-cXy"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JGl-rx-ovL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

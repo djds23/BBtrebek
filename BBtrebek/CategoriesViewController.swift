@@ -8,10 +8,16 @@
 
 import UIKit
 
-class CategoriesViewController: UITableViewController, UITableViewDelegate {
-        
+class CategoriesViewController: UITableViewController {
+    
+    var categories = [
+        Category(title: "Random", id: -1),
+        Category(title: "Potent Potables", id: 1),
+        Category(title: "Another Category", id: 1)
+    ]
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController?.hidesBarsOnTap = false
         self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "categoryCell")
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -25,44 +31,25 @@ class CategoriesViewController: UITableViewController, UITableViewDelegate {
         // Dispose of any resources that can be recreated.
     }
 
-    // MARK: - Table view data source
-
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 2
+        return self.categories.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "categoryCell", for: indexPath)
-
-        cell.textLabel?.text = "whatever"
-
+        let category = categories[indexPath.row]
+        cell.textLabel?.text = category.title
         return cell
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
     }
-
-    func tableView(tableView: UITableView!, didSelectRowAtIndexPath indexPath: NSIndexPath!){
-        
-        if self.navigationController != nil {
-            print("what what")
-        }
-        
-        if indexPath.row == 0 {
-            
-        }
-        //handle other index or whatever according to your conditions
-    }
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cardViewController = createCardViewController()
         let indexPath = tableView.indexPathForSelectedRow //optional, to get from any UIButton for example
         self.navigationController?.pushViewController(cardViewController, animated: true);
-        let currentCell = tableView.cellForRowAtIndexPath(indexPath!) as UITableViewCell
-        
-        print(currentCell.textLabel!.text)
     }
     
     
