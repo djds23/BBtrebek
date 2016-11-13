@@ -58,11 +58,12 @@ class CardHolderView: UIView {
         self.setUpClues()
     }
     
-    public func setUpClues(clueGroup: ClueGroup? = nil) -> Void {
-        if clueGroup != nil {
-            self.clueGroup = clueGroup!
+    public func setUpClues(newClueGroup: ClueGroup? = nil) -> Void {
+        if newClueGroup != nil {
+            self.clueGroup = newClueGroup!
         } else {
             self.fetchClues()
+            
         }
         self.setCardViewLables()
         self.addSwipeGestureRecognizers()

@@ -46,16 +46,17 @@ class CategoriesViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let cardViewController = createCardViewController()
         let indexPath = tableView.indexPathForSelectedRow //optional, to get from any UIButton for example
+        let category = self.categories[(indexPath?.row)!]
+        let cardViewController = createCardViewController(category: category)
         self.navigationController?.pushViewController(cardViewController, animated: true);
     }
     
     
-    private func createCardViewController() -> CardViewController {
+    private func createCardViewController(category: Category) -> CardViewController {
         let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
         let cardViewController = storyboard.instantiateViewController(withIdentifier: "CardViewController") as! CardViewController
-        
+        cardViewController.setCategory(category)
         return cardViewController
     }
     
@@ -66,6 +67,7 @@ class CategoriesViewController: UITableViewController {
             self.tableView.reloadData()
         }, failure: { (data, response, error) in
             // handle this condition responsibly
+            NSLog("Error Fetching Data!")
         })
     }
     /*

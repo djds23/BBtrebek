@@ -10,8 +10,10 @@ import UIKit
 
 public class CardViewController: UIViewController {
 
+    var clueGroup = ClueGroup()
     @IBOutlet weak var cardHolderView: CardHolderView!
     override public func viewDidLoad() {
+        self.cardHolderView.setUpClues(newClueGroup: clueGroup)
         super.viewDidLoad()
     }
     
@@ -27,6 +29,10 @@ public class CardViewController: UIViewController {
         self.cardHolderView.shakeCard()
     }
     
+    public func setCategory(_ category: Category) -> Void {
+        self.clueGroup = ClueGroup(category: category)
+    }
+    
     override public func becomeFirstResponder() -> Bool {
         return true
     }
@@ -35,5 +41,16 @@ public class CardViewController: UIViewController {
         if motion == .motionShake {
             self.cardHolderView.prevClue()
         }
+    }
+
+    private func fetchClues() -> Void {
+        self.clueGroup.fetch(
+            success: { (clueGroup) in
+                self.clueGroup = clueGroup
+        },
+            failure: { (data, urlResponse, error) in
+                NSLog("Error Fetching Data!")
+        }
+        )
     }
 }

@@ -9,8 +9,15 @@
 import UIKit
 
 open class ClueGroup: NSObject {
-    var clues: Array<Clue> = [Clue.firstClue()]
+    var clues: Array<Clue> = [Clue.nowLoadingClue()]
     var currentIndex = 0
+    var category: Category?
+    
+    public init(category: Category? = nil) {
+        if category != nil {
+            self.category = category
+        }
+    }
     
     public func current() -> Clue {
         var clue: Clue
@@ -46,8 +53,16 @@ open class ClueGroup: NSObject {
         return self.current().isLoadingClue()
     }
 
-    public func fetch(count: Int = 500, category: Category? = nil, success: @escaping ((ClueGroup) -> Void), failure: @escaping (Data?, URLResponse?, Error?) -> Void) -> Void {
-        if category != nil{
+    private func hasRandomCategory() -> Bool {
+        var hasRandom = false
+        if self.category != nil {
+            hasRandom = (self.category?.isRandom())!
+        }
+        return hasRandom
+    }
+    
+    public func fetch(count: Int = 500, success: @escaping ((ClueGroup) -> Void), failure: @escaping (Data?, URLResponse?, Error?) -> Void) -> Void {
+        if self.category != nil && !hasRandomCategory() {
             let client = FetchCategoryService(category: category!, count: count)
             client.fetch(success: { (newCategory) in
                 self.clues += newCategory.clues
@@ -56,7 +71,9 @@ open class ClueGroup: NSObject {
                 self.clues = [Clue.nowLoadingClue()]
                 failure(data, urlResponse, error)
             })
-        } else {
+        }
+        
+        if hasRandomCategory() {
             let client = FetchClueService(count: count)
             client.fetch(success: { (newClues) in
                 self.clues += newClues
