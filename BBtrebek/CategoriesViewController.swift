@@ -61,7 +61,7 @@ class CategoriesViewController: UITableViewController {
     }
     
     private func fetchCategories () -> Void {
-        let client = FetchCategoriesService(count: 100)
+        let client = FetchCategoriesService(count: 1000)
         client.fetch(success: { (newCategories) in
             self.categories += newCategories
             self.tableView.reloadData()
