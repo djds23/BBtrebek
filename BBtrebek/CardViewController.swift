@@ -13,8 +13,8 @@ public class CardViewController: UIViewController {
     var clueGroup = ClueGroup()
     @IBOutlet weak var cardHolderView: CardHolderView!
     override public func viewDidLoad() {
-        self.cardHolderView.setUpClues(newClueGroup: clueGroup)
         super.viewDidLoad()
+        self.fetchClues()
     }
     
     override public func viewWillDisappear(_ animated: Bool) {
@@ -22,7 +22,6 @@ public class CardViewController: UIViewController {
     
     override public func viewDidAppear(_ animated: Bool) {
         self.view.layoutIfNeeded()
-        self.perform(#selector(CardViewController.delayedAppear), with: self, afterDelay: 0.8)
     }
     
     public func delayedAppear(sender: Any?) -> Void {
@@ -47,6 +46,8 @@ public class CardViewController: UIViewController {
         self.clueGroup.fetch(
             success: { (clueGroup) in
                 self.clueGroup = clueGroup
+                self.cardHolderView.setUpClues(newClueGroup: clueGroup)
+                self.perform(#selector(CardViewController.delayedAppear), with: self, afterDelay: 0.8)
         },
             failure: { (data, urlResponse, error) in
                 NSLog("Error Fetching Data!")

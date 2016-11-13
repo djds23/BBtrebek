@@ -46,7 +46,7 @@ open class Clue: NSObject {
     public static func nowLoadingClue() -> Clue {
         let clue = Clue(
             answer: "Please swipe again.",
-            question: "Asking the internet for questions, try and stump the world wide web!",
+            question: "Asking the internet for questions, I will shake when I'm ready for ya to start swiping!",
             value: nil as Int?,
             id: -1
         )

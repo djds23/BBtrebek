@@ -11,7 +11,7 @@ import UIKit
 class CategoriesViewController: UITableViewController {
     
     var categories = [
-        Category(title: "Random", id: -1)
+        Category(title: "Potpourri", id: -1)
     ]
 
     override func viewDidLoad() {
