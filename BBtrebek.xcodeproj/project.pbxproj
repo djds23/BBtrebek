@@ -25,6 +25,7 @@
 		7B55B5311C14C4EA005D2F8B /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B55B52F1C14C4EA005D2F8B /* Utils.swift */; };
 		7B58B3981C12BFF7007C4A1A /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B58B3971C12BFF7007C4A1A /* Player.swift */; };
 		7B58B3991C12BFF7007C4A1A /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B58B3971C12BFF7007C4A1A /* Player.swift */; };
+		7B5CDBA31DD8B4EE00F7EB66 /* FetchCategoriesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B5CDBA21DD8B4EE00F7EB66 /* FetchCategoriesService.swift */; };
 		7B69606F1DAAF98B001B87DD /* DisableClueService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B69606E1DAAF98B001B87DD /* DisableClueService.swift */; };
 		7B6960701DAAF98B001B87DD /* DisableClueService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B69606E1DAAF98B001B87DD /* DisableClueService.swift */; };
 		7B6960721DAAFA07001B87DD /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B6960711DAAFA07001B87DD /* APIClient.swift */; };
@@ -73,6 +74,7 @@
 		7B34272E1DC80F2E00B310FB /* CardView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CardView.xib; sourceTree = "<group>"; };
 		7B55B52F1C14C4EA005D2F8B /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		7B58B3971C12BFF7007C4A1A /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
+		7B5CDBA21DD8B4EE00F7EB66 /* FetchCategoriesService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchCategoriesService.swift; sourceTree = "<group>"; };
 		7B69606E1DAAF98B001B87DD /* DisableClueService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DisableClueService.swift; sourceTree = "<group>"; };
 		7B6960711DAAFA07001B87DD /* APIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
 		7B789B451DAB2C38007E571C /* ClueTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClueTests.swift; sourceTree = "<group>"; };
@@ -130,6 +132,7 @@
 				7B6960711DAAFA07001B87DD /* APIClient.swift */,
 				7B9269E31DAB177A005B9382 /* FetchClueService.swift */,
 				7B120E291DAF17BD00A6F660 /* FetchCategoryService.swift */,
+				7B5CDBA21DD8B4EE00F7EB66 /* FetchCategoriesService.swift */,
 			);
 			name = Services;
 			sourceTree = "<group>";
@@ -344,6 +347,7 @@
 				FF4B9DC01DBA465C00FEAD8A /* CardViewController.swift in Sources */,
 				7B6960721DAAFA07001B87DD /* APIClient.swift in Sources */,
 				7B120E2A1DAF17BD00A6F660 /* FetchCategoryService.swift in Sources */,
+				7B5CDBA31DD8B4EE00F7EB66 /* FetchCategoriesService.swift in Sources */,
 				7BE5C1C31DCFA52100B298B5 /* ClueGroup.swift in Sources */,
 				7B69606F1DAAF98B001B87DD /* DisableClueService.swift in Sources */,
 				7B58B3981C12BFF7007C4A1A /* Player.swift in Sources */,

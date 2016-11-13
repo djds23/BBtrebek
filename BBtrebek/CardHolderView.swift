@@ -25,14 +25,14 @@ class CardHolderView: UIView {
     @IBOutlet var cardHolderView: UIView!
     
     public func shakeCard() -> Void {
-        let duration = 0.30
+        let duration = 0.20
         UIView.animate(withDuration: duration, delay: 0.0, options: UIViewAnimationOptions.allowUserInteraction, animations: {
-            self.shake(view: self.cardView, direction: .left, offset: CGFloat(40))
+            self.shake(view: self.cardView, direction: .left, offset: CGFloat(40) / 1.61803398875)
             
         }, completion: { (finished) in
             if finished {
                 UIView.animate(withDuration: duration, delay: 0.0, options: UIViewAnimationOptions.allowUserInteraction, animations: {
-                    self.shake(view: self.cardView, direction: .right, offset: CGFloat(60))
+                    self.shake(view: self.cardView, direction: .right, offset: CGFloat(60)  / 1.61803398875)
                 }, completion: { (finished) in
                     UIView.animate(withDuration: duration, delay: 0.0, options: UIViewAnimationOptions.allowUserInteraction, animations: {
                         self.centerCardPosition()

@@ -78,7 +78,7 @@ open class Clue: NSObject {
             )
             return clueObj;
         } else {
-            return nil;
+            return nil as Clue?;
         }
     }
 }

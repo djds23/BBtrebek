@@ -1,5 +1,5 @@
 //
-//  EntryPointViewController.swift
+//  CardViewController.swift
 //  BBtrebek
 //
 //  Created by Dean Silfen on 10/21/16.

@@ -11,13 +11,13 @@ import UIKit
 class CategoriesViewController: UITableViewController {
     
     var categories = [
-        Category(title: "Random", id: -1),
-        Category(title: "Potent Potables", id: 1),
-        Category(title: "Another Category", id: 10)
+        Category(title: "Random", id: -1)
     ]
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "categoryCell")
+        self.fetchCategories()
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -54,7 +54,19 @@ class CategoriesViewController: UITableViewController {
     
     private func createCardViewController() -> CardViewController {
         let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-        return storyboard.instantiateViewController(withIdentifier: "CardViewController") as! CardViewController
+        let cardViewController = storyboard.instantiateViewController(withIdentifier: "CardViewController") as! CardViewController
+        
+        return cardViewController
+    }
+    
+    private func fetchCategories () -> Void {
+        let client = FetchCategoriesService(count: 100)
+        client.fetch(success: { (newCategories) in
+            self.categories += newCategories
+            self.tableView.reloadData()
+        }, failure: { (data, response, error) in
+            // handle this condition responsibly
+        })
     }
     /*
     // Override to support conditional editing of the table view.
