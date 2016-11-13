@@ -37,7 +37,7 @@ class CategoriesViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "categoryCell", for: indexPath)
         let category = categories[indexPath.row]
-        cell.textLabel?.text = category.title
+        cell.textLabel?.text = category.title.titleize()
         return cell
     }
     
