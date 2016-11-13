@@ -13,11 +13,9 @@ public class CardViewController: UIViewController {
     @IBOutlet weak var cardHolderView: CardHolderView!
     override public func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationController?.hidesBarsOnTap = true
     }
     
     override public func viewWillDisappear(_ animated: Bool) {
-        self.navigationController?.hidesBarsOnTap = false
     }
     
     override public func viewDidAppear(_ animated: Bool) {

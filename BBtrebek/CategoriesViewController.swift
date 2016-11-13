@@ -13,11 +13,10 @@ class CategoriesViewController: UITableViewController {
     var categories = [
         Category(title: "Random", id: -1),
         Category(title: "Potent Potables", id: 1),
-        Category(title: "Another Category", id: 1)
+        Category(title: "Another Category", id: 10)
     ]
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationController?.hidesBarsOnTap = false
         self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "categoryCell")
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -32,7 +31,7 @@ class CategoriesViewController: UITableViewController {
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return self.categories.count
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -43,7 +42,7 @@ class CategoriesViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return self.categories.count
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
