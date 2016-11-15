@@ -31,15 +31,19 @@ open class Clue: NSObject {
     public func isLoadingClue() -> Bool {
         return self.id == -1
     }
+    
+    public func isFinalClue() -> Bool {
+        return self.id == -2
+    }
 
-    public static func firstClue() -> Clue {
+    public static func finalClue() -> Clue {
         let clue = Clue(
-            answer: "Coney Island Hot Dog",
-            question: "A favorite food amongst the Detropians, this dish is named after a neighborhood in NYC.",
+            answer: "Out of cards for this category! Take a peak at some of the other cards we have.",
+            question: "Out of cards for this category! Take a peak at some of the other cards we have.",
             value: nil as Int?,
-            id: 100
+            id: -2
         )
-        clue.category = Category(title: "Mismatched Meals", id: 42)
+        clue.category = Category(title: "Out of Cards", id: 42)
         return clue
     }
     

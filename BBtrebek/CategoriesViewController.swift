@@ -17,11 +17,7 @@ class CategoriesViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "categoryCell")
-        if #available(iOS 10.0, *) {
-            self.makeRefreshControl()
-        } else {
-            // Fallback on earlier versions
-        }
+        self.makeRefreshControl()
         self.fetchCategories()
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -31,10 +27,14 @@ class CategoriesViewController: UITableViewController {
     }
     
     public func makeRefreshControl() -> Void {
-        let control = UIRefreshControl()
-        control.attributedTitle = NSAttributedString(string: "Pull to load Categories")
-        refreshControl = control
-        refreshControl?.addTarget(self, action: #selector(CategoriesViewController.refreshCategories), for: UIControlEvents.valueChanged)
+        if #available(iOS 10.0, *) {
+            let control = UIRefreshControl()
+            control.attributedTitle = NSAttributedString(string: "Pull to load Categories")
+            refreshControl = control
+            refreshControl?.addTarget(self, action: #selector(CategoriesViewController.refreshCategories), for: UIControlEvents.valueChanged)
+        } else {
+            // Fallback on earlier versions
+        }
     }
     
     public func refreshCategories(sender: Any?) -> Void {
