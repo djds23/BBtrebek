@@ -17,6 +17,11 @@ class CategoriesViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "categoryCell")
+        if #available(iOS 10.0, *) {
+            self.makeRefreshControl()
+        } else {
+            // Fallback on earlier versions
+        }
         self.fetchCategories()
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -24,7 +29,18 @@ class CategoriesViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
-
+    
+    public func makeRefreshControl() -> Void {
+        let control = UIRefreshControl()
+        control.attributedTitle = NSAttributedString(string: "Pull to load Categories")
+        refreshControl = control
+        refreshControl?.addTarget(self, action: #selector(CategoriesViewController.refreshCategories), for: UIControlEvents.valueChanged)
+    }
+    
+    public func refreshCategories(sender: Any?) -> Void {
+        self.fetchCategories(refresh: true)
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -60,16 +76,24 @@ class CategoriesViewController: UITableViewController {
         return cardViewController
     }
     
-    private func fetchCategories () -> Void {
+    private func fetchCategories(refresh: Bool = false) -> Void {
         let client = FetchCategoriesService(count: 1000)
-        client.fetch(success: { (newCategories) in
+        client.fetch(
+            success: { (newCategories) in
             self.categories += newCategories
             self.tableView.reloadData()
+            if refresh {
+                self.refreshControl?.endRefreshing()
+            }
         }, failure: { (data, response, error) in
             // handle this condition responsibly
             NSLog("Error Fetching Data!")
+            if refresh {
+                self.refreshControl?.endRefreshing()
+            }
         })
     }
+
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {

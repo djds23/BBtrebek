@@ -32,8 +32,8 @@ class FetchCategoriesService: NSObject {
                     failure(data, url, error)
                 })
             } else {
-                let clueDictsFromRequest = ((try! JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.mutableContainers)) as! NSArray)
-                let categories = self.dataToCategories(rawCategories: clueDictsFromRequest)
+                let categoryDictsFromRequest = ((try! JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.mutableContainers)) as! NSArray)
+                let categories = self.dataToCategories(rawCategories: categoryDictsFromRequest)
                 DispatchQueue.main.async(execute: {
                     success(categories)
                 })

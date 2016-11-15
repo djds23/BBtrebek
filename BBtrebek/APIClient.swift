@@ -16,7 +16,6 @@ class APIClient: NSObject {
     
     public init(url: String) {
         self.url = URL(string: url)!
-        
     }
     
     public func request(method: String, asyncCallback: @escaping (Data?, URLResponse?, Error? ) -> Void ) -> Void {

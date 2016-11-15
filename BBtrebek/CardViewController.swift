@@ -46,8 +46,9 @@ public class CardViewController: UIViewController {
         self.clueGroup.fetch(
             success: { (clueGroup) in
                 self.clueGroup = clueGroup
+                self.clueGroup.next()
                 self.cardHolderView.setUpClues(newClueGroup: clueGroup)
-                self.perform(#selector(CardViewController.delayedAppear), with: self, afterDelay: 0.8)
+                self.perform(#selector(CardViewController.delayedAppear), with: self, afterDelay: 0.6)
         },
             failure: { (data, urlResponse, error) in
                 NSLog("Error Fetching Data!")
