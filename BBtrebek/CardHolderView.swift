@@ -17,6 +17,10 @@ class CardHolderView: UIView {
 
     var clueGroup = ClueGroup()
     
+    var outOfClues: ((ClueGroup) -> Void) = {(cardGroup) in
+    
+    }
+    
     // CGFloat where we decide animation starts
     let pointBreak = 100.0 as CGFloat
     
@@ -175,6 +179,10 @@ class CardHolderView: UIView {
         
         if self.clueGroup.failedToFetch() {
             self.fetchClues()
+        }
+        
+        if self.clueGroup.isFinished() {
+            self.outOfClues(self.clueGroup)
         }
     }
     

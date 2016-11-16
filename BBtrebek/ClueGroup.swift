@@ -36,13 +36,22 @@ open class ClueGroup: NSObject {
     }
     
     public func next() -> Void {
-        self.currentIndex += 1
+        if self.currentIndex + 1 < self.clues.count {
+            self.currentIndex += 1
+        }
     }
     
     public func prev() -> Void {
         if self.currentIndex > 0 {
             self.currentIndex -= 1
         }
+    }
+    public func isFinished() -> Bool {
+        var failed = false
+        if let card = self.current() {
+            failed = card.isFinalClue()
+        }
+        return failed
     }
     
     public func failedToFetch() -> Bool {

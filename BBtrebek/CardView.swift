@@ -10,7 +10,7 @@ import UIKit
 
 public class CardView: UIView {
     var clue: Clue?
-    
+
     enum InView {
         case answer
         case question
@@ -19,6 +19,7 @@ public class CardView: UIView {
     
     @IBOutlet weak var questionContainer: UIView!
     @IBOutlet weak var questionLabel: UILabel!
+    @IBOutlet weak var categoryContainer: UIView!
     @IBOutlet weak var categoryLabel: UILabel!
     @IBOutlet var cardView: UIView!
     
@@ -45,9 +46,11 @@ public class CardView: UIView {
 
     public func setClueLabels(clue: Clue) -> Void {
         self.clue = clue
+        
         self.categoryLabel.text = clue.categoryTitle().titleize()
         self.questionLabel.text = clue.question
         self.questionLabel.textColor = BBColor.white
+
         let tap = UITapGestureRecognizer(
             target: self,
             action: #selector(self.handleTap(sender:))

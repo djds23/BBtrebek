@@ -11,6 +11,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CardView" customModule="BBtrebek" customModuleProvider="target">
             <connections>
                 <outlet property="cardView" destination="iN0-l3-epB" id="g50-YG-12a"/>
+                <outlet property="categoryContainer" destination="jHt-zh-jz6" id="u8G-h9-1D4"/>
                 <outlet property="categoryLabel" destination="IEu-AH-uMa" id="SNK-ZR-bwG"/>
                 <outlet property="questionContainer" destination="mbh-BK-ghG" id="MRC-6z-ZPc"/>
                 <outlet property="questionLabel" destination="5ME-js-kNE" id="jMz-8q-VPE"/>
@@ -27,11 +28,14 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jHt-zh-jz6" userLabel="Category Holder">
                             <rect key="frame" x="8" y="8" width="304" height="100"/>
                             <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Category" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IEu-AH-uMa">
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Category" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="IEu-AH-uMa">
                                     <rect key="frame" x="8" y="8" width="288" height="84"/>
                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="boolean" keyPath="layer.adjustsFontSizeToFitWidth" value="YES"/>
+                                    </userDefinedRuntimeAttributes>
                                 </label>
                             </subviews>
                             <color key="backgroundColor" red="0.1647058824" green="0.37647058820000001" blue="0.97647058819999999" alpha="1" colorSpace="calibratedRGB"/>
@@ -57,11 +61,14 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mbh-BK-ghG" userLabel="Question Holder">
                             <rect key="frame" x="8" y="116" width="304" height="356"/>
                             <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Question Label" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5ME-js-kNE">
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Question Label" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="5ME-js-kNE">
                                     <rect key="frame" x="16" y="8" width="272" height="340"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                     <color key="textColor" red="0.99194461107254028" green="0.99615627527236938" blue="0.99600595235824585" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="boolean" keyPath="layer.adjustsFontSizeToFitWidth" value="YES"/>
+                                    </userDefinedRuntimeAttributes>
                                 </label>
                             </subviews>
                             <color key="backgroundColor" red="0.1647058824" green="0.37647058820000001" blue="0.97647058819999999" alpha="1" colorSpace="calibratedRGB"/>

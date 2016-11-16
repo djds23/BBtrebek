@@ -14,6 +14,7 @@ public class CardViewController: UIViewController {
     @IBOutlet weak var cardHolderView: CardHolderView!
     override public func viewDidLoad() {
         super.viewDidLoad()
+        self.setOutOfCards()
         self.fetchClues()
     }
     
@@ -24,6 +25,13 @@ public class CardViewController: UIViewController {
         self.view.layoutIfNeeded()
     }
     
+    public func setOutOfCards() {
+        self.cardHolderView.outOfClues = { cardGroup in
+            self.navigationController?.popViewController(animated: true)
+        }
+    }
+    
+
     public func delayedAppear(sender: Any?) -> Void {
         self.cardHolderView.shakeCard()
     }
