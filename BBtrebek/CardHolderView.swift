@@ -17,8 +17,8 @@ class CardHolderView: UIView {
 
     var clueGroup = ClueGroup()
     
-    // CGFloat where we decide enimation starts
-    let pointBreak = 120.0 as CGFloat
+    // CGFloat where we decide animation starts
+    let pointBreak = 100.0 as CGFloat
     
     @IBOutlet weak var bottomCardView: CardView!
     @IBOutlet weak var cardView: CardView!
