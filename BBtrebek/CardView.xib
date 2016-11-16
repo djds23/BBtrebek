@@ -31,14 +31,14 @@
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Category" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="IEu-AH-uMa">
                                     <rect key="frame" x="8" y="8" width="288" height="84"/>
                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
-                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                     <userDefinedRuntimeAttributes>
                                         <userDefinedRuntimeAttribute type="boolean" keyPath="layer.adjustsFontSizeToFitWidth" value="YES"/>
                                     </userDefinedRuntimeAttributes>
                                 </label>
                             </subviews>
-                            <color key="backgroundColor" red="0.1647058824" green="0.37647058820000001" blue="0.97647058819999999" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="backgroundColor" red="0.93725490196078431" green="0.95294117647058818" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="100" id="0Ho-I4-8rO"/>
                                 <constraint firstAttribute="bottom" secondItem="IEu-AH-uMa" secondAttribute="bottom" constant="8" id="ENL-FU-UuU"/>
@@ -64,14 +64,14 @@
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Question Label" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="5ME-js-kNE">
                                     <rect key="frame" x="16" y="8" width="272" height="340"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                    <color key="textColor" red="0.99194461107254028" green="0.99615627527236938" blue="0.99600595235824585" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                     <userDefinedRuntimeAttributes>
                                         <userDefinedRuntimeAttribute type="boolean" keyPath="layer.adjustsFontSizeToFitWidth" value="YES"/>
                                     </userDefinedRuntimeAttributes>
                                 </label>
                             </subviews>
-                            <color key="backgroundColor" red="0.1647058824" green="0.37647058820000001" blue="0.97647058819999999" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="backgroundColor" red="0.93725490196078431" green="0.95294117647058818" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="200" id="0dL-zX-cOc"/>
                                 <constraint firstAttribute="trailing" secondItem="5ME-js-kNE" secondAttribute="trailing" constant="16" id="5S9-Cv-eV3"/>
@@ -92,7 +92,7 @@
                             </userDefinedRuntimeAttributes>
                         </view>
                     </subviews>
-                    <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <color key="backgroundColor" red="0.066666666666666666" green="0.074509803921568626" blue="0.090196078431372548" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="trailing" secondItem="mbh-BK-ghG" secondAttribute="trailing" constant="8" id="7ep-TX-yrN"/>
                         <constraint firstAttribute="bottom" secondItem="mbh-BK-ghG" secondAttribute="bottom" constant="8" id="DF2-2A-Q0h"/>

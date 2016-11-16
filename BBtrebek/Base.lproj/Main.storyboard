@@ -74,10 +74,10 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cJd-hC-CIl" customClass="CardHolderView" customModule="BBtrebek" customModuleProvider="target">
                                 <rect key="frame" x="16" y="28" width="343" height="631"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="0.68627450980392157" green="0.7803921568627451" blue="0.91764705882352937" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.68491876129999996" green="0.78046268220000004" blue="0.91608864069999996" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="cJd-hC-CIl" firstAttribute="trailing" secondItem="nFz-WC-aBJ" secondAttribute="trailingMargin" id="7AI-ex-a0I"/>
                             <constraint firstItem="LdK-i2-TgH" firstAttribute="top" secondItem="cJd-hC-CIl" secondAttribute="bottom" constant="8" id="Q2X-bM-nds"/>
