@@ -12,7 +12,7 @@ class FetchClueService: NSObject {
     let client: APIClient
     
     public init (count: Int) {
-        self.client = APIClient(url:"https://triviacards.xyz/api/random?count=\(count)")
+        self.client = APIClient(url:"https://triviacards.xyz/api/v1/random?count=\(count)")
     }
     
     func dataToClue(rawClues: NSArray) -> Array<Clue> {

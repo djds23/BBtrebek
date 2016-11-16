@@ -47,9 +47,11 @@ open class ClueGroup: NSObject {
         }
     }
     public func isFinished() -> Bool {
-        var failed = false
-        if let card = self.current() {
-            failed = card.isFinalClue()
+        var failed: Bool
+        if self.current() != nil {
+            failed = self.current()!.isFinalClue()
+        } else {
+            failed = true
         }
         return failed
     }
