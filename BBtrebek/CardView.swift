@@ -50,6 +50,7 @@ public class CardView: UIView {
         self.categoryLabel.text = clue.categoryTitle().titleize()
         self.questionLabel.text = clue.question
         self.questionLabel.textColor = BBColor.black
+        self.questionContainer.backgroundColor = BBColor.white
         self.showing = InView.question
 
         let tap = UITapGestureRecognizer(
@@ -72,11 +73,13 @@ public class CardView: UIView {
         if sender.state == .ended {
             if self.showing == InView.question {
                 self.questionLabel.text = self.clue?.answer
-                self.questionLabel.textColor = BBColor.valueGold
+                self.questionLabel.textColor = BBColor.white
+                self.questionContainer.backgroundColor = BBColor.black
                 self.showing = InView.answer
             } else if self.showing == InView.answer {
                 self.questionLabel.text = self.clue?.question
                 self.questionLabel.textColor = BBColor.black
+                self.questionContainer.backgroundColor = BBColor.white
                 self.showing = InView.question
             }
         }
