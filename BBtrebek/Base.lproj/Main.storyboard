@@ -32,16 +32,18 @@
                             <outlet property="delegate" destination="yQS-wT-kFE" id="hJk-1o-9uS"/>
                         </connections>
                     </tableView>
+                    <tabBarItem key="tabBarItem" title="Item" id="EM3-Oe-CHX"/>
                     <navigationItem key="navigationItem" title="Categories" id="5nH-5g-cXy"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JGl-rx-ovL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1925" y="-1060"/>
         </scene>
-        <!--Navigation View Controller-->
+        <!--Item-->
         <scene sceneID="e49-yb-baD">
             <objects>
                 <navigationController id="TUD-UV-47R" customClass="NavigationViewController" customModule="BBtrebek" customModuleProvider="target" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="64X-Cm-1MM"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="NEX-QF-nF0">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -58,7 +60,7 @@
             </objects>
             <point key="canvasLocation" x="-2880" y="-1060"/>
         </scene>
-        <!--Card View Controller-->
+        <!--Item-->
         <scene sceneID="jEi-Gn-73W">
             <objects>
                 <viewController storyboardIdentifier="CardViewController" id="4XE-hc-C71" customClass="CardViewController" customModule="BBtrebek" customModuleProvider="target" sceneMemberID="viewController">
@@ -83,13 +85,14 @@
                             <constraint firstItem="cJd-hC-CIl" firstAttribute="top" secondItem="P6W-3g-0CO" secondAttribute="bottom" constant="8" symbolic="YES" id="khW-iO-vVJ"/>
                         </constraints>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Item" id="KoV-9w-HUA"/>
                     <connections>
                         <outlet property="cardHolderView" destination="cJd-hC-CIl" id="PJH-l4-KqF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nAb-7B-F1x" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-844" y="-1048"/>
+            <point key="canvasLocation" x="-1026" y="-1060"/>
         </scene>
     </scenes>
 </document>

@@ -11,11 +11,12 @@ import UIKit
 public class CardView: UIView {
     var clue: Clue?
     
+
     @IBOutlet weak var questionContainer: UIView!
     @IBOutlet weak var questionLabel: UILabel!
-    @IBOutlet weak var valueLabel: UILabel!
     @IBOutlet weak var categoryLabel: UILabel!
     @IBOutlet var cardView: UIView!
+    
     public static func initWithClue(clue: Clue) -> CardView{
         let newFileOwnerView = CardView()
         newFileOwnerView.clue = clue
@@ -39,7 +40,6 @@ public class CardView: UIView {
 
     public func setClueLabels(clue: Clue) -> Void {
         self.clue = clue
-        self.valueLabel.text = self.valueText()
         self.categoryLabel.text = clue.categoryTitle().titleize()
         self.questionLabel.text = clue.question
         self.questionLabel.textColor = BBColor.white
