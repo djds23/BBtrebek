@@ -193,8 +193,17 @@ class CardHolderView: UIView {
     }
 
     private func setCardViewLables() -> Void {
-        self.cardView.setClueLabels(clue: self.clueGroup.current())
-        self.bottomCardView.setClueLabels(clue: self.clueGroup.onDeck())
+        if let currentCard = self.clueGroup.current() {
+            self.cardView.setClueLabels(clue: currentCard)
+        } else {
+            self.cardView.setClueLabels(clue: Clue.outOfClues())
+        }
+        
+        if let onDeckCard = self.clueGroup.onDeck() {
+            self.bottomCardView.setClueLabels(clue: onDeckCard)
+        } else {
+            self.bottomCardView.setClueLabels(clue: Clue.outOfClues())
+        }
     }
 
     private func addSwipeGestureRecognizers() -> Void {

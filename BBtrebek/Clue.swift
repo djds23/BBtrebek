@@ -36,7 +36,7 @@ open class Clue: NSObject {
         return self.id == -2
     }
 
-    public static func finalClue() -> Clue {
+    public static func outOfClues() -> Clue {
         let clue = Clue(
             answer: "Out of cards for this category! Take a peak at some of the other cards we have.",
             question: "Out of cards for this category! Take a peak at some of the other cards we have.",

@@ -11,7 +11,12 @@ import UIKit
 public class CardView: UIView {
     var clue: Clue?
     
-
+    enum InView {
+        case answer
+        case question
+    }
+    var showing = InView.question
+    
     @IBOutlet weak var questionContainer: UIView!
     @IBOutlet weak var questionLabel: UILabel!
     @IBOutlet weak var categoryLabel: UILabel!
@@ -61,12 +66,14 @@ public class CardView: UIView {
     
     func handleTap(sender: UITapGestureRecognizer) {
         if sender.state == .ended {
-            if self.questionLabel.text == self.clue?.question {
+            if self.showing == InView.question {
                 self.questionLabel.text = self.clue?.answer
                 self.questionLabel.textColor = BBColor.valueGold
-            } else {
+                self.showing = InView.answer
+            } else if self.showing == InView.answer {
                 self.questionLabel.text = self.clue?.question
                 self.questionLabel.textColor = BBColor.white
+                self.showing = InView.question
             }
         }
     }

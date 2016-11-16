@@ -19,22 +19,18 @@ open class ClueGroup: NSObject {
         }
     }
     
-    public func current() -> Clue {
-        var clue: Clue
+    public func current() -> Clue? {
+        var clue: Clue?
         if self.clues.indexExists(self.currentIndex) {
             clue = self.clues[self.currentIndex]
-        } else {
-            clue = self.clues.first!
         }
         return clue
     }
     
-    public func onDeck() -> Clue {
-        var clue: Clue
+    public func onDeck() -> Clue? {
+        var clue: Clue?
         if self.clues.indexExists(self.currentIndex + 1) {
             clue = self.clues[self.currentIndex + 1]
-        } else {
-            clue =  Clue.nowLoadingClue()
         }
         return clue
     }
@@ -50,7 +46,11 @@ open class ClueGroup: NSObject {
     }
     
     public func failedToFetch() -> Bool {
-        return self.current().isLoadingClue()
+        var failed = false
+        if let card = self.current() {
+           failed = card.isLoadingClue()
+        }
+        return failed
     }
 
     private func hasRandomCategory() -> Bool {
