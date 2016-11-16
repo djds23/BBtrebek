@@ -73,16 +73,16 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cJd-hC-CIl" customClass="CardHolderView" customModule="BBtrebek" customModuleProvider="target">
-                                <rect key="frame" x="16" y="28" width="343" height="611"/>
+                                <rect key="frame" x="16" y="28" width="343" height="625"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="cJd-hC-CIl" firstAttribute="centerX" secondItem="nFz-WC-aBJ" secondAttribute="centerX" id="1Am-YW-DPC"/>
-                            <constraint firstItem="cJd-hC-CIl" firstAttribute="leading" secondItem="nFz-WC-aBJ" secondAttribute="leadingMargin" id="7U2-03-tAO"/>
-                            <constraint firstItem="cJd-hC-CIl" firstAttribute="centerY" secondItem="nFz-WC-aBJ" secondAttribute="centerY" id="bCM-1h-tqx"/>
-                            <constraint firstItem="cJd-hC-CIl" firstAttribute="top" secondItem="P6W-3g-0CO" secondAttribute="bottom" constant="8" symbolic="YES" id="khW-iO-vVJ"/>
+                            <constraint firstItem="cJd-hC-CIl" firstAttribute="trailing" secondItem="nFz-WC-aBJ" secondAttribute="trailingMargin" id="7AI-ex-a0I"/>
+                            <constraint firstItem="LdK-i2-TgH" firstAttribute="top" secondItem="cJd-hC-CIl" secondAttribute="bottom" constant="14" id="Q2X-bM-nds"/>
+                            <constraint firstItem="cJd-hC-CIl" firstAttribute="top" secondItem="P6W-3g-0CO" secondAttribute="bottom" constant="8" id="ewo-dV-XyX"/>
+                            <constraint firstItem="cJd-hC-CIl" firstAttribute="leading" secondItem="nFz-WC-aBJ" secondAttribute="leadingMargin" id="nix-hM-yAU"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Item" id="KoV-9w-HUA"/>
