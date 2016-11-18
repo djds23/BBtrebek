@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11542"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CardHolderViewController" customModule="BBtrebek" customModuleProvider="target">
+            <connections>
+                <outlet property="bottomCardView" destination="5o6-zJ-DG3" id="a1j-bM-aqI"/>
+                <outlet property="cardView" destination="JrF-Mh-sH9" id="Hw7-qW-F9h"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pyv-EN-C1P" userLabel="backgroundView">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5o6-zJ-DG3" userLabel="bottomCardView" customClass="CardView" customModule="BBtrebek" customModuleProvider="target">
+                            <rect key="frame" x="32" y="16" width="311" height="635"/>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JrF-Mh-sH9" userLabel="cardView" customClass="CardView" customModule="BBtrebek" customModuleProvider="target">
+                            <rect key="frame" x="32" y="16" width="311" height="635"/>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" red="0.68491876129999996" green="0.78046268220000004" blue="0.91608864069999996" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstItem="5o6-zJ-DG3" firstAttribute="top" secondItem="pyv-EN-C1P" secondAttribute="top" constant="16" id="1c7-rS-Jp4"/>
+                        <constraint firstAttribute="bottom" secondItem="5o6-zJ-DG3" secondAttribute="bottom" constant="16" id="96D-1g-VTS"/>
+                        <constraint firstAttribute="bottom" secondItem="JrF-Mh-sH9" secondAttribute="bottom" constant="16" id="9P7-RF-96N"/>
+                        <constraint firstAttribute="trailing" secondItem="JrF-Mh-sH9" secondAttribute="trailing" constant="32" id="BGS-Yz-2aP"/>
+                        <constraint firstAttribute="trailing" secondItem="5o6-zJ-DG3" secondAttribute="trailing" constant="32" id="Fp4-m5-Ytr"/>
+                        <constraint firstItem="JrF-Mh-sH9" firstAttribute="top" secondItem="pyv-EN-C1P" secondAttribute="top" constant="16" id="drz-Sh-wwa"/>
+                        <constraint firstItem="JrF-Mh-sH9" firstAttribute="leading" secondItem="pyv-EN-C1P" secondAttribute="leading" constant="32" id="tSH-4r-4KB"/>
+                        <constraint firstItem="5o6-zJ-DG3" firstAttribute="leading" secondItem="pyv-EN-C1P" secondAttribute="leading" constant="32" id="xMq-9b-QlF"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <constraints>
+                <constraint firstItem="pyv-EN-C1P" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="Mnz-g9-Z45"/>
+                <constraint firstAttribute="bottom" secondItem="pyv-EN-C1P" secondAttribute="bottom" id="Xnr-Sw-Puf"/>
+                <constraint firstAttribute="trailing" secondItem="pyv-EN-C1P" secondAttribute="trailing" id="ayX-ZW-JCH"/>
+                <constraint firstItem="pyv-EN-C1P" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="iPF-Yg-RUP"/>
+            </constraints>
+            <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+            <point key="canvasLocation" x="82.5" y="53.5"/>
+        </view>
+    </objects>
+</document>

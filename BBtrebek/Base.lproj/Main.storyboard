@@ -5,7 +5,6 @@
     </device>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -22,7 +21,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vbl-ZZ-jsv" id="436-Vm-JaI">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -59,40 +58,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xsW-J6-aud" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-2880" y="-1060"/>
-        </scene>
-        <!--Item-->
-        <scene sceneID="jEi-Gn-73W">
-            <objects>
-                <viewController storyboardIdentifier="CardViewController" id="4XE-hc-C71" customClass="CardViewController" customModule="BBtrebek" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="P6W-3g-0CO"/>
-                        <viewControllerLayoutGuide type="bottom" id="LdK-i2-TgH"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="nFz-WC-aBJ">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cJd-hC-CIl" customClass="CardHolderView" customModule="BBtrebek" customModuleProvider="target">
-                                <rect key="frame" x="16" y="28" width="343" height="631"/>
-                                <color key="backgroundColor" red="0.68627450980392157" green="0.7803921568627451" blue="0.91764705882352937" alpha="1" colorSpace="calibratedRGB"/>
-                            </view>
-                        </subviews>
-                        <color key="backgroundColor" red="0.68491876129999996" green="0.78046268220000004" blue="0.91608864069999996" alpha="1" colorSpace="calibratedRGB"/>
-                        <constraints>
-                            <constraint firstItem="cJd-hC-CIl" firstAttribute="trailing" secondItem="nFz-WC-aBJ" secondAttribute="trailingMargin" id="7AI-ex-a0I"/>
-                            <constraint firstItem="LdK-i2-TgH" firstAttribute="top" secondItem="cJd-hC-CIl" secondAttribute="bottom" constant="8" id="Q2X-bM-nds"/>
-                            <constraint firstItem="cJd-hC-CIl" firstAttribute="top" secondItem="P6W-3g-0CO" secondAttribute="bottom" constant="8" id="ewo-dV-XyX"/>
-                            <constraint firstItem="cJd-hC-CIl" firstAttribute="leading" secondItem="nFz-WC-aBJ" secondAttribute="leadingMargin" id="nix-hM-yAU"/>
-                        </constraints>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="KoV-9w-HUA"/>
-                    <connections>
-                        <outlet property="cardHolderView" destination="cJd-hC-CIl" id="PJH-l4-KqF"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="nAb-7B-F1x" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-1026" y="-1060"/>
         </scene>
     </scenes>
 </document>
