@@ -15,7 +15,6 @@ public class CardViewController: UIViewController {
     override public func viewDidLoad() {
         super.viewDidLoad()
         self.setOutOfCards()
-        self.fetchClues()
     }
     
     override public func viewWillDisappear(_ animated: Bool) {
@@ -48,19 +47,5 @@ public class CardViewController: UIViewController {
         if motion == .motionShake {
             self.cardHolderView.prevClue()
         }
-    }
-
-    private func fetchClues() -> Void {
-        self.clueGroup.fetch(
-            success: { (clueGroup) in
-                    self.clueGroup = clueGroup
-                    self.clueGroup.next()
-                    self.cardHolderView.setUpClues(newClueGroup: clueGroup)
-                    self.perform(#selector(CardViewController.delayedAppear), with: self, afterDelay: 0.6)
-            },
-            failure: { (data, urlResponse, error) in
-                    NSLog("Error Fetching Data!")
-            }
-        )
     }
 }

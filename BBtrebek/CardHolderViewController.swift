@@ -17,10 +17,6 @@ class CardHolderViewController: UIViewController {
     
     var clueGroup = ClueGroup()
     
-    var outOfClues: ((ClueGroup) -> Void) = {(cardGroup) in
-        
-    }
-    
     // CGFloat where we decide animation starts
     let pointBreak = 100.0 as CGFloat
     
@@ -34,7 +30,7 @@ class CardHolderViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.automaticallyAdjustsScrollViewInsets = true
+        self.edgesForExtendedLayout = []
         self.fetchClues()
         self.setCardViewLables()
         self.addSwipeGestureRecognizers()
@@ -173,7 +169,7 @@ class CardHolderViewController: UIViewController {
         }
         
         if self.clueGroup.isFinished() {
-            self.outOfClues(self.clueGroup)
+            self.navigationController?.popViewController(animated: true)
         }
     }
     
@@ -224,11 +220,17 @@ class CardHolderViewController: UIViewController {
                 self.clueGroup.next()
                 self.setCardViewLables()
                 self.perform(#selector(CardHolderViewController.delayedAppear), with: self, afterDelay: 0.6)
-        },
+            },
             failure: { (data, urlResponse, error) in
                 NSLog("Error Fetching Data!")
-        }
+            }
         )
+    }
+    
+    override public func motionEnded(_ motion: UIEventSubtype, with event: UIEvent?) {
+        if motion == .motionShake {
+            self.prevClue()
+        }
     }
     
     /*
