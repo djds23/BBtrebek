@@ -41,8 +41,8 @@
 		7BC8EC7D1C0D2805004972AD /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7BC8EC7B1C0D2805004972AD /* LaunchScreen.xib */; };
 		7BC8EC891C0D2805004972AD /* BBtrebekTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BC8EC881C0D2805004972AD /* BBtrebekTests.swift */; };
 		7BC8EC931C0D2911004972AD /* Clue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BC8EC921C0D2911004972AD /* Clue.swift */; };
-		7BD96C461DDE73F600FC7231 /* CardHolderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BD96C441DDE73F600FC7231 /* CardHolderViewController.swift */; };
-		7BD96C471DDE73F600FC7231 /* CardHolderViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7BD96C451DDE73F600FC7231 /* CardHolderViewController.xib */; };
+		7BD96C461DDE73F600FC7231 /* CardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BD96C441DDE73F600FC7231 /* CardViewController.swift */; };
+		7BD96C471DDE73F600FC7231 /* CardViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7BD96C451DDE73F600FC7231 /* CardViewController.xib */; };
 		7BE5C1C31DCFA52100B298B5 /* ClueGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE5C1C21DCFA52100B298B5 /* ClueGroup.swift */; };
 		7BE5C1C41DCFA7F300B298B5 /* ClueGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE5C1C21DCFA52100B298B5 /* ClueGroup.swift */; };
 		FF4B9DC31DBA481A00FEAD8A /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4B9DC21DBA481A00FEAD8A /* CardView.swift */; };
@@ -85,8 +85,8 @@
 		7BC8EC871C0D2805004972AD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7BC8EC881C0D2805004972AD /* BBtrebekTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BBtrebekTests.swift; sourceTree = "<group>"; };
 		7BC8EC921C0D2911004972AD /* Clue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Clue.swift; sourceTree = "<group>"; };
-		7BD96C441DDE73F600FC7231 /* CardHolderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardHolderViewController.swift; sourceTree = "<group>"; };
-		7BD96C451DDE73F600FC7231 /* CardHolderViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CardHolderViewController.xib; sourceTree = "<group>"; };
+		7BD96C441DDE73F600FC7231 /* CardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardViewController.swift; sourceTree = "<group>"; };
+		7BD96C451DDE73F600FC7231 /* CardViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CardViewController.xib; sourceTree = "<group>"; };
 		7BE5C1C21DCFA52100B298B5 /* ClueGroup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClueGroup.swift; sourceTree = "<group>"; };
 		FF4B9DC21DBA481A00FEAD8A /* CardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -224,8 +224,8 @@
 		7BD96C491DDE750700FC7231 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				7BD96C441DDE73F600FC7231 /* CardHolderViewController.swift */,
-				7BD96C451DDE73F600FC7231 /* CardHolderViewController.xib */,
+				7BD96C441DDE73F600FC7231 /* CardViewController.swift */,
+				7BD96C451DDE73F600FC7231 /* CardViewController.xib */,
 				7B10E8FD1DD55A99005E262F /* NavigationViewController.swift */,
 				7B10E9011DD5603A005E262F /* CategoriesViewController.swift */,
 			);
@@ -320,7 +320,7 @@
 			files = (
 				7BC8EC781C0D2805004972AD /* Main.storyboard in Resources */,
 				7B34272F1DC80F2E00B310FB /* CardView.xib in Resources */,
-				7BD96C471DDE73F600FC7231 /* CardHolderViewController.xib in Resources */,
+				7BD96C471DDE73F600FC7231 /* CardViewController.xib in Resources */,
 				7BC8EC7D1C0D2805004972AD /* LaunchScreen.xib in Resources */,
 				7BC8EC7A1C0D2805004972AD /* Images.xcassets in Resources */,
 			);
@@ -356,7 +356,7 @@
 				7B120E2A1DAF17BD00A6F660 /* FetchCategoryService.swift in Sources */,
 				7B5CDBA31DD8B4EE00F7EB66 /* FetchCategoriesService.swift in Sources */,
 				7BE5C1C31DCFA52100B298B5 /* ClueGroup.swift in Sources */,
-				7BD96C461DDE73F600FC7231 /* CardHolderViewController.swift in Sources */,
+				7BD96C461DDE73F600FC7231 /* CardViewController.swift in Sources */,
 				7B69606F1DAAF98B001B87DD /* DisableClueService.swift in Sources */,
 				7B58B3981C12BFF7007C4A1A /* Player.swift in Sources */,
 				7BC8EC731C0D2805004972AD /* AppDelegate.swift in Sources */,

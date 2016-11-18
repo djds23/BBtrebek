@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CardHolderViewController: UIViewController {
+class CardViewController: UIViewController {
     
     enum Direction {
         case left
@@ -204,7 +204,7 @@ class CardHolderViewController: UIViewController {
     private func addSwipeGestureRecognizers() -> Void {
         let panRecognizer = UIPanGestureRecognizer(
             target: self,
-            action: #selector(CardHolderViewController.handlePan(sender:))
+            action: #selector(CardViewController.handlePan(sender:))
         )
         self.cardView.addGestureRecognizer(panRecognizer)
     }
@@ -219,7 +219,7 @@ class CardHolderViewController: UIViewController {
                 self.clueGroup = clueGroup
                 self.clueGroup.next()
                 self.setCardViewLables()
-                self.perform(#selector(CardHolderViewController.delayedAppear), with: self, afterDelay: 0.6)
+                self.perform(#selector(CardViewController.delayedAppear), with: self, afterDelay: 0.6)
             },
             failure: { (data, urlResponse, error) in
                 NSLog("Error Fetching Data!")
