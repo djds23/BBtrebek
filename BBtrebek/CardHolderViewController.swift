@@ -204,7 +204,7 @@ class CardHolderViewController: UIViewController {
     private func addSwipeGestureRecognizers() -> Void {
         let panRecognizer = UIPanGestureRecognizer(
             target: self,
-            action: #selector(CardHolderView.handlePan(sender:))
+            action: #selector(CardHolderViewController.handlePan(sender:))
         )
         self.cardView.addGestureRecognizer(panRecognizer)
     }
