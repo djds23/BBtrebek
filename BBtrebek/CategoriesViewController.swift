@@ -17,6 +17,8 @@ class CategoriesViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "categoryCell")
+        self.navigationController?.navigationBar.barTintColor = BBColor.grayBlue
+        self.navigationController?.navigationBar.isTranslucent = false
         self.makeRefreshControl()
         self.fetchCategories()
         // Uncomment the following line to preserve selection between presentations
