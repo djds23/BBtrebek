@@ -53,14 +53,14 @@ public class CardViewController: UIViewController {
     private func fetchClues() -> Void {
         self.clueGroup.fetch(
             success: { (clueGroup) in
-                self.clueGroup = clueGroup
-                self.clueGroup.next()
-                self.cardHolderView.setUpClues(newClueGroup: clueGroup)
-                self.perform(#selector(CardViewController.delayedAppear), with: self, afterDelay: 0.6)
-        },
+                    self.clueGroup = clueGroup
+                    self.clueGroup.next()
+                    self.cardHolderView.setUpClues(newClueGroup: clueGroup)
+                    self.perform(#selector(CardViewController.delayedAppear), with: self, afterDelay: 0.6)
+            },
             failure: { (data, urlResponse, error) in
-                NSLog("Error Fetching Data!")
-        }
+                    NSLog("Error Fetching Data!")
+            }
         )
     }
 }
