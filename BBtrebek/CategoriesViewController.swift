@@ -17,6 +17,8 @@ class CategoriesViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "categoryCell")
+        self.tableView.separatorStyle = UITableViewCellSeparatorStyle.none
+        self.tableView.backgroundColor = BBColor.triviaGreen
         // self.clearsSelectionOnViewWillAppear = false
         
         self.navigationController?.navigationBar.barTintColor = BBColor.triviaGreen
@@ -60,6 +62,13 @@ class CategoriesViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "categoryCell", for: indexPath)
         let category = categories[indexPath.row]
         cell.textLabel?.text = category.title.titleize()
+        cell.textLabel?.textColor = BBColor.white
+
+        if indexPath.row % 2 == 0 {
+            cell.backgroundColor = BBColor.darkGreen
+        } else {
+            cell.backgroundColor = BBColor.triviaGreen
+        }
         return cell
     }
     
