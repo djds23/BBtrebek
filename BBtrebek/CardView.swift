@@ -17,6 +17,8 @@ public class CardView: UIView {
     }
     var showing = InView.question
     
+    
+    @IBOutlet weak var backgroundContainer: UIView!
     @IBOutlet weak var questionContainer: UIView!
     @IBOutlet weak var questionLabel: UILabel!
     @IBOutlet weak var categoryContainer: UIView!

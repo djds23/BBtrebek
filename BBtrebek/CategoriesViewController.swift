@@ -17,12 +17,16 @@ class CategoriesViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "categoryCell")
-        self.navigationController?.navigationBar.barTintColor = BBColor.grayBlue
+        // self.clearsSelectionOnViewWillAppear = false
+        
+        self.navigationController?.navigationBar.barTintColor = BBColor.triviaGreen
         self.navigationController?.navigationBar.isTranslucent = false
+        self.navigationController?.navigationBar.barStyle = UIBarStyle.black
+        self.navigationController?.navigationBar.tintColor = BBColor.white
+        
         self.makeRefreshControl()
         self.fetchCategories()
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
+
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()

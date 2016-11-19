@@ -27,10 +27,16 @@ class CardViewController: UIViewController {
     public func setCategory(_ category: Category) -> Void {
         self.clueGroup = ClueGroup(category: category)
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController?.navigationBar.isTranslucent = true
+        self.navigationController?.navigationBar.backItem?.title = "Back"
+        
+        
+        // For pinning view beneath nav controller
         self.edgesForExtendedLayout = []
+        
         self.fetchClues()
         self.setCardViewLables()
         self.addSwipeGestureRecognizers()
@@ -167,11 +173,8 @@ class CardViewController: UIViewController {
         if self.clueGroup.failedToFetch() {
             self.fetchClues()
         }
-        
-        if self.clueGroup.isFinished() {
-            self.navigationController?.popViewController(animated: true)
-        }
     }
+
     
     private func shake(view: UIView, direction: Direction, offset: CGFloat) -> Void {
         let offsetInDirection = abs(offset) * (direction == .right ? 1 : -1)
@@ -188,10 +191,10 @@ class CardViewController: UIViewController {
     }
     
     private func setCardViewLables() -> Void {
-        if let currentCard = self.clueGroup.current() {
-            self.cardView.setClueLabels(clue: currentCard)
-        } else {
+        if self.clueGroup.isFinished() {
             self.cardView.setClueLabels(clue: Clue.outOfClues())
+        } else {
+            self.cardView.setClueLabels(clue: self.clueGroup.current())
         }
         
         if let onDeckCard = self.clueGroup.onDeck() {

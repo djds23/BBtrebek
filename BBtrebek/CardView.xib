@@ -10,6 +10,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CardView" customModule="BBtrebek" customModuleProvider="target">
             <connections>
+                <outlet property="backgroundContainer" destination="4ZA-yZ-LtM" id="aXZ-Oi-9qZ"/>
                 <outlet property="cardView" destination="iN0-l3-epB" id="g50-YG-12a"/>
                 <outlet property="categoryContainer" destination="jHt-zh-jz6" id="u8G-h9-1D4"/>
                 <outlet property="categoryLabel" destination="IEu-AH-uMa" id="SNK-ZR-bwG"/>
@@ -92,7 +93,7 @@
                             </userDefinedRuntimeAttributes>
                         </view>
                     </subviews>
-                    <color key="backgroundColor" red="0.066666666666666666" green="0.074509803921568626" blue="0.090196078431372548" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" red="0.019607843137254902" green="0.062745098039215685" blue="0.054901960784313725" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="trailing" secondItem="mbh-BK-ghG" secondAttribute="trailing" constant="8" id="7ep-TX-yrN"/>
                         <constraint firstAttribute="bottom" secondItem="mbh-BK-ghG" secondAttribute="bottom" constant="8" id="DF2-2A-Q0h"/>

@@ -9,6 +9,13 @@
 import UIKit
 
 open class ClueGroup: NSObject {
+    
+    enum State {
+        case ready
+        case finished
+    }
+    
+    private var state = State.ready
     var clues: Array<Clue> = [Clue.nowLoadingClue()]
     var currentIndex = 0
     var category: Category?
@@ -19,12 +26,8 @@ open class ClueGroup: NSObject {
         }
     }
     
-    public func current() -> Clue? {
-        var clue: Clue?
-        if self.clues.indexExists(self.currentIndex) {
-            clue = self.clues[self.currentIndex]
-        }
-        return clue
+    public func current() -> Clue {
+        return self.clues[self.currentIndex]
     }
     
     public func onDeck() -> Clue? {
@@ -38,30 +41,23 @@ open class ClueGroup: NSObject {
     public func next() -> Void {
         if self.currentIndex + 1 < self.clues.count {
             self.currentIndex += 1
+        } else {
+            self.state = State.finished
         }
     }
     
     public func prev() -> Void {
         if self.currentIndex > 0 {
+            self.state = State.ready
             self.currentIndex -= 1
         }
     }
     public func isFinished() -> Bool {
-        var failed: Bool
-        if self.current() != nil {
-            failed = self.current()!.isFinalClue()
-        } else {
-            failed = true
-        }
-        return failed
+        return self.state == State.finished
     }
     
     public func failedToFetch() -> Bool {
-        var failed = false
-        if let card = self.current() {
-           failed = card.isLoadingClue()
-        }
-        return failed
+        return self.current().isLoadingClue()
     }
 
     private func hasRandomCategory() -> Bool {
