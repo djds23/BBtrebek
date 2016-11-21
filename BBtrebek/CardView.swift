@@ -11,11 +11,11 @@ import UIKit
 public class CardView: UIView {
     var clue: Clue?
 
-    enum InView {
+    enum CardViewState {
         case answer
         case question
     }
-    var showing = InView.question
+    var showing = CardViewState.question
     
     
     @IBOutlet weak var backgroundContainer: UIView!
@@ -53,14 +53,9 @@ public class CardView: UIView {
         self.questionLabel.text = clue.question
         self.questionLabel.textColor = BBColor.black
         self.questionContainer.backgroundColor = BBColor.white
-        self.showing = InView.question
+        self.showing = CardViewState.question
 
-        let tap = UITapGestureRecognizer(
-            target: self,
-            action: #selector(self.handleTap(sender:))
-            
-        )
-        questionContainer.addGestureRecognizer(tap)
+
     }
     
     public func whileHidden(perform: @escaping ((Void) -> Void)) -> Void{
@@ -71,19 +66,17 @@ public class CardView: UIView {
         self.alpha = 1
     }
     
-    func handleTap(sender: UITapGestureRecognizer) {
-        if sender.state == .ended {
-            if self.showing == InView.question {
-                self.questionLabel.text = self.clue?.answer
-                self.questionLabel.textColor = BBColor.white
-                self.questionContainer.backgroundColor = BBColor.black
-                self.showing = InView.answer
-            } else if self.showing == InView.answer {
-                self.questionLabel.text = self.clue?.question
-                self.questionLabel.textColor = BBColor.black
-                self.questionContainer.backgroundColor = BBColor.white
-                self.showing = InView.question
-            }
+    public func toggleAnswer() {
+        if self.showing == CardViewState.question {
+            self.questionLabel.text = self.clue?.answer
+            self.questionLabel.textColor = BBColor.white
+            self.questionContainer.backgroundColor = BBColor.black
+            self.showing = CardViewState.answer
+        } else if self.showing == CardViewState.answer {
+            self.questionLabel.text = self.clue?.question
+            self.questionLabel.textColor = BBColor.black
+            self.questionContainer.backgroundColor = BBColor.white
+            self.showing = CardViewState.question
         }
     }
     

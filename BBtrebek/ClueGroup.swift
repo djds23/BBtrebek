@@ -60,7 +60,7 @@ open class ClueGroup: NSObject {
         return self.current().isLoadingClue()
     }
 
-    private func hasRandomCategory() -> Bool {
+    public func isRandom() -> Bool {
         var hasRandom = false
         if self.category != nil {
             hasRandom = (self.category?.isRandom())!
@@ -69,7 +69,7 @@ open class ClueGroup: NSObject {
     }
     
     public func fetch(count: Int = 500, success: @escaping ((ClueGroup) -> Void), failure: @escaping (Data?, URLResponse?, Error?) -> Void) -> Void {
-        if self.category != nil && !hasRandomCategory() {
+        if self.category != nil && !isRandom() {
             let client = FetchCategoryService(category: category!, count: count)
             client.fetch(success: { (newCategory) in
                 self.clues += newCategory.clues
@@ -80,7 +80,7 @@ open class ClueGroup: NSObject {
             })
         }
         
-        if hasRandomCategory() {
+        if isRandom() {
             let client = FetchClueService(count: count)
             client.fetch(success: { (newClues) in
                 self.clues += newClues

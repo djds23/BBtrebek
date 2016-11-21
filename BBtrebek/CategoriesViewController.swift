@@ -85,9 +85,9 @@ class CategoriesViewController: UITableViewController {
     
     
     private func createCardViewController(category: Category) -> CardViewController {
-        let cardHolderViewController = CardViewController(nibName: "CardViewController", bundle: Bundle.main)
-        cardHolderViewController.setCategory(category)
-        return cardHolderViewController
+        let cardViewController = CardViewController(nibName: "CardViewController", bundle: Bundle.main)
+        cardViewController.setCategory(category)
+        return cardViewController
     }
     
     private func fetchCategories(refresh: Bool = false) -> Void {

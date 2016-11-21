@@ -31,7 +31,7 @@ class CardViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.navigationBar.isTranslucent = true
-        self.navigationController?.navigationBar.backItem?.title = "Back"
+        self.navigationController?.navigationBar.backItem?.title = ""
         
         
         // For pinning view beneath nav controller
@@ -40,12 +40,46 @@ class CardViewController: UIViewController {
         self.fetchClues()
         self.setCardViewLables()
         self.addSwipeGestureRecognizers()
+        self.addToggleAnswerGestureRecognizers()
+        if self.clueGroup.isRandom() {
+            self.addCategoryMoreFromButton()
+        }
         // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    private func addToggleAnswerGestureRecognizers() -> Void {
+        let tap = UITapGestureRecognizer(
+            target: self,
+            action: #selector(CardViewController.questionContainerWasTapped(sender:))
+        )
+        self.cardView.questionContainer.addGestureRecognizer(tap)
+    }
+    
+    public func questionContainerWasTapped(sender: UITapGestureRecognizer) -> Void {
+        if sender.state == .ended {
+            self.cardView.toggleAnswer()
+        }
+    }
+    
+    private func addCategoryMoreFromButton() -> Void {
+        let tap = UITapGestureRecognizer(
+            target: self,
+            action: #selector(CardViewController.categoryViewWasTapped(sender:))
+        )
+        self.cardView.categoryContainer.addGestureRecognizer(tap)
+    }
+
+    public func categoryViewWasTapped(sender: Any?) -> Void {
+        let cardViewController = CardViewController(nibName: "CardViewController", bundle: Bundle.main)
+        if let newCategory = self.cardView.clue?.category {
+            cardViewController.setCategory(newCategory)
+            self.navigationController?.pushViewController(cardViewController, animated: true)
+        }
     }
     
     public func prevClue() -> Void {
@@ -69,6 +103,10 @@ class CardViewController: UIViewController {
                 })
             }
         })
+    }
+    
+    public func isRandom() -> Bool {
+        return self.clueGroup.isRandom()
     }
     
     @IBAction func handlePan(sender: UIPanGestureRecognizer) {
@@ -229,7 +267,7 @@ class CardViewController: UIViewController {
             }
         )
     }
-    
+
     override public func motionEnded(_ motion: UIEventSubtype, with event: UIEvent?) {
         if motion == .motionShake {
             self.prevClue()
