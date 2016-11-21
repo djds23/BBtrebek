@@ -31,7 +31,6 @@ class CardViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.navigationBar.isTranslucent = true
-        self.navigationController?.navigationBar.backItem?.title = ""
         
         
         // For pinning view beneath nav controller
