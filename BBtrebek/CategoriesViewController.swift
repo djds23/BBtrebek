@@ -16,15 +16,16 @@ class CategoriesViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationItem.title = "Categories"
         self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "categoryCell")
-        self.tableView.separatorStyle = UITableViewCellSeparatorStyle.none
-        self.tableView.backgroundColor = BBColor.triviaGreen
+
+        self.tableView.backgroundColor = BBColor.white
         // self.clearsSelectionOnViewWillAppear = false
         
-        self.navigationController?.navigationBar.barTintColor = BBColor.triviaGreen
+        self.navigationController?.navigationBar.barTintColor = BBColor.white
         self.navigationController?.navigationBar.isTranslucent = false
-        self.navigationController?.navigationBar.barStyle = UIBarStyle.black
-        self.navigationController?.navigationBar.tintColor = BBColor.white
+        self.navigationController?.navigationBar.topItem?.title = "Categories"
+        //  self.navigationController?.navigationBar.barStyle = UIBarStyle.black
         
         self.makeRefreshControl()
         self.fetchCategories()
@@ -62,13 +63,9 @@ class CategoriesViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "categoryCell", for: indexPath)
         let category = categories[indexPath.row]
         cell.textLabel?.text = category.title.titleize()
-        cell.textLabel?.textColor = BBColor.white
-
-        if indexPath.row % 2 == 0 {
-            cell.backgroundColor = BBColor.lightGreen
-        } else {
-            cell.backgroundColor = BBColor.triviaGreen
-        }
+        cell.textLabel?.textColor = BBColor.tcGreenyBlueforText
+        cell.backgroundColor = BBColor.white
+        
         return cell
     }
     
@@ -80,6 +77,8 @@ class CategoriesViewController: UITableViewController {
         let indexPath = tableView.indexPathForSelectedRow //optional, to get from any UIButton for example
         let category = self.categories[(indexPath?.row)!]
         let cardViewController = createCardViewController(category: category)
+        self.navigationItem.title = ""
+        self.navigationController?.navigationBar.tintColor = BBColor.tcSeafoamBlue
         self.navigationController?.pushViewController(cardViewController, animated: true);
     }
     

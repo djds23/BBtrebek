@@ -30,20 +30,22 @@ class CardViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationController?.navigationBar.isTranslucent = true
-        
         
         // For pinning view beneath nav controller
         self.edgesForExtendedLayout = []
+        
+        self.navigationController?.navigationBar.isTranslucent = true
+        self.navigationController?.interactivePopGestureRecognizer?.isEnabled = false
         
         self.fetchClues()
         self.setCardViewLables()
         self.addSwipeGestureRecognizers()
         self.addToggleAnswerGestureRecognizers()
+        self.bottomCardView.isUserInteractionEnabled = false
+        self.bottomCardView.setClueColors(containter: BBColor.white, textColor: BBColor.black)
         if self.clueGroup.isRandom() {
             self.addCategoryMoreFromButton()
         }
-        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
@@ -187,7 +189,6 @@ class CardViewController: UIViewController {
         self.cardView.whileHidden {
             self.cardView.transform = CGAffineTransform(translationX: xBound, y: CGFloat(0))
             self.cardView.transform = CGAffineTransform(rotationAngle: 0)
-            self.setCardViewLables()
         }
         
         UIView.animate(withDuration: 0.30,
@@ -203,9 +204,13 @@ class CardViewController: UIViewController {
     private func postSwipe() -> Void {
         self.cardView.whileHidden {
             self.clueGroup.next()
-            self.setCardViewLables()
             self.centerCardPosition()
+            self.setCardViewLables()
         }
+        
+        UIView.animate(withDuration: (0.10 * 1.61803398875), delay: 0.0, options: UIViewAnimationOptions.allowUserInteraction, animations: {
+            self.cardView.setClueColors(containter: BBColor.cardWhite, textColor: BBColor.black)
+        })
         
         if self.clueGroup.failedToFetch() {
             self.fetchClues()
@@ -227,7 +232,7 @@ class CardViewController: UIViewController {
         view.transform = newTransform
     }
     
-    private func setCardViewLables() -> Void {
+    private func setCardViewLables(animate: Bool = false) -> Void {
         if self.clueGroup.isFinished() {
             self.cardView.setClueLabels(clue: Clue.outOfClues())
         } else {

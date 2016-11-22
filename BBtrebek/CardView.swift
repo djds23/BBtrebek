@@ -18,6 +18,7 @@ public class CardView: UIView {
     var showing = CardViewState.question
     
     
+    @IBOutlet weak var divider: UIView!
     @IBOutlet weak var backgroundContainer: UIView!
     @IBOutlet weak var questionContainer: UIView!
     @IBOutlet weak var questionLabel: UILabel!
@@ -29,6 +30,7 @@ public class CardView: UIView {
         let newFileOwnerView = CardView()
         newFileOwnerView.clue = clue
         newFileOwnerView.setClueLabels(clue: clue)
+        newFileOwnerView.setClueColors(containter: BBColor.cardWhite, textColor: BBColor.black)
         return newFileOwnerView
     }
     
@@ -48,14 +50,26 @@ public class CardView: UIView {
 
     public func setClueLabels(clue: Clue) -> Void {
         self.clue = clue
-        
         self.categoryLabel.text = clue.categoryTitle().titleize()
         self.questionLabel.text = clue.question
-        self.questionLabel.textColor = BBColor.black
-        self.questionContainer.backgroundColor = BBColor.white
         self.showing = CardViewState.question
-
-
+    }
+    
+    public func setClueColors(containter: UIColor, textColor: UIColor) -> Void {
+        self.setContainerColors(color: containter)
+        self.setCardTextColors(color: textColor)
+    }
+    
+    private func setContainerColors(color: UIColor) -> Void {
+        self.questionContainer.backgroundColor = color
+        self.categoryContainer.backgroundColor = color
+        self.backgroundContainer.backgroundColor = color
+    }
+    
+    private func setCardTextColors(color: UIColor) -> Void {
+        self.questionLabel.textColor = color
+        self.categoryLabel.textColor = color
+        self.divider.backgroundColor = color
     }
     
     public func whileHidden(perform: @escaping ((Void) -> Void)) -> Void{
@@ -67,19 +81,22 @@ public class CardView: UIView {
     }
     
     public func toggleAnswer() {
-        if self.showing == CardViewState.question {
-            self.questionLabel.text = self.clue?.answer
-            self.questionLabel.textColor = BBColor.white
-            self.questionContainer.backgroundColor = BBColor.black
-            self.showing = CardViewState.answer
-        } else if self.showing == CardViewState.answer {
-            self.questionLabel.text = self.clue?.question
-            self.questionLabel.textColor = BBColor.black
-            self.questionContainer.backgroundColor = BBColor.white
-            self.showing = CardViewState.question
-        }
+        UIView.animate(withDuration: (0.10 * 1.61803398875), animations: {
+            if self.showing == CardViewState.question {
+                self.questionLabel.text = self.clue?.answer
+                self.setCardTextColors(color: BBColor.cardWhite)
+                self.setContainerColors(color: BBColor.tcSeafoamBlue)
+                self.showing = CardViewState.answer
+            } else if self.showing == CardViewState.answer {
+                self.questionLabel.text = self.clue?.question
+                self.showing = CardViewState.question
+                self.setCardTextColors(color: BBColor.black)
+                self.setContainerColors(color: BBColor.white)
+            }
+        })
     }
     
+
     func valueText() -> String {
         var text: String = ""
         if self.clue?.value != nil {

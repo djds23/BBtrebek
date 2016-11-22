@@ -10,20 +10,59 @@ import UIKit
 
 public class BBColor: NSObject {
     
-    static public let triviaGreen = UIColor(red:0.20, green:0.63, blue:0.55, alpha:1.0)
+    static public let tcSeafoamBlue = {
+        // 4bd1c3
+        return UIColor(
+            red: 75.0 / 255.0,
+            green: 209.0 / 255.0,
+            blue: 195.0 / 255.0,
+            alpha: 1.0
+        )
+    }()
+
     
-    static public let lightGreen = UIColor(red:0.28, green:0.67, blue:0.60, alpha:1.0)
+    static public let tcLightgreytext = {
+        // cccccc
+        return UIColor(
+            white: 204.0 / 255.0,
+            alpha: 1.0
+        )
+    }()
     
-//    static public let darkGreen = UIColor(red:0.18, green:0.56, blue:0.49, alpha:1.0)
-    static public let darkGreen = UIColor(red:0.16, green:0.50, blue:0.44, alpha:1.0)
-    static public let maroon = UIColor(red:0.63, green:0.20, blue:0.28, alpha:1.0)
+    static public let tcGreenyBlueforText = {
+        // 45c1b4
+        return UIColor(
+            red: 69.0 / 255.0,
+            green: 193.0 / 255.0,
+            blue: 180.0 / 255.0,
+            alpha: 1.0
+        )
+
+    }()
+    
+    static public let black = {
+        // 071413
+        return UIColor(
+            red:0.03,
+            green:0.08,
+            blue:0.07,
+            alpha:1.0
+        )
+    }()
     
     
-    static public let black = UIColor(red:0.02, green:0.06, blue:0.05, alpha:1.0)
+    static public let white = {
+        // f4f4f4
+        return UIColor(
+            white: 244.0 / 255.0,
+            alpha: 1.0
+        )
+    }()
     
-    
-    // #eaf5f3
-    static public let white = UIColor(red:0.92, green:0.96, blue:0.95, alpha:1.0)
+    static public let cardWhite = {
+        // ffffff
+        return UIColor.white
+    }()
 
     
 }
