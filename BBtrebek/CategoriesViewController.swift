@@ -16,7 +16,6 @@ class CategoriesViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.title = "Categories"
         self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "categoryCell")
 
         self.tableView.backgroundColor = BBColor.white
@@ -24,8 +23,6 @@ class CategoriesViewController: UITableViewController {
         
         self.navigationController?.navigationBar.barTintColor = BBColor.white
         self.navigationController?.navigationBar.isTranslucent = false
-        self.navigationController?.navigationBar.topItem?.title = "Categories"
-        //  self.navigationController?.navigationBar.barStyle = UIBarStyle.black
         
         self.makeRefreshControl()
         self.fetchCategories()

@@ -18,7 +18,7 @@ class CardViewController: UIViewController {
     var clueGroup = ClueGroup()
     
     // CGFloat where we decide animation starts
-    let pointBreak = 100.0 as CGFloat
+    let pointBreak = 96.0 as CGFloat
     let goldenRatio = 1.61803398875
     
     @IBOutlet weak var cardView: CardView!
@@ -61,8 +61,9 @@ class CardViewController: UIViewController {
 
     public func categoryViewWasTapped(sender: Any?) -> Void {
         let cardViewController = CardViewController(nibName: "CardViewController", bundle: Bundle.main)
-        if let newCategory = self.cardView.clue?.category {
-            cardViewController.setCategory(newCategory)
+        let currentClue = self.cardView.clue!
+        if !currentClue.isLoadingClue() && currentClue.category != nil {
+            cardViewController.setCategory(currentClue.category!)
             self.navigationController?.pushViewController(cardViewController, animated: true)
         }
     }
