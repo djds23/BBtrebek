@@ -19,7 +19,7 @@ class CardViewController: UIViewController {
     
     // CGFloat where we decide animation starts
     let pointBreak = 100.0 as CGFloat
-    
+    let goldenRatio = 1.61803398875
     
     @IBOutlet weak var cardView: CardView!
     @IBOutlet weak var bottomCardView: CardView!
@@ -91,12 +91,12 @@ class CardViewController: UIViewController {
     public func shakeCard() -> Void {
         let duration = 0.20
         UIView.animate(withDuration: duration, delay: 0.0, options: UIViewAnimationOptions.allowUserInteraction, animations: {
-            self.shake(view: self.cardView, direction: .left, offset: CGFloat(40) / 1.61803398875)
+            self.shake(view: self.cardView, direction: .left, offset: CGFloat(40) / CGFloat(self.goldenRatio))
             
         }, completion: { (finished) in
             if finished {
                 UIView.animate(withDuration: duration, delay: 0.0, options: UIViewAnimationOptions.allowUserInteraction, animations: {
-                    self.shake(view: self.cardView, direction: .right, offset: CGFloat(60)  / 1.61803398875)
+                    self.shake(view: self.cardView, direction: .right, offset: CGFloat(60)  / CGFloat(self.goldenRatio))
                 }, completion: { (finished) in
                     UIView.animate(withDuration: duration, delay: 0.0, options: UIViewAnimationOptions.allowUserInteraction, animations: {
                         self.centerCardPosition()
@@ -144,7 +144,7 @@ class CardViewController: UIViewController {
     private func shakeBack(offset: CGFloat, duration: TimeInterval) -> Void {
         let direction = offset > 0 ? Direction.left : Direction.right
         UIView.animate(withDuration: duration, delay: 0.0, options: UIViewAnimationOptions.allowUserInteraction, animations: {
-            self.shake(view: self.cardView, direction: direction, offset: offset / 3.23606798)
+            self.shake(view: self.cardView, direction: direction, offset: offset / 2 * CGFloat(self.goldenRatio))
         }, completion: { finished in
             self.moveBack(duration: 0.18)
         })
@@ -202,14 +202,19 @@ class CardViewController: UIViewController {
     }
     
     private func postSwipe() -> Void {
-        self.cardView.whileHidden {
-            self.clueGroup.next()
-            self.centerCardPosition()
-            self.setCardViewLables()
-        }
-        
-        UIView.animate(withDuration: (0.10 * 1.61803398875), delay: 0.0, options: UIViewAnimationOptions.allowUserInteraction, animations: {
-            self.cardView.setClueColors(containter: BBColor.cardWhite, textColor: BBColor.black)
+        UIView.animate(withDuration: 0.0, delay: 0.0, options: UIViewAnimationOptions.allowUserInteraction, animations: {
+            self.cardView.whileHidden {
+                self.clueGroup.next()
+                self.centerCardPosition()
+                self.setCardViewLables()
+                self.cardView.setClueColors(containter: BBColor.white, textColor: BBColor.black)
+            }
+        }, completion: { (finished) in
+            if finished {
+                UIView.animate(withDuration: (0.10 * self.goldenRatio), delay: 0.0, options: UIViewAnimationOptions.allowUserInteraction, animations: {
+                    self.cardView.setClueColors(containter: BBColor.cardWhite, textColor: BBColor.black)
+                })
+            }
         })
         
         if self.clueGroup.failedToFetch() {
