@@ -35,12 +35,10 @@ class CardViewController: UIViewController {
         self.edgesForExtendedLayout = []
         
         self.navigationController?.navigationBar.isTranslucent = true
-        self.navigationController?.interactivePopGestureRecognizer?.isEnabled = false
         
         self.fetchClues()
         self.setCardViewLables()
         self.addSwipeGestureRecognizers()
-        self.addToggleAnswerGestureRecognizers()
         self.bottomCardView.isUserInteractionEnabled = false
         self.bottomCardView.setClueColors(containter: BBColor.white, textColor: BBColor.black)
         if self.clueGroup.isRandom() {
@@ -51,20 +49,6 @@ class CardViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-    }
-    
-    private func addToggleAnswerGestureRecognizers() -> Void {
-        let tap = UITapGestureRecognizer(
-            target: self,
-            action: #selector(CardViewController.questionContainerWasTapped(sender:))
-        )
-        self.cardView.questionContainer.addGestureRecognizer(tap)
-    }
-    
-    public func questionContainerWasTapped(sender: UITapGestureRecognizer) -> Void {
-        if sender.state == .ended {
-            self.cardView.toggleAnswer()
-        }
     }
     
     private func addCategoryMoreFromButton() -> Void {
@@ -146,13 +130,20 @@ class CardViewController: UIViewController {
         UIView.animate(withDuration: duration, delay: 0.0, options: UIViewAnimationOptions.allowUserInteraction, animations: {
             self.shake(view: self.cardView, direction: direction, offset: offset / 2 * CGFloat(self.goldenRatio))
         }, completion: { finished in
-            self.moveBack(duration: 0.18)
+            if finished {
+                self.moveBack(duration: 0.18)
+            }
         })
     }
     
     private func moveBack(duration: TimeInterval) -> Void {
         UIView.animate(withDuration: duration, delay: 0.0, options: UIViewAnimationOptions.allowUserInteraction, animations: {
             self.centerCardPosition()
+        }, completion: { finished in
+            if finished {
+                self.cardView.showQuestion()
+            }
+            
         })
     }
     
@@ -207,12 +198,13 @@ class CardViewController: UIViewController {
                 self.clueGroup.next()
                 self.centerCardPosition()
                 self.setCardViewLables()
+                self.cardView.holdForAnswerLabel.isHidden = false
                 self.cardView.setClueColors(containter: BBColor.white, textColor: BBColor.black)
             }
         }, completion: { (finished) in
             if finished {
                 UIView.animate(withDuration: (0.10 * self.goldenRatio), delay: 0.0, options: UIViewAnimationOptions.allowUserInteraction, animations: {
-                    self.cardView.setClueColors(containter: BBColor.cardWhite, textColor: BBColor.black)
+                    self.cardView.showQuestion()
                 })
             }
         })

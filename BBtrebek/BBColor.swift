@@ -32,12 +32,11 @@ public class BBColor: NSObject {
     static public let tcGreenyBlueforText = {
         // 45c1b4
         return UIColor(
-            red: 69.0 / 255.0,
-            green: 193.0 / 255.0,
-            blue: 180.0 / 255.0,
-            alpha: 1.0
+            red: 0.24,
+            green:0.68,
+            blue:0.64,
+            alpha:1.0
         )
-
     }()
     
     static public let black = {
