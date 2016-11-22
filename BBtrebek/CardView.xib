@@ -5,6 +5,7 @@
     </device>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -40,22 +41,24 @@
                                     </userDefinedRuntimeAttributes>
                                 </label>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2bz-64-1B3" userLabel="Divider">
-                                    <rect key="frame" x="99" y="89" width="106" height="3"/>
+                                    <rect key="frame" x="100" y="90" width="106" height="8"/>
                                     <color key="backgroundColor" red="0.019607843137254902" green="0.062745098039215685" blue="0.054901960784313725" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="106" id="89f-cT-Rj5"/>
+                                        <constraint firstAttribute="height" constant="8" id="CTF-9C-e3B"/>
+                                    </constraints>
                                 </view>
                             </subviews>
                             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="100" id="0Ho-I4-8rO"/>
                                 <constraint firstAttribute="bottom" secondItem="IEu-AH-uMa" secondAttribute="bottom" constant="8" id="ENL-FU-UuU"/>
-                                <constraint firstItem="2bz-64-1B3" firstAttribute="leading" secondItem="jHt-zh-jz6" secondAttribute="leading" constant="99" id="OUk-i9-nEk"/>
-                                <constraint firstItem="2bz-64-1B3" firstAttribute="top" secondItem="jHt-zh-jz6" secondAttribute="top" constant="89" id="OeB-ff-mii"/>
-                                <constraint firstAttribute="bottom" secondItem="2bz-64-1B3" secondAttribute="bottom" constant="8" id="S0a-nu-qVc"/>
                                 <constraint firstItem="IEu-AH-uMa" firstAttribute="top" secondItem="jHt-zh-jz6" secondAttribute="top" constant="8" id="cSl-fN-Eua"/>
                                 <constraint firstAttribute="width" constant="304" id="dB6-ch-vwv"/>
-                                <constraint firstItem="2bz-64-1B3" firstAttribute="centerX" secondItem="IEu-AH-uMa" secondAttribute="centerX" id="f6r-T7-H2K"/>
                                 <constraint firstAttribute="trailing" secondItem="IEu-AH-uMa" secondAttribute="trailing" constant="8" id="gR5-o8-6ip"/>
                                 <constraint firstItem="IEu-AH-uMa" firstAttribute="leading" secondItem="jHt-zh-jz6" secondAttribute="leading" constant="8" id="giW-Pm-Bde"/>
+                                <constraint firstAttribute="centerX" secondItem="2bz-64-1B3" secondAttribute="trailing" constant="-54" id="kec-nA-Reg"/>
+                                <constraint firstItem="2bz-64-1B3" firstAttribute="top" secondItem="jHt-zh-jz6" secondAttribute="bottom" constant="-10" id="vQS-EB-pt5"/>
                             </constraints>
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">

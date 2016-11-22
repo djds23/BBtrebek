@@ -91,7 +91,7 @@ public class CardView: UIView {
                 self.questionLabel.text = self.clue?.question
                 self.showing = CardViewState.question
                 self.setCardTextColors(color: BBColor.black)
-                self.setContainerColors(color: BBColor.white)
+                self.setContainerColors(color: BBColor.cardWhite)
             }
         })
     }
