@@ -27,11 +27,14 @@ class CategoriesViewController: UITableViewController {
         self.makeRefreshControl()
         self.fetchCategories()
 
-
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        self.title = "Categories"
+    }
+
     public func makeRefreshControl() -> Void {
         if #available(iOS 10.0, *) {
             let control = UIRefreshControl()
