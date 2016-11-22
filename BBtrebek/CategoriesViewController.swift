@@ -11,7 +11,7 @@ import UIKit
 class CategoriesViewController: UITableViewController {
     
     var categories = [
-        Category(title: "Potpourri", id: -1)
+        Category(title: "Random", id: -1)
     ]
 
     override func viewDidLoad() {
@@ -65,7 +65,7 @@ class CategoriesViewController: UITableViewController {
         cell.textLabel?.textColor = BBColor.white
 
         if indexPath.row % 2 == 0 {
-            cell.backgroundColor = BBColor.darkGreen
+            cell.backgroundColor = BBColor.lightGreen
         } else {
             cell.backgroundColor = BBColor.triviaGreen
         }
