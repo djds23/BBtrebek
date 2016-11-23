@@ -45,6 +45,7 @@
 		7BD96C471DDE73F600FC7231 /* CardViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7BD96C451DDE73F600FC7231 /* CardViewController.xib */; };
 		7BE5C1C31DCFA52100B298B5 /* ClueGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE5C1C21DCFA52100B298B5 /* ClueGroup.swift */; };
 		7BE5C1C41DCFA7F300B298B5 /* ClueGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE5C1C21DCFA52100B298B5 /* ClueGroup.swift */; };
+		7BFB798A1DE54335004D1509 /* BottomAlignedLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BFB79891DE54335004D1509 /* BottomAlignedLabel.swift */; };
 		FF4B9DC31DBA481A00FEAD8A /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4B9DC21DBA481A00FEAD8A /* CardView.swift */; };
 		FF4B9DC41DBA481A00FEAD8A /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4B9DC21DBA481A00FEAD8A /* CardView.swift */; };
 /* End PBXBuildFile section */
@@ -88,6 +89,7 @@
 		7BD96C441DDE73F600FC7231 /* CardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardViewController.swift; sourceTree = "<group>"; };
 		7BD96C451DDE73F600FC7231 /* CardViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CardViewController.xib; sourceTree = "<group>"; };
 		7BE5C1C21DCFA52100B298B5 /* ClueGroup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClueGroup.swift; sourceTree = "<group>"; };
+		7BFB79891DE54335004D1509 /* BottomAlignedLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BottomAlignedLabel.swift; sourceTree = "<group>"; };
 		FF4B9DC21DBA481A00FEAD8A /* CardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -114,6 +116,7 @@
 			children = (
 				FF4B9DC21DBA481A00FEAD8A /* CardView.swift */,
 				7B34272E1DC80F2E00B310FB /* CardView.xib */,
+				7BFB79891DE54335004D1509 /* BottomAlignedLabel.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -354,6 +357,7 @@
 				7B9269E41DAB177A005B9382 /* FetchClueService.swift in Sources */,
 				7B6960721DAAFA07001B87DD /* APIClient.swift in Sources */,
 				7B120E2A1DAF17BD00A6F660 /* FetchCategoryService.swift in Sources */,
+				7BFB798A1DE54335004D1509 /* BottomAlignedLabel.swift in Sources */,
 				7B5CDBA31DD8B4EE00F7EB66 /* FetchCategoriesService.swift in Sources */,
 				7BE5C1C31DCFA52100B298B5 /* ClueGroup.swift in Sources */,
 				7BD96C461DDE73F600FC7231 /* CardViewController.swift in Sources */,

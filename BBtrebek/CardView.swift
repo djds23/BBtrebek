@@ -8,6 +8,7 @@
 
 import UIKit
 
+@IBDesignable
 public class CardView: UIView {
     var clue: Clue?
 
