@@ -27,10 +27,6 @@ open class Clue: NSObject {
     public func categoryTitle() -> String {
         return self.category!.title
     }
-
-    public func isLoadingClue() -> Bool {
-        return self.id == -1
-    }
     
     public func isFinalClue() -> Bool {
         return self.id == -2
@@ -44,17 +40,6 @@ open class Clue: NSObject {
             id: -2
         )
         clue.category = Category(title: "Out of Cards", id: 42)
-        return clue
-    }
-    
-    public static func nowLoadingClue() -> Clue {
-        let clue = Clue(
-            answer: "Please swipe again.",
-            question: "Asking the internet for questions, I will shake when I'm ready for ya to start swiping!",
-            value: nil as Int?,
-            id: -1
-        )
-        clue.category = Category(title: "Now Loading", id: 42)
         return clue
     }
 

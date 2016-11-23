@@ -19,6 +19,7 @@ public class CardView: UIView {
     var showing = CardViewState.question
     
     
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var holdForAnswerLabel: UILabel!
     @IBOutlet weak var divider: UIView!
     @IBOutlet weak var backgroundContainer: UIView!

@@ -15,7 +15,6 @@ class CardViewController: UIViewController {
         case right
     }
     
-    var activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.gray)
     var clueGroup = ClueGroup()
     
     // CGFloat where we decide animation starts
@@ -40,7 +39,9 @@ class CardViewController: UIViewController {
         self.fetchClues()
         self.setCardViewLables()
         self.addSwipeGestureRecognizers()
-        self.addActivityIndicator()
+        self.cardView.activityIndicator.isHidden = false
+        self.cardView.activityIndicator.startAnimating()
+        self.bottomCardView.activityIndicator.isHidden = true
         self.bottomCardView.isUserInteractionEnabled = false
         self.bottomCardView.setClueColors(containter: BBColor.white, textColor: BBColor.black)
         if self.clueGroup.isRandom() {
@@ -51,15 +52,6 @@ class CardViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-    }
-    
-    private func addActivityIndicator() -> Void {
-        let xLoc = self.cardView.categoryContainer.center.x - 25
-        let yLoc = self.cardView.categoryContainer.center.y - 25
-        self.activityIndicator.frame = CGRect(x: xLoc, y: yLoc, width: 50, height: 50)
-        self.activityIndicator.startAnimating()
-        self.cardView.categoryContainer.addSubview(self.activityIndicator)
-        
     }
     
     private func addCategoryMoreFromButton() -> Void {
@@ -73,7 +65,7 @@ class CardViewController: UIViewController {
     public func categoryViewWasTapped(sender: Any?) -> Void {
         let cardViewController = CardViewController(nibName: "CardViewController", bundle: Bundle.main)
         let currentClue = self.cardView.clue!
-        if !currentClue.isLoadingClue() && currentClue.category != nil {
+        if self.clueGroup.isReady() && currentClue.category != nil {
             cardViewController.setCategory(currentClue.category!)
             self.navigationController?.pushViewController(cardViewController, animated: true)
         }
@@ -274,7 +266,8 @@ class CardViewController: UIViewController {
             success: { (clueGroup) in
                 self.clueGroup = clueGroup
                 self.clueGroup.next()
-                self.activityIndicator.stopAnimating()
+                self.cardView.activityIndicator.stopAnimating()
+                self.cardView.activityIndicator.isHidden = true
                 self.cardView.hideLabels()
                 self.setCardViewLables()
                 UIView.animate(withDuration: (0.10 * self.goldenRatio), delay: 0.0, options: UIViewAnimationOptions.allowUserInteraction, animations: {

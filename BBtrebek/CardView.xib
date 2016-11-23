@@ -10,6 +10,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CardView" customModule="BBtrebek" customModuleProvider="target">
             <connections>
+                <outlet property="activityIndicator" destination="06Z-cN-lwI" id="QVr-id-QG9"/>
                 <outlet property="backgroundContainer" destination="4ZA-yZ-LtM" id="aXZ-Oi-9qZ"/>
                 <outlet property="cardView" destination="iN0-l3-epB" id="g50-YG-12a"/>
                 <outlet property="categoryContainer" destination="jHt-zh-jz6" id="u8G-h9-1D4"/>
@@ -48,6 +49,13 @@
                                         <constraint firstAttribute="width" constant="106" id="uKG-Mw-34U"/>
                                     </constraints>
                                 </view>
+                                <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="06Z-cN-lwI">
+                                    <rect key="frame" x="147.5" y="79" width="25" height="25"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="25" id="6Er-Il-HfA"/>
+                                        <constraint firstAttribute="width" constant="25" id="m05-e2-hRD"/>
+                                    </constraints>
+                                </activityIndicatorView>
                             </subviews>
                             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
@@ -55,7 +63,9 @@
                                 <constraint firstAttribute="bottom" secondItem="IEu-AH-uMa" secondAttribute="bottom" constant="21" id="6VI-bF-BSJ"/>
                                 <constraint firstItem="2bz-64-1B3" firstAttribute="top" secondItem="IEu-AH-uMa" secondAttribute="bottom" constant="15" id="9Qb-Zc-DmE"/>
                                 <constraint firstAttribute="height" constant="126" id="D2c-oB-Cnk"/>
+                                <constraint firstItem="06Z-cN-lwI" firstAttribute="centerX" secondItem="jHt-zh-jz6" secondAttribute="centerX" id="SLn-uf-XfN"/>
                                 <constraint firstAttribute="trailing" secondItem="IEu-AH-uMa" secondAttribute="trailing" constant="16" id="Xt7-wj-ZK2"/>
+                                <constraint firstItem="2bz-64-1B3" firstAttribute="top" secondItem="06Z-cN-lwI" secondAttribute="bottom" constant="16" id="c1U-bc-SDV"/>
                                 <constraint firstItem="IEu-AH-uMa" firstAttribute="leading" secondItem="jHt-zh-jz6" secondAttribute="leading" constant="16" id="udV-uz-qyt"/>
                                 <constraint firstItem="IEu-AH-uMa" firstAttribute="top" relation="lessThanOrEqual" secondItem="jHt-zh-jz6" secondAttribute="top" constant="20" id="w3b-Ck-ERa"/>
                             </constraints>
