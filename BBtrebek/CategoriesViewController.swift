@@ -65,7 +65,7 @@ class CategoriesViewController: UITableViewController {
         cell.textLabel?.text = category.title.titleize()
         cell.textLabel?.textColor = BBColor.tcGreenyBlueforText
         cell.backgroundColor = BBColor.white
-        
+        cell.selectionStyle = .none
         return cell
     }
     
