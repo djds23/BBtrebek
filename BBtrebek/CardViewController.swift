@@ -15,6 +15,7 @@ class CardViewController: UIViewController {
         case right
     }
     
+    var activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.gray)
     var clueGroup = ClueGroup()
     
     // CGFloat where we decide animation starts
@@ -39,6 +40,7 @@ class CardViewController: UIViewController {
         self.fetchClues()
         self.setCardViewLables()
         self.addSwipeGestureRecognizers()
+        self.addActivityIndicator()
         self.bottomCardView.isUserInteractionEnabled = false
         self.bottomCardView.setClueColors(containter: BBColor.white, textColor: BBColor.black)
         if self.clueGroup.isRandom() {
@@ -49,6 +51,15 @@ class CardViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    private func addActivityIndicator() -> Void {
+        let xLoc = self.cardView.categoryContainer.center.x - 25
+        let yLoc = self.cardView.categoryContainer.center.y - 25
+        self.activityIndicator.frame = CGRect(x: xLoc, y: yLoc, width: 50, height: 50)
+        self.activityIndicator.startAnimating()
+        self.cardView.categoryContainer.addSubview(self.activityIndicator)
+        
     }
     
     private func addCategoryMoreFromButton() -> Void {
@@ -233,10 +244,12 @@ class CardViewController: UIViewController {
     private func setCardViewLables(animate: Bool = false) -> Void {
         if self.clueGroup.isFinished() {
             self.cardView.setClueLabels(clue: Clue.outOfClues())
-        } else {
-            self.cardView.setClueLabels(clue: self.clueGroup.current())
+        } else if self.clueGroup.isReady() {
+            self.cardView.setClueLabels(clue: self.clueGroup.current()!)
+        } else if self.clueGroup.isLoading() {
+            self.cardView.hideLabels()
         }
-        
+
         if let onDeckCard = self.clueGroup.onDeck() {
             self.bottomCardView.setClueLabels(clue: onDeckCard)
         } else {
@@ -252,7 +265,7 @@ class CardViewController: UIViewController {
         self.cardView.addGestureRecognizer(panRecognizer)
     }
     
-    public func delayedAppear(sender: Any?) -> Void {
+    public func cardsHaveBeenFetched(sender: Any?) -> Void {
         self.shakeCard()
     }
     
@@ -261,8 +274,13 @@ class CardViewController: UIViewController {
             success: { (clueGroup) in
                 self.clueGroup = clueGroup
                 self.clueGroup.next()
+                self.activityIndicator.stopAnimating()
+                self.cardView.hideLabels()
                 self.setCardViewLables()
-                self.perform(#selector(CardViewController.delayedAppear), with: self, afterDelay: 0.6)
+                UIView.animate(withDuration: (0.10 * self.goldenRatio), delay: 0.0, options: UIViewAnimationOptions.allowUserInteraction, animations: {
+                    self.cardView.showLabels()
+                })
+                self.perform(#selector(CardViewController.cardsHaveBeenFetched), with: self, afterDelay: 0.6)
             },
             failure: { (data, urlResponse, error) in
                 NSLog("Error Fetching Data!")

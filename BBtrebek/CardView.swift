@@ -56,6 +56,18 @@ public class CardView: UIView {
         self.showing = CardViewState.question
     }
     
+    public func hideLabels() -> Void {
+        self.categoryLabel.alpha = 0
+        self.questionLabel.alpha = 0
+        self.holdForAnswerLabel.alpha = 0
+    }
+    
+    public func showLabels() -> Void {
+        self.categoryLabel.alpha = 1
+        self.questionLabel.alpha = 1
+        self.holdForAnswerLabel.alpha = 1
+    }
+    
     public func setClueColors(containter: UIColor, textColor: UIColor) -> Void {
         self.setContainerColors(color: containter)
         self.setCardTextColors(color: textColor)

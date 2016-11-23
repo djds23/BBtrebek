@@ -11,12 +11,14 @@ import UIKit
 open class ClueGroup: NSObject {
     
     enum State {
+        case loading
+        case failed
         case ready
         case finished
     }
     
-    private var state = State.ready
-    var clues: Array<Clue> = [Clue.nowLoadingClue()]
+    private var state = State.loading
+    var clues: Array<Clue> = []
     var currentIndex = 0
     var category: Category?
     
@@ -26,8 +28,12 @@ open class ClueGroup: NSObject {
         }
     }
     
-    public func current() -> Clue {
-        return self.clues[self.currentIndex]
+    public func current() -> Clue? {
+        var clue: Clue?
+        if self.clues.indexExists(self.currentIndex) {
+            clue = self.clues[self.currentIndex]
+        }
+        return clue
     }
     
     public func onDeck() -> Clue? {
@@ -56,8 +62,16 @@ open class ClueGroup: NSObject {
         return self.state == State.finished
     }
     
+    public func isReady() -> Bool {
+        return self.state == State.ready
+    }
+    
     public func failedToFetch() -> Bool {
-        return self.current().isLoadingClue()
+        return self.state == State.failed
+    }
+    
+    public func isLoading() -> Bool {
+        return self.state == State.loading
     }
 
     public func isRandom() -> Bool {
@@ -69,13 +83,19 @@ open class ClueGroup: NSObject {
     }
     
     public func fetch(count: Int = 500, success: @escaping ((ClueGroup) -> Void), failure: @escaping (Data?, URLResponse?, Error?) -> Void) -> Void {
+        
+        if [State.failed, State.finished].contains(self.state) {
+            self.state = State.loading
+        }
+        
         if self.category != nil && !isRandom() {
             let client = FetchCategoryService(category: category!, count: count)
             client.fetch(success: { (newCategory) in
+                self.setStateForClues(clues: newCategory.clues)
                 self.clues += newCategory.clues
                 success(self)
             }, failure: { (data, urlResponse, error) in
-                self.clues = [Clue.nowLoadingClue()]
+                self.state = State.failed
                 failure(data, urlResponse, error)
             })
         }
@@ -83,12 +103,21 @@ open class ClueGroup: NSObject {
         if isRandom() {
             let client = FetchClueService(count: count)
             client.fetch(success: { (newClues) in
+                self.setStateForClues(clues: newClues)
                 self.clues += newClues
                 success(self)
             }, failure: { (data, urlResponse, error) in
-                self.clues = [Clue.nowLoadingClue()]
+                self.state = State.failed
                 failure(data, urlResponse, error)
             })
+        }
+    }
+    
+    private func setStateForClues(clues: Array<Clue>) {
+        if clues.isEmpty {
+           self.state = State.finished
+        } else {
+            self.state = State.ready
         }
     }
 }
