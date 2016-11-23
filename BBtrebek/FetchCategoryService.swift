@@ -15,7 +15,7 @@ class FetchCategoryService: NSObject {
 
     public init (category: Category, count: Int, offset: Int = 0) {
         self.category = category
-        let url =  "https://triviacards.xyz/api/v1/category/\(self.category.id)"
+        let url =  "https://triviacards.xyz/api/category?id=\(self.category.id)"
         self.client = APIClient(url: url)
     }
 
@@ -39,7 +39,7 @@ class FetchCategoryService: NSObject {
         let title = rawCategoryWithClues["title"] as! String
         let id = rawCategoryWithClues["id"] as! Int
         let newCategory = Category(title: title, id: id)
-        let rawClues = rawCategoryWithClues["cards"] as! NSArray // clues
+        let rawClues = rawCategoryWithClues["clues"] as! NSArray // clues
         let newClues: Array<Clue?> = convertToClues(rawClues: rawClues, newCategory: newCategory)
         let filteredClues: Array<Clue> = removeNullClues(newClues: newClues)
         let clues: Array<Clue> = self.category.clues + filteredClues
