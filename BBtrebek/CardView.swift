@@ -112,6 +112,14 @@ public class CardView: UIView {
             }
         })
     }
+    
+    public func addDropShadow() -> Void {
+        self.cardView.layer.shadowColor = UIColor.gray.cgColor
+        self.cardView.layer.shadowOpacity = 0.6
+        self.cardView.layer.shadowOffset = CGSize.zero
+        self.cardView.layer.shadowRadius = 10
+        self.cardView.layer.shadowPath = UIBezierPath(rect: self.cardView.bounds).cgPath
+    }
 
     public func showAnswer() -> Void {
         UIView.animate(withDuration: (0.16 * 1.61803398875), animations: {

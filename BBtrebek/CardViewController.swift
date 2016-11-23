@@ -17,7 +17,7 @@ class CardViewController: UIViewController {
     
     var clueGroup = ClueGroup()
     
-    // CGFloat where we decide animation starts
+    // CGFloat for fly off start
     let pointBreak = 96.0 as CGFloat
     let goldenRatio = 1.61803398875
     
@@ -41,9 +41,9 @@ class CardViewController: UIViewController {
         self.addSwipeGestureRecognizers()
         self.cardView.activityIndicator.isHidden = false
         self.cardView.activityIndicator.startAnimating()
+        self.bottomCardView.addDropShadow()
         self.bottomCardView.activityIndicator.isHidden = true
         self.bottomCardView.isUserInteractionEnabled = false
-        self.bottomCardView.setClueColors(containter: BBColor.white, textColor: BBColor.black)
         if self.clueGroup.isRandom() {
             self.addCategoryMoreFromButton()
         }
@@ -197,20 +197,13 @@ class CardViewController: UIViewController {
     }
     
     private func postSwipe() -> Void {
-        UIView.animate(withDuration: 0.0, delay: 0.0, options: UIViewAnimationOptions.allowUserInteraction, animations: {
-            self.cardView.whileHidden {
-                self.clueGroup.next()
-                self.centerCardPosition()
-                self.setCardViewLables()
-                self.cardView.holdForAnswerLabel.isHidden = false
-                self.cardView.setClueColors(containter: BBColor.white, textColor: BBColor.black)
-            }
-        }, completion: { (finished) in
-            if finished {
-                UIView.animate(withDuration: (0.10 * self.goldenRatio), delay: 0.0, options: UIViewAnimationOptions.allowUserInteraction, animations: {
-                    self.cardView.showQuestion()
-                })
-            }
+        self.clueGroup.next()
+        self.centerCardPosition()
+        self.setCardViewLables()
+        self.cardView.holdForAnswerLabel.isHidden = false
+        self.cardView.setClueColors(containter: BBColor.cardWhite, textColor: BBColor.black)
+        UIView.animate(withDuration: (1 * self.goldenRatio), delay: 0.0, options: UIViewAnimationOptions.allowUserInteraction, animations: {
+            self.cardView.showQuestion()
         })
         
         if self.clueGroup.failedToFetch() {
