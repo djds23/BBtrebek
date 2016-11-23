@@ -117,8 +117,13 @@ public class CardView: UIView {
         self.cardView.layer.shadowColor = UIColor.gray.cgColor
         self.cardView.layer.shadowOpacity = 0.6
         self.cardView.layer.shadowOffset = CGSize.zero
-        self.cardView.layer.shadowRadius = 10
-        self.cardView.layer.shadowPath = UIBezierPath(rect: self.cardView.bounds).cgPath
+        self.cardView.layer.shadowRadius = 4
+        
+        let pathRect = self.cardView.bounds.insetBy(
+            dx: self.cardView.bounds.maxX + 10,
+            dy: 0
+        )
+        self.cardView.layer.shadowPath = UIBezierPath(rect: pathRect).cgPath
     }
 
     public func showAnswer() -> Void {

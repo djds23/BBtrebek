@@ -29,10 +29,10 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JAS-8Z-jZc">
-                    <rect key="frame" x="187" y="190" width="106" height="8"/>
+                    <rect key="frame" x="187" y="190" width="106" height="4"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="8" id="3LJ-EO-whz"/>
+                        <constraint firstAttribute="height" constant="4" id="3LJ-EO-whz"/>
                         <constraint firstAttribute="width" constant="106" id="av2-mC-4Qk"/>
                     </constraints>
                 </view>
