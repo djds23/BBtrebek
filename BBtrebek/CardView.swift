@@ -95,21 +95,15 @@ public class CardView: UIView {
         self.isHidden = false
     }
 
-    public override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        self.updateState(toShow: CardViewState.answer)
-    }
-
-    public override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        self.updateState(toShow: CardViewState.question)
-    }
-
-    private func updateState(toShow: CardViewState) {
+    public func animateAnswer() -> Void {
         UIView.animate(withDuration: (0.16 * 1.61803398875), animations: {
-            if toShow == CardViewState.question {
-                self.showQuestion()
-            } else if toShow == CardViewState.answer {
-                self.showAnswer()
-            }
+            self.showAnswer()
+        })
+    }
+    
+    public func animateQuestion() -> Void {
+        UIView.animate(withDuration: (0.16 * 1.61803398875), animations: {
+            self.showQuestion()
         })
     }
     

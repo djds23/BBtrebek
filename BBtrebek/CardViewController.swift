@@ -39,6 +39,7 @@ class CardViewController: UIViewController {
         self.fetchClues()
         self.setCardViewLables()
         self.addSwipeGestureRecognizers()
+        self.addLongPressGestureRecognizers()
         self.cardView.activityIndicator.isHidden = false
         self.cardView.activityIndicator.startAnimating()
         self.bottomCardView.addDropShadow()
@@ -60,6 +61,13 @@ class CardViewController: UIViewController {
             action: #selector(CardViewController.categoryViewWasTapped(sender:))
         )
         self.cardView.categoryContainer.addGestureRecognizer(tap)
+    }
+
+    public func addLongPressGestureRecognizers() -> Void {
+        let longPressGestureRecognizer = UILongPressGestureRecognizer(            target: self,
+            action: #selector(CardViewController.handleTouch(sender:))
+        )
+        self.cardView.addGestureRecognizer(longPressGestureRecognizer)
     }
 
     public func categoryViewWasTapped(sender: Any?) -> Void {
@@ -96,6 +104,14 @@ class CardViewController: UIViewController {
     
     public func isRandom() -> Bool {
         return self.clueGroup.isRandom()
+    }
+    
+    @IBAction func handleTouch(sender: UILongPressGestureRecognizer) -> Void {
+        if sender.state == UIGestureRecognizerState.ended {
+            self.cardView.animateQuestion()
+        } else if [UIGestureRecognizerState.began,  UIGestureRecognizerState.changed, UIGestureRecognizerState.recognized].contains(sender.state) {
+            self.cardView.animateAnswer()
+        }
     }
     
     @IBAction func handlePan(sender: UIPanGestureRecognizer) {
