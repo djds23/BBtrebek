@@ -38,6 +38,7 @@ class CardViewController: UIViewController {
         
         self.fetchClues()
         self.setCardViewLables()
+        self.addFlagCardButtonToNavBar()
         self.addSwipeGestureRecognizers()
         self.cardView.activityIndicator.isHidden = false
         self.cardView.activityIndicator.startAnimating()
@@ -52,6 +53,26 @@ class CardViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    private func addFlagCardButtonToNavBar() -> Void {
+        let flag = UIImage(named: "flag")
+        let button = UIButton(type: UIButtonType.custom)
+        button.setImage(flag, for: UIControlState.normal)
+        button.setTitle("Flag Content", for: UIControlState.normal)
+        button.titleLabel?.font = button.titleLabel?.font.withSize(14)
+        button.setTitleColor(BBColor.tcLightgreytext, for: UIControlState.normal)
+        button.frame = CGRect(x: 0, y: 0, width: 100, height: 20)
+        button.addTarget(self,
+                         action: #selector(CardViewController.handleFlagCardButton(sender:)),
+                         for: UIControlEvents.touchUpInside
+        )
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: button)
+        
+    }
+    
+    public func handleFlagCardButton(sender: UIButton) {
+        print("flags for days!")
     }
     
     private func addCategoryMoreFromButton() -> Void {
