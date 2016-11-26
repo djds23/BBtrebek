@@ -20,6 +20,12 @@ class CategoriesViewController: UITableViewController {
 
         self.tableView.backgroundColor = BBColor.white
         // self.clearsSelectionOnViewWillAppear = false
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(
+            title: "",
+            style: .plain,
+            target: nil,
+            action: nil
+        )
         
         self.makeRefreshControl()
         self.fetchCategories()
@@ -62,6 +68,8 @@ class CategoriesViewController: UITableViewController {
         cell.textLabel?.text = category.title.titleize()
         cell.textLabel?.textColor = BBColor.tcGreenyBlueforText
         cell.backgroundColor = BBColor.white
+        cell.accessoryType = UITableViewCellAccessoryType.disclosureIndicator
+        cell.detailTextLabel?.text = "222"
         cell.selectionStyle = .none
         return cell
     }
@@ -74,7 +82,6 @@ class CategoriesViewController: UITableViewController {
         let indexPath = tableView.indexPathForSelectedRow //optional, to get from any UIButton for example
         let category = self.categories[(indexPath?.row)!]
         let cardViewController = createCardViewController(category: category)
-        self.navigationItem.title = ""
         self.navigationController?.navigationBar.tintColor = BBColor.tcSeafoamBlue
         self.navigationController?.pushViewController(cardViewController, animated: true);
     }

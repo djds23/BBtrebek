@@ -50,7 +50,7 @@
                 <constraint firstAttribute="trailing" secondItem="pyv-EN-C1P" secondAttribute="trailing" id="ayX-ZW-JCH"/>
                 <constraint firstItem="pyv-EN-C1P" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="iPF-Yg-RUP"/>
             </constraints>
-            <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+            <nil key="simulatedTopBarMetrics"/>
             <point key="canvasLocation" x="82.5" y="53.5"/>
         </view>
     </objects>
