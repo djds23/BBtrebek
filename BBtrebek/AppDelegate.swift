@@ -18,10 +18,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let cache = URLCache(memoryCapacity: 4 * 1024 * 1024, diskCapacity: 20 * 1024 * 1024, diskPath: nil)
         URLCache.shared = cache
         
-        UINavigationBar.appearance().setBackgroundImage(UIImage(), for: .default)
-        UINavigationBar.appearance().shadowImage = UIImage()
-        UINavigationBar.appearance().backgroundColor = BBColor.white
-        UINavigationBar.appearance().tintColor = BBColor.tcSeafoamBlue
+//        UINavigationBar.appearance().setBackgroundImage(UIImage(), for: .default)
+//        UINavigationBar.appearance().shadowImage = UIImage()
+        UINavigationBar.appearance().barTintColor = BBColor.white
         UINavigationBar.appearance().isTranslucent = false
         
         return true

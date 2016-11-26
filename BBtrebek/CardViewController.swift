@@ -40,6 +40,7 @@ class CardViewController: UIViewController {
         self.addSwipeGestureRecognizers()
         self.cardView.activityIndicator.isHidden = false
         self.cardView.activityIndicator.startAnimating()
+        self.cardView.addDropShadow()
         self.bottomCardView.addDropShadow()
         self.bottomCardView.activityIndicator.isHidden = true
         self.bottomCardView.isUserInteractionEnabled = false
@@ -238,14 +239,31 @@ class CardViewController: UIViewController {
     }
     
     private func postSwipe() -> Void {
+        self.cardView.hideDropShadow()
         self.clueGroup.next()
         self.centerCardPosition()
         self.setCardViewLables()
         self.cardView.holdForAnswerLabel.isHidden = false
         self.cardView.setClueColors(containter: BBColor.cardWhite, textColor: BBColor.black)
-        UIView.animate(withDuration: (1 * self.goldenRatio), delay: 0.0, options: UIViewAnimationOptions.allowUserInteraction, animations: {
-            self.cardView.showQuestion()
-        })
+        UIView.animate(
+            withDuration: self.goldenRatio,
+            delay: 0.0,
+            options: UIViewAnimationOptions.allowUserInteraction,
+            animations: {
+                self.cardView.showQuestion()
+                self.cardView.showDropShadow()
+            },
+            completion: { finished in
+                if finished {
+                    UIView.animate(
+                        withDuration: 3,
+                        delay: 0.0,
+                        options: UIViewAnimationOptions.allowUserInteraction,
+                        animations: {
+                    })
+                }
+            }
+        )
         
         if self.clueGroup.failedToFetch() {
             self.fetchClues()

@@ -125,6 +125,14 @@ public class CardView: UIView {
         )
         self.cardView.layer.shadowPath = UIBezierPath(rect: pathRect).cgPath
     }
+    
+    public func hideDropShadow() -> Void {
+        self.cardView.layer.shadowOpacity = 0.0
+    }
+    
+    public func showDropShadow() -> Void {
+        self.cardView.layer.shadowOpacity = 0.6
+    }
 
     public func showAnswer() -> Void {
         UIView.animate(withDuration: (0.16 * 1.61803398875), animations: {

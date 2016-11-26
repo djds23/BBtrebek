@@ -19,7 +19,6 @@ class CategoriesViewController: UITableViewController {
         self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "categoryCell")
 
         self.tableView.backgroundColor = BBColor.white
-        // self.clearsSelectionOnViewWillAppear = false
         self.navigationItem.backBarButtonItem = UIBarButtonItem(
             title: "",
             style: .plain,
@@ -83,12 +82,18 @@ class CategoriesViewController: UITableViewController {
         let category = self.categories[(indexPath?.row)!]
         let cardViewController = createCardViewController(category: category)
         self.navigationController?.navigationBar.tintColor = BBColor.tcSeafoamBlue
-        self.navigationController?.pushViewController(cardViewController, animated: true);
+        self.navigationController?.pushViewController(
+            cardViewController,
+            animated: true
+        )
     }
     
     
     private func createCardViewController(category: Category) -> CardViewController {
-        let cardViewController = CardViewController(nibName: "CardViewController", bundle: Bundle.main)
+        let cardViewController = CardViewController(
+            nibName: "CardViewController",
+            bundle: Bundle.main
+        )
         cardViewController.setCategory(category)
         return cardViewController
     }
