@@ -18,9 +18,33 @@ class APIClient: NSObject {
         self.url = URL(string: url)!
     }
     
+    public func post(body: NSDictionary, asyncCallback: @escaping (Data?, URLResponse?, Error? ) -> Void ) -> Void {
+        let request = self.newRequest()
+        if let jsonBody = self.asJson(body) {
+            request.httpMethod = "POST"
+            request.httpBody = jsonBody
+            self.performRequest(request: request, asyncCallback: asyncCallback)
+        }
+    }
+    
     public func request(method: String, asyncCallback: @escaping (Data?, URLResponse?, Error? ) -> Void ) -> Void {
         let request = self.newRequest()
         request.httpMethod = method
+        self.performRequest(request: request, asyncCallback: asyncCallback)
+    }
+    
+    private func asJson(_ body: NSDictionary) -> Data? {
+        var jsonData: Data?
+        do {
+            jsonData = try JSONSerialization.data(withJSONObject: body, options: [])
+        } catch _ as Any {
+            // I need to start dealing with these errors   
+            NSLog("There was an error decoding json")
+        }
+        return jsonData
+    }
+
+    private func performRequest(request: NSMutableURLRequest, asyncCallback: @escaping (Data?, URLResponse?, Error? ) -> Void) -> Void {
         do {
             let task = session.dataTask(with: request as URLRequest, completionHandler: asyncCallback)
             task.resume()

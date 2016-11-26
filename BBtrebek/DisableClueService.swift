@@ -12,15 +12,16 @@ import UIKit
 class DisableClueService: NSObject {
     
     let clue: Clue
-    let client: APIClient
+    let reason: FlagReason
+    let client: APIClient = APIClient(url:"https://triviacards.xyz/api/v1/flag")
     
-    public init (clue: Clue) {
+    public init (clue: Clue, reason: FlagReason) {
         self.clue = clue
-        self.client = APIClient(url:"https://triviacards.xyz/api/invalid?id=\(clue.id)")
+        self.reason = reason 
     }
     
     public func disable(success: @escaping (Clue) -> Void, failure: @escaping (Data?, URLResponse?, Error? ) -> Void) -> Void {
-        self.client.request(method: "POST", asyncCallback: { data, url, error in
+        self.client.post(body: self.jsonBody(), asyncCallback: { data, url, error in
             DispatchQueue.main.async(execute: {
                 if error != nil {
                     failure(data, url, error)
@@ -30,5 +31,14 @@ class DisableClueService: NSObject {
             })
             
         })
+    }
+    
+    private func jsonBody() -> NSDictionary {
+        return [
+            "flag": [
+                "reason_id": self.reason.id,
+                "card_id": self.clue.id
+            ]
+        ]
     }
 }

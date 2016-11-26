@@ -109,7 +109,14 @@ class CardViewController: UIViewController {
     }
 
     public func handleFlagCard(card: Clue, reason: FlagReason) -> Void {
-        
+        DisableClueService(clue: card, reason: reason).disable(
+            success: { (card) in
+                alert(title: "Card Flagged", message: "Card was successfully flagged", viewController: self)
+            },
+            failure: { data, urlResponse, error in
+                alert(title: "Error Flagging Card", message: "Please try again", viewController: self)
+            }
+        )
     }
 
     private func addCategoryMoreFromButton() -> Void {

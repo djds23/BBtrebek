@@ -7,9 +7,9 @@
 //
 
 import UIKit
-import Foundation
 
 public class FlagReason: NSObject {
+    
     var id: Int
     var machineName: String
     var displayName: String

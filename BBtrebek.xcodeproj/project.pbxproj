@@ -23,12 +23,12 @@
 		7B55B5311C14C4EA005D2F8B /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B55B52F1C14C4EA005D2F8B /* Utils.swift */; };
 		7B5CDBA31DD8B4EE00F7EB66 /* FetchCategoriesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B5CDBA21DD8B4EE00F7EB66 /* FetchCategoriesService.swift */; };
 		7B69606F1DAAF98B001B87DD /* DisableClueService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B69606E1DAAF98B001B87DD /* DisableClueService.swift */; };
-		7B6960701DAAF98B001B87DD /* DisableClueService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B69606E1DAAF98B001B87DD /* DisableClueService.swift */; };
 		7B6960721DAAFA07001B87DD /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B6960711DAAFA07001B87DD /* APIClient.swift */; };
 		7B6960731DAAFA07001B87DD /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B6960711DAAFA07001B87DD /* APIClient.swift */; };
 		7B789B481DAB2D8A007E571C /* ClueTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B789B451DAB2C38007E571C /* ClueTests.swift */; };
 		7B9269E41DAB177A005B9382 /* FetchClueService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9269E31DAB177A005B9382 /* FetchClueService.swift */; };
 		7B9269E51DAB17A8005B9382 /* FetchClueService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9269E31DAB177A005B9382 /* FetchClueService.swift */; };
+		7BA61CAB1DE9DAC20047BED0 /* FlagReason.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B1AF1221DE95500002A10A2 /* FlagReason.swift */; };
 		7BA915501C2A2EF000BABFDB /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA9154F1C2A2EF000BABFDB /* Array.swift */; };
 		7BA915511C2A2EF000BABFDB /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA9154F1C2A2EF000BABFDB /* Array.swift */; };
 		7BA915531C2A2F1200BABFDB /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA915521C2A2F1200BABFDB /* String.swift */; };
@@ -378,12 +378,12 @@
 				7B9269E51DAB17A8005B9382 /* FetchClueService.swift in Sources */,
 				7B6960731DAAFA07001B87DD /* APIClient.swift in Sources */,
 				7BAF90C91C134F1800CC71A9 /* Clue.swift in Sources */,
-				7B6960701DAAF98B001B87DD /* DisableClueService.swift in Sources */,
 				7BA915541C2A2F1200BABFDB /* String.swift in Sources */,
 				7B55B5311C14C4EA005D2F8B /* Utils.swift in Sources */,
 				7B120E2E1DAF182300A6F660 /* Category.swift in Sources */,
 				7BE5C1C41DCFA7F300B298B5 /* ClueGroup.swift in Sources */,
 				FF4B9DC41DBA481A00FEAD8A /* CardView.swift in Sources */,
+				7BA61CAB1DE9DAC20047BED0 /* FlagReason.swift in Sources */,
 				7B05B5AD1DCAA762003D8A51 /* BBColor.swift in Sources */,
 				7BA915511C2A2EF000BABFDB /* Array.swift in Sources */,
 				7B120E2B1DAF17BD00A6F660 /* FetchCategoryService.swift in Sources */,
