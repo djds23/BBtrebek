@@ -34,8 +34,6 @@ class CardViewController: UIViewController {
         // For pinning view beneath nav controller
         self.edgesForExtendedLayout = []
         
-        self.navigationController?.navigationBar.isTranslucent = true
-        
         self.fetchClues()
         self.setCardViewLables()
         self.addFlagCardButtonToNavBar()

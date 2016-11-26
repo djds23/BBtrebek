@@ -31,7 +31,7 @@
                             <rect key="frame" x="32" y="16" width="311" height="635"/>
                         </view>
                     </subviews>
-                    <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" red="0.95686274509803915" green="0.95686274509803915" blue="0.95686274509803915" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstItem="5o6-zJ-DG3" firstAttribute="top" secondItem="pyv-EN-C1P" secondAttribute="top" constant="16" id="1c7-rS-Jp4"/>
                         <constraint firstAttribute="bottom" secondItem="5o6-zJ-DG3" secondAttribute="bottom" constant="16" id="96D-1g-VTS"/>

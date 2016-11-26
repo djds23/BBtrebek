@@ -21,9 +21,6 @@ class CategoriesViewController: UITableViewController {
         self.tableView.backgroundColor = BBColor.white
         // self.clearsSelectionOnViewWillAppear = false
         
-        self.navigationController?.navigationBar.barTintColor = BBColor.white
-        self.navigationController?.navigationBar.isTranslucent = false
-        
         self.makeRefreshControl()
         self.fetchCategories()
 
