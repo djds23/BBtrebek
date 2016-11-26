@@ -21,15 +21,13 @@ class DisableClueService: NSObject {
     
     public func disable(success: @escaping (Clue) -> Void, failure: @escaping (Data?, URLResponse?, Error? ) -> Void) -> Void {
         self.client.request(method: "POST", asyncCallback: { data, url, error in
-            if error != nil {
-                DispatchQueue.main.async(execute: {
+            DispatchQueue.main.async(execute: {
+                if error != nil {
                     failure(data, url, error)
-                })
-            } else {
-                DispatchQueue.main.async(execute: {
+                } else {
                     success(self.clue)
-                })
-            }
+                }
+            })
             
         })
     }

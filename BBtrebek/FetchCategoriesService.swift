@@ -27,17 +27,15 @@ class FetchCategoriesService: NSObject {
     
     public func fetch(success: @escaping (Array<Category>) -> Void, failure: @escaping (Data?, URLResponse?, Error?) -> Void) -> Void {
         self.client.request(method: "GET") { (data, url, error) in
-            if (error != nil) {
-                DispatchQueue.main.async(execute: {
+            DispatchQueue.main.async(execute: {
+                if (error != nil) {
                     failure(data, url, error)
-                })
-            } else {
-                let categoryDictsFromRequest = ((try! JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.mutableContainers)) as! NSArray)
-                let categories = self.dataToCategories(rawCategories: categoryDictsFromRequest)
-                DispatchQueue.main.async(execute: {
+                } else {
+                    let categoryDictsFromRequest = ((try! JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.mutableContainers)) as! NSArray)
+                    let categories = self.dataToCategories(rawCategories: categoryDictsFromRequest)
                     success(categories)
-                })
-            }
+                }
+            })
         }
     }
 }
