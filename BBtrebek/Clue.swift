@@ -8,7 +8,7 @@
 
 import UIKit
 
-open class Clue: NSObject {
+public class Clue: NSObject {
 
     open var answer: String
     open var question: String

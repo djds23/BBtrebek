@@ -8,7 +8,7 @@
 
 import UIKit
 
-open class Category: NSObject {
+public class Category: NSObject {
 
     let title: String
     let id: Int

@@ -72,9 +72,46 @@ class CardViewController: UIViewController {
     }
     
     public func handleFlagCardButton(sender: UIButton) {
-        print("flags for days!")
+        FlagReasonsService().fetch(success: { (flagReasons) in
+            self.presentFlagActionController(reasons: flagReasons)
+        }, failure: { data, urlResponse, error in
+        
+        })
     }
     
+    private func presentFlagActionController(reasons: Array<FlagReason>) -> Void {
+        let alertController = UIAlertController(
+            title: "Flag Card",
+            message: "Flagging a card will cause Trivia Cards to review its content and possibly remove it from the category. Why are you flagging it today?",
+            preferredStyle: UIAlertControllerStyle.actionSheet
+        )
+        reasons.forEach { (flagReason) in
+            let alertAction = UIAlertAction(
+                title: flagReason.displayName,
+                style: UIAlertActionStyle.default,
+                handler: { alert in
+                    self.handleFlagCard(
+                        card: self.cardView.clue!,
+                        reason: flagReason
+                    )
+                }
+            )
+            alertController.addAction(alertAction)
+        }
+
+        let cancelAction = UIAlertAction(
+            title: "Cancel",
+            style: UIAlertActionStyle.cancel,
+            handler: { alert in }
+        )
+        alertController.addAction(cancelAction)
+        self.present(alertController, animated: true)
+    }
+
+    public func handleFlagCard(card: Clue, reason: FlagReason) -> Void {
+        
+    }
+
     private func addCategoryMoreFromButton() -> Void {
         let tap = UITapGestureRecognizer(
             target: self,
@@ -90,11 +127,6 @@ class CardViewController: UIViewController {
             cardViewController.setCategory(currentClue.category!)
             self.navigationController?.pushViewController(cardViewController, animated: true)
         }
-    }
-    
-    public func prevClue() -> Void {
-        self.clueGroup.prev()
-        self.animateFlyBack()
     }
     
     public func shakeCard() -> Void {
@@ -200,23 +232,6 @@ class CardViewController: UIViewController {
         })
     }
     
-    private func animateFlyBack() -> Void {
-        let xBound = UIScreen.main.bounds.width * 2
-        self.cardView.whileHidden {
-            self.cardView.transform = CGAffineTransform(translationX: xBound, y: CGFloat(0))
-            self.cardView.transform = CGAffineTransform(rotationAngle: 0)
-        }
-        
-        UIView.animate(withDuration: 0.30,
-                       animations: {
-                        self.centerCardPosition()
-        }, completion: { (finished) in
-            if finished {
-                // Pass for now
-            }
-        })
-    }
-    
     private func postSwipe() -> Void {
         self.clueGroup.next()
         self.centerCardPosition()
@@ -297,7 +312,7 @@ class CardViewController: UIViewController {
 
     override public func motionEnded(_ motion: UIEventSubtype, with event: UIEvent?) {
         if motion == .motionShake {
-            self.prevClue()
+            // self.prevClue()
         }
     }
     
