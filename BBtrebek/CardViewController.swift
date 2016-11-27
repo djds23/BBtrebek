@@ -317,7 +317,6 @@ class CardViewController: UIViewController {
         self.clueGroup.fetch(
             success: { (clueGroup) in
                 self.clueGroup = clueGroup
-                self.clueGroup.next()
                 self.cardView.activityIndicator.stopAnimating()
                 self.cardView.activityIndicator.isHidden = true
                 self.cardView.hideLabels()
