@@ -16,7 +16,6 @@ class CategoriesViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "categoryCell")
 
         self.tableView.backgroundColor = BBColor.white
         self.navigationItem.backBarButtonItem = UIBarButtonItem(
@@ -62,13 +61,20 @@ class CategoriesViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "categoryCell", for: indexPath)
+        let cell = UITableViewCell(
+            style: UITableViewCellStyle.value1,
+            reuseIdentifier: "categoryCell"
+        )
         let category = categories[indexPath.row]
         cell.textLabel?.text = category.title.titleize()
         cell.textLabel?.textColor = BBColor.tcGreenyBlueforText
         cell.backgroundColor = BBColor.white
         cell.accessoryType = UITableViewCellAccessoryType.disclosureIndicator
-        cell.detailTextLabel?.text = "222"
+        if category.isRandom() {
+            cell.detailTextLabel?.text = "🚀"
+        } else {
+            cell.detailTextLabel?.text = String(category.count())
+        }
         cell.selectionStyle = .none
         return cell
     }
