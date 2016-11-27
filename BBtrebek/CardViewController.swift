@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol CardProgressDelegate {
+    
+}
+
 class CardViewController: UIViewController {
     
     enum Direction {
@@ -20,6 +24,7 @@ class CardViewController: UIViewController {
     // CGFloat for fly off start
     let pointBreak = 96.0 as CGFloat
     
+    @IBOutlet weak var barProgressView: UIProgressView!
     @IBOutlet weak var cardView: CardView!
     @IBOutlet weak var bottomCardView: CardView!
     

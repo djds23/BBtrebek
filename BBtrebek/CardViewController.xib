@@ -5,12 +5,13 @@
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11542"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CardHolderViewController" customModule="BBtrebek" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CardViewController" customModule="BBtrebek" customModuleProvider="target">
             <connections>
+                <outlet property="barProgressView" destination="YfT-nO-jmv" id="8ef-gb-ZGQ"/>
                 <outlet property="bottomCardView" destination="5o6-zJ-DG3" id="a1j-bM-aqI"/>
                 <outlet property="cardView" destination="JrF-Mh-sH9" id="Hw7-qW-F9h"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -24,6 +25,14 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pyv-EN-C1P" userLabel="backgroundView">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                     <subviews>
+                        <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progressViewStyle="bar" translatesAutoresizingMaskIntoConstraints="NO" id="YfT-nO-jmv">
+                            <rect key="frame" x="0.0" y="-1" width="375" height="3"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="2" id="cRS-8z-R0s"/>
+                            </constraints>
+                            <color key="progressTintColor" red="0.29411764709999999" green="0.81960784310000001" blue="0.76470588240000004" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="trackTintColor" red="0.95686274509803915" green="0.95686274509803915" blue="0.95686274509803915" alpha="1" colorSpace="calibratedRGB"/>
+                        </progressView>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5o6-zJ-DG3" userLabel="bottomCardView" customClass="CardView" customModule="BBtrebek" customModuleProvider="target">
                             <rect key="frame" x="32" y="16" width="311" height="635"/>
                         </view>
@@ -37,7 +46,10 @@
                         <constraint firstAttribute="bottom" secondItem="5o6-zJ-DG3" secondAttribute="bottom" constant="16" id="96D-1g-VTS"/>
                         <constraint firstAttribute="bottom" secondItem="JrF-Mh-sH9" secondAttribute="bottom" constant="16" id="9P7-RF-96N"/>
                         <constraint firstAttribute="trailing" secondItem="JrF-Mh-sH9" secondAttribute="trailing" constant="32" id="BGS-Yz-2aP"/>
+                        <constraint firstAttribute="trailing" secondItem="YfT-nO-jmv" secondAttribute="trailing" id="Faa-Is-fJu"/>
                         <constraint firstAttribute="trailing" secondItem="5o6-zJ-DG3" secondAttribute="trailing" constant="32" id="Fp4-m5-Ytr"/>
+                        <constraint firstItem="YfT-nO-jmv" firstAttribute="leading" secondItem="pyv-EN-C1P" secondAttribute="leading" id="dO9-5g-OII"/>
+                        <constraint firstItem="YfT-nO-jmv" firstAttribute="top" secondItem="pyv-EN-C1P" secondAttribute="top" id="dVB-ma-fqH"/>
                         <constraint firstItem="JrF-Mh-sH9" firstAttribute="top" secondItem="pyv-EN-C1P" secondAttribute="top" constant="16" id="drz-Sh-wwa"/>
                         <constraint firstItem="JrF-Mh-sH9" firstAttribute="leading" secondItem="pyv-EN-C1P" secondAttribute="leading" constant="32" id="tSH-4r-4KB"/>
                         <constraint firstItem="5o6-zJ-DG3" firstAttribute="leading" secondItem="pyv-EN-C1P" secondAttribute="leading" constant="32" id="xMq-9b-QlF"/>
