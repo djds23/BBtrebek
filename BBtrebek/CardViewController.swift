@@ -19,7 +19,6 @@ class CardViewController: UIViewController {
     
     // CGFloat for fly off start
     let pointBreak = 96.0 as CGFloat
-    let goldenRatio = 1.61803398875
     
     @IBOutlet weak var cardView: CardView!
     @IBOutlet weak var bottomCardView: CardView!
@@ -110,10 +109,10 @@ class CardViewController: UIViewController {
     public func handleFlagCard(card: Clue, reason: FlagReason) -> Void {
         DisableClueService(clue: card, reason: reason).disable(
             success: { (card) in
-                alert(title: "Card Flagged", message: "Card was successfully flagged", viewController: self)
+                BBUtil.alert(title: "Card Flagged", message: "Card was successfully flagged", viewController: self)
             },
             failure: { data, urlResponse, error in
-                alert(title: "Error Flagging Card", message: "Please try again", viewController: self)
+                BBUtil.alert(title: "Error Flagging Card", message: "Please try again", viewController: self)
             }
         )
     }
@@ -138,12 +137,12 @@ class CardViewController: UIViewController {
     public func shakeCard() -> Void {
         let duration = 0.20
         UIView.animate(withDuration: duration, delay: 0.0, options: UIViewAnimationOptions.allowUserInteraction, animations: {
-            self.shake(view: self.cardView, direction: .left, offset: CGFloat(40) / CGFloat(self.goldenRatio))
+            self.shake(view: self.cardView, direction: .left, offset: CGFloat(40) / CGFloat(BBUtil.goldenRatio))
             
         }, completion: { (finished) in
             if finished {
                 UIView.animate(withDuration: duration, delay: 0.0, options: UIViewAnimationOptions.allowUserInteraction, animations: {
-                    self.shake(view: self.cardView, direction: .right, offset: CGFloat(60)  / CGFloat(self.goldenRatio))
+                    self.shake(view: self.cardView, direction: .right, offset: CGFloat(60)  / CGFloat(BBUtil.goldenRatio))
                 }, completion: { (finished) in
                     UIView.animate(withDuration: duration, delay: 0.0, options: UIViewAnimationOptions.allowUserInteraction, animations: {
                         self.centerCardPosition()
@@ -191,7 +190,7 @@ class CardViewController: UIViewController {
     private func shakeBack(offset: CGFloat, duration: TimeInterval) -> Void {
         let direction = offset > 0 ? Direction.left : Direction.right
         UIView.animate(withDuration: duration, delay: 0.0, options: UIViewAnimationOptions.allowUserInteraction, animations: {
-            self.shake(view: self.cardView, direction: direction, offset: offset / 2 * CGFloat(self.goldenRatio))
+            self.shake(view: self.cardView, direction: direction, offset: offset / 2 * CGFloat(BBUtil.goldenRatio))
         }, completion: { finished in
             if finished {
                 self.moveBack(duration: 0.18)
@@ -246,21 +245,15 @@ class CardViewController: UIViewController {
         self.cardView.holdForAnswerLabel.isHidden = false
         self.cardView.setClueColors(containter: BBColor.cardWhite, textColor: BBColor.black)
         UIView.animate(
-            withDuration: self.goldenRatio,
+            withDuration: BBUtil.goldenRatio,
             delay: 0.0,
             options: UIViewAnimationOptions.allowUserInteraction,
             animations: {
                 self.cardView.showQuestion()
-                self.cardView.showDropShadow()
             },
             completion: { finished in
                 if finished {
-                    UIView.animate(
-                        withDuration: 3,
-                        delay: 0.0,
-                        options: UIViewAnimationOptions.allowUserInteraction,
-                        animations: {
-                    })
+                    self.cardView.showDropShadow()
                 }
             }
         )
@@ -321,7 +314,7 @@ class CardViewController: UIViewController {
                 self.cardView.activityIndicator.isHidden = true
                 self.cardView.hideLabels()
                 self.setCardViewLables()
-                UIView.animate(withDuration: (0.10 * self.goldenRatio), delay: 0.0, options: UIViewAnimationOptions.allowUserInteraction, animations: {
+                UIView.animate(withDuration: (0.10 * BBUtil.goldenRatio), delay: 0.0, options: UIViewAnimationOptions.allowUserInteraction, animations: {
                     self.cardView.showLabels()
                 })
                 self.perform(#selector(CardViewController.cardsHaveBeenFetched), with: self, afterDelay: 0.6)

@@ -104,7 +104,7 @@ public class CardView: UIView {
     }
 
     private func updateState(toShow: CardViewState) {
-        UIView.animate(withDuration: (0.16 * 1.61803398875), animations: {
+        UIView.animate(withDuration: (0.16 * BBUtil.goldenRatio), animations: {
             if toShow == CardViewState.question {
                 self.showQuestion()
             } else if toShow == CardViewState.answer {
@@ -115,7 +115,7 @@ public class CardView: UIView {
     
     public func addDropShadow() -> Void {
         self.cardView.layer.shadowColor = UIColor.gray.cgColor
-        self.cardView.layer.shadowOpacity = 0.6
+        self.cardView.layer.shadowOpacity = 0.4
         self.cardView.layer.shadowOffset = CGSize.zero
         self.cardView.layer.shadowRadius = 4
         
@@ -131,11 +131,16 @@ public class CardView: UIView {
     }
     
     public func showDropShadow() -> Void {
-        self.cardView.layer.shadowOpacity = 0.6
+        let animation = CABasicAnimation(keyPath: "shadowOpacity")
+        animation.fromValue = 0.0
+        animation.toValue = 0.4
+        animation.duration = BBUtil.goldenRatio
+        self.cardView.layer.add(animation, forKey: "shadowOpacity")
+        self.cardView.layer.shadowOpacity = 0.4
     }
 
     public func showAnswer() -> Void {
-        UIView.animate(withDuration: (0.16 * 1.61803398875), animations: {
+        UIView.animate(withDuration: (0.16 * BBUtil.goldenRatio), animations: {
             self.questionLabel.text = self.clue?.answer
             self.setCardTextColors(color: BBColor.cardWhite)
             self.setContainerColors(color: BBColor.tcSeafoamBlue)
@@ -146,7 +151,7 @@ public class CardView: UIView {
     }
     
     public func showQuestion() -> Void {
-        UIView.animate(withDuration: (0.16 * 1.61803398875), animations: {
+        UIView.animate(withDuration: (0.16 * BBUtil.goldenRatio), animations: {
             self.questionLabel.text = self.clue?.question
             self.setCardTextColors(color: BBColor.black)
             self.setContainerColors(color: BBColor.cardWhite)

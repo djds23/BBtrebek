@@ -19,8 +19,8 @@
 		7B1AF1231DE95500002A10A2 /* FlagReason.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B1AF1221DE95500002A10A2 /* FlagReason.swift */; };
 		7B34272F1DC80F2E00B310FB /* CardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7B34272E1DC80F2E00B310FB /* CardView.xib */; };
 		7B3427301DC80F2E00B310FB /* CardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7B34272E1DC80F2E00B310FB /* CardView.xib */; };
-		7B55B5301C14C4EA005D2F8B /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B55B52F1C14C4EA005D2F8B /* Utils.swift */; };
-		7B55B5311C14C4EA005D2F8B /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B55B52F1C14C4EA005D2F8B /* Utils.swift */; };
+		7B55B5301C14C4EA005D2F8B /* BBUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B55B52F1C14C4EA005D2F8B /* BBUtil.swift */; };
+		7B55B5311C14C4EA005D2F8B /* BBUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B55B52F1C14C4EA005D2F8B /* BBUtil.swift */; };
 		7B5CDBA31DD8B4EE00F7EB66 /* FetchCategoriesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B5CDBA21DD8B4EE00F7EB66 /* FetchCategoriesService.swift */; };
 		7B69606F1DAAF98B001B87DD /* DisableClueService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B69606E1DAAF98B001B87DD /* DisableClueService.swift */; };
 		7B6960721DAAFA07001B87DD /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B6960711DAAFA07001B87DD /* APIClient.swift */; };
@@ -69,7 +69,7 @@
 		7B1AF1201DE954D6002A10A2 /* FlagReasonsService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlagReasonsService.swift; sourceTree = "<group>"; };
 		7B1AF1221DE95500002A10A2 /* FlagReason.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlagReason.swift; sourceTree = "<group>"; };
 		7B34272E1DC80F2E00B310FB /* CardView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CardView.xib; sourceTree = "<group>"; };
-		7B55B52F1C14C4EA005D2F8B /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		7B55B52F1C14C4EA005D2F8B /* BBUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BBUtil.swift; sourceTree = "<group>"; };
 		7B5CDBA21DD8B4EE00F7EB66 /* FetchCategoriesService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchCategoriesService.swift; sourceTree = "<group>"; };
 		7B69606E1DAAF98B001B87DD /* DisableClueService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DisableClueService.swift; sourceTree = "<group>"; };
 		7B6960711DAAFA07001B87DD /* APIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
@@ -179,7 +179,7 @@
 				7B69606D1DAAF968001B87DD /* Services */,
 				7BC8EC721C0D2805004972AD /* AppDelegate.swift */,
 				7B05B5AB1DCAA762003D8A51 /* BBColor.swift */,
-				7B55B52F1C14C4EA005D2F8B /* Utils.swift */,
+				7B55B52F1C14C4EA005D2F8B /* BBUtil.swift */,
 				7BC8EC791C0D2805004972AD /* Images.xcassets */,
 				7BC8EC7B1C0D2805004972AD /* LaunchScreen.xib */,
 				7BC8EC701C0D2805004972AD /* Supporting Files */,
@@ -353,7 +353,7 @@
 				7B120E2D1DAF182300A6F660 /* Category.swift in Sources */,
 				7BA915531C2A2F1200BABFDB /* String.swift in Sources */,
 				7B10E8FF1DD55A99005E262F /* NavigationViewController.swift in Sources */,
-				7B55B5301C14C4EA005D2F8B /* Utils.swift in Sources */,
+				7B55B5301C14C4EA005D2F8B /* BBUtil.swift in Sources */,
 				FF4B9DC31DBA481A00FEAD8A /* CardView.swift in Sources */,
 				7BA915501C2A2EF000BABFDB /* Array.swift in Sources */,
 				7B1AF1211DE954D6002A10A2 /* FlagReasonsService.swift in Sources */,
@@ -379,7 +379,7 @@
 				7B6960731DAAFA07001B87DD /* APIClient.swift in Sources */,
 				7BAF90C91C134F1800CC71A9 /* Clue.swift in Sources */,
 				7BA915541C2A2F1200BABFDB /* String.swift in Sources */,
-				7B55B5311C14C4EA005D2F8B /* Utils.swift in Sources */,
+				7B55B5311C14C4EA005D2F8B /* BBUtil.swift in Sources */,
 				7B120E2E1DAF182300A6F660 /* Category.swift in Sources */,
 				7BE5C1C41DCFA7F300B298B5 /* ClueGroup.swift in Sources */,
 				FF4B9DC41DBA481A00FEAD8A /* CardView.swift in Sources */,
