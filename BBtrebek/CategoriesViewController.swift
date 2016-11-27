@@ -105,10 +105,13 @@ class CategoriesViewController: UITableViewController {
     }
     
     private func fetchCategories(refresh: Bool = false) -> Void {
-        let client = FetchCategoriesService(count: 1000)
+        let client = FetchCategoriesService(count: 1000, lastId: self.categories.last!.id)
         client.fetch(
             success: { (newCategories) in
             self.categories += newCategories
+            self.categories.sort(by: { cat1, cat2 in
+                cat1.id < cat2.id
+            })
             self.tableView.reloadData()
             if refresh {
                 self.refreshControl?.endRefreshing()
