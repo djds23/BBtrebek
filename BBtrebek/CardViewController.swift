@@ -103,6 +103,8 @@ class CardViewController: UIViewController {
             handler: { alert in }
         )
         alertController.addAction(cancelAction)
+        alertController.popoverPresentationController?.barButtonItem = self.navigationItem.rightBarButtonItem
+        
         self.present(alertController, animated: true)
     }
 
