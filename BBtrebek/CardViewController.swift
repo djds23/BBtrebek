@@ -8,8 +8,8 @@
 
 import UIKit
 
-protocol CardProgressDelegate {
-    
+protocol AfterSwipeDelegate {
+    func wasSwiped(cardViewController: CardViewController) -> Void
 }
 
 class CardViewController: UIViewController {
@@ -20,9 +20,11 @@ class CardViewController: UIViewController {
     }
     
     var clueGroup = ClueGroup()
+    let postSwipeDelegate = AfterSwipeHandler()
     
     // CGFloat for fly off start
     let pointBreak = 96.0 as CGFloat
+    
     
     @IBOutlet weak var barProgressView: UIProgressView!
     @IBOutlet weak var cardView: CardView!
@@ -261,10 +263,11 @@ class CardViewController: UIViewController {
             completion: { finished in
                 if finished {
                     self.cardView.showDropShadow()
+                    // self.barProgressView.progress
                 }
             }
         )
-        
+        self.postSwipeDelegate.wasSwiped(cardViewController: self)
         if self.clueGroup.failedToFetch() {
             self.fetchClues()
         }

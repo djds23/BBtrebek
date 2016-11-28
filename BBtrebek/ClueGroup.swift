@@ -18,8 +18,8 @@ open class ClueGroup: NSObject {
     }
     
     private var state = State.loading
-    var clues: Array<Clue> = []
-    var currentIndex = 0
+    public var clues: Array<Clue> = []
+    public var currentIndex = 0
     var category: Category?
     
     public init(category: Category? = nil) {
