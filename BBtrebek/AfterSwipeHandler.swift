@@ -14,11 +14,11 @@ class AfterSwipeHandler: NSObject, AfterSwipeDelegate {
     }
     
     private func updateProgressView(cardViewController: CardViewController) {
-        let clueGroup = cardViewController.clueGroup
-        if clueGroup.isFinished() {
+        let cardGroup = cardViewController.cardGroup
+        if cardGroup.isFinished() {
             cardViewController.barProgressView.setProgress(1, animated: true)
         } else {
-            let percentFinished = Float(clueGroup.currentIndex) / Float(clueGroup.clues.count)
+            let percentFinished = Float(cardGroup.currentIndex) / Float(cardGroup.cards.count)
             UIView.animate(withDuration: BBUtil.goldenRatio / 4, animations: {
                 cardViewController.barProgressView.setProgress(percentFinished, animated: true)
             })

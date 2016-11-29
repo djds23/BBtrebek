@@ -19,7 +19,7 @@ class CardViewController: UIViewController {
         case right
     }
     
-    var clueGroup = ClueGroup()
+    var cardGroup = CardGroup()
     let postSwipeDelegate = AfterSwipeHandler()
     
     // CGFloat for fly off start
@@ -31,7 +31,7 @@ class CardViewController: UIViewController {
     @IBOutlet weak var bottomCardView: CardView!
     
     public func setCategory(_ category: Category) -> Void {
-        self.clueGroup = ClueGroup(category: category)
+        self.cardGroup = CardGroup(category: category)
     }
 
     override func viewDidLoad() {
@@ -40,7 +40,7 @@ class CardViewController: UIViewController {
         // For pinning view beneath nav controller
         self.edgesForExtendedLayout = []
         
-        self.fetchClues()
+        self.fetchCards()
         self.setCardViewLables()
         self.addFlagCardButtonToNavBar()
         self.addSwipeGestureRecognizers()
@@ -50,7 +50,7 @@ class CardViewController: UIViewController {
         self.bottomCardView.addDropShadow()
         self.bottomCardView.activityIndicator.isHidden = true
         self.bottomCardView.isUserInteractionEnabled = false
-        if self.clueGroup.isRandom() {
+        if self.cardGroup.isRandom() {
             self.addCategoryMoreFromButton()
         }
     }
@@ -96,7 +96,7 @@ class CardViewController: UIViewController {
                 style: UIAlertActionStyle.default,
                 handler: { alert in
                     self.handleFlagCard(
-                        card: self.cardView.clue!,
+                        card: self.cardView.card!,
                         reason: flagReason
                     )
                 }
@@ -115,8 +115,8 @@ class CardViewController: UIViewController {
         self.present(alertController, animated: true)
     }
 
-    public func handleFlagCard(card: Clue, reason: FlagReason) -> Void {
-        DisableClueService(clue: card, reason: reason).disable(
+    public func handleFlagCard(card: Card, reason: FlagReason) -> Void {
+        DisableCardService(card: card, reason: reason).disable(
             success: { (card) in
                 BBUtil.alert(title: "Card Flagged", message: "Card was successfully flagged", viewController: self)
             },
@@ -136,9 +136,9 @@ class CardViewController: UIViewController {
 
     public func categoryViewWasTapped(sender: Any?) -> Void {
         let cardViewController = CardViewController(nibName: "CardViewController", bundle: Bundle.main)
-        let currentClue = self.cardView.clue!
-        if self.clueGroup.isReady() && currentClue.category != nil {
-            cardViewController.setCategory(currentClue.category!)
+        let currentCard = self.cardView.card!
+        if self.cardGroup.isReady() && currentCard.category != nil {
+            cardViewController.setCategory(currentCard.category!)
             self.navigationController?.pushViewController(cardViewController, animated: true)
         }
     }
@@ -162,7 +162,7 @@ class CardViewController: UIViewController {
     }
     
     public func isRandom() -> Bool {
-        return self.clueGroup.isRandom()
+        return self.cardGroup.isRandom()
     }
     
     @IBAction func handlePan(sender: UIPanGestureRecognizer) {
@@ -248,11 +248,11 @@ class CardViewController: UIViewController {
     
     private func postSwipe() -> Void {
         self.cardView.hideDropShadow()
-        self.clueGroup.next()
+        self.cardGroup.next()
         self.centerCardPosition()
         self.setCardViewLables()
         self.cardView.holdForAnswerLabel.isHidden = false
-        self.cardView.setClueColors(containter: BBColor.cardWhite, textColor: BBColor.black)
+        self.cardView.setCardColors(containter: BBColor.cardWhite, textColor: BBColor.black)
         UIView.animate(
             withDuration: BBUtil.goldenRatio,
             delay: 0.0,
@@ -268,8 +268,8 @@ class CardViewController: UIViewController {
             }
         )
         self.postSwipeDelegate.wasSwiped(cardViewController: self)
-        if self.clueGroup.failedToFetch() {
-            self.fetchClues()
+        if self.cardGroup.failedToFetch() {
+            self.fetchCards()
         }
     }
 
@@ -289,18 +289,18 @@ class CardViewController: UIViewController {
     }
     
     private func setCardViewLables(animate: Bool = false) -> Void {
-        if self.clueGroup.isFinished() {
-            self.cardView.setClueLabels(clue: Clue.outOfClues())
-        } else if self.clueGroup.isReady() {
-            self.cardView.setClueLabels(clue: self.clueGroup.current()!)
-        } else if self.clueGroup.isLoading() {
+        if self.cardGroup.isFinished() {
+            self.cardView.setCardLabels(card: Card.outOfCards())
+        } else if self.cardGroup.isReady() {
+            self.cardView.setCardLabels(card: self.cardGroup.current()!)
+        } else if self.cardGroup.isLoading() {
             self.cardView.hideLabels()
         }
 
-        if let onDeckCard = self.clueGroup.onDeck() {
-            self.bottomCardView.setClueLabels(clue: onDeckCard)
+        if let onDeckCard = self.cardGroup.onDeck() {
+            self.bottomCardView.setCardLabels(card: onDeckCard)
         } else {
-            self.bottomCardView.setClueLabels(clue: Clue.outOfClues())
+            self.bottomCardView.setCardLabels(card: Card.outOfCards())
         }
     }
     
@@ -316,10 +316,10 @@ class CardViewController: UIViewController {
         self.shakeCard()
     }
     
-    private func fetchClues() -> Void {
-        self.clueGroup.fetch(
-            success: { (clueGroup) in
-                self.clueGroup = clueGroup
+    private func fetchCards() -> Void {
+        self.cardGroup.fetch(
+            success: { (cardGroup) in
+                self.cardGroup = cardGroup
                 self.cardView.activityIndicator.stopAnimating()
                 self.cardView.activityIndicator.isHidden = true
                 self.cardView.hideLabels()
@@ -337,7 +337,7 @@ class CardViewController: UIViewController {
 
     override public func motionEnded(_ motion: UIEventSubtype, with event: UIEvent?) {
         if motion == .motionShake {
-            // self.prevClue()
+            // self.prevCard()
         }
     }
     

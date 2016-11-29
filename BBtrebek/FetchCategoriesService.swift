@@ -17,8 +17,8 @@ class FetchCategoriesService: NSObject {
     
     func dataToCategories(rawCategories: NSArray) -> Array<Category> {
         var categories: Array<Category> = []
-        for clue in rawCategories {
-            if let category = Category.initWithNSDictionary(clue as! NSDictionary) {
+        for card in rawCategories {
+            if let category = Category.initWithNSDictionary(card as! NSDictionary) {
                 categories.append(category)
             }
         }

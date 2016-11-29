@@ -12,7 +12,7 @@ public class Category: NSObject {
 
     let title: String
     let id: Int
-    var clues: Array<Clue> = []
+    var cards: Array<Card> = []
     var cardCount: Int?
 
     public func isRandom() -> Bool {
@@ -20,8 +20,8 @@ public class Category: NSObject {
     }
     
     public func count() -> Int {
-        var output = self.clues.count
-        if self.clues.isEmpty && self.cardCount != nil {
+        var output = self.cards.count
+        if self.cards.isEmpty && self.cardCount != nil {
             output = self.cardCount!
         }
         return output
@@ -44,13 +44,13 @@ public class Category: NSObject {
         return category
     }
 
-    static public func initWithClues(title: String, id: Int, clues: Array<Clue>) -> Category {
+    static public func initWithCards(title: String, id: Int, cards: Array<Card>) -> Category {
         let category = Category(title: title, id: id)
-        category.clues = clues
+        category.cards = cards
         return category
     }
 
-    public func appendClue(clue: Clue) {
-        self.clues.append(clue)
+    public func appendCard(card: Card) {
+        self.cards.append(card)
     }
 }

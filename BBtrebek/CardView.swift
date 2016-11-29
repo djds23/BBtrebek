@@ -10,7 +10,7 @@ import UIKit
 
 @IBDesignable
 public class CardView: UIView {
-    var clue: Clue?
+    var card: Card?
 
     enum CardViewState {
         case answer
@@ -29,11 +29,11 @@ public class CardView: UIView {
     @IBOutlet weak var categoryLabel: UILabel!
     @IBOutlet var cardView: UIView!
     
-    public static func initWithClue(clue: Clue) -> CardView{
+    public static func initWithCard(card: Card) -> CardView{
         let newFileOwnerView = CardView()
-        newFileOwnerView.clue = clue
-        newFileOwnerView.setClueLabels(clue: clue)
-        newFileOwnerView.setClueColors(containter: BBColor.cardWhite, textColor: BBColor.black)
+        newFileOwnerView.card = card
+        newFileOwnerView.setCardLabels(card: card)
+        newFileOwnerView.setCardColors(containter: BBColor.cardWhite, textColor: BBColor.black)
         return newFileOwnerView
     }
     
@@ -51,10 +51,10 @@ public class CardView: UIView {
         cardView.frame = self.bounds
     }
 
-    public func setClueLabels(clue: Clue) -> Void {
-        self.clue = clue
-        self.categoryLabel.text = clue.categoryTitle().titleize()
-        self.questionLabel.text = clue.question
+    public func setCardLabels(card: Card) -> Void {
+        self.card = card
+        self.categoryLabel.text = card.categoryTitle().titleize()
+        self.questionLabel.text = card.question
         self.showing = CardViewState.question
     }
     
@@ -70,7 +70,7 @@ public class CardView: UIView {
         self.holdForAnswerLabel.alpha = 1
     }
     
-    public func setClueColors(containter: UIColor, textColor: UIColor) -> Void {
+    public func setCardColors(containter: UIColor, textColor: UIColor) -> Void {
         self.setContainerColors(color: containter)
         self.setCardTextColors(color: textColor)
     }
@@ -141,7 +141,7 @@ public class CardView: UIView {
 
     public func showAnswer() -> Void {
         UIView.animate(withDuration: (0.16 * BBUtil.goldenRatio), animations: {
-            self.questionLabel.text = self.clue?.answer
+            self.questionLabel.text = self.card?.answer
             self.setCardTextColors(color: BBColor.cardWhite)
             self.setContainerColors(color: BBColor.tcSeafoamBlue)
             self.holdForAnswerLabel.textColor = BBColor.tcLightgreytext
@@ -152,7 +152,7 @@ public class CardView: UIView {
     
     public func showQuestion() -> Void {
         UIView.animate(withDuration: (0.16 * BBUtil.goldenRatio), animations: {
-            self.questionLabel.text = self.clue?.question
+            self.questionLabel.text = self.card?.question
             self.setCardTextColors(color: BBColor.black)
             self.setContainerColors(color: BBColor.cardWhite)
             self.holdForAnswerLabel.isHidden = false

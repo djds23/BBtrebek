@@ -1,5 +1,5 @@
 //
-//  ClueTests.swift
+//  CardTests.swift
 //  BBtrebek
 //
 //  Created by Dean Silfen on 10/9/16.
@@ -8,7 +8,7 @@
 
 import XCTest
 
-class ClueTests: XCTestCase {
+class CardTests: XCTestCase {
     
     override func setUp() {
         super.setUp()
@@ -20,19 +20,19 @@ class ClueTests: XCTestCase {
         super.tearDown()
     }
     
-    func testClueCanInitialize() {
-        let initializedClue = Clue(
+    func testCardCanInitialize() {
+        let initializedCard = Card(
             answer: "Dean",
             question: "Who made this app",
             value: 100,
             id: 1
         )
-        initializedClue.category = Category(title:"people who are learning iOS", id: 100)
+        initializedCard.category = Category(title:"people who are learning iOS", id: 100)
         
-        XCTAssertNotNil(initializedClue, "Pass")
+        XCTAssertNotNil(initializedCard, "Pass")
     }
     
-    func testClueCanInitializeFromNSDictonary() {
+    func testCardCanInitializeFromNSDictonary() {
         let category: NSDictionary = [
             "title": "people who are learning iOS",
             "id": 1000
@@ -47,26 +47,26 @@ class ClueTests: XCTestCase {
             "id": 1
         ]
         
-        let initializedClue = Clue.initWithNSDictionary(dict)
-        XCTAssertNotNil(initializedClue, "Pass")
+        let initializedCard = Card.initWithNSDictionary(dict)
+        XCTAssertNotNil(initializedCard, "Pass")
     }
     
-    func testClueStripsHTMLTags() {
-        let strippedClue = Clue(
+    func testCardStripsHTMLTags() {
+        let strippedCard = Card(
             answer: "<p>Dean</p>",
             question: "Who <em>made</em> this app",
             value: 100,
             id: 2
         )
         
-        strippedClue.category = Category(title:"people who are learning iOS", id: 100)
+        strippedCard.category = Category(title:"people who are learning iOS", id: 100)
         
-        XCTAssertEqual(strippedClue.answer, "Dean", "Pass")
-        XCTAssertEqual(strippedClue.question, "Who made this app", "Pass")
-        XCTAssertEqual(strippedClue.categoryTitle(), "people who are learning iOS", "Pass")
+        XCTAssertEqual(strippedCard.answer, "Dean", "Pass")
+        XCTAssertEqual(strippedCard.question, "Who made this app", "Pass")
+        XCTAssertEqual(strippedCard.categoryTitle(), "people who are learning iOS", "Pass")
     }
     
-    func testClueInitializesWithNullValue() {
+    func testCardInitializesWithNullValue() {
         let category: NSDictionary = [
             "title": "people who are learning iOS",
             "id": 100
@@ -81,9 +81,9 @@ class ClueTests: XCTestCase {
             "id": 1
         ]
         
-        let initializedClue = Clue.initWithNSDictionary(dict)
-        XCTAssertNotNil(initializedClue, "Pass")
-        XCTAssertNotNil(initializedClue?.value, "Pass")
+        let initializedCard = Card.initWithNSDictionary(dict)
+        XCTAssertNotNil(initializedCard, "Pass")
+        XCTAssertNotNil(initializedCard?.value, "Pass")
     }
 
     func testPerformanceExample() {

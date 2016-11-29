@@ -1,5 +1,5 @@
 //
-//  Clue.swift
+//  Card.swift
 //  BBtrebek
 //
 //  Created by Dean Silfen on 11/30/15.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-public class Clue: NSObject {
+public class Card: NSObject {
 
     open var answer: String
     open var question: String
@@ -28,46 +28,46 @@ public class Clue: NSObject {
         return self.category!.title
     }
     
-    public func isFinalClue() -> Bool {
+    public func isFinalCard() -> Bool {
         return self.id == -2
     }
 
-    public static func outOfClues() -> Clue {
-        let clue = Clue(
+    public static func outOfCards() -> Card {
+        let card = Card(
             answer: "Out of cards for this category! Take a peak at some of the other cards we have.",
             question: "Out of cards for this category! Take a peak at some of the other cards we have.",
             value: nil as Int?,
             id: -2
         )
-        clue.category = Category(title: "Out of Cards", id: 42)
-        return clue
+        card.category = Category(title: "Out of Cards", id: 42)
+        return card
     }
 
-    static func initWithNSDictionary(_ dict: NSDictionary) -> Clue? {
-        let clue = initWithoutCategory(dict)
-        if clue != nil {
-            clue?.category = Category(
+    static func initWithNSDictionary(_ dict: NSDictionary) -> Card? {
+        let card = initWithoutCategory(dict)
+        if card != nil {
+            card?.category = Category(
                 title: (dict["category"] as! NSDictionary)["title"] as! String,
                 id: (dict["category"] as! NSDictionary)["id"] as! Int!
             )
         }
-        return clue
+        return card
     }
     
-    static func initWithoutCategory(_ dict: NSDictionary) -> Clue? {
+    static func initWithoutCategory(_ dict: NSDictionary) -> Card? {
         if let answer = dict["answer"] as? String,
             let question = dict["question"] as? String,
             let id = dict["id"] as? Int {
             
-            let clueObj = Clue(
+            let cardObj = Card(
                 answer: answer,
                 question: question,
                 value: nil as Int?,
                 id: id
             )
-            return clueObj;
+            return cardObj;
         } else {
-            return nil as Clue?;
+            return nil as Card?;
         }
     }
 }

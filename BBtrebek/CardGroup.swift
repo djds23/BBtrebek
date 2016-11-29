@@ -1,5 +1,5 @@
 //
-//  ClueGroup.swift
+//  CardGroup.swift
 //  BBtrebek
 //
 //  Created by Dean Silfen on 11/6/16.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-open class ClueGroup: NSObject {
+open class CardGroup: NSObject {
     
     enum State {
         case loading
@@ -18,7 +18,7 @@ open class ClueGroup: NSObject {
     }
     
     private var state = State.loading
-    public var clues: Array<Clue> = []
+    public var cards: Array<Card> = []
     public var currentIndex = 0
     var category: Category?
     
@@ -28,24 +28,24 @@ open class ClueGroup: NSObject {
         }
     }
     
-    public func current() -> Clue? {
-        var clue: Clue?
-        if self.clues.indexExists(self.currentIndex) {
-            clue = self.clues[self.currentIndex]
+    public func current() -> Card? {
+        var card: Card?
+        if self.cards.indexExists(self.currentIndex) {
+            card = self.cards[self.currentIndex]
         }
-        return clue
+        return card
     }
     
-    public func onDeck() -> Clue? {
-        var clue: Clue?
-        if self.clues.indexExists(self.currentIndex + 1) {
-            clue = self.clues[self.currentIndex + 1]
+    public func onDeck() -> Card? {
+        var card: Card?
+        if self.cards.indexExists(self.currentIndex + 1) {
+            card = self.cards[self.currentIndex + 1]
         }
-        return clue
+        return card
     }
     
     public func next() -> Void {
-        if self.currentIndex + 1 < self.clues.count {
+        if self.currentIndex + 1 < self.cards.count {
             self.currentIndex += 1
         } else {
             self.state = State.finished
@@ -82,7 +82,7 @@ open class ClueGroup: NSObject {
         return hasRandom
     }
     
-    public func fetch(count: Int = 500, success: @escaping ((ClueGroup) -> Void), failure: @escaping (Data?, URLResponse?, Error?) -> Void) -> Void {
+    public func fetch(count: Int = 500, success: @escaping ((CardGroup) -> Void), failure: @escaping (Data?, URLResponse?, Error?) -> Void) -> Void {
         
         if [State.failed, State.finished].contains(self.state) {
             self.state = State.loading
@@ -91,8 +91,8 @@ open class ClueGroup: NSObject {
         if self.category != nil && !isRandom() {
             let client = FetchCategoryService(category: category!, count: count)
             client.fetch(success: { (newCategory) in
-                self.setStateForClues(clues: newCategory.clues)
-                self.clues += newCategory.clues
+                self.setStateForCards(cards: newCategory.cards)
+                self.cards += newCategory.cards
                 success(self)
             }, failure: { (data, urlResponse, error) in
                 self.state = State.failed
@@ -101,10 +101,10 @@ open class ClueGroup: NSObject {
         }
         
         if isRandom() {
-            let client = FetchClueService(count: count)
-            client.fetch(success: { (newClues) in
-                self.setStateForClues(clues: newClues)
-                self.clues += newClues
+            let client = FetchCardService(count: count)
+            client.fetch(success: { (newCards) in
+                self.setStateForCards(cards: newCards)
+                self.cards += newCards
                 success(self)
             }, failure: { (data, urlResponse, error) in
                 self.state = State.failed
@@ -113,8 +113,8 @@ open class ClueGroup: NSObject {
         }
     }
     
-    private func setStateForClues(clues: Array<Clue>) {
-        if clues.isEmpty {
+    private func setStateForCards(cards: Array<Card>) {
+        if cards.isEmpty {
            self.state = State.finished
         } else {
             self.state = State.ready

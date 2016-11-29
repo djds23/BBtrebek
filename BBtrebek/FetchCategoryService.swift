@@ -26,42 +26,42 @@ class FetchCategoryService: NSObject {
                     failure(data, url, error)
                 } else {
                     let categoryDict = ((try! JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.mutableContainers)) as! NSDictionary)
-                    let category = self.dataToCategory(rawCategoryWithClues: categoryDict)
+                    let category = self.dataToCategory(rawCategoryWithCards: categoryDict)
                     success(category)
                 }
             })
         }
     }
 
-    private func dataToCategory(rawCategoryWithClues: NSDictionary) -> Category {
-        let title = rawCategoryWithClues["title"] as! String
-        let id = rawCategoryWithClues["id"] as! Int
+    private func dataToCategory(rawCategoryWithCards: NSDictionary) -> Category {
+        let title = rawCategoryWithCards["title"] as! String
+        let id = rawCategoryWithCards["id"] as! Int
         let newCategory = Category(title: title, id: id)
-        let rawClues = rawCategoryWithClues["cards"] as! NSArray // clues
-        let newClues: Array<Clue?> = convertToClues(rawClues: rawClues, newCategory: newCategory)
-        let filteredClues: Array<Clue> = removeNullClues(newClues: newClues)
-        let clues: Array<Clue> = self.category.clues + filteredClues
-        newCategory.clues = clues
+        let rawCards = rawCategoryWithCards["cards"] as! NSArray // cards
+        let newCards: Array<Card?> = convertToCards(rawCards: rawCards, newCategory: newCategory)
+        let filteredCards: Array<Card> = removeNullCards(newCards: newCards)
+        let cards: Array<Card> = self.category.cards + filteredCards
+        newCategory.cards = cards
         return newCategory
     }
     
-    private func convertToClues(rawClues: NSArray, newCategory: Category) -> Array<Clue?> {
-        return rawClues.map { rawClue in
-            if let clueDict = rawClue as? NSDictionary {
-                let newClue = Clue.initWithoutCategory(clueDict as NSDictionary)!
-                newClue.category = newCategory
-                return newClue
+    private func convertToCards(rawCards: NSArray, newCategory: Category) -> Array<Card?> {
+        return rawCards.map { rawCard in
+            if let cardDict = rawCard as? NSDictionary {
+                let newCard = Card.initWithoutCategory(cardDict as NSDictionary)!
+                newCard.category = newCategory
+                return newCard
             } else {
-                return nil as Clue?
+                return nil as Card?
             }
         }
     }
     
-    private func removeNullClues(newClues: Array<Clue?>) -> Array<Clue> {
-        return newClues.filter { nullableClues in
-            nullableClues != nil
-        }.map { clue in
-            clue!
+    private func removeNullCards(newCards: Array<Card?>) -> Array<Card> {
+        return newCards.filter { nullableCards in
+            nullableCards != nil
+        }.map { card in
+            card!
         }
     }
 }
