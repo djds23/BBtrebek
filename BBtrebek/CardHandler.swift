@@ -1,5 +1,5 @@
 //
-//  PostSwipeHandler.swift
+//  CardHandler.swift
 //  BBtrebek
 //
 //  Created by Dean Silfen on 11/27/16.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AfterSwipeHandler: NSObject, AfterSwipeDelegate {
+class CardHandler: NSObject, CardViewControllerDelegate {
     func wasSwiped(cardViewController: CardViewController) -> Void {
         self.updateProgressView(cardViewController: cardViewController)
     }

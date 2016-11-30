@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol AfterSwipeDelegate {
+protocol CardViewControllerDelegate {
     func wasSwiped(cardViewController: CardViewController) -> Void
 }
 
@@ -20,7 +20,7 @@ class CardViewController: UIViewController {
     }
     
     var cardGroup = CardGroup()
-    let postSwipeDelegate = AfterSwipeHandler()
+    var delegate: CardViewControllerDelegate?
     
     // CGFloat for fly off start
     let pointBreak = 96.0 as CGFloat
@@ -267,7 +267,7 @@ class CardViewController: UIViewController {
                 }
             }
         )
-        self.postSwipeDelegate.wasSwiped(cardViewController: self)
+        self.delegate?.wasSwiped(cardViewController: self)
         if self.cardGroup.failedToFetch() {
             self.fetchCards()
         }
