@@ -9,22 +9,18 @@
 import UIKit
 
 protocol CardViewControllerDelegate {
-    func wasSwiped(cardViewController: CardViewController) -> Void
+    func cardWasDismissed(cardViewController: CardViewController) -> Void
+}
+
+enum CardSwipeDirection {
+    case left
+    case right
 }
 
 class CardViewController: UIViewController {
     
-    enum Direction {
-        case left
-        case right
-    }
-    
     var cardGroup = CardGroup()
     var delegate: CardViewControllerDelegate?
-    
-    // CGFloat for fly off start
-    let pointBreak = 96.0 as CGFloat
-    
     
     @IBOutlet weak var barProgressView: UIProgressView!
     @IBOutlet weak var cardView: CardView!
@@ -179,25 +175,25 @@ class CardViewController: UIViewController {
         self.cardView.transform = newTransform
         
         if sender.state == UIGestureRecognizerState.ended {
-            if (translation.x > self.pointBreak) {
-                self.animateFlyOff(from: Direction.right)
+            let offset = translation.x
+            let swipeDirection = offset > 0 ? CardSwipeDirection.right : CardSwipeDirection.left
+            let pointBreak = 96.0 as CGFloat
+            let shouldDismissCard = abs(offset) > pointBreak
+            if shouldDismissCard {
+                self.animateFlyOff(from: swipeDirection)
             } else {
-                if (translation.x < -self.pointBreak) {
-                    self.animateFlyOff(from: Direction.left)
+                // We go back to the original posiition if pan is not far enough for us to decide a direction
+                if 16 < abs(Int(translation.x)) {
+                    self.shakeBack(offset: offset, duration: 0.20)
                 } else {
-                    // We go back to the original posiition if pan is not far enough for us to decide a direction
-                    if 16 < abs(Int(translation.x)) {
-                        self.shakeBack(offset: translation.x, duration: 0.20)
-                    } else {
-                        self.moveBack(duration: 0.20)
-                    }
+                    self.moveBack(duration: 0.20)
                 }
             }
         }
     }
     
     private func shakeBack(offset: CGFloat, duration: TimeInterval) -> Void {
-        let direction = offset > 0 ? Direction.left : Direction.right
+        let direction = offset > 0 ? CardSwipeDirection.left : CardSwipeDirection.right
         UIView.animate(withDuration: duration, delay: 0.0, options: UIViewAnimationOptions.allowUserInteraction, animations: {
             self.shake(view: self.cardView, direction: direction, offset: offset / 2 * CGFloat(BBUtil.goldenRatio))
         }, completion: { finished in
@@ -225,7 +221,7 @@ class CardViewController: UIViewController {
         self.cardView.transform = newTransform
     }
     
-    private func animateFlyOff(from: Direction) -> Void {
+    private func animateFlyOff(from: CardSwipeDirection) -> Void {
         let xBound = UIScreen.main.bounds.width * (from == .right ? 1 : -1)
         UIView.animate(withDuration: 0.30,
                        animations: {
@@ -263,18 +259,17 @@ class CardViewController: UIViewController {
             completion: { finished in
                 if finished {
                     self.cardView.showDropShadow()
-                    // self.barProgressView.progress
                 }
             }
         )
-        self.delegate?.wasSwiped(cardViewController: self)
+        self.delegate?.cardWasDismissed(cardViewController: self)
         if self.cardGroup.failedToFetch() {
             self.fetchCards()
         }
     }
 
     
-    private func shake(view: UIView, direction: Direction, offset: CGFloat) -> Void {
+    private func shake(view: UIView, direction: CardSwipeDirection, offset: CGFloat) -> Void {
         let offsetInDirection = abs(offset) * (direction == .right ? 1 : -1)
         let newTranslationXY = CGAffineTransform(
             translationX: offsetInDirection,
@@ -335,11 +330,6 @@ class CardViewController: UIViewController {
         )
     }
 
-    override public func motionEnded(_ motion: UIEventSubtype, with event: UIEvent?) {
-        if motion == .motionShake {
-            // self.prevCard()
-        }
-    }
     
     /*
     // MARK: - Navigation

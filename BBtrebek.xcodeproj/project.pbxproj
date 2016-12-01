@@ -117,6 +117,7 @@
 		7B2CC2F21DEE4A70006B6966 /* DataSources */ = {
 			isa = PBXGroup;
 			children = (
+				7BE5C1C21DCFA52100B298B5 /* CardGroup.swift */,
 			);
 			name = DataSources;
 			sourceTree = "<group>";
@@ -237,7 +238,6 @@
 			children = (
 				7B2CC2F21DEE4A70006B6966 /* DataSources */,
 				7B71C5571DEBA8AB00D7B0F8 /* Delegates */,
-				7BE5C1C21DCFA52100B298B5 /* CardGroup.swift */,
 				7B3427241DC6705F00B310FB /* Views */,
 				7BD96C491DDE750700FC7231 /* Controllers */,
 				7BC8EC761C0D2805004972AD /* Main.storyboard */,

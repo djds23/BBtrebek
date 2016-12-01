@@ -9,7 +9,8 @@
 import UIKit
 
 class CardHandler: NSObject, CardViewControllerDelegate {
-    func wasSwiped(cardViewController: CardViewController) -> Void {
+    
+    internal func cardWasDismissed(cardViewController: CardViewController) -> Void {
         self.updateProgressView(cardViewController: cardViewController)
     }
     
