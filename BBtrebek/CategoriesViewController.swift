@@ -68,7 +68,7 @@ class CategoriesViewController: UITableViewController {
         cell.backgroundColor = BBColor.white
         cell.accessoryType = UITableViewCellAccessoryType.disclosureIndicator
         if category.isRandom() {
-            cell.detailTextLabel?.text = "🚀"
+            cell.detailTextLabel?.text = ["🚀", "😜", "🤓", "🐍", "🚨", "🕹"].sample()
         } else {
             cell.detailTextLabel?.text = String(category.count())
         }
