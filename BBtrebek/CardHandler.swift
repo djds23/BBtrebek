@@ -8,21 +8,26 @@
 
 import UIKit
 
-class CardHandler: NSObject, CardViewControllerDelegate {
+class CardHandler: NSObject, CardViewDelegate {
     
-    internal func cardWasDismissed(cardViewController: CardViewController) -> Void {
-        self.updateProgressView(cardViewController: cardViewController)
+    public func updatesCardView(cardView: CardView, newCard: Card) {
+        
     }
     
-    private func updateProgressView(cardViewController: CardViewController) {
-        let cardGroup = cardViewController.cardGroup
-        if cardGroup.isFinished() {
-            cardViewController.barProgressView.setProgress(1, animated: true)
-        } else {
-            let percentFinished = Float(cardGroup.currentIndex) / Float(cardGroup.cards.count)
-            UIView.animate(withDuration: BBUtil.goldenRatio / 4, animations: {
-                cardViewController.barProgressView.setProgress(percentFinished, animated: true)
-            })
-        }
+    public func cardViewDidAppear(cardView: CardView, card: Card) {
+        
     }
+    
+    public func cardViewWillAppear(cardView: CardView, card: Card) {
+        
+    }
+    
+    public func cardViewIsPanned(cardView: CardView) {
+        
+    }
+    
+    public func cardViewIsDismissed(cardView: CardView) {
+        
+    }
+
 }

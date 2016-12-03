@@ -8,10 +8,20 @@
 
 import UIKit
 
+protocol CardViewDelegate {
+    func updatesCardView(cardView: CardView, newCard: Card)
+    func cardViewDidAppear(cardView: CardView, card: Card)
+    func cardViewWillAppear(cardView: CardView, card: Card)
+    func cardViewIsPanned(cardView: CardView)
+    func cardViewIsDismissed(cardView: CardView)
+}
+
 @IBDesignable
 public class CardView: UIView {
+    
     var card: Card?
-
+    var delegate: CardViewDelegate?
+    
     enum CardViewState {
         case answer
         case question

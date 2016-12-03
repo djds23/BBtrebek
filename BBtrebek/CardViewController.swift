@@ -259,7 +259,7 @@ class CardViewController: UIViewController {
                 }
             }
         )
-        self.delegate?.cardWasDismissed(cardViewController: self)
+        self.updateProgressView()
         if self.cardGroup.failedToFetch() {
             self.fetchCards()
         }
@@ -308,6 +308,19 @@ class CardViewController: UIViewController {
         self.shakeCard()
     }
     
+    
+    private func updateProgressView() -> Void {
+        let cardGroup = self.cardGroup
+        if cardGroup.isFinished() {
+            self.barProgressView.setProgress(1, animated: true)
+        } else {
+            let percentFinished = Float(cardGroup.currentIndex) / Float(cardGroup.cards.count)
+            UIView.animate(withDuration: BBUtil.goldenRatio / 4, animations: {
+                self.barProgressView.setProgress(percentFinished, animated: true)
+            })
+        }
+    }
+
     private func fetchCards() -> Void {
         self.cardGroup.fetch(
             success: { (cardGroup) in
