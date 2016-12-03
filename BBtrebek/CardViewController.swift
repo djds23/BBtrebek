@@ -60,10 +60,7 @@ class CardViewController: UIViewController {
         let flag = UIImage(named: "flag")
         let button = UIButton(type: UIButtonType.custom)
         button.setImage(flag, for: UIControlState.normal)
-        button.setTitle("Flag Content", for: UIControlState.normal)
-        button.titleLabel?.font = button.titleLabel?.font.withSize(14)
-        button.setTitleColor(BBColor.tcLightgreytext, for: UIControlState.normal)
-        button.frame = CGRect(x: 0, y: 0, width: 100, height: 20)
+        button.frame = CGRect(x: 0, y: 0, width: 20, height: 20)
         button.addTarget(self,
                          action: #selector(CardViewController.handleFlagCardButton(sender:)),
                          for: UIControlEvents.touchUpInside
@@ -83,7 +80,7 @@ class CardViewController: UIViewController {
     private func presentFlagActionController(reasons: Array<FlagReason>) -> Void {
         let alertController = UIAlertController(
             title: "Flag Card",
-            message: "Flagging a card will cause Trivia Cards to review its content and possibly remove it from the category. Why are you flagging it today?",
+            message: "Flag a card to let us know that the content should be reviewed, and potentially removed from the deck.",
             preferredStyle: UIAlertControllerStyle.actionSheet
         )
         reasons.forEach { (flagReason) in
