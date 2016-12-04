@@ -12,7 +12,7 @@ protocol CardViewDelegate {
     func updatesCardView(cardView: CardView, newCard: Card)
     func cardViewDidAppear(cardView: CardView, card: Card)
     func cardViewWillAppear(cardView: CardView, card: Card)
-    func cardViewIsPanned(cardView: CardView)
+    func cardViewIsPanned(cardView: CardView, sender: UIPanGestureRecognizer)
     func cardViewIsDismissed(cardView: CardView)
 }
 
@@ -52,6 +52,7 @@ public class CardView: UIView {
         Bundle.main.loadNibNamed("CardView", owner: self, options: nil)
         self.addSubview(self.cardView)
         cardView.frame = self.bounds
+        self.setupCardView()
     }
     
     required public init?(coder aDecoder: NSCoder) {
@@ -59,6 +60,23 @@ public class CardView: UIView {
         Bundle.main.loadNibNamed("CardView", owner: self, options: nil)
         self.addSubview(self.cardView)
         cardView.frame = self.bounds
+        self.setupCardView()
+    }
+    
+    public func setupCardView() {
+        self.addSwipeGestureRecognizers()
+    }
+
+    private func addSwipeGestureRecognizers() -> Void {
+        let panRecognizer = UIPanGestureRecognizer(
+            target: self,
+            action: #selector(CardView.handlePan(sender:))
+        )
+        self.addGestureRecognizer(panRecognizer)
+    }
+    
+    @IBAction func handlePan(sender: UIPanGestureRecognizer) {
+        self.delegate?.cardViewIsPanned(cardView: self, sender: sender)
     }
 
     public func setCardLabels(card: Card) -> Void {
@@ -168,5 +186,13 @@ public class CardView: UIView {
             self.holdForAnswerLabel.isHidden = false
             self.showing = CardViewState.question
         })
+    }
+    
+    
+    public func centerCardPosition() -> Void {
+        let newTranslationXY = CGAffineTransform(translationX: CGFloat(0), y: CGFloat(0))
+        let newRotation = CGAffineTransform(rotationAngle: 0)
+        let newTransform = newRotation.concatenating(newTranslationXY)
+        self.transform = newTransform
     }
 }
