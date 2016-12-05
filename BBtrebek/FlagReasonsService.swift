@@ -9,7 +9,7 @@
 import UIKit
 
 class FlagReasonsService: NSObject {
-    let client = APIClient(url:"https://triviacards.xyz/api/v1/reasons")
+    let client = APIClient(url:"\(Config.baseURLString())/api/v1/reasons")
     
     func dataToReasons(rawReasons: NSArray) -> Array<FlagReason> {
         var flagReasons: Array<FlagReason> = []

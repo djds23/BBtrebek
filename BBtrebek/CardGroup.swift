@@ -18,19 +18,22 @@ open class CardGroup: NSObject {
     }
     
     private var state = State.loading
+    private let indexManager: CategoryIndexCacheManager
     public var cards: Array<Card> = []
     public var currentIndex = 0
-    var category: Category?
+    var category: Category
     
-    public init(category: Category? = nil) {
-        if category != nil {
-            self.category = category
-        }
+    public init(category: Category) {
+        self.category = category
+        self.indexManager = CategoryIndexCacheManager(category: category)
+        self.currentIndex = self.indexManager.index(defaultIndex: 0)
+        print(currentIndex)
     }
     
     public func current() -> Card? {
         var card: Card?
         if self.cards.indexExists(self.currentIndex) {
+            self.indexManager.set(index: self.currentIndex)
             card = self.cards[self.currentIndex]
         }
         return card
@@ -51,13 +54,7 @@ open class CardGroup: NSObject {
             self.state = State.finished
         }
     }
-    
-    public func prev() -> Void {
-        if self.currentIndex > 0 {
-            self.state = State.ready
-            self.currentIndex -= 1
-        }
-    }
+
     public func isFinished() -> Bool {
         return self.state == State.finished
     }
@@ -75,11 +72,7 @@ open class CardGroup: NSObject {
     }
 
     public func isRandom() -> Bool {
-        var hasRandom = false
-        if self.category != nil {
-            hasRandom = (self.category?.isRandom())!
-        }
-        return hasRandom
+        return self.category.isRandom()
     }
     
     internal func updateProgress(cardViewController: CardViewController) -> Void {
@@ -121,8 +114,8 @@ open class CardGroup: NSObject {
             self.state = State.loading
         }
         
-        if self.category != nil && !isRandom() {
-            let client = FetchCategoryService(category: category!, count: count)
+        if !isRandom() {
+            let client = FetchCategoryService(category: category, count: count)
             client.fetch(success: { (newCategory) in
                 self.setStateForCards(cards: newCategory.cards)
                 self.cards += newCategory.cards

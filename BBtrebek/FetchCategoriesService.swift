@@ -12,7 +12,7 @@ class FetchCategoriesService: NSObject {
     let client: APIClient
     
     public init (count: Int, lastId: Int) {
-        self.client = APIClient(url:"https://triviacards.xyz/api/v1/category?count=\(count)&last_category_id=\(lastId)")
+        self.client = APIClient(url:"\(Config.baseURLString())/api/v1/category?count=\(count)&last_category_id=\(lastId)")
     }
     
     func dataToCategories(rawCategories: NSArray) -> Array<Category> {

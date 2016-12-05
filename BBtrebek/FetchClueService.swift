@@ -12,7 +12,7 @@ class FetchCardService: NSObject {
     let client: APIClient
     
     public init (count: Int) {
-        self.client = APIClient(url:"https://triviacards.xyz/api/v1/random?count=\(count)")
+        self.client = APIClient(url:"\(Config.baseURLString())/api/v1/random?count=\(count)")
     }
     
     func dataToCard(rawCards: NSArray) -> Array<Card> {

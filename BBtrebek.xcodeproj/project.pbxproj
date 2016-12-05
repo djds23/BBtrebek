@@ -12,7 +12,6 @@
 		7B10E8FF1DD55A99005E262F /* NavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B10E8FD1DD55A99005E262F /* NavigationViewController.swift */; };
 		7B10E9031DD5603A005E262F /* CategoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B10E9011DD5603A005E262F /* CategoriesViewController.swift */; };
 		7B120E2A1DAF17BD00A6F660 /* FetchCategoryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B120E291DAF17BD00A6F660 /* FetchCategoryService.swift */; };
-		7B120E2B1DAF17BD00A6F660 /* FetchCategoryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B120E291DAF17BD00A6F660 /* FetchCategoryService.swift */; };
 		7B120E2D1DAF182300A6F660 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B120E2C1DAF182300A6F660 /* Category.swift */; };
 		7B120E2E1DAF182300A6F660 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B120E2C1DAF182300A6F660 /* Category.swift */; };
 		7B1AF1211DE954D6002A10A2 /* FlagReasonsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B1AF1201DE954D6002A10A2 /* FlagReasonsService.swift */; };
@@ -27,8 +26,9 @@
 		7B6960731DAAFA07001B87DD /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B6960711DAAFA07001B87DD /* APIClient.swift */; };
 		7B789B481DAB2D8A007E571C /* ClueTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B789B451DAB2C38007E571C /* ClueTests.swift */; };
 		7B9269E41DAB177A005B9382 /* FetchClueService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9269E31DAB177A005B9382 /* FetchClueService.swift */; };
-		7B9269E51DAB17A8005B9382 /* FetchClueService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9269E31DAB177A005B9382 /* FetchClueService.swift */; };
 		7BA61CAB1DE9DAC20047BED0 /* FlagReason.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B1AF1221DE95500002A10A2 /* FlagReason.swift */; };
+		7BA78F531DF501DD006125D9 /* CategoryIndexCacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA78F521DF501DD006125D9 /* CategoryIndexCacheManager.swift */; };
+		7BA78F551DF50C13006125D9 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA78F541DF50C13006125D9 /* Config.swift */; };
 		7BA915501C2A2EF000BABFDB /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA9154F1C2A2EF000BABFDB /* Array.swift */; };
 		7BA915511C2A2EF000BABFDB /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA9154F1C2A2EF000BABFDB /* Array.swift */; };
 		7BA915531C2A2F1200BABFDB /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA915521C2A2F1200BABFDB /* String.swift */; };
@@ -74,6 +74,8 @@
 		7B6960711DAAFA07001B87DD /* APIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
 		7B789B451DAB2C38007E571C /* ClueTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClueTests.swift; sourceTree = "<group>"; };
 		7B9269E31DAB177A005B9382 /* FetchClueService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchClueService.swift; sourceTree = "<group>"; };
+		7BA78F521DF501DD006125D9 /* CategoryIndexCacheManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryIndexCacheManager.swift; sourceTree = "<group>"; };
+		7BA78F541DF50C13006125D9 /* Config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		7BA9154F1C2A2EF000BABFDB /* Array.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
 		7BA915521C2A2F1200BABFDB /* String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		7BC8EC6D1C0D2805004972AD /* BBtrebek.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BBtrebek.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -132,6 +134,15 @@
 		7B69606D1DAAF968001B87DD /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				7BA78F561DF50DE3006125D9 /* HTTP */,
+				7BA78F521DF501DD006125D9 /* CategoryIndexCacheManager.swift */,
+			);
+			name = Services;
+			sourceTree = "<group>";
+		};
+		7BA78F561DF50DE3006125D9 /* HTTP */ = {
+			isa = PBXGroup;
+			children = (
 				7B69606E1DAAF98B001B87DD /* DisableClueService.swift */,
 				7B6960711DAAFA07001B87DD /* APIClient.swift */,
 				7B9269E31DAB177A005B9382 /* FetchClueService.swift */,
@@ -139,7 +150,7 @@
 				7B5CDBA21DD8B4EE00F7EB66 /* FetchCategoriesService.swift */,
 				7B1AF1201DE954D6002A10A2 /* FlagReasonsService.swift */,
 			);
-			name = Services;
+			name = HTTP;
 			sourceTree = "<group>";
 		};
 		7BA915561C2A304900BABFDB /* Extensions */ = {
@@ -185,6 +196,7 @@
 				7BD96C481DDE74E500FC7231 /* UI */,
 				7B69606D1DAAF968001B87DD /* Services */,
 				7BC8EC721C0D2805004972AD /* AppDelegate.swift */,
+				7BA78F541DF50C13006125D9 /* Config.swift */,
 				7B05B5AB1DCAA762003D8A51 /* BBColor.swift */,
 				7B55B52F1C14C4EA005D2F8B /* BBUtil.swift */,
 				7BC8EC791C0D2805004972AD /* Images.xcassets */,
@@ -362,11 +374,13 @@
 				7BA915531C2A2F1200BABFDB /* String.swift in Sources */,
 				7B10E8FF1DD55A99005E262F /* NavigationViewController.swift in Sources */,
 				7B55B5301C14C4EA005D2F8B /* BBUtil.swift in Sources */,
+				7BA78F531DF501DD006125D9 /* CategoryIndexCacheManager.swift in Sources */,
 				FF4B9DC31DBA481A00FEAD8A /* CardView.swift in Sources */,
 				7BA915501C2A2EF000BABFDB /* Array.swift in Sources */,
 				7B1AF1211DE954D6002A10A2 /* FlagReasonsService.swift in Sources */,
 				7B9269E41DAB177A005B9382 /* FetchClueService.swift in Sources */,
 				7B6960721DAAFA07001B87DD /* APIClient.swift in Sources */,
+				7BA78F551DF50C13006125D9 /* Config.swift in Sources */,
 				7B120E2A1DAF17BD00A6F660 /* FetchCategoryService.swift in Sources */,
 				7BFB798A1DE54335004D1509 /* BottomAlignedLabel.swift in Sources */,
 				7B5CDBA31DD8B4EE00F7EB66 /* FetchCategoriesService.swift in Sources */,
@@ -383,7 +397,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				7B789B481DAB2D8A007E571C /* ClueTests.swift in Sources */,
-				7B9269E51DAB17A8005B9382 /* FetchClueService.swift in Sources */,
 				7B6960731DAAFA07001B87DD /* APIClient.swift in Sources */,
 				7BAF90C91C134F1800CC71A9 /* Card.swift in Sources */,
 				7BA915541C2A2F1200BABFDB /* String.swift in Sources */,
@@ -393,7 +406,6 @@
 				7BA61CAB1DE9DAC20047BED0 /* FlagReason.swift in Sources */,
 				7B05B5AD1DCAA762003D8A51 /* BBColor.swift in Sources */,
 				7BA915511C2A2EF000BABFDB /* Array.swift in Sources */,
-				7B120E2B1DAF17BD00A6F660 /* FetchCategoryService.swift in Sources */,
 				7BC8EC891C0D2805004972AD /* BBtrebekTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

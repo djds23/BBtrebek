@@ -288,6 +288,7 @@ class CardViewController: UIViewController {
                 self.cardView.activityIndicator.isHidden = true
                 self.cardView.hideLabels()
                 self.cardGroup?.updateLabels(cardViewController: self)
+                self.cardGroup?.updateProgress(cardViewController: self)
                 UIView.animate(withDuration: (0.10 * BBUtil.goldenRatio), delay: 0.0, options: UIViewAnimationOptions.allowUserInteraction, animations: {
                     self.cardView.showLabels()
                 })

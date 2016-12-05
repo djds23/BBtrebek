@@ -13,7 +13,7 @@ class DisableCardService: NSObject {
     
     let card: Card
     let reason: FlagReason
-    let client: APIClient = APIClient(url:"https://triviacards.xyz/api/v1/flag")
+    let client: APIClient = APIClient(url:"\(Config.baseURLString())/api/v1/flag")
     
     public init (card: Card, reason: FlagReason) {
         self.card = card
