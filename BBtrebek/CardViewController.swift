@@ -34,6 +34,7 @@ class CardViewController: UIViewController {
         self.cardView.delegate = CardHandler()
         self.fetchCards()
         self.setCardViewLables()
+        self.addSwipeGestureRecognizers()
         self.addFlagCardButtonToNavBar()
         self.cardView.activityIndicator.isHidden = false
         self.cardView.activityIndicator.startAnimating()
@@ -49,6 +50,35 @@ class CardViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    private func addSwipeGestureRecognizers() -> Void {
+        let panRecognizer = UIPanGestureRecognizer(
+            target: self,
+            action: #selector(CardViewController.handlePan(sender:))
+        )
+        self.cardView.addGestureRecognizer(panRecognizer)
+    }
+    
+    @IBAction func handlePan(sender: UIPanGestureRecognizer) {
+        self.cardView.delegate?.cardViewIsPanned(cardView: self.cardView, sender: sender)
+        let translation = sender.translation(in: cardView)
+        if sender.state == UIGestureRecognizerState.ended {
+            let offset = translation.x
+            let swipeDirection = offset > 0 ? CardSwipeDirection.right : CardSwipeDirection.left
+            let pointBreak = 96.0 as CGFloat
+            let shouldDismissCard = abs(offset) > pointBreak
+            if shouldDismissCard {
+                self.cardView.delegate?.dismissCardView(cardView: self.cardView)
+            } else {
+                // We go back to the original posiition if pan is not far enough for us to decide a direction
+                if 16 < abs(Int(translation.x)) {
+                    self.shakeBack(cardView: self.cardView, offset: offset, duration: 0.20)
+                } else {
+                    self.moveBack(cardView: self.cardView, duration: 0.20)
+                }
+            }
+        }
     }
     
     private func addFlagCardButtonToNavBar() -> Void {

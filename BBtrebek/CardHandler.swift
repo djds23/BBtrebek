@@ -35,25 +35,9 @@ class CardHandler: NSObject, CardViewDelegate {
         
         let newTransform = newRotation.concatenating(newTranslationXY)
         cardView.transform = newTransform
-        if sender.state == UIGestureRecognizerState.ended {
-            let offset = translation.x
-            let swipeDirection = offset > 0 ? CardSwipeDirection.right : CardSwipeDirection.left
-            let pointBreak = 96.0 as CGFloat
-            let shouldDismissCard = abs(offset) > pointBreak
-            if shouldDismissCard {
-                self.animateFlyOff(cardView: cardView, from: swipeDirection)
-            } else {
-                // We go back to the original posiition if pan is not far enough for us to decide a direction
-                if 16 < abs(Int(translation.x)) {
-                    self.shakeBack(cardView: cardView, offset: offset, duration: 0.20)
-                } else {
-                    self.moveBack(cardView: cardView, duration: 0.20)
-                }
-            }
-        }
     }
     
-    public func cardViewIsDismissed(cardView: CardView) {
+    public func dismissCardView(cardView: CardView) {
         
     }
 

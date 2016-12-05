@@ -13,7 +13,7 @@ protocol CardViewDelegate {
     func cardViewDidAppear(cardView: CardView, card: Card)
     func cardViewWillAppear(cardView: CardView, card: Card)
     func cardViewIsPanned(cardView: CardView, sender: UIPanGestureRecognizer)
-    func cardViewIsDismissed(cardView: CardView)
+    func dismissCardView(cardView: CardView)
 }
 
 @IBDesignable
@@ -64,20 +64,10 @@ public class CardView: UIView {
     }
     
     public func setupCardView() {
-        self.addSwipeGestureRecognizers()
+        
     }
 
-    private func addSwipeGestureRecognizers() -> Void {
-        let panRecognizer = UIPanGestureRecognizer(
-            target: self,
-            action: #selector(CardView.handlePan(sender:))
-        )
-        self.addGestureRecognizer(panRecognizer)
-    }
-    
-    @IBAction func handlePan(sender: UIPanGestureRecognizer) {
-        self.delegate?.cardViewIsPanned(cardView: self, sender: sender)
-    }
+
 
     public func setCardLabels(card: Card) -> Void {
         self.card = card
