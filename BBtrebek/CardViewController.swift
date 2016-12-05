@@ -8,9 +8,6 @@
 
 import UIKit
 
-protocol CardViewControllerDelegate {
-    func cardWasDismissed(cardViewController: CardViewController) -> Void
-}
 
 enum CardSwipeDirection {
     case left
@@ -20,7 +17,6 @@ enum CardSwipeDirection {
 class CardViewController: UIViewController {
     
     var cardGroup = CardGroup()
-    var delegate: CardViewControllerDelegate?
     
     @IBOutlet weak var barProgressView: UIProgressView!
     @IBOutlet weak var cardView: CardView!
@@ -35,11 +31,11 @@ class CardViewController: UIViewController {
         
         // For pinning view beneath nav controller
         self.edgesForExtendedLayout = []
-        
+        self.cardView.delegate = CardHandler()
         self.fetchCards()
         self.setCardViewLables()
-        self.addFlagCardButtonToNavBar()
         self.addSwipeGestureRecognizers()
+        self.addFlagCardButtonToNavBar()
         self.cardView.activityIndicator.isHidden = false
         self.cardView.activityIndicator.startAnimating()
         self.cardView.addDropShadow()
@@ -54,6 +50,35 @@ class CardViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    private func addSwipeGestureRecognizers() -> Void {
+        let panRecognizer = UIPanGestureRecognizer(
+            target: self,
+            action: #selector(CardViewController.handlePan(sender:))
+        )
+        self.cardView.addGestureRecognizer(panRecognizer)
+    }
+    
+    @IBAction func handlePan(sender: UIPanGestureRecognizer) {
+        self.cardView.delegate?.cardViewIsPanned(cardView: self.cardView, sender: sender)
+        let translation = sender.translation(in: cardView)
+        if sender.state == UIGestureRecognizerState.ended {
+            let offset = translation.x
+            let swipeDirection = offset > 0 ? CardSwipeDirection.right : CardSwipeDirection.left
+            let pointBreak = 96.0 as CGFloat
+            let shouldDismissCard = abs(offset) > pointBreak
+            if shouldDismissCard {
+                self.cardView.delegate?.dismissCardView(cardView: self.cardView)
+            } else {
+                // We go back to the original posiition if pan is not far enough for us to decide a direction
+                if 16 < abs(Int(translation.x)) {
+                    self.shakeBack(cardView: self.cardView, offset: offset, duration: 0.20)
+                } else {
+                    self.moveBack(cardView: self.cardView, duration: 0.20)
+                }
+            }
+        }
     }
     
     private func addFlagCardButtonToNavBar() -> Void {
@@ -147,7 +172,7 @@ class CardViewController: UIViewController {
                     self.shake(view: self.cardView, direction: .right, offset: CGFloat(60)  / CGFloat(BBUtil.goldenRatio))
                 }, completion: { (finished) in
                     UIView.animate(withDuration: duration, delay: 0.0, options: UIViewAnimationOptions.allowUserInteraction, animations: {
-                        self.centerCardPosition()
+                        self.cardView.centerCardPosition()
                     })
                 })
             }
@@ -158,36 +183,6 @@ class CardViewController: UIViewController {
         return self.cardGroup.isRandom()
     }
     
-    @IBAction func handlePan(sender: UIPanGestureRecognizer) {
-        let translation = sender.translation(in: self.cardView)
-        let newTranslationXY = CGAffineTransform(
-            translationX: translation.x,
-            y: -abs(translation.x) / 15
-        )
-        let newRotation = CGAffineTransform(
-            rotationAngle: -translation.x / 1500
-        )
-        
-        let newTransform = newRotation.concatenating(newTranslationXY)
-        self.cardView.transform = newTransform
-        
-        if sender.state == UIGestureRecognizerState.ended {
-            let offset = translation.x
-            let swipeDirection = offset > 0 ? CardSwipeDirection.right : CardSwipeDirection.left
-            let pointBreak = 96.0 as CGFloat
-            let shouldDismissCard = abs(offset) > pointBreak
-            if shouldDismissCard {
-                self.animateFlyOff(from: swipeDirection)
-            } else {
-                // We go back to the original posiition if pan is not far enough for us to decide a direction
-                if 16 < abs(Int(translation.x)) {
-                    self.shakeBack(offset: offset, duration: 0.20)
-                } else {
-                    self.moveBack(duration: 0.20)
-                }
-            }
-        }
-    }
     
     private func shakeBack(offset: CGFloat, duration: TimeInterval) -> Void {
         let direction = offset > 0 ? CardSwipeDirection.left : CardSwipeDirection.right
@@ -202,7 +197,7 @@ class CardViewController: UIViewController {
     
     private func moveBack(duration: TimeInterval) -> Void {
         UIView.animate(withDuration: duration, delay: 0.0, options: UIViewAnimationOptions.allowUserInteraction, animations: {
-            self.centerCardPosition()
+            self.cardView.centerCardPosition()
         }, completion: { finished in
             if finished {
                 self.cardView.showQuestion()
@@ -211,38 +206,10 @@ class CardViewController: UIViewController {
         })
     }
     
-    private func centerCardPosition() -> Void {
-        let newTranslationXY = CGAffineTransform(translationX: CGFloat(0), y: CGFloat(0))
-        let newRotation = CGAffineTransform(rotationAngle: 0)
-        let newTransform = newRotation.concatenating(newTranslationXY)
-        self.cardView.transform = newTransform
-    }
-    
-    private func animateFlyOff(from: CardSwipeDirection) -> Void {
-        let xBound = UIScreen.main.bounds.width * (from == .right ? 1 : -1)
-        UIView.animate(withDuration: 0.30,
-                       animations: {
-                        let newTranslationXY = CGAffineTransform(
-                            translationX:  xBound,
-                            y: xBound / 15
-                        )
-                        let newRotation = CGAffineTransform(
-                            rotationAngle: 0
-                        )
-                        
-                        let newTransform = newRotation.concatenating(newTranslationXY)
-                        self.cardView.transform = newTransform
-        }, completion: { (finished) in
-            if finished {
-                self.postSwipe()
-            }
-        })
-    }
-    
     private func postSwipe() -> Void {
         self.cardView.hideDropShadow()
         self.cardGroup.next()
-        self.centerCardPosition()
+        self.cardView.centerCardPosition()
         self.setCardViewLables()
         self.cardView.holdForAnswerLabel.isHidden = false
         self.cardView.setCardColors(containter: BBColor.cardWhite, textColor: BBColor.black)
@@ -259,7 +226,7 @@ class CardViewController: UIViewController {
                 }
             }
         )
-        self.delegate?.cardWasDismissed(cardViewController: self)
+        self.updateProgressView()
         if self.cardGroup.failedToFetch() {
             self.fetchCards()
         }
@@ -296,18 +263,23 @@ class CardViewController: UIViewController {
         }
     }
     
-    private func addSwipeGestureRecognizers() -> Void {
-        let panRecognizer = UIPanGestureRecognizer(
-            target: self,
-            action: #selector(CardViewController.handlePan(sender:))
-        )
-        self.cardView.addGestureRecognizer(panRecognizer)
-    }
-    
     public func cardsHaveBeenFetched(sender: Any?) -> Void {
         self.shakeCard()
     }
     
+    
+    private func updateProgressView() -> Void {
+        let cardGroup = self.cardGroup
+        if cardGroup.isFinished() {
+            self.barProgressView.setProgress(1, animated: true)
+        } else {
+            let percentFinished = Float(cardGroup.currentIndex) / Float(cardGroup.cards.count)
+            UIView.animate(withDuration: BBUtil.goldenRatio / 4, animations: {
+                self.barProgressView.setProgress(percentFinished, animated: true)
+            })
+        }
+    }
+
     private func fetchCards() -> Void {
         self.cardGroup.fetch(
             success: { (cardGroup) in

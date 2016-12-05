@@ -8,21 +8,95 @@
 
 import UIKit
 
-class CardHandler: NSObject, CardViewControllerDelegate {
+class CardHandler: NSObject, CardViewDelegate {
     
-    internal func cardWasDismissed(cardViewController: CardViewController) -> Void {
-        self.updateProgressView(cardViewController: cardViewController)
+    public func updatesCardView(cardView: CardView, newCard: Card) {
+        
     }
     
-    private func updateProgressView(cardViewController: CardViewController) {
-        let cardGroup = cardViewController.cardGroup
-        if cardGroup.isFinished() {
-            cardViewController.barProgressView.setProgress(1, animated: true)
-        } else {
-            let percentFinished = Float(cardGroup.currentIndex) / Float(cardGroup.cards.count)
-            UIView.animate(withDuration: BBUtil.goldenRatio / 4, animations: {
-                cardViewController.barProgressView.setProgress(percentFinished, animated: true)
-            })
-        }
+    public func cardViewDidAppear(cardView: CardView, card: Card) {
+        
+    }
+    
+    public func cardViewWillAppear(cardView: CardView, card: Card) {
+        
+    }
+    
+    public func cardViewIsPanned(cardView: CardView, sender: UIPanGestureRecognizer) {
+        let translation = sender.translation(in: cardView)
+        let newTranslationXY = CGAffineTransform(
+            translationX: translation.x,
+            
+            y: -abs(translation.x) / 15
+        )
+        let newRotation = CGAffineTransform(
+            rotationAngle: -translation.x / 1500
+        )
+        
+        let newTransform = newRotation.concatenating(newTranslationXY)
+        cardView.transform = newTransform
+    }
+    
+    public func dismissCardView(cardView: CardView) {
+        
+    }
+
+    private func animateFlyOff(cardView: CardView, from: CardSwipeDirection) -> Void {
+        let xBound = UIScreen.main.bounds.width * (from == .right ? 1 : -1)
+        UIView.animate(withDuration: 0.30,
+                       animations: {
+                        let newTranslationXY = CGAffineTransform(
+                            translationX:  xBound,
+                            y: xBound / 15
+                        )
+                        let newRotation = CGAffineTransform(
+                            rotationAngle: 0
+                        )
+                        
+                        let newTransform = newRotation.concatenating(newTranslationXY)
+                        cardView.transform = newTransform
+        }, completion: { (finished) in
+            if finished {
+//                self.postSwipe()
+            }
+        })
+    }
+    
+    
+    private func shakeBack(cardView: CardView, offset: CGFloat, duration: TimeInterval) -> Void {
+        let direction = offset > 0 ? CardSwipeDirection.left : CardSwipeDirection.right
+        UIView.animate(withDuration: duration, delay: 0.0, options: UIViewAnimationOptions.allowUserInteraction, animations: {
+            self.shake(view: cardView, direction: direction, offset: offset / 2 * CGFloat(BBUtil.goldenRatio))
+        }, completion: { finished in
+            if finished {
+                self.moveBack(cardView: cardView, duration: 0.18)
+            }
+        })
+    }
+    
+    private func moveBack(cardView: CardView, duration: TimeInterval) -> Void {
+        UIView.animate(withDuration: duration, delay: 0.0, options: UIViewAnimationOptions.allowUserInteraction, animations: {
+            cardView.centerCardPosition()
+        }, completion: { finished in
+            if finished {
+                cardView.showQuestion()
+            }
+            
+        })
+    }
+    
+    
+    private func shake(view: UIView, direction: CardSwipeDirection, offset: CGFloat) -> Void {
+        let offsetInDirection = abs(offset) * (direction == .right ? 1 : -1)
+        let newTranslationXY = CGAffineTransform(
+            translationX: offsetInDirection,
+            y: -abs(offset) / 15
+        )
+        let newRotation = CGAffineTransform(
+            rotationAngle: -offsetInDirection / 1500
+        )
+        
+        let newTransform = newRotation.concatenating(newTranslationXY)
+        view.transform = newTransform
     }
 }
