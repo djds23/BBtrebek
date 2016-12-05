@@ -97,8 +97,8 @@ class CategoriesViewController: UITableViewController {
             nibName: "CardViewController",
             bundle: Bundle.main
         )
-        cardViewController.delegate = CardHandler()
-        cardViewController.setCategory(category)
+
+        cardViewController.cardGroup = CardGroup(category: category)
         return cardViewController
     }
     

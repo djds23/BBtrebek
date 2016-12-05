@@ -8,9 +8,6 @@
 
 import UIKit
 
-protocol CardViewControllerDelegate {
-    func cardWasDismissed(cardViewController: CardViewController) -> Void
-}
 
 enum CardSwipeDirection {
     case left
@@ -19,17 +16,12 @@ enum CardSwipeDirection {
 
 class CardViewController: UIViewController {
     
-    var cardGroup = CardGroup()
-    var delegate: CardViewControllerDelegate?
+    var cardGroup: CardGroup?
     
     @IBOutlet weak var barProgressView: UIProgressView!
     @IBOutlet weak var cardView: CardView!
     @IBOutlet weak var bottomCardView: CardView!
     
-    public func setCategory(_ category: Category) -> Void {
-        self.cardGroup = CardGroup(category: category)
-    }
-
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -37,7 +29,6 @@ class CardViewController: UIViewController {
         self.edgesForExtendedLayout = []
         
         self.fetchCards()
-        self.setCardViewLables()
         self.addFlagCardButtonToNavBar()
         self.addSwipeGestureRecognizers()
         self.cardView.activityIndicator.isHidden = false
@@ -46,9 +37,8 @@ class CardViewController: UIViewController {
         self.bottomCardView.addDropShadow()
         self.bottomCardView.activityIndicator.isHidden = true
         self.bottomCardView.isUserInteractionEnabled = false
-        if self.cardGroup.isRandom() {
-            self.addCategoryMoreFromButton()
-        }
+        self.cardGroup?.updateLabels(cardViewController: self)
+        self.addCategoryMoreFromButton()
     }
 
     override func didReceiveMemoryWarning() {
@@ -129,9 +119,9 @@ class CardViewController: UIViewController {
 
     public func categoryViewWasTapped(sender: Any?) -> Void {
         let cardViewController = CardViewController(nibName: "CardViewController", bundle: Bundle.main)
-        let currentCard = self.cardView.card!
-        if self.cardGroup.isReady() && currentCard.category != nil {
-            cardViewController.setCategory(currentCard.category!)
+        let currentCard = self.cardView.card
+        if self.cardGroup!.isReady() && currentCard != nil && currentCard!.category != nil {
+            cardViewController.cardGroup = CardGroup(category: currentCard!.category!)
             self.navigationController?.pushViewController(cardViewController, animated: true)
         }
     }
@@ -155,7 +145,7 @@ class CardViewController: UIViewController {
     }
     
     public func isRandom() -> Bool {
-        return self.cardGroup.isRandom()
+        return self.cardGroup != nil && self.cardGroup!.isRandom()
     }
     
     @IBAction func handlePan(sender: UIPanGestureRecognizer) {
@@ -241,9 +231,10 @@ class CardViewController: UIViewController {
     
     private func postSwipe() -> Void {
         self.cardView.hideDropShadow()
-        self.cardGroup.next()
+        self.cardGroup?.next()
+        self.cardGroup?.updateLabels(cardViewController: self)
+        self.cardGroup?.updateProgress(cardViewController: self)
         self.centerCardPosition()
-        self.setCardViewLables()
         self.cardView.holdForAnswerLabel.isHidden = false
         self.cardView.setCardColors(containter: BBColor.cardWhite, textColor: BBColor.black)
         UIView.animate(
@@ -259,10 +250,7 @@ class CardViewController: UIViewController {
                 }
             }
         )
-        self.delegate?.cardWasDismissed(cardViewController: self)
-        if self.cardGroup.failedToFetch() {
-            self.fetchCards()
-        }
+        self.cardGroup?.fetchCardsIfNeeded(cardViewController:self )
     }
 
     
@@ -280,22 +268,6 @@ class CardViewController: UIViewController {
         view.transform = newTransform
     }
     
-    private func setCardViewLables(animate: Bool = false) -> Void {
-        if self.cardGroup.isFinished() {
-            self.cardView.setCardLabels(card: Card.outOfCards())
-        } else if self.cardGroup.isReady() {
-            self.cardView.setCardLabels(card: self.cardGroup.current()!)
-        } else if self.cardGroup.isLoading() {
-            self.cardView.hideLabels()
-        }
-
-        if let onDeckCard = self.cardGroup.onDeck() {
-            self.bottomCardView.setCardLabels(card: onDeckCard)
-        } else {
-            self.bottomCardView.setCardLabels(card: Card.outOfCards())
-        }
-    }
-    
     private func addSwipeGestureRecognizers() -> Void {
         let panRecognizer = UIPanGestureRecognizer(
             target: self,
@@ -308,14 +280,14 @@ class CardViewController: UIViewController {
         self.shakeCard()
     }
     
-    private func fetchCards() -> Void {
-        self.cardGroup.fetch(
+    internal func fetchCards() -> Void {
+        self.cardGroup?.fetch(
             success: { (cardGroup) in
                 self.cardGroup = cardGroup
                 self.cardView.activityIndicator.stopAnimating()
                 self.cardView.activityIndicator.isHidden = true
                 self.cardView.hideLabels()
-                self.setCardViewLables()
+                self.cardGroup?.updateLabels(cardViewController: self)
                 UIView.animate(withDuration: (0.10 * BBUtil.goldenRatio), delay: 0.0, options: UIViewAnimationOptions.allowUserInteraction, animations: {
                     self.cardView.showLabels()
                 })

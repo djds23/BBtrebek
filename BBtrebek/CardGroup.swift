@@ -44,7 +44,7 @@ open class CardGroup: NSObject {
         return card
     }
     
-    public func next() -> Void {
+    internal func next() -> Void {
         if self.currentIndex + 1 < self.cards.count {
             self.currentIndex += 1
         } else {
@@ -80,6 +80,39 @@ open class CardGroup: NSObject {
             hasRandom = (self.category?.isRandom())!
         }
         return hasRandom
+    }
+    
+    internal func updateProgress(cardViewController: CardViewController) -> Void {
+        if self.isFinished() {
+            cardViewController.barProgressView.setProgress(1, animated: true)
+        } else {
+            let percentFinished = Float(self.currentIndex) / Float(self.cards.count)
+            UIView.animate(withDuration: BBUtil.goldenRatio / 4, animations: {
+                cardViewController.barProgressView.setProgress(percentFinished, animated: true)
+            })
+        }
+    }
+    
+    internal func fetchCardsIfNeeded(cardViewController: CardViewController) -> Void {
+        if self.failedToFetch() {
+            cardViewController.fetchCards()
+        }
+    }
+    
+    internal func updateLabels(cardViewController: CardViewController) -> Void {
+        if self.isFinished() {
+            cardViewController.cardView.setCardLabels(card: Card.outOfCards())
+        } else if self.isReady() {
+            cardViewController.cardView.setCardLabels(card: self.current()!)
+        } else if self.isLoading() {
+            cardViewController.cardView.hideLabels()
+        }
+        
+        if let onDeckCard = self.onDeck() {
+            cardViewController.bottomCardView.setCardLabels(card: onDeckCard)
+        } else {
+            cardViewController.bottomCardView.setCardLabels(card: Card.outOfCards())
+        }
     }
     
     public func fetch(count: Int = 500, success: @escaping ((CardGroup) -> Void), failure: @escaping (Data?, URLResponse?, Error?) -> Void) -> Void {

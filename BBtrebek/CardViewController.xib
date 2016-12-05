@@ -26,7 +26,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                     <subviews>
                         <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progressViewStyle="bar" translatesAutoresizingMaskIntoConstraints="NO" id="YfT-nO-jmv">
-                            <rect key="frame" x="0.0" y="-1" width="375" height="3"/>
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="2.5"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="2" id="cRS-8z-R0s"/>
                             </constraints>
