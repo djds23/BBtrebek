@@ -18,22 +18,26 @@ open class CardGroup: NSObject {
     }
     
     private var state = State.loading
-    private let indexManager: CategoryIndexCacheManager
+    private var indexManager: CategoryIndexCacheManager?
     public var cards: Array<Card> = []
     public var currentIndex = 0
     var category: Category
     
     public init(category: Category) {
         self.category = category
-        self.indexManager = CategoryIndexCacheManager(category: category)
-        self.currentIndex = self.indexManager.index(defaultIndex: 0)
+        if self.category.isRandom() {
+            self.currentIndex = 0
+        } else {
+            self.indexManager = CategoryIndexCacheManager(category: category)
+            self.currentIndex = self.indexManager!.index(defaultIndex: 0)
+        }
         print(currentIndex)
     }
     
     public func current() -> Card? {
         var card: Card?
         if self.cards.indexExists(self.currentIndex) {
-            self.indexManager.set(index: self.currentIndex)
+            self.indexManager?.set(index: self.currentIndex)
             card = self.cards[self.currentIndex]
         }
         return card
