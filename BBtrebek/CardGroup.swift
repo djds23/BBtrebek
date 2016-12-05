@@ -31,7 +31,6 @@ open class CardGroup: NSObject {
             self.indexManager = CategoryIndexCacheManager(category: category)
             self.currentIndex = self.indexManager!.index(defaultIndex: 0)
         }
-        print(currentIndex)
     }
     
     public func current() -> Card? {
@@ -79,6 +78,11 @@ open class CardGroup: NSObject {
         return self.category.isRandom()
     }
     
+    public func shuffleCards() -> Void {
+        let slice = Array(self.cards[self.currentIndex...self.cards.count - 1])
+        self.cards = Array(self.cards[0...self.currentIndex]) + slice // .shuffle TODO: MAKE THE SHUFFLE!
+    }
+
     internal func updateProgress(cardViewController: CardViewController) -> Void {
         if self.isFinished() {
             cardViewController.barProgressView.setProgress(1, animated: true)
@@ -118,23 +122,23 @@ open class CardGroup: NSObject {
             self.state = State.loading
         }
         
-        if !isRandom() {
-            let client = FetchCategoryService(category: category, count: count)
-            client.fetch(success: { (newCategory) in
-                self.setStateForCards(cards: newCategory.cards)
-                self.cards += newCategory.cards
-                success(self)
-            }, failure: { (data, urlResponse, error) in
-                self.state = State.failed
-                failure(data, urlResponse, error)
-            })
-        }
-        
         if isRandom() {
             let client = FetchCardService(count: count)
             client.fetch(success: { (newCards) in
                 self.setStateForCards(cards: newCards)
                 self.cards += newCards
+                self.shuffleCards()
+                success(self)
+            }, failure: { (data, urlResponse, error) in
+                self.state = State.failed
+                failure(data, urlResponse, error)
+            })
+        } else {
+            let client = FetchCategoryService(category: category, count: count)
+            client.fetch(success: { (newCategory) in
+                self.setStateForCards(cards: newCategory.cards)
+                self.cards += newCategory.cards
+                self.shuffleCards()
                 success(self)
             }, failure: { (data, urlResponse, error) in
                 self.state = State.failed

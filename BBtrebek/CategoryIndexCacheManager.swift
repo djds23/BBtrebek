@@ -32,7 +32,6 @@ class CategoryIndexCacheManager: NSObject {
             cache![self.cacheKey()] = index
             UserDefaults.standard.set(cache!, forKey: "categoryIndexCache")
         }
-
     }
     
     public func index(defaultIndex: Int = 0)  -> Int {
@@ -54,5 +53,4 @@ class CategoryIndexCacheManager: NSObject {
     private func cacheKey() -> String {
         return "\(self.category.title)\(self.category.id)"
     }
-    
 }

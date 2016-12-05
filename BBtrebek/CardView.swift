@@ -11,13 +11,12 @@ import UIKit
 @IBDesignable
 public class CardView: UIView {
     var card: Card?
+    var showing = CardViewState.question
 
     enum CardViewState {
         case answer
         case question
     }
-    var showing = CardViewState.question
-    
     
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var holdForAnswerLabel: UILabel!
