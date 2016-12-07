@@ -15,7 +15,7 @@ class FetchCategoryService: NSObject {
 
     public init (category: Category, count: Int, offset: Int = 0) {
         self.category = category
-        let url =  "\(Config.baseURLString())/api/v1/category/\(self.category.id)"
+        let url =  "\(Config.baseURLString())/api/v1/category/\(self.category.id)?shuffle=false"
         self.client = APIClient(url: url)
     }
 

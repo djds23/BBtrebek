@@ -18,7 +18,7 @@ open class CardGroup: NSObject {
     }
     
     private var state = State.loading
-    private var indexManager: CategoryIndexCacheManager?
+    private var cardManager: CategoryCacheManager?
     public var cards: Array<Card> = []
     public var currentIndex = 0
     var category: Category
@@ -28,16 +28,16 @@ open class CardGroup: NSObject {
         if self.category.isRandom() {
             self.currentIndex = 0
         } else {
-            self.indexManager = CategoryIndexCacheManager(category: category)
-            self.currentIndex = self.indexManager!.index(defaultIndex: 0)
+            self.cardManager = CategoryCacheManager(category: category)
+            self.currentIndex = self.cardManager!.index(defaultIndex: 0)
         }
     }
     
     public func current() -> Card? {
         var card: Card?
         if self.cards.indexExists(self.currentIndex) {
-            self.indexManager?.set(index: self.currentIndex)
             card = self.cards[self.currentIndex]
+            self.cardManager?.set(card: card!)
         }
         return card
     }
@@ -78,9 +78,15 @@ open class CardGroup: NSObject {
         return self.category.isRandom()
     }
     
-    public func shuffleCards() -> Void {
-        let slice = Array(self.cards[self.currentIndex...self.cards.count - 1])
-        self.cards = Array(self.cards[0...self.currentIndex]) + slice // .shuffle TODO: MAKE THE SHUFFLE!
+    public func shuffleCardsAfterCurrentIndex() -> Void {
+        if self.currentIndex == 0 {
+            self.cards = self.cards.shuffled()
+        } else {
+            let slice = Array(self.cards[(self.currentIndex + 1)...(self.cards.count - 1)])
+            self.cards = Array(self.cards[0...self.currentIndex]) + slice.shuffled()
+        }
+        
+        
     }
 
     internal func updateProgress(cardViewController: CardViewController) -> Void {
@@ -127,7 +133,7 @@ open class CardGroup: NSObject {
             client.fetch(success: { (newCards) in
                 self.setStateForCards(cards: newCards)
                 self.cards += newCards
-                self.shuffleCards()
+                self.shuffleCardsAfterCurrentIndex()
                 success(self)
             }, failure: { (data, urlResponse, error) in
                 self.state = State.failed
@@ -138,7 +144,7 @@ open class CardGroup: NSObject {
             client.fetch(success: { (newCategory) in
                 self.setStateForCards(cards: newCategory.cards)
                 self.cards += newCategory.cards
-                self.shuffleCards()
+                self.shuffleCardsAfterCurrentIndex()
                 success(self)
             }, failure: { (data, urlResponse, error) in
                 self.state = State.failed

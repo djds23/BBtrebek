@@ -15,7 +15,7 @@ enum ConfigEnvironment {
 
 class Config: NSObject {
     
-    static let environment: ConfigEnvironment = .local
+    static let environment: ConfigEnvironment = .production
     
     public static func baseURLString() -> String {
         var baseUrl: String
@@ -24,7 +24,7 @@ class Config: NSObject {
         case .production:
             baseUrl = "https://triviacards.xyz"
         case .local:
-            baseUrl = "http://192.168.1.6:3000"
+            baseUrl = "http://172.20.10.2:3000"
         }
         
         return baseUrl
